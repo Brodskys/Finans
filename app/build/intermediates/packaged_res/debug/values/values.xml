@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#fdf4e3</color>
+    <color name="background2">#F3F3C1</color>
+    <color name="background2_dark">#424242</color>
+    <color name="background3">#964b00</color>
+    <color name="background3_dark">#D38A06</color>
+    <color name="background_dark">#212121</color>
+    <color name="background_grey">#595A80</color>
+    <color name="black">#FF000000</color>
+    <color name="blue">#21236F</color>
+    <color name="blue_light">#9596D5</color>
+    <color name="blue_light2">#A6A7D5</color>
+    <color name="green">#4CAF50</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="red">#F44336</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <dimen name="bottom_sheet_height">400dp</dimen>
+    <string name="abouttheprogram">About the program</string>
+    <string name="account">Account</string>
+    <string name="add">Add</string>
+    <string name="addLocation">Location</string>
+    <string name="analytics">Analytics</string>
+    <string name="app_name">Finans</string>
+    <string name="attachPhoto">Attach a photo</string>
+    <string name="authorization">Authorization</string>
+    <string name="back">BACK</string>
+    <string name="cancel">Cancel</string>
+    <string name="categories">Categories</string>
+    <string name="choosefromGallery">Choose from Gallery</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="currency">Currency</string>
+    <string name="dateandtime">Date and time</string>
+    <string name="default_web_client_id" translatable="false">1015866785-klgvp3eig6pbgg91mfomocuucb3m3ake.apps.googleusercontent.com</string>
+    <string name="deleteAccount">Delete Account</string>
+    <string name="details">Details</string>
+    <string name="done">Done</string>
+    <string name="donthaveanAccount">Don\'t have an Account?</string>
+    <string name="editProfile">Edit Profile</string>
+    <string name="email">E-mail</string>
+    <string name="enterEmail">Enter your email</string>
+    <string name="enterPIN">Enter the Pin code</string>
+    <string name="enterPassword">Enter your password</string>
+    <string name="enterUsername">Enter the user name</string>
+    <string name="exit">Sign Out</string>
+    <string name="expense">Expense</string>
+    <string name="facebook_app_id" translatable="false">1284252622492329</string>
+    <string name="facebook_client_token" translatable="false">f7c7cdb14d6dcf8385a579c31a5f2ddc</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb1284252622492329</string>
+    <string name="forgotPassword">Forgot Password?</string>
+    <string name="gcm_defaultSenderId" translatable="false">1015866785</string>
+    <string name="google_api_key" translatable="false">AIzaSyBoNjCc3tyyWzlYeULaIx_sq-p5d9aaz_Y</string>
+    <string name="google_app_id" translatable="false">1:1015866785:android:835e7044e234f35ca797e0</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBoNjCc3tyyWzlYeULaIx_sq-p5d9aaz_Y</string>
+    <string name="google_maps_key" translatable="false">AIzaSyCoujs0OYiVFqAdFCZ0r0Wj6i2FfQgppOs</string>
+    <string name="google_storage_bucket" translatable="false">finans-44544.appspot.com</string>
+    <string name="home">Home</string>
+    <string name="income">Income</string>
+    <string name="isPassword">Login by PIN code</string>
+    <string name="language">Language</string>
+    <string name="login">Login</string>
+    <string name="main">Main</string>
+    <string name="more">More</string>
+    <string name="newOperation">New Operation</string>
+    <string name="note">Note</string>
+    <string name="or">OR</string>
+    <string name="password">Password</string>
+    <string name="pinError">Attempts:</string>
+    <string name="plans">Plans</string>
+    <string name="profile">Profile</string>
+    <string name="project_id" translatable="false">finans-44544</string>
+    <string name="questions">Questions</string>
+    <string name="registration">Registration</string>
+    <string name="repeatPIN">Repeat the Pin</string>
+    <string name="repeattheoperation">Repeat the operation</string>
+    <string name="reset">Reset</string>
+    <string name="resetPassword">Reset Password</string>
+    <string name="save">Save</string>
+    <string name="scanningQRcode">Scanning a QR code</string>
+    <string name="scanningReceipt">Scanning the receipt</string>
+    <string name="search">Search</string>
+    <string name="selected_location">Selected Location</string>
+    <string name="signInWithAnonymously">Sign in without registration</string>
+    <string name="signInWithEmail">Sign in with Email</string>
+    <string name="signInWithFacebook">Sign in with Facebook</string>
+    <string name="signInWithGoogle">Sign in with Google</string>
+    <string name="signup">Sign up</string>
+    <string name="takeapicture">Take a picture</string>
+    <string name="total">Total</string>
+    <string name="translation">Translation</string>
+    <string name="update">Update</string>
+    <string name="web_client_id" translatable="false">1015866785-klgvp3eig6pbgg91mfomocuucb3m3ake.apps.googleusercontent.com</string>
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppBottomSheetStyle</item>
+    </style>
+    <style name="AppBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/bottom_sheet_background</item>
+    </style>
+    <style name="SpinnerText" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/background3</item>
+        <item name="android:backgroundTint">@color/teal_700</item>
+    </style>
+    <style name="TabTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#eaf6ff</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_image</item>
+        <item name="windowSplashScreenAnimationDuration">500</item>
+        <item name="postSplashScreenTheme">@style/Theme.Finans</item>
+    </style>
+    <style name="Theme.Finans" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/background3_dark</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">#03DA84</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/white</item>
+        
+        <item name="android:statusBarColor">#B3B328</item>
+        
+
+        <item name="windowNoTitle">true</item>
+
+
+    </style>
+    <style name="nightModeSwitch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/black</item>
+        <item name="colorSwitchThumbNormal">#FFEE58</item>
+    </style>
+    <style name="passwordSwitch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">#66BB6A</item>
+        <item name="colorSwitchThumbNormal">#EF5350</item>
+    </style>
+</resources>

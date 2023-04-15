@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Finans</string>
+    <string name="authorization">Authorization</string>
+    <string name="registration">Registration</string>
+    <string name="signInWithGoogle">Sign in with Google</string>
+    <string name="signInWithFacebook">Sign in with Facebook</string>
+    <string name="signInWithEmail">Sign in with Email</string>
+    <string name="signInWithAnonymously">Sign in without registration</string>
+    <string name="password">Password</string>
+    <string name="email">E-mail</string>
+
+    <string name="newOperation">New Operation</string>
+
+    <string name="enterPIN">Enter the Pin code</string>
+    <string name="repeatPIN">Repeat the Pin</string>
+    <string name="pinError">Attempts:</string>
+
+    <string name="home">Home</string>
+    <string name="plans">Plans</string>
+    <string name="analytics">Analytics</string>
+    <string name="more">More</string>
+
+    <string name="language">Language</string>
+    <string name="currency">Currency</string>
+    <string name="isPassword">Login by PIN code</string>
+
+    <string name="exit">Sign Out</string>
+
+    <string name="enterUsername">Enter the user name</string>
+    <string name="enterEmail">Enter your email</string>
+    <string name="enterPassword">Enter your password</string>
+    <string name="forgotPassword">Forgot Password?</string>
+    <string name="confirmPassword">Confirm Password</string>
+
+    <string name="login">Login</string>
+    <string name="or">OR</string>
+    <string name="donthaveanAccount">Don\'t have an Account?</string>
+    <string name="signup">Sign up</string>
+
+    <string name="back">BACK</string>
+    <string name="editProfile">Edit Profile</string>
+    <string name="questions">Questions</string>
+    <string name="abouttheprogram">About the program</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="total">Total</string>
+
+    <string name="main">Main</string>
+
+    <string name="account">Account</string>
+    <string name="categories">Categories</string>
+    <string name="dateandtime">Date and time</string>
+    <string name="repeattheoperation">Repeat the operation</string>
+    <string name="note">Note</string>
+    <string name="addLocation">Location</string>
+    <string name="attachPhoto">Attach a photo</string>
+    <string name="scanningReceipt">Scanning the receipt</string>
+    <string name="scanningQRcode">Scanning a QR code</string>
+    <string name="details">Details</string>
+
+    <string name="resetPassword">Reset Password</string>
+    <string name="reset">Reset</string>
+
+    <string name="add">Add</string>
+
+    <string name="expense">Expense</string>
+    <string name="income">Income</string>
+    <string name="translation">Translation</string>
+
+    <string name="profile">Profile</string>
+
+    <string name="save">Save</string>
+
+    <string name="selected_location">Selected Location</string>
+
+    <string name="takeapicture">Take a picture</string>
+    <string name="choosefromGallery">Choose from Gallery</string>
+
+    <string name="deleteAccount">Delete Account</string>
+
+    <string name="search">Search</string>
+
+    <string name="update">Update</string>
+
+</resources>

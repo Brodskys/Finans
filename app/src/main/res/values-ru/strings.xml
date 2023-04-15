@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Finans</string>
+    <string name="authorization">Авторизация</string>
+    <string name="registration">Регистрация</string>
+    <string name="signInWithGoogle">Войти с помощью Google</string>
+    <string name="signInWithFacebook">Войти с помощью Facebook</string>
+    <string name="signInWithEmail">Войти с помощью электронной почты</string>
+    <string name="signInWithAnonymously">Войти без регистрации</string>
+    <string name="password">Пароль</string>
+    <string name="email">Электронная почта</string>
+
+    <string name="newOperation">Новая операция</string>
+
+    <string name="enterPIN">Введите пин-код</string>
+    <string name="repeatPIN">Повторите пин-код</string>
+    <string name="pinError">Попытки:</string>
+
+    <string name="home">Главная</string>
+    <string name="plans">Планы</string>
+    <string name="analytics">Аналитика</string>
+    <string name="more">Еще</string>
+
+    <string name="language">Язык</string>
+    <string name="currency">Валюта</string>
+    <string name="isPassword">Вход по пин-коду</string>
+
+    <string name="exit">Выйти</string>
+
+    <string name="enterUsername">Введите имя пользователя</string>
+    <string name="enterEmail">Введите свою электронную почту</string>
+    <string name="enterPassword">Введите свой пароль</string>
+    <string name="forgotPassword">Забыли пароль?</string>
+    <string name="confirmPassword">Подтвердите пароль</string>
+
+    <string name="login">Войти</string>
+    <string name="or">ИЛИ</string>
+    <string name="donthaveanAccount">Нет аккаунта?</string>
+    <string name="signup">Зарегистрироваться</string>
+
+    <string name="back">НАЗАД</string>
+    <string name="editProfile">Редактировать профиль</string>
+    <string name="questions">Вопросы</string>
+    <string name="abouttheprogram">О программе</string>
+
+    <string name="cancel">Отмена</string>
+    <string name="done">Готово</string>
+    <string name="total">Итого</string>
+
+    <string name="main">Главная</string>
+
+    <string name="account">Аккаунт</string>
+    <string name="categories">Категории</string>
+    <string name="dateandtime">Дата и время</string>
+    <string name="repeattheoperation">Повторить операцию</string>
+    <string name="note">Заметка</string>
+    <string name="addLocation">Местоположение</string>
+    <string name="attachPhoto">Прикрепить фото</string>
+    <string name="scanningReceipt">Сканирование чека</string>
+    <string name="scanningQRcode">Сканирование QR-кода</string>
+    <string name="details">Подробнее</string>
+
+    <string name="resetPassword">Сбросить пароль</string>
+    <string name="reset">Сбросить</string>
+
+    <string name="add">Добавить</string>
+
+    <string name="expense">Расход</string>
+    <string name="income">Доход</string>
+    <string name="translation">Перевод</string>
+
+    <string name="profile">Профиль</string>
+
+    <string name="save">Сохранить</string>
+
+    <string name="selected_location">Выбранное местоположение</string>
+
+    <string name="takeapicture">Сфотографировать</string>
+    <string name="choosefromGallery">Выбрать из галереи</string>
+
+    <string name="deleteAccount">Удалить аккаунт</string>
+
+    <string name="search">Поиск</string>
+
+    <string name="update">Обновить</string>
+
+</resources>
