@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.finans.app-mergeDebugResources-44:/values-ldltr-v21/values-ldltr-v21.xml",
+            "outputFile": "com.example.finans.app-mergeDebugResources-43:/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\ed3819af41362406a8a7ff1e1744c148\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\b14bbecb4e374e7fae985da6b376b60d\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

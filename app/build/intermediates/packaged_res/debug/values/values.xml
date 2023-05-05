@@ -40,6 +40,7 @@
     <string name="details">Details</string>
     <string name="done">Done</string>
     <string name="donthaveanAccount">Don\'t have an Account?</string>
+    <string name="editCategories">Edit Categories</string>
     <string name="editProfile">Edit Profile</string>
     <string name="email">E-mail</string>
     <string name="enterEmail">Enter your email</string>
@@ -58,9 +59,11 @@
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBoNjCc3tyyWzlYeULaIx_sq-p5d9aaz_Y</string>
     <string name="google_maps_key" translatable="false">AIzaSyCoujs0OYiVFqAdFCZ0r0Wj6i2FfQgppOs</string>
     <string name="google_storage_bucket" translatable="false">finans-44544.appspot.com</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="income">Income</string>
     <string name="isPassword">Login by PIN code</string>
+    <string name="isSms">Reading sms</string>
     <string name="language">Language</string>
     <string name="login">Login</string>
     <string name="main">Main</string>
@@ -92,7 +95,7 @@
     <string name="takeapicture">Take a picture</string>
     <string name="total">Total</string>
     <string name="translation">Translation</string>
-    <string name="update">Update</string>
+    <string name="update">Change</string>
     <string name="web_client_id" translatable="false">1015866785-klgvp3eig6pbgg91mfomocuucb3m3ake.apps.googleusercontent.com</string>
     <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppBottomSheetStyle</item>

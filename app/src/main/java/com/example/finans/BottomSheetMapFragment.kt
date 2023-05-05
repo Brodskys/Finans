@@ -26,6 +26,7 @@ import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.firestore.GeoPoint
 import java.util.*
 
 
@@ -38,7 +39,7 @@ class BottomSheetMapFragment : BottomSheetDialogFragment(), OnMapReadyCallback, 
     private lateinit var mMap: GoogleMap
     private lateinit var searchView: SearchView
     private lateinit var marker: Marker
-    private lateinit var markerAddress: String
+    private lateinit var markerAddress: GeoPoint
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var mapViewModel: MapViewModel
@@ -160,7 +161,8 @@ class BottomSheetMapFragment : BottomSheetDialogFragment(), OnMapReadyCallback, 
         val markerOptions = MarkerOptions().position(currentLatLong)
         markerOptions.title(address)
 
-        markerAddress = address.toString()
+
+        markerAddress = GeoPoint(currentLatLong.latitude, currentLatLong.longitude)
 
         marker = mMap.addMarker(markerOptions)!!
         marker.showInfoWindow()

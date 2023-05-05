@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -13,9 +14,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.finans.*
 import com.example.finans.authorization.AuthorizationActivity
@@ -28,11 +31,19 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
+import android.Manifest
+import android.app.ActivityManager
+import android.content.BroadcastReceiver
+import android.content.IntentFilter
+import android.util.Log
+import android.widget.Switch
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
+    private val REQUEST_CODE_SMS_PERMISSION = 100
 
 
     @SuppressLint("ResourceType")
@@ -141,6 +152,24 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
+        val smsSwith = findViewById<SwitchCompat>(R.id.smsSwitch)
+
+
+        smsSwith.isChecked = isServiceRunning(SmsService::class.java)
+
+        smsSwith.setOnCheckedChangeListener { _, isChecked ->
+            val intent = Intent(this, SmsService::class.java)
+            if (isChecked) {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_SMS), REQUEST_CODE_SMS_PERMISSION)
+                } else {
+                    startService(intent)
+                }
+            } else {
+                stopService(intent)
+            }
+        }
+
         findViewById<LinearLayout>(R.id.exitBtn).setOnClickListener {
             sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)!!
 
@@ -220,6 +249,17 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
         true
+    }
+
+
+    fun isServiceRunning(serviceClass: Class<*>): Boolean {
+        val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (service in activityManager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.name == service.service.className) {
+                return true
+            }
+        }
+        return false
     }
 
     fun recreateActivity() {

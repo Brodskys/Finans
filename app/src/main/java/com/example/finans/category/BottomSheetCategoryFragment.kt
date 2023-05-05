@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
 import com.example.finans.category.subcategory.BottomSheetSubcategoryFragment
+import com.example.finans.category.updateCategory.BottomSheetUpdateCategoriesFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.ktx.auth
@@ -94,7 +95,14 @@ class BottomSheetCategoryFragment : BottomSheetDialogFragment(), OnItemClickList
             dismiss()
         }
 
+        view.findViewById<TextView>(R.id.categoryUpdate).setOnClickListener {
+            val bottomSheetFragment =
+                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetUpdateCategoriesFragment") as? BottomSheetUpdateCategoriesFragment
 
+            if (bottomSheetFragment == null)
+                BottomSheetUpdateCategoriesFragment().show(requireActivity().supportFragmentManager, "BottomSheetUpdateCategoriesFragment")
+
+        }
 
         categorySearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {

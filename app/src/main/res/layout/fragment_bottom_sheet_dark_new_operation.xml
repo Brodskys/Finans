@@ -249,9 +249,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="20dp"
+                                android:layout_marginStart="15dp"
+                                android:layout_toEndOf="@+id/category_txt"
                                 android:layout_toStartOf="@+id/Imgright2"
                                 android:textColor="@color/background3_dark"
+                                android:textDirection="rtl"
+                                android:singleLine="true"
+                                android:ellipsize="marquee"
                                 android:textStyle="bold" />
 
                             <ImageView
@@ -491,6 +495,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/relativeLayoutOCR"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:cornerRadius="20dp">

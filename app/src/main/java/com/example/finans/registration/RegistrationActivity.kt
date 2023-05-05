@@ -5,6 +5,9 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.text.Editable
+import android.text.InputType
+import android.text.TextWatcher
 import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -14,6 +17,10 @@ import android.widget.Toast
 import com.example.finans.PinCodeActivity
 import com.example.finans.R
 import com.example.finans.authorization.AuthorizationActivity
+import com.example.finans.isEmailValid
+import com.example.finans.isValidPassword
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,11 +31,11 @@ import java.util.*
 
 class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
 
-    lateinit var gestureDetector: GestureDetector
+    private lateinit var gestureDetector: GestureDetector
     private lateinit var auth: FirebaseAuth
     private lateinit var sharedPreferences: SharedPreferences
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private lateinit var text: TextInputEditText
+        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
@@ -46,7 +53,39 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
         gestureDetector = GestureDetector(this, this)
         auth = Firebase.auth
 
+
+        findViewById<TextInputEditText>(R.id.createUserTextEmailAddress).addTextChangedListener(textWatcher(findViewById(R.id.createUserTextEmailAddress)))
+        findViewById<TextInputEditText>(R.id.createUserTextPassword).addTextChangedListener(textWatcher(findViewById(R.id.createUserTextPassword)))
+        findViewById<TextInputEditText>(R.id.createUserTextConfirmPassword).addTextChangedListener(textWatcher(findViewById(R.id.createUserTextConfirmPassword)))
+
+        }
+    private fun textWatcher(editText: TextInputEditText): TextWatcher = object : TextWatcher {
+
+        override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+        override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+        override fun afterTextChanged(editable: Editable) {
+
+            val textInputLayout = editText.parent.parent as? TextInputLayout
+
+            if (editText.inputType and InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS == InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS) {
+                editText.error = editText.text.toString().isEmailValid()
+            } else
+                if (editText.inputType and InputType.TYPE_TEXT_VARIATION_PASSWORD == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+
+                    if(editText.text.toString().isValidPassword() != null) {
+
+                        textInputLayout?.setPasswordVisibilityToggleEnabled(false)
+                    }
+                    else
+                        textInputLayout?.setPasswordVisibilityToggleEnabled(true)
+
+                    editText.error = editText.text.toString().isValidPassword()
+
+                }
+        }
     }
+
+
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         return gestureDetector.onTouchEvent(event)
@@ -93,43 +132,77 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
         val password = findViewById<EditText>(R.id.createUserTextPassword)
         val confirmPassword = findViewById<EditText>(R.id.createUserTextConfirmPassword)
 
-        if(password.text.toString() == confirmPassword.text.toString()) {
-            auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
+        val textInputLayout = password.parent.parent as? TextInputLayout
+        val textInputLayout2 = confirmPassword.parent.parent as? TextInputLayout
 
-                        val user = Firebase.auth.currentUser
 
-                        val languageCode = Locale.getDefault().language
-                        auth.setLanguageCode(languageCode)
+        if(password.text.toString().isValidPassword() != null) {
 
-                        user!!.sendEmailVerification()
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    Log.d("Email", "Email sent.")
+            textInputLayout?.setPasswordVisibilityToggleEnabled(false)
+        }
+        else
+            textInputLayout?.setPasswordVisibilityToggleEnabled(true)
+
+
+        if(confirmPassword.text.toString().isValidPassword() != null) {
+
+            textInputLayout2?.setPasswordVisibilityToggleEnabled(false)
+        }
+        else
+            textInputLayout2?.setPasswordVisibilityToggleEnabled(true)
+
+
+        email.error = email.text.toString().isEmailValid()
+        password.error = password.text.toString().isValidPassword()
+        confirmPassword.error = confirmPassword.text.toString().isValidPassword()
+
+        if(email.text.toString().isEmailValid() == null && password.text.toString().isValidPassword() == null
+            && confirmPassword.text.toString().isValidPassword() == null) {
+
+
+
+            if (password.text.toString() == confirmPassword.text.toString()) {
+                auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+
+                            val user = Firebase.auth.currentUser
+
+                            val languageCode = Locale.getDefault().language
+                            auth.setLanguageCode(languageCode)
+
+                            user!!.sendEmailVerification()
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        Log.d("Email", "Email sent.")
+                                    }
                                 }
-                            }
-                        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-                        prefs.edit().putBoolean("isPassword", true).apply()
-                        uploadData()
-                        startActivity(Intent(this, PinCodeActivity::class.java))
-                        finish()
+                            val prefs: SharedPreferences =
+                                PreferenceManager.getDefaultSharedPreferences(this)
+                            prefs.edit().putBoolean("isPassword", true).apply()
+                            uploadData()
+                            startActivity(Intent(this, PinCodeActivity::class.java))
+                            finish()
 
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("createUserWithEmail", "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(
-                            baseContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        startActivity(Intent(this, AuthorizationActivity::class.java))
-                        finish()
+                        } else {
+                            Log.w(
+                                "createUserWithEmail",
+                                "createUserWithEmail:failure",
+                                task.exception
+                            )
+                            Toast.makeText(
+                                baseContext, "Authentication failed.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            startActivity(Intent(this, AuthorizationActivity::class.java))
+                            finish()
+                        }
                     }
-                }
+            } else {
+                Toast.makeText(baseContext, "Passwords do not match.", Toast.LENGTH_SHORT).show()
+            }
         }
-        else {
-            Toast.makeText(baseContext, "Passwords do not match.", Toast.LENGTH_SHORT).show()
-        }
+
     }
 
     private fun uploadData() {

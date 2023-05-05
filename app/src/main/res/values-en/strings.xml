@@ -25,6 +25,7 @@
     <string name="language">Language</string>
     <string name="currency">Currency</string>
     <string name="isPassword">Login by PIN code</string>
+    <string name="isSms">Reading sms</string>
 
     <string name="exit">Sign Out</string>
 
@@ -83,6 +84,9 @@
 
     <string name="search">Search</string>
 
-    <string name="update">Update</string>
+    <string name="update">Change</string>
+    <string name="editCategories">Edit Categories</string>
+    <string name="editIcon">Icon</string>
+
 
 </resources>

@@ -263,7 +263,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:id="@+id/dateTimeRelativeLayout"
+                            android:id="@+id/operationDetail_dateTimeRelativeLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:cornerRadius="20dp">
@@ -292,7 +292,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="20dp"
-                                android:textSize="15.5sp"
                                 android:layout_toStartOf="@+id/Imgright3"
                                 android:textColor="@color/background3"
                                 android:textStyle="bold" />

@@ -74,6 +74,7 @@
                             android:layout_toEndOf="@+id/emailIcon"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            app:errorEnabled="true"
                             android:layout_marginHorizontal="8dp"
                             android:layout_marginVertical="5dp"
                             android:layout_marginStart="8dp"
@@ -144,8 +145,7 @@
                             android:layout_marginEnd="8dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:passwordToggleEnabled="true"
-                            app:passwordToggleTint="@color/blue">
+                            app:passwordToggleEnabled="true">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editTextTextPassword"

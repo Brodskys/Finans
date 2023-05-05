@@ -2,41 +2,53 @@ package com.example.finans.operation
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.GeoPoint
 
-data class Operation(var category: String ?= null, var date: String ?= null, var image: String ?= null, var note: String ?= null,
-                     var photo: String ?= null, var time: String ?= null, var type: String?= null, var value: Double? = null, var id: String? = null):
+data class Operation(var category: String ?= null,
+                     var id: String? = null,
+                     var image: String ?= null,
+                     var map: GeoPoint ?= null,
+                     var note: String ?= null,
+                     var photo: String ?= null,
+                     var timestamp: Timestamp? = null,
+                     var type: String?= null,
+                     var value: Double? = null):
     Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readParcelable(GeoPoint::class.java.classLoader),
         parcel.readString(),
         parcel.readString(),
+        Timestamp(parcel.readLong(), parcel.readLong().toInt()),
         parcel.readString(),
-        parcel.readString(),
-        parcel.readValue(Double::class.java.classLoader) as? Double,
-        parcel.readString(),
+        parcel.readValue(Double::class.java.classLoader) as? Double
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(category)
-        parcel.writeString(date)
+        parcel.writeString(id)
         parcel.writeString(image)
+      //  parcel.writeLong((map?.latitude ?: 0).toLong())
+      //  parcel.writeLong((map?.longitude ?: 0).toLong())
         parcel.writeString(note)
         parcel.writeString(photo)
-        parcel.writeString(time)
+        parcel.writeLong(timestamp?.seconds ?: 0)
+        parcel.writeLong((timestamp?.nanoseconds ?: 0).toLong())
         parcel.writeString(type)
         parcel.writeValue(value)
-        parcel.writeString(id)
-    }
 
+    }
     override fun describeContents(): Int {
         return 0
     }
 
+
     override fun toString(): String {
-        return "Operation(category=$category, date=$date, image=$image, note=$note, photo=$photo, time=$time, type=$type, value=$value), id=$id)"
+        return "Operation(category=$category, timestamp=$timestamp, image=$image, note=$note, photo=$photo, type=$type, value=$value), id=$id)"
     }
 
     companion object CREATOR : Parcelable.Creator<Operation> {

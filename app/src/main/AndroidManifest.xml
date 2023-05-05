@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.READ_SMS" />
 
 
     <application
@@ -88,6 +90,8 @@
 
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCoujs0OYiVFqAdFCZ0r0Wj6i2FfQgppOs"/>
+
+        <service android:name=".settings.SmsService"/>
 
     </application>
 

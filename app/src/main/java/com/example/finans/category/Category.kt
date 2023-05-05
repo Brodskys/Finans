@@ -2,21 +2,20 @@ package com.example.finans.category
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.google.firebase.firestore.DocumentReference
 
-data class Category(var NameEng: String ?= null, var NameRus: String ?= null, var Image: String? = null) :
-    Parcelable{
+data class Category(
+    var nameEng: String ?= null, var nameRus: String ?= null, var image: String? = null) :
+    Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
         parcel.readString()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(NameEng)
-        parcel.writeString(NameRus)
-        parcel.writeString(Image)
+        parcel.writeString(nameEng)
+        parcel.writeString(nameRus)
+        parcel.writeString(image)
     }
 
     override fun describeContents(): Int {

@@ -12,7 +12,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
 import com.example.finans.category.Category
-import com.example.finans.category.CategoryAdapter
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
@@ -43,7 +42,7 @@ class SubcategoryAdapter(private val categoryList: ArrayList<Category>) :Recycle
                 } else {
                     val resultList = ArrayList<Category>()
                     for (row in categoryList) {
-                        if (row.NameRus?.lowercase(Locale.ROOT)
+                        if (row.nameRus?.lowercase(Locale.ROOT)
                                 ?.contains(charSearch.lowercase(Locale.ROOT)) == true
                         )
                         {
@@ -83,7 +82,7 @@ class SubcategoryAdapter(private val categoryList: ArrayList<Category>) :Recycle
         }
     }
 
-    fun setOnItemClickListener(listener: BottomSheetSubcategoryFragment) {
+    fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
 
     }
@@ -95,7 +94,7 @@ class SubcategoryAdapter(private val categoryList: ArrayList<Category>) :Recycle
         val storage = Firebase.storage
 
 
-        val gsReference = storage.getReferenceFromUrl(category.Image!!)
+        val gsReference = storage.getReferenceFromUrl(category.image!!)
 
         gsReference.downloadUrl.addOnSuccessListener { uri ->
             Picasso.get().load(uri.toString()).into(holder.Image)
@@ -106,9 +105,9 @@ class SubcategoryAdapter(private val categoryList: ArrayList<Category>) :Recycle
 
         val sharedPref =  sharedPreferencesLanguage.getString("locale", "")
         if (sharedPref == "ru"){
-            holder.Name.text = category.NameRus
+            holder.Name.text = category.nameRus
         } else {
-            holder.Name.text = category.NameEng
+            holder.Name.text = category.nameEng
         }
 
 

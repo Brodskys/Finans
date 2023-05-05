@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.finans.AnalyticsActivity
 import com.example.finans.BottomSheetNewOperationFragment
 import com.example.finans.PlansActivity
@@ -28,6 +29,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class HomeActivity : AppCompatActivity(), OnItemClickListener {
 
@@ -46,7 +50,7 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val prefs = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("Settings", MODE_PRIVATE)
 
 
 
@@ -60,7 +64,7 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
         }
 
         loadLocale(resources, this)
-        pref = getSharedPreferences("Password", Context.MODE_PRIVATE)
+        pref = getSharedPreferences("Password", MODE_PRIVATE)
 
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
@@ -93,7 +97,9 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
         }
 
 
-
+        val date =  findViewById<TextView>(R.id.mouth_operations)
+        val dateTimeFormat = SimpleDateFormat("MMMM yyyy", Locale.getDefault())
+        date.text = dateTimeFormat.format(Date()).capitalize(Locale.ROOT)
 
 
         operationRecyclerView = findViewById(R.id.itemsRecyclerView)
@@ -110,7 +116,7 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
 
         operationAdapter.notifyDataSetChanged()
 
-        getOperationData()
+       getOperationData()
 
         val fireStoreDatabase = FirebaseFirestore.getInstance()
 
@@ -131,6 +137,36 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
         bottomNav.setOnNavigationItemSelectedListener(navListener)
 
 
+
+        val swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.swipeRefreshLayout)
+
+
+       swipeRefreshLayout.setColorSchemeResources(
+            android.R.color.holo_blue_bright,
+            android.R.color.holo_green_light,
+            android.R.color.holo_orange_light
+        )
+
+        swipeRefreshLayout.setOnRefreshListener {
+           swipeRefreshLayout.postDelayed({
+                //关闭刷新
+               swipeRefreshLayout.isRefreshing = false
+
+                   //что-то рефрешить
+               operationArrayList = arrayListOf()
+
+               operationAdapter = OperationAdapter(operationArrayList)
+               operationAdapter.setOnItemClickListener(this)
+
+               operationRecyclerView.adapter = operationAdapter
+
+
+               operationAdapter.notifyDataSetChanged()
+               getOperationData()
+
+
+            }, 1000)
+        }
 
     }
 

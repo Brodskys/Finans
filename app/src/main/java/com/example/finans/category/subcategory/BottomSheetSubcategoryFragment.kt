@@ -18,10 +18,14 @@ import com.example.finans.R
 import com.example.finans.category.BottomSheetCategoryFragment
 import com.example.finans.category.Category
 import com.example.finans.category.CategoryViewModel
+import com.example.finans.category.updateCategory.BottomSheetUpdateCategoriesFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import java.util.Locale
 
 
 class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickListener {
@@ -62,7 +66,8 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
 
     companion object {
         fun newInstance(
-            category: Category): BottomSheetSubcategoryFragment {
+            category: Category
+        ): BottomSheetSubcategoryFragment {
             val args = Bundle()
             args.putParcelable("category", category)
 
@@ -135,6 +140,16 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
             dismiss()
         }
 
+        view.findViewById<TextView>(R.id.subcategoryUpdate).setOnClickListener {
+            val bottomSheetFragment =
+                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetUpdateCategoriesFragment") as? BottomSheetUpdateCategoriesFragment
+
+            if (bottomSheetFragment == null)
+                BottomSheetUpdateCategoriesFragment().show(requireActivity().supportFragmentManager, "BottomSheetUpdateCategoriesFragment")
+
+        }
+
+
         subcategorySearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -149,7 +164,7 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
 
 
     override fun onItemClick(category: Category) {
-        categoryViewModel.selectCategory(category)
+        categoryViewModel.selectCategory(category as Category)
         dismiss()
     }
 
@@ -160,7 +175,7 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
         val category = arguments?.getParcelable<Category>("category")
 
 
-        dbref.collection("category").document(category?.NameEng!!).collection("subcategories")
+        FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString()).collection("category").document(category?.nameEng!!.lowercase(Locale.ROOT)).collection("subcategories")
             .addSnapshotListener { value, error ->
                 if (error != null) {
                     return@addSnapshotListener

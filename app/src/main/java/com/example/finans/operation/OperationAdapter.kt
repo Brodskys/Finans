@@ -2,6 +2,7 @@ package com.example.finans.operation
 
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.example.finans.R
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -95,10 +97,15 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
 //        } else {
 //            holder.Name.text = category.NameEng
 //        }
+        val date = operation.timestamp?.toDate()
+        val pattern = "dd.MM.yyyy HH:mm"
+        val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
 
+
+        val dateString = date?.let { simpleDateFormat.format(it) }
 
         holder.type.text = operation.type
-        holder.time.text = operation.time
+        holder.time.text = dateString
         holder.value.text = operation.value.toString()
         holder.category.text = operation.category
 

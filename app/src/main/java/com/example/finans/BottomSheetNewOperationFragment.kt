@@ -1,7 +1,6 @@
 package com.example.finans
 
 import android.Manifest
-import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -11,6 +10,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -26,18 +26,17 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.finans.category.BottomSheetCategoryFragment
-import com.example.finans.category.Category
 import com.example.finans.category.CategoryViewModel
 import com.example.finans.language.languageInit
 import com.example.finans.сurrency.BottomSheetCurrencyFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
@@ -47,7 +46,6 @@ import java.util.*
 
 class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
 
-    private val REQUEST_IMAGE_CAPTURE = 1
     private lateinit var categoryViewModel: CategoryViewModel
     private lateinit var mapViewModel: MapViewModel
     private lateinit var imageViewModel: ImageViewModel
@@ -55,7 +53,8 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
     private lateinit var sharedPreferences: SharedPreferences
     private var switchState: Boolean = true
     private var photo: ByteArray? = null
-
+    private lateinit var currentDateTime: Calendar
+    private var map: GeoPoint? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -78,9 +77,6 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
 
     }
 
-
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -96,18 +92,26 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
         tabLayout.addTab(tabLayout.newTab().setText(R.string.income))
         tabLayout.addTab(tabLayout.newTab().setText(R.string.translation))
 
+        currentDateTime = Calendar.getInstance()
+
 
         mapViewModel = ViewModelProvider(requireActivity())[MapViewModel::class.java]
-        mapViewModel.getSelectedMap().observe(this) { map ->
+        mapViewModel.getSelectedMap().observe(this) { geo ->
+            map = geo
+            val geocoder = Geocoder(requireContext(), Locale.getDefault())
+            if(map!=null) {
+                val addresses = geocoder.getFromLocation(map!!.latitude, map!!.longitude, 1)
+                val address = addresses?.get(0)?.getAddressLine(0)
 
-            view.findViewById<TextView>(R.id.locationTextView).text = map
+                view.findViewById<TextView>(R.id.locationTextView).text = address
+            }
         }
 
         categoryViewModel = ViewModelProvider(requireActivity())[CategoryViewModel::class.java]
         categoryViewModel.getSelectedCategory().observe(this) { category ->
 
             val storage = Firebase.storage
-            image = category.Image!!
+            image = category.image!!
 
             val gsReference = storage.getReferenceFromUrl(image)
 
@@ -117,10 +121,10 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
                 Picasso.get().load(R.drawable.category).into(view.findViewById<ImageView>(R.id.categoryIcon))
             }
             if (languageInit(requireActivity())) {
-                view.findViewById<TextView>(R.id.subcategory_txt).text = category.NameRus
+                view.findViewById<TextView>(R.id.subcategory_txt).text = category.nameRus
 
             } else
-                view.findViewById<TextView>(R.id.subcategory_txt).text = category.NameEng
+                view.findViewById<TextView>(R.id.subcategory_txt).text = category.nameEng
 
         }
 
@@ -195,30 +199,25 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
 
 
 
-
-
-
-
         view.findViewById<Button>(R.id.good_btn).setOnClickListener {
-            if(view.findViewById<EditText>(R.id.amount_field).text.toString().isNotEmpty()) {
+            if(view.findViewById<EditText>(R.id.amount_field).text.toString().isNotEmpty()
+                && view.findViewById<TextView>(R.id.subcategory_txt).text.toString().isNotEmpty()) {
                 val value =
                     view.findViewById<EditText>(R.id.amount_field).text.toString().toDouble()
-                val date = view.findViewById<TextView>(R.id.dateTimeTextView).text.toString()
 
                 val note = view.findViewById<TextView>(R.id.noteTextView).text.toString()
 
                 val category =
                     view.findViewById<TextView>(R.id.subcategory_txt).text.toString()
 
-                val map = view.findViewById<TextView>(R.id.locationTextView).text.toString()
-
-
                 val selectedTabPosition =
                     view.findViewById<TabLayout>(R.id.tab_layout).selectedTabPosition
                 val selectedTab =
                     view.findViewById<TabLayout>(R.id.tab_layout).getTabAt(selectedTabPosition)
 
-                uploadData(selectedTab?.text.toString(), value, date, note, category,image,map)
+                val geo = map
+
+                uploadData(selectedTab?.text.toString(), value,  Timestamp(currentDateTime.time), note, category,image,geo!!)
             }
         }
 
@@ -227,16 +226,14 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
         }
 
         view.findViewById<TextView>(R.id.newOperationDone).setOnClickListener {
-            if (view.findViewById<EditText>(R.id.amount_field).text.toString().isNotEmpty()) {
+            if (view.findViewById<EditText>(R.id.amount_field).text.toString().isNotEmpty()
+                && view.findViewById<TextView>(R.id.subcategory_txt).text.toString().isNotEmpty()) {
                 val value =
                     view.findViewById<EditText>(R.id.amount_field).text.toString().toDouble()
-                val date = view.findViewById<TextView>(R.id.dateTimeTextView).text.toString()
 
                 val note = view.findViewById<TextView>(R.id.noteTextView).text.toString()
 
                 val category = view.findViewById<TextView>(R.id.subcategory_txt).text.toString()
-
-                val map = view.findViewById<TextView>(R.id.locationTextView).text.toString()
 
 
                 val selectedTabPosition =
@@ -244,7 +241,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
                 val selectedTab =
                     view.findViewById<TabLayout>(R.id.tab_layout).getTabAt(selectedTabPosition)
 
-                uploadData(selectedTab?.text.toString(), value, date, note,category,image,map)
+                uploadData(selectedTab?.text.toString(), value,  Timestamp(currentDateTime.time), note,category,image,map)
             }
         }
 
@@ -253,9 +250,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
         dateTimeTextView.text = dateTimeFormat.format(Date())
 
         view.findViewById<RelativeLayout>(R.id.dateTimeRelativeLayout).setOnClickListener {
-                val currentDateTime = Calendar.getInstance()
 
-            val maxDateTime = Calendar.getInstance()
 
                 val datePickerDialog = DatePickerDialog(
                     requireContext(),
@@ -269,7 +264,11 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
                             { _, hourOfDay, minute ->
                                 currentDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
                                 currentDateTime.set(Calendar.MINUTE, minute)
+
+
+
                                 dateTimeTextView.text = dateTimeFormat.format(currentDateTime.time)
+
                             },
                             currentDateTime.get(Calendar.HOUR_OF_DAY),
                             currentDateTime.get(Calendar.MINUTE),
@@ -282,9 +281,11 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
                     currentDateTime.get(Calendar.MONTH),
                     currentDateTime.get(Calendar.DAY_OF_MONTH)
                 )
-                datePickerDialog.datePicker.maxDate = maxDateTime.timeInMillis
+                datePickerDialog.datePicker.maxDate = Calendar.getInstance().timeInMillis
 
                 datePickerDialog.show()
+
+
             }
 
 
@@ -349,6 +350,20 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
 
         }
 
+        view.findViewById<RelativeLayout>(R.id.relativeLayoutOCR).setOnClickListener{
+
+            val existingFragment =
+                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetOCRFragment")
+            if (existingFragment == null) {
+                val newFragment = BottomSheetOCRFragment()
+                newFragment.show(
+                    requireActivity().supportFragmentManager,
+                    "BottomSheetOCRFragment"
+                )
+            }
+
+        }
+
         view.findViewById<RelativeLayout>(R.id.categoryRelativeLayout).setOnClickListener{
 
 
@@ -382,33 +397,16 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
         }
     }
 
-    private fun addNewOperationToFirestore(operation: String, value: Double, dateTime: String, note: String, category: String, image: String, map: String, photo: String) {
+    private fun addNewOperationToFirestore(operation: String, value: Double, dateTime: Timestamp, note: String, category: String, image: String, geo: GeoPoint?, photo: String) {
 
-        val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-
-        val time = Calendar.getInstance()
-        time.time = format.parse(dateTime) as Date
-
-        val hours = time.get(Calendar.HOUR_OF_DAY)
-        val minutes = time.get(Calendar.MINUTE)
-
-        val date = Calendar.getInstance()
-        date.time = format.parse(dateTime) as Date
-
-        val day = date.get(Calendar.DAY_OF_MONTH)
-        val month = date.get(Calendar.MONTH) + 1
-        val year = date.get(Calendar.YEAR)
-
-
-        val hashMap = hashMapOf<String, Any>(
+    val hashMap = hashMapOf<String, Any>(
             "type" to operation,
             "value" to value,
-            "date" to "$day/$month/$year",
-            "time" to "$hours:$minutes",
+            "timestamp" to dateTime,
             "note" to note,
             "category" to category,
             "image" to image,
-            "map" to map,
+            "map" to geo!!,
             "photo" to photo,
         )
 
@@ -484,7 +482,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
 
 
 
-    private fun uploadData(operation: String, value: Double, dateTime: String, note: String, category: String, image: String, map: String) {
+    private fun uploadData(operation: String, value: Double, dateTime: Timestamp, note: String, category: String, image: String, map: GeoPoint?) {
 
         if (photo != null) {
             val storageRef = Firebase.storage.reference

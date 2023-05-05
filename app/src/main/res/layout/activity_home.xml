@@ -22,6 +22,9 @@
             android:orientation="vertical">
 
 
+
+
+
             <RelativeLayout
                 android:background="@color/background2"
                 android:layout_width="match_parent"
@@ -122,12 +125,18 @@
 
             </RelativeLayout>
 
+
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@color/background_grey" />
 
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/itemsRecyclerView"
@@ -137,6 +146,7 @@
 
                     </androidx.recyclerview.widget.RecyclerView>
 
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 

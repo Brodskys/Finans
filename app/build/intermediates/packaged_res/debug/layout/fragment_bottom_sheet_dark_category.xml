@@ -50,6 +50,19 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/categoryUpdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:clickable="true"
+                    android:padding="5dp"
+                    android:background="?attr/editTextBackground"
+                    android:text="@string/update"
+                    android:textColor="@color/background3_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
             </RelativeLayout>
 
 

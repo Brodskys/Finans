@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.finans.app-mergeDebugResources-44:/values-w480dp-port-v13/values-w480dp-port-v13.xml",
+            "outputFile": "com.example.finans.app-mergeDebugResources-43:/values-w480dp-port-v13/values-w480dp-port-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\aa2724e4083b8ddd522296013e4e7620\\transformed\\material-1.8.0\\res\\values-w480dp-port-v13\\values-w480dp-port-v13.xml",
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\82dc1a6882dc070e3b137bac33ca6ba8\\transformed\\material-1.8.0\\res\\values-w480dp-port-v13\\values-w480dp-port-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

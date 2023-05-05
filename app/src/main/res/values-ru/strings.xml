@@ -24,6 +24,7 @@
     <string name="language">Язык</string>
     <string name="currency">Валюта</string>
     <string name="isPassword">Вход по пин-коду</string>
+    <string name="isSms">Чтение смс</string>
 
     <string name="exit">Выйти</string>
 
@@ -82,6 +83,8 @@
 
     <string name="search">Поиск</string>
 
-    <string name="update">Обновить</string>
+    <string name="update">Изменить</string>
+    <string name="editCategories">Редактировать категории</string>
+    <string name="editIcon">Иконка</string>
 
 </resources>

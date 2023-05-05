@@ -2,22 +2,18 @@ package com.example.finans.category
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
-import com.example.finans.сurrency.CurrencyAdapter
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import java.util.*
-import kotlin.properties.Delegates
 
 interface OnItemClickListener {
     fun onItemClick(category: Category)
@@ -43,7 +39,7 @@ class CategoryAdapter(private val categoryList: ArrayList<Category>) :RecyclerVi
                 } else {
                     val resultList = ArrayList<Category>()
                     for (row in categoryList) {
-                        if (row.NameRus?.lowercase(Locale.ROOT)
+                        if (row.nameRus?.lowercase(Locale.ROOT)
                                 ?.contains(charSearch.lowercase(Locale.ROOT)) == true
                         )
                         {
@@ -85,7 +81,7 @@ class CategoryAdapter(private val categoryList: ArrayList<Category>) :RecyclerVi
 
     }
 
-    fun setOnItemClickListener(listener: BottomSheetCategoryFragment) {
+    fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
 
@@ -97,7 +93,7 @@ class CategoryAdapter(private val categoryList: ArrayList<Category>) :RecyclerVi
         val storage = Firebase.storage
 
 
-        val gsReference = storage.getReferenceFromUrl(category.Image!!)
+        val gsReference = storage.getReferenceFromUrl(category.image!!)
 
         gsReference.downloadUrl.addOnSuccessListener { uri ->
             Picasso.get().load(uri.toString()).into(holder.Image)
@@ -109,10 +105,11 @@ class CategoryAdapter(private val categoryList: ArrayList<Category>) :RecyclerVi
 
         val sharedPref =  sharedPreferencesLanguage.getString("locale", "")
         if (sharedPref == "ru"){
-            holder.Name.text = category.NameRus
+            holder.Name.text = category.nameRus
         } else {
-            holder.Name.text = category.NameEng
+            holder.Name.text = category.nameEng
         }
+
 
         holder.itemView.isSelected = selectedItem == position
 

@@ -166,6 +166,39 @@
                             android:switchMinWidth="50dp"
                             android:theme="@style/passwordSwitch" />
                     </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cornerRadius="20dp">
+
+                        <ImageView
+                            android:id="@+id/smsIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:padding="7dp"
+                            android:src="@drawable/sms" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="20dp"
+                            android:layout_toEndOf="@+id/smsIcon"
+                            android:text="@string/isSms"
+                            android:textColor="@color/background3_dark"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/smsSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:switchMinWidth="50dp"
+                            />
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -206,7 +239,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/right" />
+                            android:src="@drawable/right_dark" />
 
                     </RelativeLayout>
 
@@ -239,7 +272,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/right" />
+                            android:src="@drawable/right_dark" />
 
                     </RelativeLayout>
 
@@ -282,7 +315,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/right" />
+                            android:src="@drawable/right_dark" />
 
                     </RelativeLayout>
 
@@ -314,7 +347,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/right" />
+                            android:src="@drawable/right_dark" />
 
                     </RelativeLayout>
 

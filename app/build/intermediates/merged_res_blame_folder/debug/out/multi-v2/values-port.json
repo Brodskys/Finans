@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.finans.app-mergeDebugResources-44:/values-port/values-port.xml",
+            "outputFile": "com.example.finans.app-mergeDebugResources-43:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\ed3819af41362406a8a7ff1e1744c148\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\b14bbecb4e374e7fae985da6b376b60d\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

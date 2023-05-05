@@ -25,18 +25,26 @@ import com.example.finans.authorization.authWithFacebook.AuthorizationPresenterF
 import com.example.finans.authorization.authWithGoogle.AuthorizationModelGoogle
 import com.example.finans.authorization.authWithGoogle.AuthorizationPresenterGoogle
 import com.example.finans.authorization.passwordResetEmail.BottomSheetPasswordResetFragment
+import com.example.finans.isEmailValid
+import com.example.finans.isValidPassword
 import com.example.finans.registration.RegistrationActivity
 import com.facebook.CallbackManager
 import com.facebook.FacebookSdk
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.tasks.Task
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.tasks.await
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -195,18 +203,29 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
         val sourceCollectionRef = FirebaseFirestore.getInstance().collection("category")
         val targetCollectionRef = FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString()).collection("category")
 
-        sourceCollectionRef.get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val data = document.data
-                    val documentId = document.id
-                    targetCollectionRef.document(documentId).set(data)
+
+        sourceCollectionRef.get().addOnSuccessListener { querySnapshot ->
+            for (documentSnapshot in querySnapshot.documents) {
+                val documentData = documentSnapshot.data
+                if (documentData != null) {
+                    val targetDocumentRef = targetCollectionRef.document(documentSnapshot.id)
+                    targetDocumentRef.set(documentData)
+                        .addOnSuccessListener { Log.d(TAG, "Document copied successfully!") }
+                        .addOnFailureListener { e -> Log.w(TAG, "Error copying document", e) }
+
+                    val subcollectionRef = sourceCollectionRef.document(documentSnapshot.id).collection("subcategories")
+                    val targetSubcollectionRef = targetDocumentRef.collection("subcategories")
+                    subcollectionRef.get().addOnSuccessListener { subcollectionQuerySnapshot ->
+                        for (subcollectionDocSnapshot in subcollectionQuerySnapshot.documents) {
+                            targetSubcollectionRef.document(subcollectionDocSnapshot.id).set(subcollectionDocSnapshot.data!!)
+                        }
+                    }
                 }
-                Log.e("category", "Успешно")
             }
-            .addOnFailureListener { exception ->
-                Log.w("category", "Ошибка получения документов: ", exception)
-            }
+        }
+
+
+
 
         val user = Firebase.auth.currentUser
 
@@ -223,6 +242,8 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
             }
 
     }
+
+
 
 
     override fun showErrorScreen() {
@@ -269,19 +290,36 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
         val email = findViewById<EditText>(R.id.editTextTextEmailAddress)
         val password = findViewById<EditText>(R.id.editTextTextPassword)
 
-        auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Log.d("signInWithEmail", "signInWithEmail:success")
-                    val user = auth.currentUser
-                    showMainScreen()
-                } else {
-                    Log.w("signInWithEmail", "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
-                    showErrorScreen()
+        val textInputLayout = password.parent.parent as? TextInputLayout
+
+        if(password.text.toString().isValidPassword() != null) {
+
+            textInputLayout?.setPasswordVisibilityToggleEnabled(false)
+        }
+        else
+            textInputLayout?.setPasswordVisibilityToggleEnabled(true)
+
+        email.error = email.text.toString().isEmailValid()
+        password.error = password.text.toString().isValidPassword()
+
+        if(email.text.toString().isEmailValid() == null && password.text.toString().isValidPassword() == null) {
+
+            auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        Log.d("signInWithEmail", "signInWithEmail:success")
+                        val user = auth.currentUser
+                        showMainScreen()
+                    } else {
+                        Log.w("signInWithEmail", "signInWithEmail:failure", task.exception)
+                        Toast.makeText(
+                            baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        showErrorScreen()
+                    }
                 }
-            }
+        }
     }
 
     fun resetPassword(view: View) {
