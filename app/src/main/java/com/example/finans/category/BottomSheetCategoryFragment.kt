@@ -120,10 +120,7 @@ class BottomSheetCategoryFragment : BottomSheetDialogFragment(), OnItemClickList
 
 
     override fun onItemClick(category: Category) {
-        val existingFragment =
-            requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetSubcategoryFragment")
 
-        if (existingFragment == null) {
             val newFragment = BottomSheetSubcategoryFragment.newInstance(category)
             newFragment.setTargetFragment(this@BottomSheetCategoryFragment, 0)
 
@@ -133,7 +130,6 @@ class BottomSheetCategoryFragment : BottomSheetDialogFragment(), OnItemClickList
             )
 
             dismiss()
-        }
     }
 
 

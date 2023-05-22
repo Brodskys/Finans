@@ -115,7 +115,7 @@
                                 android:layout_alignParentTop="true" />
 
                             <Button
-                                android:id="@+id/currency_btn"
+                                android:id="@+id/operationDetail_currency_btn"
                                 android:layout_width="70dp"
                                 android:layout_height="45dp"
                                 app:backgroundTint="@color/color_selector_dark"
@@ -217,7 +217,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:id="@+id/categoryRelativeLayout"
+                            android:id="@+id/operationDetail_categoryRelativeLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:cornerRadius="20dp">
@@ -246,11 +246,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="20dp"
-                                android:textSize="15.5sp"
+                                android:layout_marginStart="15dp"
                                 android:layout_toStartOf="@+id/Imgright2"
+                                android:layout_toEndOf="@+id/category_txt"
                                 android:textColor="@color/background3_dark"
-                                android:textStyle="bold" />
+                                android:singleLine="true"
+                                android:textDirection="rtl"
+                                android:ellipsize="marquee"
+                                android:textStyle="bold"  />
 
                             <ImageView
                                 android:id="@+id/Imgright2"
@@ -363,7 +366,7 @@
                         android:padding="10dp">
 
                         <RelativeLayout
-                            android:id="@+id/noteRelativeLayout"
+                            android:id="@+id/operationDetail_noteRelativeLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:cornerRadius="20dp">
@@ -412,7 +415,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:id="@+id/relativeLayoutLocation"
+                            android:id="@+id/operationDetail_relativeLayoutLocation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:cornerRadius="20dp">
@@ -462,7 +465,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:id="@+id/relativeLayoutPhoto"
+                            android:id="@+id/operationDetail_relativeLayoutPhoto"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:cornerRadius="20dp">

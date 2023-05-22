@@ -6,13 +6,17 @@ import androidx.lifecycle.ViewModel
 
 class CategoryViewModel : ViewModel() {
 
-    private val selectedCategory = MutableLiveData<Category>()
+    private val _selectedCategory = MutableLiveData<Category>()
 
     fun selectCategory(category: Category) {
-        selectedCategory.value = category
+        _selectedCategory.value = category
     }
 
     fun getSelectedCategory(): LiveData<Category> {
-        return selectedCategory
+        return _selectedCategory
+    }
+
+    fun clearCategory() {
+        _selectedCategory.value = null
     }
 }

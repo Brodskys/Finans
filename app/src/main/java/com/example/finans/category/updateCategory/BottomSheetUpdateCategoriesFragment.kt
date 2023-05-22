@@ -48,11 +48,19 @@ class BottomSheetUpdateCategoriesFragment : BottomSheetDialogFragment(), OnItemC
         switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
 
-        // return if(switchState){
-        //     inflater.inflate(R.layout.fragment_bottom_sheet_dark_update_category, container, false)
-        // } else{
-        return inflater.inflate(R.layout.fragment_bottom_sheet_update_categories, container, false)
-        // }
+         return if(switchState) {
+             inflater.inflate(
+                 R.layout.fragment_bottom_sheet_dark_update_categories,
+                 container,
+                 false
+             )
+         } else {
+             return inflater.inflate(
+                 R.layout.fragment_bottom_sheet_update_categories,
+                 container,
+                 false
+             )
+         }
 
     }
 

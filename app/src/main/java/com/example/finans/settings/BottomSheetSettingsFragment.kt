@@ -1,11 +1,14 @@
 package com.example.finans.settings
 
+import android.annotation.SuppressLint
 import android.content.*
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.text.Editable
+import android.text.InputType
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,21 +17,25 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import com.example.finans.BottomSheetAuthorizationFragment
-import com.example.finans.BottomSheetPhotoFragment
-import com.example.finans.ImageViewModel
 import com.example.finans.R
 import com.example.finans.authorization.AuthorizationActivity
+import com.example.finans.authorization.authWithFacebook.AuthorizationPresenterFacebook.Companion.TAG
+import com.example.finans.authorization.profile.BottomSheetAutorizationEmailFragment
+import com.example.finans.image.BottomSheetPhotoFragment
+import com.example.finans.image.ImageViewModel
+import com.example.finans.other.isValidPassword
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
@@ -37,8 +44,8 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
 
     private lateinit var imageViewModel: ImageViewModel
     private lateinit var sharedPreferences : SharedPreferences
-
-
+    private lateinit var user : FirebaseUser
+    private lateinit var password : TextInputEditText
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,21 +72,20 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<TextView>(R.id.settingsSave).isVisible = false
-
-
         Picasso.get().load(Firebase.auth.currentUser?.photoUrl)
             .placeholder(R.drawable.person)
             .error(R.drawable.person)
             .into(view.findViewById<ImageView>(R.id.profileImage))
 
+        user = Firebase.auth.currentUser!!
+        password = view.findViewById(R.id.changeTextPassword)
 
         imageViewModel = ViewModelProvider(requireActivity())[ImageViewModel::class.java]
 
         imageViewModel.cameraImageUri.observe(viewLifecycleOwner) { uri ->
 
-            if(uri!=null) {
-                val inputStream = requireContext().contentResolver.openInputStream(uri!!)
+            if(uri?.uri != null) {
+                val inputStream = requireContext().contentResolver.openInputStream(uri.uri)
                 val bitmap = BitmapFactory.decodeStream(inputStream)
 
                 val baos = ByteArrayOutputStream()
@@ -117,8 +123,8 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
         }
 
         imageViewModel.galleryImageUri.observe(viewLifecycleOwner) { uri ->
-            if(uri!=null) {
-                val inputStream = requireContext().contentResolver.openInputStream(uri!!)
+            if(uri?.uri != null) {
+                val inputStream = requireContext().contentResolver.openInputStream(uri.uri)
                 val bitmap = BitmapFactory.decodeStream(inputStream)
 
                 val baos = ByteArrayOutputStream()
@@ -154,7 +160,35 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
             }
         }
 
+        view.findViewById<TextView>(R.id.changeTextPasswordBtn).setOnClickListener {
 
+            val textInputLayout = view.findViewById<TextInputLayout>(R.id.changeTextPasswordTextInputLayout)
+
+            if(password.text.toString().isValidPassword(requireContext()) != null) {
+
+                textInputLayout?.setPasswordVisibilityToggleEnabled(false)
+            }
+            else
+                textInputLayout?.setPasswordVisibilityToggleEnabled(true)
+
+            password.error = password.text.toString().isValidPassword(requireContext())
+
+            if(password.text.toString().isValidPassword(requireContext()) == null) {
+
+                Firebase.auth.currentUser!!.updatePassword(password.text.toString()).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+
+                        Firebase.auth.signOut()
+                        startActivity(Intent(requireContext(), AuthorizationActivity::class.java))
+                        requireActivity().finish()
+                    } else{
+                        Toast.makeText(requireContext(),task.exception!!.message, Toast.LENGTH_LONG).show()
+                    }
+                }
+
+            }
+
+        }
 
 
         view.findViewById<ImageView>(R.id.сhangeImage).setOnClickListener{
@@ -172,9 +206,7 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
         }
 
 
-        val user = Firebase.auth.currentUser
-
-        if (user != null && user.isAnonymous) {
+        if (user.isAnonymous) {
             view.findViewById<RelativeLayout>(R.id.authuser_relative).isVisible = false
             view.findViewById<LinearLayout>(R.id.authBtn).isVisible = true
         } else {
@@ -185,18 +217,18 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
 
             view.findViewById<TextInputEditText>(R.id.changeTextUser).setText(Firebase.auth.currentUser?.displayName)
             view.findViewById<TextInputEditText>(R.id.changeTextEmailAddress).setText(Firebase.auth.currentUser?.email)
-            view.findViewById<TextInputEditText>(R.id.changeUserTextPassword).setText(" ")
         }
 
         view.findViewById<LinearLayout>(R.id.authBtn).setOnClickListener {
 
             val existingFragment =
-                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetAuthorizationFragment")
+                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetAutorizationEmailFragment")
             if (existingFragment == null) {
-                val newFragment = BottomSheetAuthorizationFragment()
+                val newFragment = BottomSheetAutorizationEmailFragment()
+                newFragment.setBottomSheetSettingsFragment(this)
                 newFragment.show(
                     requireActivity().supportFragmentManager,
-                    "BottomSheetAuthorizationFragment"
+                    "BottomSheetAutorizationEmailFragment"
                 )
             }
 
@@ -204,89 +236,65 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
 
 
         view.findViewById<LinearLayout>(R.id.deliteUser).setOnClickListener {
-
-                Firebase.auth.currentUser?.delete()
-                    ?.addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d("Delite", "User account deleted.")
-                        }
-                    }
-
-            val db = Firebase.firestore
-
-            val operationRef = db.collection("users").document(Firebase.auth.uid.toString()).collection("operation")
-            val operationBatch = db.batch()
-            operationRef.get().addOnSuccessListener { snapshot ->
-                for (document in snapshot.documents) {
-                    operationBatch.delete(document.reference)
-                }
-                operationBatch.commit()
-            }
-
-            val categoryRef = db.collection("users").document(Firebase.auth.uid.toString()).collection("category")
-            val categoryBatch = db.batch()
-            categoryRef.get().addOnSuccessListener { snapshot ->
-                for (document in snapshot.documents) {
-                    categoryBatch.delete(document.reference)
-                }
-                categoryBatch.commit()
-            }
-
-            val userRef = db.collection("users").document(Firebase.auth.uid.toString()).collection("user")
-            val userBatch = db.batch()
-            userRef.get().addOnSuccessListener { snapshot ->
-                for (document in snapshot.documents) {
-                    userBatch.delete(document.reference)
-                }
-                userBatch.commit()
-            }
-
-
-            try {
-                val storageReference = FirebaseStorage.getInstance().getReference("images/${Firebase.auth.uid.toString()}")
-
-                storageReference.delete().addOnSuccessListener {
-                    Log.d("UserImage", "Файл успешно удален!")
-                }.addOnFailureListener { e ->
-                    Log.e("UserImage", "Ошибка при удалении файла: ${e.message}+jpg")
-                }
-            }
-            catch (e:Exception){
-                Log.e("Error", e.message!!)
-            }
-
             sharedPreferences = activity?.getSharedPreferences("Settings", Context.MODE_PRIVATE)!!
 
-            val editor = sharedPreferences.edit()
-            editor?.remove("Pincode")
-            editor?.apply()
-
-            val editor2 = sharedPreferences.edit()
-            editor2?.remove("currency")
-            editor2?.apply()
-
-            val editor3 = sharedPreferences.edit()
-            editor3?.remove("modeSwitch")
-            editor3?.apply()
-
-            Firebase.auth.signOut()
-            startActivity(Intent(requireActivity(), AuthorizationActivity::class.java))
-            requireActivity().finish()
+            deleteUser(sharedPreferences, requireActivity())
 
         }
-
 
         view.findViewById<TextView>(R.id.settingsExit).setOnClickListener {
             dismiss()
         }
 
-        view.findViewById<TextView>(R.id.settingsSave).setOnClickListener {
+        view.findViewById<TextInputEditText>(R.id.changeTextUser).addTextChangedListener(userWatcher(view.findViewById(R.id.changeTextUser)))
+        password.addTextChangedListener(textWatcher(password))
 
+    }
 
-            dismiss()
+    private fun textWatcher(editText: TextInputEditText): TextWatcher = object : TextWatcher {
+
+        override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+        override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+        @SuppressLint("SuspiciousIndentation")
+        override fun afterTextChanged(editable: Editable) {
+
+            val textInputLayout = editText.parent.parent as? TextInputLayout
+
+                if (editText.inputType and InputType.TYPE_TEXT_VARIATION_PASSWORD == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+
+                    if(editText.text.toString().isValidPassword(requireContext()) != null) {
+
+                        textInputLayout?.setPasswordVisibilityToggleEnabled(false)
+                    }
+                    else
+                        textInputLayout?.setPasswordVisibilityToggleEnabled(true)
+
+                    editText.error = editText.text.toString().isValidPassword(requireContext())
+
+                }
+        }
+    }
+    private fun userWatcher(editText: TextInputEditText): TextWatcher = object : TextWatcher {
+
+        override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
 
         }
+        override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+        override fun afterTextChanged(editable: Editable) {
 
+            val user = Firebase.auth.currentUser
+
+            val profileUpdates = userProfileChangeRequest {
+                displayName = editText.text.toString()
+            }
+
+            user!!.updateProfile(profileUpdates)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d(TAG, "User profile updated.")
+                    }
+                }
+        }
     }
 
 

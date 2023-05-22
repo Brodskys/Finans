@@ -70,7 +70,7 @@
                 android:layout_height="400dp"
                 android:layout_width="match_parent"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
-                tools:context=".BottomSheetMapFragment"
+                tools:context=".map.BottomSheetMapFragment"
                 />
 
         </LinearLayout>

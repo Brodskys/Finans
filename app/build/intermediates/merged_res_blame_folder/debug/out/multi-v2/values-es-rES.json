@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.finans.app-mergeDebugResources-43:/values-es-rES/values-es-rES.xml",
+            "outputFile": "com.example.finans.app-mergeDebugResources-46:/values-es-rES/values-es-rES.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\d9a80e170529a4737161d71d096e270f\\transformed\\facebook-login-8.2.0\\res\\values-es-rES\\values-es-rES.xml",

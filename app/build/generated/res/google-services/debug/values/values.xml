@@ -3,7 +3,7 @@
     <string name="default_web_client_id" translatable="false">1015866785-klgvp3eig6pbgg91mfomocuucb3m3ake.apps.googleusercontent.com</string>
     <string name="gcm_defaultSenderId" translatable="false">1015866785</string>
     <string name="google_api_key" translatable="false">AIzaSyBoNjCc3tyyWzlYeULaIx_sq-p5d9aaz_Y</string>
-    <string name="google_app_id" translatable="false">1:1015866785:android:835e7044e234f35ca797e0</string>
+    <string name="google_app_id" translatable="false">1:1015866785:android:03d4feab5efc69d6a797e0</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBoNjCc3tyyWzlYeULaIx_sq-p5d9aaz_Y</string>
     <string name="google_storage_bucket" translatable="false">finans-44544.appspot.com</string>
     <string name="project_id" translatable="false">finans-44544</string>

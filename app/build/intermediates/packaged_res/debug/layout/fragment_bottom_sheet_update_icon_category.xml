@@ -25,7 +25,7 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
-                    android:id="@+id/categoryEditExit"
+                    android:id="@+id/categoryIconEditExit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:padding="5dp"
-                    android:text="@string/editCategories"
+                    android:text="@string/editIcon"
                     android:textColor="@color/background3"
                     android:textSize="18sp"
                     android:textStyle="bold" />

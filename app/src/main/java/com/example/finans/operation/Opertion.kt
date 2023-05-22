@@ -32,8 +32,6 @@ data class Operation(var category: String ?= null,
         parcel.writeString(category)
         parcel.writeString(id)
         parcel.writeString(image)
-      //  parcel.writeLong((map?.latitude ?: 0).toLong())
-      //  parcel.writeLong((map?.longitude ?: 0).toLong())
         parcel.writeString(note)
         parcel.writeString(photo)
         parcel.writeLong(timestamp?.seconds ?: 0)

@@ -14,7 +14,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.SwitchCompat
@@ -33,18 +32,19 @@ import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import android.Manifest
 import android.app.ActivityManager
-import android.content.BroadcastReceiver
-import android.content.IntentFilter
-import android.util.Log
-import android.widget.Switch
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import android.net.Uri
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
+import com.example.finans.image.BottomSheetPhotoFragment
+import com.example.finans.operation.BottomSheetNewOperationFragment
+import com.google.android.material.textfield.TextInputEditText
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
     private val REQUEST_CODE_SMS_PERMISSION = 100
-
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -162,6 +162,7 @@ class SettingsActivity : AppCompatActivity() {
             if (isChecked) {
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_SMS), REQUEST_CODE_SMS_PERMISSION)
+                    smsSwith.isChecked = false
                 } else {
                     startService(intent)
                 }
@@ -173,12 +174,16 @@ class SettingsActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.exitBtn).setOnClickListener {
             sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)!!
 
+
+            if (Firebase.auth.currentUser!!.isAnonymous) {
+                deleteUser(sharedPreferences, this)
+
+            } else {
+
             val editor = sharedPreferences.edit()
             editor?.remove("Pincode")
             editor?.apply()
-
-//            editor?.remove("currency")
-//            editor?.apply()
+            }
 
             Firebase.auth.signOut()
             startActivity(Intent(this, AuthorizationActivity::class.java))
@@ -200,13 +205,16 @@ class SettingsActivity : AppCompatActivity() {
 
         findViewById<RelativeLayout>(R.id.currencyBtn).setOnClickListener {
 
-            val bottomSheetFragment =
-                supportFragmentManager.findFragmentByTag("BottomSheetCurrencyFragment") as? BottomSheetCurrencyFragment
-            if (bottomSheetFragment == null)
-                BottomSheetCurrencyFragment().show(
+            val existingFragment =
+                supportFragmentManager.findFragmentByTag("BottomSheetCurrencyFragment")
+            if (existingFragment == null) {
+                val newFragment = BottomSheetCurrencyFragment()
+
+                newFragment.show(
                     supportFragmentManager,
                     "BottomSheetCurrencyFragment"
                 )
+            }
 
         }
         findViewById<RelativeLayout>(R.id.languageBtn).setOnClickListener {
@@ -222,7 +230,100 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
+
+        findViewById<RelativeLayout>(R.id.questionsProgram).setOnClickListener {
+
+            val items = arrayOf(getString(R.string.financialAdvice), getString(R.string.help))
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.questions)
+            builder.setIcon(R.drawable.question)
+                .setItems(items) { _, item ->
+
+                    when (item) {
+
+                        0 -> {
+
+                            val bottomSheetFragment =
+                                supportFragmentManager.findFragmentByTag("BottomSheetFinancialAdvice") as? BottomSheetFinancialAdvice
+                            if (bottomSheetFragment == null)
+                                BottomSheetFinancialAdvice().show(
+                                    supportFragmentManager,
+                                    "BottomSheetFinancialAdvice"
+                                )
+
+                        }
+
+                        1 -> {
+
+                            val bottomSheetFragment =
+                                supportFragmentManager.findFragmentByTag("BottomSheetSettingsHelp") as? BottomSheetSettingsHelp
+                            if (bottomSheetFragment == null)
+                                BottomSheetSettingsHelp().show(
+                                    supportFragmentManager,
+                                    "BottomSheetSettingsHelp"
+                                )
+
+                        }
+
+                    }
+
+                }
+            val dialog = builder.create()
+            dialog.show()
+
+        }
+
+        findViewById<RelativeLayout>(R.id.aboutProgram).setOnClickListener {
+
+            val items = arrayOf(getString(R.string.privacyPolicy), getString(R.string.aboutProgram))
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.aboutProgram)
+                .setItems(items) { _, item ->
+
+                    when (item) {
+
+                        0 -> {
+
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            intent.data =
+                                Uri.parse("https://www.freeprivacypolicy.com/live/904635b0-ce5f-4401-8520-47945da12508")
+                            startActivity(intent)
+
+                        }
+
+                        1 -> {
+                            builder.setTitle(R.string.aboutProgram)
+
+                            builder.setIcon(R.mipmap.ic_launcher)
+
+                            val str1 = getString(R.string.str1)
+                            val str2 = getString(R.string.str2)
+                            val str3 = getString(R.string.str3)
+                            val str4 = getString(R.string.str4)
+                            val str5 = getString(R.string.str5)
+
+                            builder.setMessage("$str1\n$str2\n$str3\n$str4\n$str5")
+
+                            builder.setNegativeButton(
+                                "Ok"
+                            ) { dialog, id ->
+                            }
+                            builder.show()
+                        }
+
+                    }
+
+                }
+            val dialog = builder.create()
+            dialog.show()
+
+        }
+
     }
+
+
 
 
 

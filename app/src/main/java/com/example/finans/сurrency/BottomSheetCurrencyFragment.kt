@@ -1,5 +1,6 @@
 package com.example.finans.сurrency
 
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -10,16 +11,25 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.appcompat.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.finans.BottomSheetNewOperationFragment
+import com.example.finans.operation.BottomSheetNewOperationFragment
 import com.example.finans.R
+import com.example.finans.category.Category
+import com.example.finans.category.CategoryViewModel
+import com.example.finans.operation.HomeActivity
+import com.example.finans.operation.operationDetail.BottomSheetOperationDetailFragment
+import com.example.finans.operation.operationDetail.CurrencyViewModel
+import com.example.finans.settings.BottomSheetSettingsFragment
 import com.example.finans.settings.SettingsActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.*
+import org.checkerframework.checker.units.qual.C
 
 
 class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListener {
@@ -31,6 +41,7 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
     private lateinit var currencyName: String
     private lateinit var sharedPreferences: SharedPreferences
     var switchState: Boolean = false
+    private lateinit var currencyViewModel: CurrencyViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +52,7 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
             it.behavior.peekHeight  = R.style.AppBottomSheetDialogTheme
         }
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
         switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
         return if(switchState){
@@ -50,6 +62,11 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        currencyViewModel = ViewModelProvider(requireActivity())[CurrencyViewModel::class.java]
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -107,7 +124,8 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
         }
 
         currencyExit.setOnClickListener {
-            openBottomSheetFragment()
+
+            dismiss()
         }
 
         currencySave.setOnClickListener {
@@ -121,9 +139,12 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
                 dismiss()
 
             }
-            else
-                openBottomSheetFragment()
+            else {
 
+                currencyViewModel.selectedCurrency(currencyName)
+
+                dismiss()
+            }
         }
 
 
@@ -142,25 +163,9 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
 
     }
 
-
     override fun onItemClick(currency: Currency) {
         view?.findViewById<TextView>(R.id.currencySave)!!.isVisible = true
         currencyName = currency.Name.toString()
-    }
-
-    private fun openBottomSheetFragment(){
-        if(activity is SettingsActivity) { }
-        else
-        {
-            val existingFragment = requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetNewOperationFragment")
-            if (existingFragment == null)
-            {
-                val newFragment = BottomSheetNewOperationFragment()
-                newFragment.show(requireActivity().supportFragmentManager, "BottomSheetNewOperationFragment")
-            }
-        }
-
-        dismiss()
     }
 
     private fun getCurrencyData() {

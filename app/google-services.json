@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1015866785:android:835e7044e234f35ca797e0",
+        "mobilesdk_app_id": "1:1015866785:android:03d4feab5efc69d6a797e0",
         "android_client_info": {
           "package_name": "com.example.finans"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1015866785-tekk4j5ov3qp0edea9nl3voir1tpt0mt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finans",
+            "certificate_hash": "2eff952761ddcd93d68f7e621d508e172bc9b4a9"
+          }
+        },
         {
           "client_id": "1015866785-klgvp3eig6pbgg91mfomocuucb3m3ake.apps.googleusercontent.com",
           "client_type": 3

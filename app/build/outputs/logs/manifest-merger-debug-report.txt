@@ -1,20 +1,23 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-98:12
-INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-98:12
-INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-98:12
-INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-98:12
-MERGED from [com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:2:1-20:12
-MERGED from [com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:2:1-20:12
-MERGED from [com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:2:1-17:12
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-102:12
+MERGED from [com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:2:1-20:12
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:2:1-20:12
+MERGED from [androidx.biometric:biometric:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\672d21dcae8e8c7665870848a2b85344\transformed\biometric-1.2.0-alpha05\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.biometric:biometric-ktx:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\26f6bfc1a52e711a40b5efbc6277b4d0\transformed\biometric-ktx-1.2.0-alpha05\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:2:1-20:12
-MERGED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:17:1-75:12
-MERGED from [com.google.android.recaptcha:recaptcha:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\a338ddcdd03395823e107bbb0892892a\transformed\recaptcha-18.0.1\AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.material:material:1.8.0] C:\Users\Denis\.gradle\caches\transforms-3\82dc1a6882dc070e3b137bac33ca6ba8\transformed\material-1.8.0\AndroidManifest.xml:17:1-26:12
+MERGED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:17:1-75:12
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\Denis\.gradle\caches\transforms-3\05f873b2ecf1ce9e461179882c75d41b\transformed\recaptcha-18.1.2\AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.material:material:1.9.0] C:\Users\Denis\.gradle\caches\transforms-3\b2345dcf6bbba98e835132d0d833ae49\transformed\material-1.9.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Denis\.gradle\caches\transforms-3\60b99e790d7fd7a8ad8442b35d54235a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [io.github.chaosleung:pinview:1.4.4] C:\Users\Denis\.gradle\caches\transforms-3\a5df81f1000f3dd1e5a4e852a553d27c\transformed\pinview-1.4.4\AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.gayanvoice:android-animations-kotlin:1.0.1] C:\Users\Denis\.gradle\caches\transforms-3\bb8826df0484c905380ecb34580ec75c\transformed\android-animations-kotlin-1.0.1\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:2:1-24:12
+MERGED from [com.airbnb.android:lottie:5.0.1] C:\Users\Denis\.gradle\caches\transforms-3\db55a89b9c52dc0d33a4c9ebcfb80d5f\transformed\lottie-5.0.1\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\Denis\.gradle\caches\transforms-3\bfc8d636c6cc04f1d86d0478ff738616\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.facebook.android:facebook-android-sdk:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\9350e579d511f016450af80a1406c759\transformed\facebook-android-sdk-8.2.0\AndroidManifest.xml:21:1-31:12
 MERGED from [com.facebook.android:facebook-login:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\d9a80e170529a4737161d71d096e270f\transformed\facebook-login-8.2.0\AndroidManifest.xml:21:1-31:12
@@ -25,26 +28,20 @@ MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\Denis\.gradle\caches\t
 MERGED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:17:1-40:12
 MERGED from [com.google.android.gms:play-services-places:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\0c8deeff935f6fab47b95b974ce7f4f4\transformed\play-services-places-17.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Denis\.gradle\caches\transforms-3\abb54d213c21a72b3344dc17a1a8023a\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-vision:20.1.3] C:\Users\Denis\.gradle\caches\transforms-3\09829c9b7c5c4b76fa4a13234c87fcb5\transformed\play-services-vision-20.1.3\AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:2:1-25:12
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:15:1-38:12
-MERGED from [com.google.firebase:firebase-appcheck-interop:16.1.1] C:\Users\Denis\.gradle\caches\transforms-3\5d7b68f6d0a992b197c764479cf94618\transformed\firebase-appcheck-interop-16.1.1\AndroidManifest.xml:15:1-25:12
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\692363033674a27dafb7ebac0970584f\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:2:1-10:12
-MERGED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:15:1-39:12
+MERGED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:2:1-25:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\5e81f56d43b97963b220ddd107986db3\transformed\play-services-auth-api-phone-18.0.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] C:\Users\Denis\.gradle\caches\transforms-3\5278ed44b89e3b106f601c4ca8d3284b\transformed\play-services-auth-base-18.0.4\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:15:1-38:12
 MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\Denis\.gradle\caches\transforms-3\72d343209fd8eba549ac8361b7785ac5\transformed\play-services-fido-20.0.1\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:17:1-38:12
 MERGED from [com.google.android.gms:play-services-location:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\7b38e36d4c933b5fede115459049a717\transformed\play-services-location-20.0.0\AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-vision-common:19.1.3] C:\Users\Denis\.gradle\caches\transforms-3\acaead43f590c84ce4fa94b112fbdfc6\transformed\play-services-vision-common-19.1.3\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\291456788bfb2fc3cc5c9a1554f7a899\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\8a32084206a09c6d5bc5073fdf6ac670\transformed\play-services-safetynet-17.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-clearcut:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\eaa084104e82f67a5099c9b3df1b8ec5\transformed\play-services-clearcut-17.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-flags:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\a7b53768a6152951456f6a9123352b02\transformed\play-services-flags-17.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.gms:play-services-phenotype:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\0114d73cd630458c03b874e90ab2bdf6\transformed\play-services-phenotype-17.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\f4f5908c7f0227caa2cb9c7cafc2f411\transformed\firebase-appcheck-interop-17.0.0\AndroidManifest.xml:15:1-25:12
 MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:16:1-24:12
 MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\a1613948e245367317eac727ad045615\transformed\play-services-places-placereport-17.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.play:integrity:1.0.1] C:\Users\Denis\.gradle\caches\transforms-3\5bb3871fbc56369b94ae20e5a3f8b972\transformed\integrity-1.0.1\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\692363033674a27dafb7ebac0970584f\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:15:1-39:12
+MERGED from [com.google.android.play:integrity:1.1.0] C:\Users\Denis\.gradle\caches\transforms-3\4a319f69dee83c79d6e9cbf8cf29bfee\transformed\integrity-1.1.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\Denis\.gradle\caches\transforms-3\fbaee92450b31b81a2ae0a3aabecaae2\transformed\play-services-tasks-18.0.2\AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\Denis\.gradle\caches\transforms-3\5dca1d6b436939dfbb97b7d18bbdc662\transformed\play-services-basement-18.2.0\AndroidManifest.xml:16:1-26:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Denis\.gradle\caches\transforms-3\b9c9359e27a171e23f20fa8b390a716a\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -74,11 +71,12 @@ MERGED from [androidx.browser:browser:1.4.0] C:\Users\Denis\.gradle\caches\trans
 MERGED from [androidx.media:media:1.0.0] C:\Users\Denis\.gradle\caches\transforms-3\cfe7c13da41b2ed11fafe4dee04f3998\transformed\media-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Denis\.gradle\caches\transforms-3\dc652aac910331d21547a8afca88e764\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Denis\.gradle\caches\transforms-3\c852fadffaf0ef6c3e0c952479b3a319\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:17:1-30:12
-MERGED from [androidx.core:core-ktx:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\21eb90e43a7c21473948ec5299a676e0\transformed\core-ktx-1.10.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.core:core-ktx:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\bd6000471e6f224d0a936aa3d0a17c3b\transformed\core-ktx-1.10.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.core:core-splashscreen:1.0.1] C:\Users\Denis\.gradle\caches\transforms-3\468a4e6b6e0a4698c79288273d4924bc\transformed\core-splashscreen-1.0.1\AndroidManifest.xml:17:1-24:12
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:2:1-14:12
-MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\01d583b00711107c26d8b7d864d0b221\transformed\MPAndroidChart-v3.1.0\AndroidManifest.xml:2:1-20:12
+MERGED from [com.github.PhilJay:MPAndroidChart:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\5b2c680ee636f20688520fd714d83948\transformed\MPAndroidChart-3.1.0\AndroidManifest.xml:2:1-20:12
+MERGED from [com.rmtheis:tess-two:9.1.0] C:\Users\Denis\.gradle\caches\transforms-3\7bf35c0340e156ca5e63cf49d10c08ca\transformed\tess-two-9.1.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\536963307f29e58f5460b6d3844bd97e\transformed\savedstate-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Denis\.gradle\caches\transforms-3\7dda25d4ed9f23c3d2730b4cd944b021\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Denis\.gradle\caches\transforms-3\bb63bf278f631aa270aa1b7b21afc387\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -105,115 +103,125 @@ MERGED from [com.google.android.datatransport:transport-api:2.2.0] C:\Users\Deni
 MERGED from [com.android.support:exifinterface:27.1.0] C:\Users\Denis\.gradle\caches\transforms-3\7dbe82a6ffa94db762ba85b8845c006d\transformed\exifinterface-27.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\Denis\.gradle\caches\transforms-3\3be75ec01d6a63468211a0370c6274df\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.installreferrer:installreferrer:1.0] C:\Users\Denis\.gradle\caches\transforms-3\126ccad99b02198112cccf14e247c0b6\transformed\installreferrer-1.0\AndroidManifest.xml:2:1-13:12
-INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-98:12
-INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-98:12
-INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-98:12
+INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-102:12
 	package
 		INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-98:12
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-102:12
 		INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-98:12
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-102:12
 		INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-98:12
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:1-102:12
 		INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:2:11-69
+uses-feature#android.hardware.telephony
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:5:5-7:36
+	android:required
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:7:9-33
+	android:name
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:6:9-50
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:5:5-67
-MERGED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:25:5-67
-MERGED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:25:5-67
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:9:5-67
+MERGED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:25:5-67
+MERGED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:25:5-67
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\Denis\.gradle\caches\transforms-3\05f873b2ecf1ce9e461179882c75d41b\transformed\recaptcha-18.1.2\AndroidManifest.xml:7:5-67
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\Denis\.gradle\caches\transforms-3\05f873b2ecf1ce9e461179882c75d41b\transformed\recaptcha-18.1.2\AndroidManifest.xml:7:5-67
 MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:12:5-67
 MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:12:5-67
-MERGED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:13:5-67
-MERGED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:13:5-67
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:26:5-67
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:26:5-67
+MERGED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:13:5-67
+MERGED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:13:5-67
+MERGED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:26:5-67
+MERGED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:26:5-67
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:26:5-67
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:26:5-67
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:5:22-64
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:9:22-64
 uses-permission#android.permission.VIBRATE
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:6:5-66
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:10:5-66
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:6:22-63
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:10:22-63
 uses-permission#android.permission.CAMERA
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:7:5-65
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:11:5-65
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:7:22-62
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:11:22-62
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:8:5-80
-	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:8:22-77
-uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:9:5-79
-MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:10:5-79
-MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:10:5-79
-	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:9:22-76
-uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:10:5-81
-MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:9:5-81
-MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:9:5-81
-	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:10:22-78
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:11:5-78
-MERGED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:26:5-79
-MERGED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:26:5-79
-MERGED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:12:5-79
-MERGED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:12:5-79
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:25:5-79
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:25:5-79
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:23:5-79
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:23:5-79
-MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:25:5-79
-MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:25:5-79
-MERGED from [com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:22:5-79
-MERGED from [com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:22:5-79
-MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\Denis\.gradle\caches\transforms-3\4fbcd3fb17dc9cedcefbc2c73d7d57d8\transformed\grpc-android-1.52.1\AndroidManifest.xml:9:5-79
-MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\Denis\.gradle\caches\transforms-3\4fbcd3fb17dc9cedcefbc2c73d7d57d8\transformed\grpc-android-1.52.1\AndroidManifest.xml:9:5-79
-	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:11:22-76
-uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
 ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:12:5-80
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:12:22-78
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:12:22-77
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:13:5-79
+MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:10:5-79
+MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:10:5-79
+	android:name
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:13:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:14:5-81
+MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:9:5-81
+MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:9:5-81
+	android:name
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:14:22-78
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:15:5-78
+MERGED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:26:5-79
+MERGED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:26:5-79
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\Denis\.gradle\caches\transforms-3\05f873b2ecf1ce9e461179882c75d41b\transformed\recaptcha-18.1.2\AndroidManifest.xml:8:5-79
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\Denis\.gradle\caches\transforms-3\05f873b2ecf1ce9e461179882c75d41b\transformed\recaptcha-18.1.2\AndroidManifest.xml:8:5-79
+MERGED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:12:5-79
+MERGED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:12:5-79
+MERGED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:25:5-79
+MERGED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:22:5-79
+MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\Denis\.gradle\caches\transforms-3\4fbcd3fb17dc9cedcefbc2c73d7d57d8\transformed\grpc-android-1.52.1\AndroidManifest.xml:9:5-79
+MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\Denis\.gradle\caches\transforms-3\4fbcd3fb17dc9cedcefbc2c73d7d57d8\transformed\grpc-android-1.52.1\AndroidManifest.xml:9:5-79
+	android:name
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:15:22-76
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:16:5-80
+	android:name
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:16:22-78
 uses-permission#android.permission.FOREGROUND_SERVICE
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:13:5-76
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:17:5-76
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:13:22-74
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:17:22-74
 uses-permission#android.permission.READ_SMS
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:14:5-67
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:18:5-67
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:14:22-64
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:18:22-64
 application
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:17:5-96:19
-MERGED from [com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:10:5-18:19
-MERGED from [com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:10:5-18:19
-MERGED from [com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:10:5-18:19
-MERGED from [com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:10:5-18:19
-MERGED from [com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:7:5-15:19
-MERGED from [com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:7:5-15:19
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:21:5-100:19
+MERGED from [com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:7:5-15:19
+MERGED from [com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:7:5-15:19
 MERGED from [com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:10:5-18:19
 MERGED from [com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:10:5-18:19
-MERGED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:28:5-73:19
-MERGED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:28:5-73:19
-MERGED from [com.google.android.recaptcha:recaptcha:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\a338ddcdd03395823e107bbb0892892a\transformed\recaptcha-18.0.1\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.recaptcha:recaptcha:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\a338ddcdd03395823e107bbb0892892a\transformed\recaptcha-18.0.1\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.material:material:1.8.0] C:\Users\Denis\.gradle\caches\transforms-3\82dc1a6882dc070e3b137bac33ca6ba8\transformed\material-1.8.0\AndroidManifest.xml:24:5-20
-MERGED from [com.google.android.material:material:1.8.0] C:\Users\Denis\.gradle\caches\transforms-3\82dc1a6882dc070e3b137bac33ca6ba8\transformed\material-1.8.0\AndroidManifest.xml:24:5-20
+MERGED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:28:5-73:19
+MERGED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:28:5-73:19
+MERGED from [com.google.android.material:material:1.9.0] C:\Users\Denis\.gradle\caches\transforms-3\b2345dcf6bbba98e835132d0d833ae49\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
+MERGED from [com.google.android.material:material:1.9.0] C:\Users\Denis\.gradle\caches\transforms-3\b2345dcf6bbba98e835132d0d833ae49\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Denis\.gradle\caches\transforms-3\60b99e790d7fd7a8ad8442b35d54235a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Denis\.gradle\caches\transforms-3\60b99e790d7fd7a8ad8442b35d54235a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:14:5-22:19
 MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:14:5-22:19
+MERGED from [com.airbnb.android:lottie:5.0.1] C:\Users\Denis\.gradle\caches\transforms-3\db55a89b9c52dc0d33a4c9ebcfb80d5f\transformed\lottie-5.0.1\AndroidManifest.xml:9:5-20
+MERGED from [com.airbnb.android:lottie:5.0.1] C:\Users\Denis\.gradle\caches\transforms-3\db55a89b9c52dc0d33a4c9ebcfb80d5f\transformed\lottie-5.0.1\AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.android:facebook-android-sdk:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\9350e579d511f016450af80a1406c759\transformed\facebook-android-sdk-8.2.0\AndroidManifest.xml:28:5-29:19
 MERGED from [com.facebook.android:facebook-android-sdk:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\9350e579d511f016450af80a1406c759\transformed\facebook-android-sdk-8.2.0\AndroidManifest.xml:28:5-29:19
 MERGED from [com.facebook.android:facebook-login:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\d9a80e170529a4737161d71d096e270f\transformed\facebook-login-8.2.0\AndroidManifest.xml:28:5-29:19
@@ -228,38 +236,28 @@ MERGED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.g
 MERGED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.android.gms:play-services-places:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\0c8deeff935f6fab47b95b974ce7f4f4\transformed\play-services-places-17.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-places:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\0c8deeff935f6fab47b95b974ce7f4f4\transformed\play-services-places-17.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-vision:20.1.3] C:\Users\Denis\.gradle\caches\transforms-3\09829c9b7c5c4b76fa4a13234c87fcb5\transformed\play-services-vision-20.1.3\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-vision:20.1.3] C:\Users\Denis\.gradle\caches\transforms-3\09829c9b7c5c4b76fa4a13234c87fcb5\transformed\play-services-vision-20.1.3\AndroidManifest.xml:7:5-20
-MERGED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:15:5-23:19
-MERGED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:15:5-23:19
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:28:5-36:19
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:28:5-36:19
-MERGED from [com.google.firebase:firebase-appcheck-interop:16.1.1] C:\Users\Denis\.gradle\caches\transforms-3\5d7b68f6d0a992b197c764479cf94618\transformed\firebase-appcheck-interop-16.1.1\AndroidManifest.xml:23:5-20
-MERGED from [com.google.firebase:firebase-appcheck-interop:16.1.1] C:\Users\Denis\.gradle\caches\transforms-3\5d7b68f6d0a992b197c764479cf94618\transformed\firebase-appcheck-interop-16.1.1\AndroidManifest.xml:23:5-20
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\692363033674a27dafb7ebac0970584f\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\692363033674a27dafb7ebac0970584f\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:24:5-37:19
-MERGED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:24:5-37:19
+MERGED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:15:5-23:19
+MERGED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:15:5-23:19
+MERGED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:28:5-36:19
 MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\Denis\.gradle\caches\transforms-3\72d343209fd8eba549ac8361b7785ac5\transformed\play-services-fido-20.0.1\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\Denis\.gradle\caches\transforms-3\72d343209fd8eba549ac8361b7785ac5\transformed\play-services-fido-20.0.1\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:30:5-36:19
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:30:5-36:19
 MERGED from [com.google.android.gms:play-services-location:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\7b38e36d4c933b5fede115459049a717\transformed\play-services-location-20.0.0\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\7b38e36d4c933b5fede115459049a717\transformed\play-services-location-20.0.0\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-vision-common:19.1.3] C:\Users\Denis\.gradle\caches\transforms-3\acaead43f590c84ce4fa94b112fbdfc6\transformed\play-services-vision-common-19.1.3\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-vision-common:19.1.3] C:\Users\Denis\.gradle\caches\transforms-3\acaead43f590c84ce4fa94b112fbdfc6\transformed\play-services-vision-common-19.1.3\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\8a32084206a09c6d5bc5073fdf6ac670\transformed\play-services-safetynet-17.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\8a32084206a09c6d5bc5073fdf6ac670\transformed\play-services-safetynet-17.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-clearcut:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\eaa084104e82f67a5099c9b3df1b8ec5\transformed\play-services-clearcut-17.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-clearcut:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\eaa084104e82f67a5099c9b3df1b8ec5\transformed\play-services-clearcut-17.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-phenotype:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\0114d73cd630458c03b874e90ab2bdf6\transformed\play-services-phenotype-17.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-phenotype:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\0114d73cd630458c03b874e90ab2bdf6\transformed\play-services-phenotype-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\f4f5908c7f0227caa2cb9c7cafc2f411\transformed\firebase-appcheck-interop-17.0.0\AndroidManifest.xml:23:5-20
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\f4f5908c7f0227caa2cb9c7cafc2f411\transformed\firebase-appcheck-interop-17.0.0\AndroidManifest.xml:23:5-20
 MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\a1613948e245367317eac727ad045615\transformed\play-services-places-placereport-17.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\a1613948e245367317eac727ad045615\transformed\play-services-places-placereport-17.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.play:integrity:1.0.1] C:\Users\Denis\.gradle\caches\transforms-3\5bb3871fbc56369b94ae20e5a3f8b972\transformed\integrity-1.0.1\AndroidManifest.xml:5:5-6:19
-MERGED from [com.google.android.play:integrity:1.0.1] C:\Users\Denis\.gradle\caches\transforms-3\5bb3871fbc56369b94ae20e5a3f8b972\transformed\integrity-1.0.1\AndroidManifest.xml:5:5-6:19
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\692363033674a27dafb7ebac0970584f\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\692363033674a27dafb7ebac0970584f\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:24:5-37:19
+MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:24:5-37:19
+MERGED from [com.google.android.play:integrity:1.1.0] C:\Users\Denis\.gradle\caches\transforms-3\4a319f69dee83c79d6e9cbf8cf29bfee\transformed\integrity-1.1.0\AndroidManifest.xml:5:5-6:19
+MERGED from [com.google.android.play:integrity:1.1.0] C:\Users\Denis\.gradle\caches\transforms-3\4a319f69dee83c79d6e9cbf8cf29bfee\transformed\integrity-1.1.0\AndroidManifest.xml:5:5-6:19
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\Denis\.gradle\caches\transforms-3\fbaee92450b31b81a2ae0a3aabecaae2\transformed\play-services-tasks-18.0.2\AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\Denis\.gradle\caches\transforms-3\fbaee92450b31b81a2ae0a3aabecaae2\transformed\play-services-tasks-18.0.2\AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\Denis\.gradle\caches\transforms-3\5dca1d6b436939dfbb97b7d18bbdc662\transformed\play-services-basement-18.2.0\AndroidManifest.xml:20:5-24:19
@@ -272,8 +270,8 @@ MERGED from [com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\ca
 MERGED from [com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:28:5-51:19
 MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
 MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:28:5-89
-MERGED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:28:5-89
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:7:5-12:19
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:7:5-12:19
 MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Denis\.gradle\caches\transforms-3\909ed60ab8098091c655c7b4d2258273\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:25:5-35:19
@@ -289,181 +287,185 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Denis\.gradle\cach
 MERGED from [com.android.installreferrer:installreferrer:1.0] C:\Users\Denis\.gradle\caches\transforms-3\126ccad99b02198112cccf14e247c0b6\transformed\installreferrer-1.0\AndroidManifest.xml:11:5-20
 MERGED from [com.android.installreferrer:installreferrer:1.0] C:\Users\Denis\.gradle\caches\transforms-3\126ccad99b02198112cccf14e247c0b6\transformed\installreferrer-1.0\AndroidManifest.xml:11:5-20
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:28:18-86
+		ADDED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:23:9-35
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:27:9-35
 	android:label
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:22:9-41
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:26:9-41
 	android:fullBackupContent
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:20:9-54
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:24:9-54
 	tools:targetApi
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:25:9-29
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:29:9-29
 	android:icon
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:21:9-43
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:25:9-43
 	android:allowBackup
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:18:9-35
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:22:9-35
 	android:theme
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:24:9-44
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:28:9-44
 	android:dataExtractionRules
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:19:9-65
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:23:9-65
 activity#com.example.finans.settings.SettingsActivity
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:26:9-29:40
-	android:screenOrientation
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:28:13-49
-	android:exported
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:29:13-37
-	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:27:13-54
-activity#com.example.finans.AnalyticsActivity
 ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:30:9-33:40
 	android:screenOrientation
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:32:13-49
 	android:exported
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:33:13-37
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:31:13-46
-activity#com.example.finans.PlansActivity
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:31:13-54
+activity#com.example.finans.AnalyticsActivity
 ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:34:9-37:40
 	android:screenOrientation
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:36:13-49
 	android:exported
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:37:13-37
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:35:13-42
-activity#com.example.finans.PinCodeActivity
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:35:13-46
+activity#com.example.finans.PlansActivity
 ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:38:9-41:40
 	android:screenOrientation
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:40:13-49
 	android:exported
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:41:13-37
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:39:13-44
-activity#com.example.finans.registration.RegistrationActivity
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:39:13-42
+activity#com.example.finans.PinCodeActivity
 ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:42:9-45:40
 	android:screenOrientation
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:44:13-49
 	android:exported
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:45:13-37
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:43:13-62
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:43:13-44
+activity#com.example.finans.registration.RegistrationActivity
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:46:9-49:40
+	android:screenOrientation
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:48:13-49
+	android:exported
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:49:13-37
+	android:name
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:47:13-62
 activity#com.facebook.FacebookActivity
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:46:9-49:99
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:50:9-53:99
 MERGED from [com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:30:9-33:66
 MERGED from [com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:30:9-33:66
 	android:screenOrientation
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:48:13-49
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:52:13-49
 	android:configChanges
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:49:13-96
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:53:13-96
 	android:theme
 		ADDED from [com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:33:13-63
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:47:13-57
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:51:13-57
 activity#com.facebook.CustomTabActivity
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:50:9-62:20
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:54:9-66:20
 MERGED from [com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:35:9-49:20
 MERGED from [com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:35:9-49:20
 	tools:node
 		ADDED from [com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:38:13-31
 	android:screenOrientation
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:52:13-49
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:56:13-49
 	android:exported
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:53:13-36
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:57:13-36
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:51:13-58
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:55:13-58
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:@string/fb_login_protocol_scheme
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:54:13-61:29
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:58:13-65:29
 action#android.intent.action.VIEW
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:55:17-69
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:59:17-69
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:55:25-66
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:59:25-66
 category#android.intent.category.DEFAULT
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:57:17-76
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:61:17-76
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:57:27-73
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:61:27-73
 category#android.intent.category.BROWSABLE
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:58:17-78
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:62:17-78
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:58:27-75
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:62:27-75
 data
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:60:17-75
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:64:17-75
 	android:scheme
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:60:23-72
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:64:23-72
 activity#com.example.finans.authorization.AuthorizationActivity
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:63:9-74:20
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:67:9-78:20
 	android:screenOrientation
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:65:13-49
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:69:13-49
 	android:exported
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:66:13-36
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:70:13-36
 	android:theme
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:67:13-54
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:71:13-54
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:64:13-64
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:68:13-64
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:68:13-71:29
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:72:13-75:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:69:17-69
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:73:17-69
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:69:25-66
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:73:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:70:17-77
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:74:17-77
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:70:27-74
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:74:27-74
 meta-data#android.app.shortcuts
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:72:13-73:53
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:76:13-77:53
 	android:resource
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:73:17-50
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:77:17-50
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:72:24-60
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:76:24-60
 activity#com.example.finans.operation.HomeActivity
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:75:9-82:20
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:79:9-86:20
 	android:screenOrientation
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:77:13-49
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:81:13-49
 	android:exported
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:78:13-36
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:82:13-36
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:76:13-51
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:80:13-51
 intent-filter#action:name:android.intent.action.MAIN
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:79:13-81:29
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:83:13-85:29
 meta-data#com.facebook.sdk.ApplicationId
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:84:9-86:55
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:88:9-90:55
 	android:value
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:86:13-52
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:90:13-52
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:85:13-58
-meta-data#com.facebook.sdk.ClientToken
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:87:9-89:61
-	android:value
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:89:13-58
-	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:88:13-56
-meta-data#com.google.android.geo.API_KEY
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:91:9-92:70
+meta-data#com.facebook.sdk.ClientToken
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:91:9-93:61
 	android:value
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:92:13-68
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:93:13-58
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:91:20-65
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:92:13-56
+meta-data#com.google.android.geo.API_KEY
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:95:9-96:70
+	android:value
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:96:13-68
+	android:name
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:95:20-65
 service#com.example.finans.settings.SmsService
-ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:94:9-55
+ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:98:9-55
 	android:name
-		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:94:18-53
+		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:98:18-53
 uses-sdk
 INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
-MERGED from [com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.biometric:biometric:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\672d21dcae8e8c7665870848a2b85344\transformed\biometric-1.2.0-alpha05\AndroidManifest.xml:20:5-44
+MERGED from [androidx.biometric:biometric:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\672d21dcae8e8c7665870848a2b85344\transformed\biometric-1.2.0-alpha05\AndroidManifest.xml:20:5-44
+MERGED from [androidx.biometric:biometric-ktx:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\26f6bfc1a52e711a40b5efbc6277b4d0\transformed\biometric-ktx-1.2.0-alpha05\AndroidManifest.xml:5:5-44
+MERGED from [androidx.biometric:biometric-ktx:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\26f6bfc1a52e711a40b5efbc6277b4d0\transformed\biometric-ktx-1.2.0-alpha05\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:21:5-23:64
-MERGED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:21:5-23:64
-MERGED from [com.google.android.recaptcha:recaptcha:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\a338ddcdd03395823e107bbb0892892a\transformed\recaptcha-18.0.1\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.recaptcha:recaptcha:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\a338ddcdd03395823e107bbb0892892a\transformed\recaptcha-18.0.1\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.material:material:1.8.0] C:\Users\Denis\.gradle\caches\transforms-3\82dc1a6882dc070e3b137bac33ca6ba8\transformed\material-1.8.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.material:material:1.8.0] C:\Users\Denis\.gradle\caches\transforms-3\82dc1a6882dc070e3b137bac33ca6ba8\transformed\material-1.8.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:21:5-23:64
+MERGED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:21:5-23:64
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\Denis\.gradle\caches\transforms-3\05f873b2ecf1ce9e461179882c75d41b\transformed\recaptcha-18.1.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\Denis\.gradle\caches\transforms-3\05f873b2ecf1ce9e461179882c75d41b\transformed\recaptcha-18.1.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.material:material:1.9.0] C:\Users\Denis\.gradle\caches\transforms-3\b2345dcf6bbba98e835132d0d833ae49\transformed\material-1.9.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.material:material:1.9.0] C:\Users\Denis\.gradle\caches\transforms-3\b2345dcf6bbba98e835132d0d833ae49\transformed\material-1.9.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Denis\.gradle\caches\transforms-3\60b99e790d7fd7a8ad8442b35d54235a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Denis\.gradle\caches\transforms-3\60b99e790d7fd7a8ad8442b35d54235a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
 MERGED from [io.github.chaosleung:pinview:1.4.4] C:\Users\Denis\.gradle\caches\transforms-3\a5df81f1000f3dd1e5a4e852a553d27c\transformed\pinview-1.4.4\AndroidManifest.xml:20:5-22:41
@@ -472,6 +474,8 @@ MERGED from [com.github.gayanvoice:android-animations-kotlin:1.0.1] C:\Users\Den
 MERGED from [com.github.gayanvoice:android-animations-kotlin:1.0.1] C:\Users\Denis\.gradle\caches\transforms-3\bb8826df0484c905380ecb34580ec75c\transformed\android-animations-kotlin-1.0.1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:7:5-44
 MERGED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:7:5-44
+MERGED from [com.airbnb.android:lottie:5.0.1] C:\Users\Denis\.gradle\caches\transforms-3\db55a89b9c52dc0d33a4c9ebcfb80d5f\transformed\lottie-5.0.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.airbnb.android:lottie:5.0.1] C:\Users\Denis\.gradle\caches\transforms-3\db55a89b9c52dc0d33a4c9ebcfb80d5f\transformed\lottie-5.0.1\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\Denis\.gradle\caches\transforms-3\bfc8d636c6cc04f1d86d0478ff738616\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\Denis\.gradle\caches\transforms-3\bfc8d636c6cc04f1d86d0478ff738616\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [com.facebook.android:facebook-android-sdk:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\9350e579d511f016450af80a1406c759\transformed\facebook-android-sdk-8.2.0\AndroidManifest.xml:24:5-26:41
@@ -492,46 +496,34 @@ MERGED from [com.google.android.gms:play-services-places:17.0.0] C:\Users\Denis\
 MERGED from [com.google.android.gms:play-services-places:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\0c8deeff935f6fab47b95b974ce7f4f4\transformed\play-services-places-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Denis\.gradle\caches\transforms-3\abb54d213c21a72b3344dc17a1a8023a\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Denis\.gradle\caches\transforms-3\abb54d213c21a72b3344dc17a1a8023a\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.gms:play-services-vision:20.1.3] C:\Users\Denis\.gradle\caches\transforms-3\09829c9b7c5c4b76fa4a13234c87fcb5\transformed\play-services-vision-20.1.3\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-vision:20.1.3] C:\Users\Denis\.gradle\caches\transforms-3\09829c9b7c5c4b76fa4a13234c87fcb5\transformed\play-services-vision-20.1.3\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:6:5-8:41
-MERGED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:6:5-8:41
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-appcheck-interop:16.1.1] C:\Users\Denis\.gradle\caches\transforms-3\5d7b68f6d0a992b197c764479cf94618\transformed\firebase-appcheck-interop-16.1.1\AndroidManifest.xml:18:5-20:41
-MERGED from [com.google.firebase:firebase-appcheck-interop:16.1.1] C:\Users\Denis\.gradle\caches\transforms-3\5d7b68f6d0a992b197c764479cf94618\transformed\firebase-appcheck-interop-16.1.1\AndroidManifest.xml:18:5-20:41
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\692363033674a27dafb7ebac0970584f\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\692363033674a27dafb7ebac0970584f\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:6:5-8:41
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\5e81f56d43b97963b220ddd107986db3\transformed\play-services-auth-api-phone-18.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\5e81f56d43b97963b220ddd107986db3\transformed\play-services-auth-api-phone-18.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] C:\Users\Denis\.gradle\caches\transforms-3\5278ed44b89e3b106f601c4ca8d3284b\transformed\play-services-auth-base-18.0.4\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] C:\Users\Denis\.gradle\caches\transforms-3\5278ed44b89e3b106f601c4ca8d3284b\transformed\play-services-auth-base-18.0.4\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\Denis\.gradle\caches\transforms-3\72d343209fd8eba549ac8361b7785ac5\transformed\play-services-fido-20.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-fido:20.0.1] C:\Users\Denis\.gradle\caches\transforms-3\72d343209fd8eba549ac8361b7785ac5\transformed\play-services-fido-20.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-location:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\7b38e36d4c933b5fede115459049a717\transformed\play-services-location-20.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\7b38e36d4c933b5fede115459049a717\transformed\play-services-location-20.0.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-vision-common:19.1.3] C:\Users\Denis\.gradle\caches\transforms-3\acaead43f590c84ce4fa94b112fbdfc6\transformed\play-services-vision-common-19.1.3\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-vision-common:19.1.3] C:\Users\Denis\.gradle\caches\transforms-3\acaead43f590c84ce4fa94b112fbdfc6\transformed\play-services-vision-common-19.1.3\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\291456788bfb2fc3cc5c9a1554f7a899\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\291456788bfb2fc3cc5c9a1554f7a899\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\8a32084206a09c6d5bc5073fdf6ac670\transformed\play-services-safetynet-17.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\8a32084206a09c6d5bc5073fdf6ac670\transformed\play-services-safetynet-17.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-clearcut:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\eaa084104e82f67a5099c9b3df1b8ec5\transformed\play-services-clearcut-17.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-clearcut:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\eaa084104e82f67a5099c9b3df1b8ec5\transformed\play-services-clearcut-17.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-flags:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\a7b53768a6152951456f6a9123352b02\transformed\play-services-flags-17.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-flags:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\a7b53768a6152951456f6a9123352b02\transformed\play-services-flags-17.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-phenotype:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\0114d73cd630458c03b874e90ab2bdf6\transformed\play-services-phenotype-17.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-phenotype:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\0114d73cd630458c03b874e90ab2bdf6\transformed\play-services-phenotype-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\f4f5908c7f0227caa2cb9c7cafc2f411\transformed\firebase-appcheck-interop-17.0.0\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\f4f5908c7f0227caa2cb9c7cafc2f411\transformed\firebase-appcheck-interop-17.0.0\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:18:5-43
 MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:18:5-43
 MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\a1613948e245367317eac727ad045615\transformed\play-services-places-placereport-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-places-placereport:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\a1613948e245367317eac727ad045615\transformed\play-services-places-placereport-17.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.play:integrity:1.0.1] C:\Users\Denis\.gradle\caches\transforms-3\5bb3871fbc56369b94ae20e5a3f8b972\transformed\integrity-1.0.1\AndroidManifest.xml:4:5-44
-MERGED from [com.google.android.play:integrity:1.0.1] C:\Users\Denis\.gradle\caches\transforms-3\5bb3871fbc56369b94ae20e5a3f8b972\transformed\integrity-1.0.1\AndroidManifest.xml:4:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\692363033674a27dafb7ebac0970584f\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Denis\.gradle\caches\transforms-3\692363033674a27dafb7ebac0970584f\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.android.play:integrity:1.1.0] C:\Users\Denis\.gradle\caches\transforms-3\4a319f69dee83c79d6e9cbf8cf29bfee\transformed\integrity-1.1.0\AndroidManifest.xml:4:5-44
+MERGED from [com.google.android.play:integrity:1.1.0] C:\Users\Denis\.gradle\caches\transforms-3\4a319f69dee83c79d6e9cbf8cf29bfee\transformed\integrity-1.1.0\AndroidManifest.xml:4:5-44
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\Denis\.gradle\caches\transforms-3\fbaee92450b31b81a2ae0a3aabecaae2\transformed\play-services-tasks-18.0.2\AndroidManifest.xml:4:5-43
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\Denis\.gradle\caches\transforms-3\fbaee92450b31b81a2ae0a3aabecaae2\transformed\play-services-tasks-18.0.2\AndroidManifest.xml:4:5-43
 MERGED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\Denis\.gradle\caches\transforms-3\5dca1d6b436939dfbb97b7d18bbdc662\transformed\play-services-basement-18.2.0\AndroidManifest.xml:18:5-43
@@ -590,16 +582,18 @@ MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Deni
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Denis\.gradle\caches\transforms-3\dc652aac910331d21547a8afca88e764\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Denis\.gradle\caches\transforms-3\c852fadffaf0ef6c3e0c952479b3a319\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Denis\.gradle\caches\transforms-3\c852fadffaf0ef6c3e0c952479b3a319\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core-ktx:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\21eb90e43a7c21473948ec5299a676e0\transformed\core-ktx-1.10.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.core:core-ktx:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\21eb90e43a7c21473948ec5299a676e0\transformed\core-ktx-1.10.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\bd6000471e6f224d0a936aa3d0a17c3b\transformed\core-ktx-1.10.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\bd6000471e6f224d0a936aa3d0a17c3b\transformed\core-ktx-1.10.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-splashscreen:1.0.1] C:\Users\Denis\.gradle\caches\transforms-3\468a4e6b6e0a4698c79288273d4924bc\transformed\core-splashscreen-1.0.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core-splashscreen:1.0.1] C:\Users\Denis\.gradle\caches\transforms-3\468a4e6b6e0a4698c79288273d4924bc\transformed\core-splashscreen-1.0.1\AndroidManifest.xml:20:5-22:41
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:5:5-44
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:5:5-44
-MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\01d583b00711107c26d8b7d864d0b221\transformed\MPAndroidChart-v3.1.0\AndroidManifest.xml:16:5-18:41
-MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\01d583b00711107c26d8b7d864d0b221\transformed\MPAndroidChart-v3.1.0\AndroidManifest.xml:16:5-18:41
+MERGED from [com.github.PhilJay:MPAndroidChart:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\5b2c680ee636f20688520fd714d83948\transformed\MPAndroidChart-3.1.0\AndroidManifest.xml:16:5-18:41
+MERGED from [com.github.PhilJay:MPAndroidChart:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\5b2c680ee636f20688520fd714d83948\transformed\MPAndroidChart-3.1.0\AndroidManifest.xml:16:5-18:41
+MERGED from [com.rmtheis:tess-two:9.1.0] C:\Users\Denis\.gradle\caches\transforms-3\7bf35c0340e156ca5e63cf49d10c08ca\transformed\tess-two-9.1.0\AndroidManifest.xml:22:5-24:41
+MERGED from [com.rmtheis:tess-two:9.1.0] C:\Users\Denis\.gradle\caches\transforms-3\7bf35c0340e156ca5e63cf49d10c08ca\transformed\tess-two-9.1.0\AndroidManifest.xml:22:5-24:41
 MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\536963307f29e58f5460b6d3844bd97e\transformed\savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\536963307f29e58f5460b6d3844bd97e\transformed\savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Denis\.gradle\caches\transforms-3\7dda25d4ed9f23c3d2730b4cd944b021\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
@@ -655,7 +649,7 @@ MERGED from [com.android.installreferrer:installreferrer:1.0] C:\Users\Denis\.gr
 INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
 	tools:overrideLibrary
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:23:9-61
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:23:9-61
 	android:targetSdkVersion
 		INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
@@ -665,47 +659,55 @@ INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.x
 		ADDED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:11:9-17:19
-MERGED from [com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:11:9-17:19
-MERGED from [com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:11:9-17:19
-MERGED from [com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:8:9-14:19
-MERGED from [com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:8:9-14:19
+ADDED from [com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:11:9-17:19
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:11:9-17:19
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:11:9-17:19
+MERGED from [com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:8:9-14:19
+MERGED from [com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:8:9-14:19
 MERGED from [com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:11:9-17:19
 MERGED from [com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:11:9-17:19
-MERGED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:66:9-72:19
-MERGED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:66:9-72:19
-MERGED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:16:9-22:19
-MERGED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:16:9-22:19
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:29:9-35:19
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:29:9-35:19
-MERGED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:32:9-36:35
-MERGED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:32:9-36:35
+MERGED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:66:9-72:19
+MERGED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:66:9-72:19
+MERGED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:16:9-22:19
+MERGED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:16:9-22:19
+MERGED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:32:9-36:35
+MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:32:9-36:35
 	android:exported
-		ADDED from [com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:13:13-37
+		ADDED from [com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:13:13-37
 	tools:targetApi
-		ADDED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:36:13-32
+		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:36:13-32
 	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:34:13-43
+		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:34:13-43
 	android:name
-		ADDED from [com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:12:13-84
+		ADDED from [com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:12:13-84
 meta-data#com.google.firebase.components:com.google.firebase.firestore.ktx.FirebaseFirestoreKtxRegistrar
-ADDED from [com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:14:13-16:85
+ADDED from [com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:14:13-16:85
 	android:value
-		ADDED from [com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:16:17-82
+		ADDED from [com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:16:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:15:17-126
+		ADDED from [com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:15:17-126
 meta-data#com.google.firebase.components:com.google.firebase.storage.ktx.FirebaseStorageKtxRegistrar
-ADDED from [com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:14:13-16:85
+ADDED from [com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:14:13-16:85
 	android:value
-		ADDED from [com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:16:17-82
+		ADDED from [com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:16:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:15:17-122
+		ADDED from [com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:15:17-122
+uses-permission#android.permission.USE_BIOMETRIC
+ADDED from [androidx.biometric:biometric:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\672d21dcae8e8c7665870848a2b85344\transformed\biometric-1.2.0-alpha05\AndroidManifest.xml:22:5-72
+	android:name
+		ADDED from [androidx.biometric:biometric:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\672d21dcae8e8c7665870848a2b85344\transformed\biometric-1.2.0-alpha05\AndroidManifest.xml:22:22-69
+uses-permission#android.permission.USE_FINGERPRINT
+ADDED from [androidx.biometric:biometric:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\672d21dcae8e8c7665870848a2b85344\transformed\biometric-1.2.0-alpha05\AndroidManifest.xml:25:5-74
+	android:name
+		ADDED from [androidx.biometric:biometric:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\672d21dcae8e8c7665870848a2b85344\transformed\biometric-1.2.0-alpha05\AndroidManifest.xml:25:22-71
 meta-data#com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthKtxRegistrar
-ADDED from [com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:11:13-13:85
+ADDED from [com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:11:13-13:85
 	android:value
-		ADDED from [com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:13:17-82
+		ADDED from [com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:13:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:12:17-116
+		ADDED from [com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:12:17-116
 meta-data#com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar
 ADDED from [com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:14:13-16:85
 	android:value
@@ -713,39 +715,39 @@ ADDED from [com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.grad
 	android:name
 		ADDED from [com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:15:17-113
 activity#com.google.firebase.auth.internal.GenericIdpActivity
-ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:29:9-46:20
+ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:29:9-46:20
 	android:excludeFromRecents
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:31:13-46
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:31:13-46
 	android:launchMode
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:33:13-44
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:33:13-44
 	android:exported
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:32:13-36
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:32:13-36
 	android:theme
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:34:13-72
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:34:13-72
 	android:name
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:30:13-80
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:30:13-80
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:genericidp
-ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:35:13-45:29
+ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:35:13-45:29
 activity#com.google.firebase.auth.internal.RecaptchaActivity
-ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:47:9-64:20
+ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:47:9-64:20
 	android:excludeFromRecents
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:49:13-46
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:49:13-46
 	android:launchMode
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:51:13-44
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:51:13-44
 	android:exported
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:50:13-36
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:50:13-36
 	android:theme
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:52:13-72
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:52:13-72
 	android:name
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:48:13-79
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:48:13-79
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:recaptcha
-ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:53:13-63:29
+ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:53:13-63:29
 meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
-ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:69:13-71:85
+ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:69:13-71:85
 	android:value
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:71:17-82
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:71:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:70:17-109
+		ADDED from [com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:70:17-109
 uses-permission#android.permission.ACCESS_WIFI_STATE
 ADDED from [com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:11:5-76
 	android:name
@@ -791,29 +793,17 @@ ADDED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gr
 	android:name
 		ADDED from [com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:34:13-89
 meta-data#com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar
-ADDED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:19:13-21:85
+ADDED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:19:13-21:85
 	android:value
-		ADDED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:21:17-82
+		ADDED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:21:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:20:17-111
+		ADDED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:20:17-111
 meta-data#com.google.firebase.components:com.google.firebase.storage.StorageRegistrar
-ADDED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:32:13-34:85
+ADDED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:32:13-34:85
 	android:value
-		ADDED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:34:17-82
+		ADDED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:34:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:33:17-107
-provider#com.google.firebase.provider.FirebaseInitProvider
-ADDED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:25:9-30:39
-	android:authorities
-		ADDED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:27:13-72
-	android:exported
-		ADDED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:29:13-37
-	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:28:13-43
-	android:initOrder
-		ADDED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:30:13-36
-	android:name
-		ADDED from [com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:26:13-77
+		ADDED from [com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:33:17-107
 uses-feature#0x00020000
 ADDED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
 	android:glEsVersion
@@ -834,6 +824,18 @@ ADDED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gr
 		ADDED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
 	android:name
 		ADDED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:25:9-30:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:27:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:29:13-37
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:28:13-43
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:30:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:26:13-77
 meta-data#com.google.android.gms.version
 ADDED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\Denis\.gradle\caches\transforms-3\5dca1d6b436939dfbb97b7d18bbdc662\transformed\play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
 	android:value
@@ -881,25 +883,25 @@ ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transfor
 	android:name
 		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
 permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:22:5-24:47
+ADDED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
-		ADDED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:24:9-44
+		ADDED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:24:9-44
 	android:name
-		ADDED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:23:9-81
+		ADDED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:23:9-81
 permission#com.example.finans.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:22:5-24:47
+ADDED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
-		ADDED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:24:9-44
+		ADDED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:24:9-44
 	android:name
-		ADDED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:23:9-81
+		ADDED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:23:9-81
 uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:26:5-97
+ADDED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:26:5-97
 	android:name
-		ADDED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:26:22-94
+		ADDED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:26:22-94
 uses-permission#com.example.finans.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:26:5-97
+ADDED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:26:5-97
 	android:name
-		ADDED from [androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:26:22-94
+		ADDED from [androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:26:22-94
 provider#com.squareup.picasso.PicassoProvider
 ADDED from [com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:8:9-11:40
 	android:authorities

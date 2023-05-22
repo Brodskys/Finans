@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     android:background="@color/background"
-    tools:context=".BottomSheetAutorizationEmailFragment">
+    tools:context=".authorization.profile.BottomSheetAutorizationEmailFragment">
 
 
         <LinearLayout
@@ -72,6 +72,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ems="10"
+                                android:textColor="@color/background3"
                                 android:background="@drawable/round_20"
                                 android:hint="@string/enterEmail"
                                 android:inputType="textEmailAddress"
@@ -120,6 +121,7 @@
                             android:src="@drawable/key" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/authUserTextPasswordTextInputLayout"
                             android:layout_toEndOf="@+id/registerpasswordIcon"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -138,6 +140,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ems="10"
+                                android:textColor="@color/background3"
                                 android:background="@drawable/round_20"
                                 android:hint="@string/enterPassword"
                                 android:inputType="textPassword"
@@ -186,6 +189,7 @@
                             android:src="@drawable/key" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/authUserTextConfirmPasswordTextInputLayout"
                             android:layout_toEndOf="@+id/confirmpasswordIcon"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -204,6 +208,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ems="10"
+                                android:textColor="@color/background3"
                                 android:background="@drawable/round_20"
                                 android:hint="@string/confirmPassword"
                                 android:inputType="textPassword"

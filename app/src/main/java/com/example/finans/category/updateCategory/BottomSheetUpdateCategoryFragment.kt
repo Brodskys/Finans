@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ import com.example.finans.category.CategoryViewModel
 import com.example.finans.category.subcategory.BottomSheetSubcategoryFragment
 import com.example.finans.category.subcategory.OnItemClickListener
 import com.example.finans.category.subcategory.SubcategoryAdapter
+import com.example.finans.category.updateCategory.addCategory.BottomSheetAddCategoryFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.ktx.auth
@@ -68,11 +70,11 @@ class BottomSheetUpdateCategoryFragment : BottomSheetDialogFragment(), OnItemCli
         switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
 
-        // return if(switchState){
-        //     inflater.inflate(R.layout.fragment_bottom_sheet_dark_update_category, container, false)
-        // } else{
+        return if(switchState){
+             inflater.inflate(R.layout.fragment_bottom_sheet_dark_update_category, container, false)
+         } else{
         return inflater.inflate(R.layout.fragment_bottom_sheet_update_category, container, false)
-        // }
+        }
 
     }
 
@@ -133,6 +135,25 @@ class BottomSheetUpdateCategoryFragment : BottomSheetDialogFragment(), OnItemCli
 
             if (bottomSheetFragment == null)
                 BottomSheetUpdateIconCategoryFragment().show(requireActivity().supportFragmentManager, "BottomSheetUpdateIconCategoryFragment")
+        }
+
+
+        view.findViewById<RelativeLayout>(R.id.addCategoryRelativeLayout).setOnClickListener {
+
+            val existingFragment =
+                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetAddCategoryFragment")
+
+            if (existingFragment == null) {
+                val newFragment = BottomSheetAddCategoryFragment.newInstance(category)
+                newFragment.setTargetFragment(this@BottomSheetUpdateCategoryFragment, 0)
+
+                newFragment.show(
+                    requireActivity().supportFragmentManager,
+                    "BottomSheetAddCategoryFragment"
+                )
+
+            }
+
         }
 
 

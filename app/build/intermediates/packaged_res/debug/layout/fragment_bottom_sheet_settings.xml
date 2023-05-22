@@ -19,8 +19,6 @@
             android:background="@color/background"
             android:orientation="vertical">
 
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,19 +44,6 @@
                     android:layout_centerInParent="true"
                     android:padding="5dp"
                     android:text="@string/profile"
-                    android:textColor="@color/background3"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/settingsSave"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:clickable="true"
-                    android:padding="5dp"
-                    android:background="?attr/editTextBackground"
-                    android:text="@string/save"
                     android:textColor="@color/background3"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -122,12 +107,11 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/textInputLayoutUser"
+                            android:layout_below="@+id/textInputLayoutEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="8dp"
-                            android:layout_marginVertical="5dp"
                             android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -135,6 +119,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ems="10"
+                                android:textColor="@color/background3"
                                 android:background="@color/background"
                                 android:hint="@string/enterUsername"
                                 android:inputType="textPersonName"
@@ -143,23 +128,24 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_below="@+id/textInputLayoutUser"
                         android:id="@+id/textInputLayoutEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="8dp"
-                        android:layout_marginVertical="5dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp">
+                        android:layout_marginEnd="8dp"
+                        app:boxStrokeWidth="0dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/changeTextEmailAddress"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:enabled="false"
+                            android:textColor="@color/background3"
                             android:background="@color/background"
-                            android:hint="@string/enterEmail"
+                            android:hint="@string/email"
                             android:inputType="textEmailAddress"
                             android:paddingStart="0dp"
                             />
@@ -167,7 +153,8 @@
 
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:layout_below="@+id/textInputLayoutEmail"
+                            android:id="@+id/changeTextPasswordTextInputLayout"
+                            android:layout_below="@+id/textInputLayoutUser"
                             android:layout_marginTop="20dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -181,10 +168,11 @@
                             app:passwordToggleTint="@color/blue">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/changeUserTextPassword"
+                                android:id="@+id/changeTextPassword"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ems="10"
+                                android:textColor="@color/background3"
                                 android:background="@color/background"
                                 android:hint="@string/enterPassword"
                                 android:inputType="textPassword"
@@ -192,6 +180,18 @@
                                 />
                         </com.google.android.material.textfield.TextInputLayout>
 
+                        <Button
+                            android:id="@+id/changeTextPasswordBtn"
+                            android:layout_below="@+id/changeTextPasswordTextInputLayout"
+                            style="@style/Widget.MaterialComponents.Button.Icon"
+                            android:textStyle="bold"
+                            app:backgroundTint="@color/color_selector"
+                            app:cornerRadius="20dp"
+                            android:textColor="@color/background3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/update" />
 
                     </RelativeLayout>
 

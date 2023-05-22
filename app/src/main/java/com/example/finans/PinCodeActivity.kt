@@ -3,6 +3,7 @@ package com.example.finans
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.hardware.fingerprint.FingerprintManager
 import android.os.Bundle
 import android.os.Vibrator
 import android.preference.PreferenceManager
@@ -10,11 +11,16 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import com.chaos.view.PinView
 import com.example.finans.authorization.AuthorizationActivity
 import com.example.finans.language.loadLocale
+import com.example.finans.operation.BottomSheetNewOperationFragment
 import com.example.finans.operation.HomeActivity
 import com.example.finans.сurrency.BottomSheetCurrencyFragment
 import com.google.firebase.auth.FirebaseUser
@@ -22,6 +28,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import render.animations.Attention
 import render.animations.Render
+import java.util.concurrent.Executor
+
 
 class PinCodeActivity : AppCompatActivity() {
 
@@ -36,6 +44,9 @@ class PinCodeActivity : AppCompatActivity() {
     private lateinit var errorPin: String
     private lateinit var sharedPreferences: SharedPreferences
 
+    private lateinit var executor: Executor
+    private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var promptInfo: BiometricPrompt.PromptInfo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -60,13 +71,55 @@ class PinCodeActivity : AppCompatActivity() {
 
         }
 
-
         val prefs = getSharedPreferences("Settings", Context.MODE_PRIVATE)
 
         pinErrorText = findViewById(R.id.pinErrorText)
 
+        pinView = findViewById(R.id.PinView)
+        pinText = findViewById(R.id.pinText)
+        pinView.requestFocus()
 
+        pin = ""
+        render = Render(this)
 
+        executor = ContextCompat.getMainExecutor(this)
+        biometricPrompt = BiometricPrompt(this, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+
+                    val fingerprintManager = ContextCompat.getSystemService(
+                        this@PinCodeActivity,
+                        FingerprintManager::class.java
+                    )
+
+                    if (fingerprintManager != null && fingerprintManager.isHardwareDetected) {
+
+                        if (!fingerprintManager.hasEnrolledFingerprints())
+                            Toast.makeText(
+                                applicationContext,
+                                "$errString", Toast.LENGTH_SHORT
+                            )
+                                .show()
+                    }
+                }
+
+                override fun onAuthenticationSucceeded(
+                    result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    intentActivity(HomeActivity())
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+
+                }
+            })
+
+        promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle(getString(R.string.fingerprint) + " \"" + getString(R.string.app_name)+ "\"")
+            .setNegativeButtonText(getString(R.string.cancel))
+            .build()
 
         if (!prefs.contains("currency")) {
 
@@ -75,6 +128,23 @@ class PinCodeActivity : AppCompatActivity() {
                 "BottomSheetCurrencyFragment"
             )
 
+        }
+        else{
+                val fingerprintManager = ContextCompat.getSystemService(this, FingerprintManager::class.java)
+                if (fingerprintManager != null && fingerprintManager.isHardwareDetected) {
+
+                    if(fingerprintManager.hasEnrolledFingerprints()) {
+                        biometricPrompt.authenticate(promptInfo)
+                    }
+                    else {
+                        pinView.postDelayed({
+                            pinView.requestFocus()
+                            val imm =
+                                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                            imm.showSoftInput(pinView, InputMethodManager.SHOW_IMPLICIT)
+                        }, 350)
+                    }
+                }
         }
 
         if (prefs.contains("shortcuts")) {
@@ -85,26 +155,26 @@ class PinCodeActivity : AppCompatActivity() {
             prefs.edit().remove("shortcuts").apply()
 
         }
-
-
         errorPin = pinErrorText.text.toString()
 
 
+        val biometric = findViewById<ImageView>(R.id.biometricImg)
 
-        pinView = findViewById(R.id.PinView)
-        pinText = findViewById(R.id.pinText)
-        pinView.requestFocus()
+        biometric.setOnClickListener {
+            biometricPrompt.authenticate(promptInfo)
+        }
 
-        pin = ""
-        render = Render(this)
+
+
+
 
         pref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
 
-        pinView.postDelayed({
-            pinView.requestFocus()
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.showSoftInput(pinView, InputMethodManager.SHOW_IMPLICIT)
-        }, 350)
+//        pinView.postDelayed({
+//            pinView.requestFocus()
+//            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//            imm.showSoftInput(pinView, InputMethodManager.SHOW_IMPLICIT)
+//        }, 350)
 
         pinView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

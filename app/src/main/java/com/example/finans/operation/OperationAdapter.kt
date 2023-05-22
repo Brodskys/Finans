@@ -1,15 +1,19 @@
 package com.example.finans.operation
 
 import android.content.SharedPreferences
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Filter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
 import com.google.firebase.ktx.Firebase
@@ -65,6 +69,8 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+
 
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.operation_item,
@@ -136,7 +142,6 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
         val time = itemView.findViewById<TextView>(R.id.operationDatetime)
         val value = itemView.findViewById<TextView>(R.id.operationValue)
         val category = itemView.findViewById<TextView>(R.id.operationCategory)
-
 
 
     }

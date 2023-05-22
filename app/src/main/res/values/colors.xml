@@ -23,4 +23,7 @@
     <color name="background2_dark">#424242</color>
     <color name="background3_dark">#D38A06</color>
 
+    <color name="active_dot_color">#e65252</color>
+    <color name="inactive_dot_color">#dcdcdc</color>
+
 </resources>

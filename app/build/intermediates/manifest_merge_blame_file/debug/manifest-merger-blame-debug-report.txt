@@ -10,527 +10,540 @@
 9        android:targetSdkVersion="33" />
 9-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml
 10
-11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:5:5-67
-11-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:5:22-64
-12    <uses-permission android:name="android.permission.VIBRATE" />
-12-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:6:5-66
-12-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:6:22-63
-13    <uses-permission android:name="android.permission.CAMERA" />
-13-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:7:5-65
-13-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:7:22-62
-14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-14-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:8:5-80
-14-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:8:22-77
-15    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-15-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:9:5-79
-15-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:9:22-76
-16    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-16-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:10:5-81
-16-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:10:22-78
-17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-17-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:11:5-78
-17-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:11:22-76
-18    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+11    <uses-feature
+11-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:5:5-7:36
+12        android:name="android.hardware.telephony"
+12-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:6:9-50
+13        android:required="false" />
+13-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:7:9-33
+14
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:9:5-67
+15-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:9:22-64
+16    <uses-permission android:name="android.permission.VIBRATE" />
+16-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:10:5-66
+16-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:10:22-63
+17    <uses-permission android:name="android.permission.CAMERA" />
+17-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:11:5-65
+17-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:11:22-62
+18    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 18-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:12:5-80
-18-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:12:22-78
-19    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-19-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:13:5-76
-19-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:13:22-74
-20    <uses-permission android:name="android.permission.READ_SMS" />
-20-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:14:5-67
-20-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:14:22-64
-21    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-21-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:11:5-76
-21-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:11:22-73
-22
-23    <uses-feature
-23-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
-24        android:glEsVersion="0x00020000"
-24-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
-25        android:required="true" />
-25-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
-26
-27    <permission
-27-->[androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:22:5-24:47
-28        android:name="com.example.finans.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-28-->[androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:23:9-81
-29        android:protectionLevel="signature" />
-29-->[androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:24:9-44
-30
-31    <uses-permission android:name="com.example.finans.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-31-->[androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:26:5-97
-31-->[androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:26:22-94
-32    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-32-->[com.android.installreferrer:installreferrer:1.0] C:\Users\Denis\.gradle\caches\transforms-3\126ccad99b02198112cccf14e247c0b6\transformed\installreferrer-1.0\AndroidManifest.xml:9:5-110
-32-->[com.android.installreferrer:installreferrer:1.0] C:\Users\Denis\.gradle\caches\transforms-3\126ccad99b02198112cccf14e247c0b6\transformed\installreferrer-1.0\AndroidManifest.xml:9:22-107
-33
-34    <application
-34-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:17:5-96:19
-35        android:allowBackup="true"
-35-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:18:9-35
-36        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-36-->[androidx.core:core:1.10.0] C:\Users\Denis\.gradle\caches\transforms-3\23b76a04a71c7b6fabe9a097fa3d6784\transformed\core-1.10.0\AndroidManifest.xml:28:18-86
-37        android:dataExtractionRules="@xml/data_extraction_rules"
-37-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:19:9-65
-38        android:debuggable="true"
-39        android:extractNativeLibs="false"
-40        android:fullBackupContent="@xml/backup_rules"
-40-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:20:9-54
-41        android:icon="@mipmap/ic_launcher"
-41-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:21:9-43
-42        android:label="@string/app_name"
-42-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:22:9-41
-43        android:supportsRtl="true"
-43-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:23:9-35
-44        android:testOnly="true"
-45        android:theme="@style/Theme.Finans" >
-45-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:24:9-44
-46        <activity
-46-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:26:9-29:40
-47            android:name="com.example.finans.settings.SettingsActivity"
-47-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:27:13-54
-48            android:exported="false"
-48-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:29:13-37
-49            android:screenOrientation="portrait" />
-49-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:28:13-49
-50        <activity
-50-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:30:9-33:40
-51            android:name="com.example.finans.AnalyticsActivity"
-51-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:31:13-46
-52            android:exported="false"
-52-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:33:13-37
-53            android:screenOrientation="portrait" />
-53-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:32:13-49
-54        <activity
-54-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:34:9-37:40
-55            android:name="com.example.finans.PlansActivity"
-55-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:35:13-42
-56            android:exported="false"
-56-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:37:13-37
-57            android:screenOrientation="portrait" />
-57-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:36:13-49
-58        <activity
-58-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:38:9-41:40
-59            android:name="com.example.finans.PinCodeActivity"
-59-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:39:13-44
-60            android:exported="false"
-60-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:41:13-37
-61            android:screenOrientation="portrait" />
-61-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:40:13-49
-62        <activity
-62-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:42:9-45:40
-63            android:name="com.example.finans.registration.RegistrationActivity"
-63-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:43:13-62
-64            android:exported="false"
-64-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:45:13-37
-65            android:screenOrientation="portrait" />
-65-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:44:13-49
-66        <activity
-66-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:46:9-49:99
-67            android:name="com.facebook.FacebookActivity"
-67-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:47:13-57
-68            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-68-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:49:13-96
-69            android:screenOrientation="portrait"
-69-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:48:13-49
-70            android:theme="@style/com_facebook_activity_theme" />
-70-->[com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:33:13-63
-71        <activity
-71-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:50:9-62:20
-72            android:name="com.facebook.CustomTabActivity"
-72-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:51:13-58
-73            android:exported="true"
-73-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:53:13-36
-74            android:screenOrientation="portrait" >
-74-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:52:13-49
-75            <intent-filter>
-75-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:54:13-61:29
-76                <action android:name="android.intent.action.VIEW" />
-76-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:55:17-69
-76-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:55:25-66
-77
-78                <category android:name="android.intent.category.DEFAULT" />
-78-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:57:17-76
-78-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:57:27-73
-79                <category android:name="android.intent.category.BROWSABLE" />
-79-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:58:17-78
-79-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:58:27-75
-80
-81                <data android:scheme="@string/fb_login_protocol_scheme" />
-81-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:60:17-75
-81-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:60:23-72
-82            </intent-filter>
-83            <intent-filter>
-83-->[com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:39:13-48:29
-84                <action android:name="android.intent.action.VIEW" />
-84-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:55:17-69
-84-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:55:25-66
-85
-86                <category android:name="android.intent.category.DEFAULT" />
-86-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:57:17-76
-86-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:57:27-73
-87                <category android:name="android.intent.category.BROWSABLE" />
-87-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:58:17-78
-87-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:58:27-75
-88
-89                <data
-89-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:60:17-75
-90                    android:host="cct.com.example.finans"
-91                    android:scheme="fbconnect" />
-91-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:60:23-72
-92            </intent-filter>
-93        </activity>
-94        <activity
-94-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:63:9-74:20
-95            android:name="com.example.finans.authorization.AuthorizationActivity"
-95-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:64:13-64
-96            android:exported="true"
-96-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:66:13-36
-97            android:screenOrientation="portrait"
-97-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:65:13-49
-98            android:theme="@style/Theme.App.Starting" >
-98-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:67:13-54
-99            <intent-filter>
-99-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:68:13-71:29
-100                <action android:name="android.intent.action.MAIN" />
-100-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:69:17-69
-100-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:69:25-66
-101
-102                <category android:name="android.intent.category.LAUNCHER" />
-102-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:70:17-77
-102-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:70:27-74
-103            </intent-filter>
-104
-105            <meta-data
-105-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:72:13-73:53
-106                android:name="android.app.shortcuts"
-106-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:72:24-60
-107                android:resource="@xml/shortcuts" />
-107-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:73:17-50
-108        </activity>
-109        <activity
-109-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:75:9-82:20
-110            android:name="com.example.finans.operation.HomeActivity"
-110-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:76:13-51
-111            android:exported="true"
-111-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:78:13-36
-112            android:screenOrientation="portrait" >
-112-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:77:13-49
-113            <intent-filter>
-113-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:79:13-81:29
-114                <action android:name="android.intent.action.MAIN" />
-114-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:69:17-69
-114-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:69:25-66
-115            </intent-filter>
-116        </activity>
-117
-118        <meta-data
-118-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:84:9-86:55
-119            android:name="com.facebook.sdk.ApplicationId"
-119-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:85:13-58
-120            android:value="@string/facebook_app_id" />
-120-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:86:13-52
-121        <meta-data
-121-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:87:9-89:61
-122            android:name="com.facebook.sdk.ClientToken"
-122-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:88:13-56
-123            android:value="@string/facebook_client_token" />
-123-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:89:13-58
+18-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:12:22-77
+19    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+19-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:13:5-79
+19-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:13:22-76
+20    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+20-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:14:5-81
+20-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:14:22-78
+21    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+21-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:15:5-78
+21-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:15:22-76
+22    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+22-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:16:5-80
+22-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:16:22-78
+23    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+23-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:17:5-76
+23-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:17:22-74
+24    <uses-permission android:name="android.permission.READ_SMS" />
+24-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:18:5-67
+24-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:18:22-64
+25    <uses-permission android:name="android.permission.USE_BIOMETRIC" /> <!-- suppress DeprecatedClassUsageInspection -->
+25-->[androidx.biometric:biometric:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\672d21dcae8e8c7665870848a2b85344\transformed\biometric-1.2.0-alpha05\AndroidManifest.xml:22:5-72
+25-->[androidx.biometric:biometric:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\672d21dcae8e8c7665870848a2b85344\transformed\biometric-1.2.0-alpha05\AndroidManifest.xml:22:22-69
+26    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+26-->[androidx.biometric:biometric:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\672d21dcae8e8c7665870848a2b85344\transformed\biometric-1.2.0-alpha05\AndroidManifest.xml:25:5-74
+26-->[androidx.biometric:biometric:1.2.0-alpha05] C:\Users\Denis\.gradle\caches\transforms-3\672d21dcae8e8c7665870848a2b85344\transformed\biometric-1.2.0-alpha05\AndroidManifest.xml:25:22-71
+27    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+27-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:11:5-76
+27-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:11:22-73
+28
+29    <uses-feature
+29-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
+30        android:glEsVersion="0x00020000"
+30-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
+31        android:required="true" />
+31-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
+32
+33    <permission
+33-->[androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:22:5-24:47
+34        android:name="com.example.finans.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+34-->[androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:23:9-81
+35        android:protectionLevel="signature" />
+35-->[androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:24:9-44
+36
+37    <uses-permission android:name="com.example.finans.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+37-->[androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:26:5-97
+37-->[androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:26:22-94
+38    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+38-->[com.android.installreferrer:installreferrer:1.0] C:\Users\Denis\.gradle\caches\transforms-3\126ccad99b02198112cccf14e247c0b6\transformed\installreferrer-1.0\AndroidManifest.xml:9:5-110
+38-->[com.android.installreferrer:installreferrer:1.0] C:\Users\Denis\.gradle\caches\transforms-3\126ccad99b02198112cccf14e247c0b6\transformed\installreferrer-1.0\AndroidManifest.xml:9:22-107
+39
+40    <application
+40-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:21:5-100:19
+41        android:allowBackup="true"
+41-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:22:9-35
+42        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+42-->[androidx.core:core:1.10.1] C:\Users\Denis\.gradle\caches\transforms-3\58a3236211dd9a75a05b7c10475043ec\transformed\core-1.10.1\AndroidManifest.xml:28:18-86
+43        android:dataExtractionRules="@xml/data_extraction_rules"
+43-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:23:9-65
+44        android:debuggable="true"
+45        android:extractNativeLibs="false"
+46        android:fullBackupContent="@xml/backup_rules"
+46-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:24:9-54
+47        android:icon="@mipmap/ic_launcher"
+47-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:25:9-43
+48        android:label="@string/app_name"
+48-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:26:9-41
+49        android:supportsRtl="true"
+49-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:27:9-35
+50        android:testOnly="true"
+51        android:theme="@style/Theme.Finans" >
+51-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:28:9-44
+52        <activity
+52-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:30:9-33:40
+53            android:name="com.example.finans.settings.SettingsActivity"
+53-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:31:13-54
+54            android:exported="false"
+54-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:33:13-37
+55            android:screenOrientation="portrait" />
+55-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:32:13-49
+56        <activity
+56-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:34:9-37:40
+57            android:name="com.example.finans.AnalyticsActivity"
+57-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:35:13-46
+58            android:exported="false"
+58-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:37:13-37
+59            android:screenOrientation="portrait" />
+59-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:36:13-49
+60        <activity
+60-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:38:9-41:40
+61            android:name="com.example.finans.PlansActivity"
+61-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:39:13-42
+62            android:exported="false"
+62-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:41:13-37
+63            android:screenOrientation="portrait" />
+63-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:40:13-49
+64        <activity
+64-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:42:9-45:40
+65            android:name="com.example.finans.PinCodeActivity"
+65-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:43:13-44
+66            android:exported="false"
+66-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:45:13-37
+67            android:screenOrientation="portrait" />
+67-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:44:13-49
+68        <activity
+68-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:46:9-49:40
+69            android:name="com.example.finans.registration.RegistrationActivity"
+69-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:47:13-62
+70            android:exported="false"
+70-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:49:13-37
+71            android:screenOrientation="portrait" />
+71-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:48:13-49
+72        <activity
+72-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:50:9-53:99
+73            android:name="com.facebook.FacebookActivity"
+73-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:51:13-57
+74            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+74-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:53:13-96
+75            android:screenOrientation="portrait"
+75-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:52:13-49
+76            android:theme="@style/com_facebook_activity_theme" />
+76-->[com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:33:13-63
+77        <activity
+77-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:54:9-66:20
+78            android:name="com.facebook.CustomTabActivity"
+78-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:55:13-58
+79            android:exported="true"
+79-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:57:13-36
+80            android:screenOrientation="portrait" >
+80-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:56:13-49
+81            <intent-filter>
+81-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:58:13-65:29
+82                <action android:name="android.intent.action.VIEW" />
+82-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:59:17-69
+82-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:59:25-66
+83
+84                <category android:name="android.intent.category.DEFAULT" />
+84-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:61:17-76
+84-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:61:27-73
+85                <category android:name="android.intent.category.BROWSABLE" />
+85-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:62:17-78
+85-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:62:27-75
+86
+87                <data android:scheme="@string/fb_login_protocol_scheme" />
+87-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:64:17-75
+87-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:64:23-72
+88            </intent-filter>
+89            <intent-filter>
+89-->[com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:39:13-48:29
+90                <action android:name="android.intent.action.VIEW" />
+90-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:59:17-69
+90-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:59:25-66
+91
+92                <category android:name="android.intent.category.DEFAULT" />
+92-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:61:17-76
+92-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:61:27-73
+93                <category android:name="android.intent.category.BROWSABLE" />
+93-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:62:17-78
+93-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:62:27-75
+94
+95                <data
+95-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:64:17-75
+96                    android:host="cct.com.example.finans"
+97                    android:scheme="fbconnect" />
+97-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:64:23-72
+98            </intent-filter>
+99        </activity>
+100        <activity
+100-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:67:9-78:20
+101            android:name="com.example.finans.authorization.AuthorizationActivity"
+101-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:68:13-64
+102            android:exported="true"
+102-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:70:13-36
+103            android:screenOrientation="portrait"
+103-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:69:13-49
+104            android:theme="@style/Theme.App.Starting" >
+104-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:71:13-54
+105            <intent-filter>
+105-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:72:13-75:29
+106                <action android:name="android.intent.action.MAIN" />
+106-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:73:17-69
+106-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:73:25-66
+107
+108                <category android:name="android.intent.category.LAUNCHER" />
+108-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:74:17-77
+108-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:74:27-74
+109            </intent-filter>
+110
+111            <meta-data
+111-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:76:13-77:53
+112                android:name="android.app.shortcuts"
+112-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:76:24-60
+113                android:resource="@xml/shortcuts" />
+113-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:77:17-50
+114        </activity>
+115        <activity
+115-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:79:9-86:20
+116            android:name="com.example.finans.operation.HomeActivity"
+116-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:80:13-51
+117            android:exported="true"
+117-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:82:13-36
+118            android:screenOrientation="portrait" >
+118-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:81:13-49
+119            <intent-filter>
+119-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:83:13-85:29
+120                <action android:name="android.intent.action.MAIN" />
+120-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:73:17-69
+120-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:73:25-66
+121            </intent-filter>
+122        </activity>
+123
 124        <meta-data
-124-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:91:9-92:70
-125            android:name="com.google.android.geo.API_KEY"
-125-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:91:20-65
-126            android:value="AIzaSyCoujs0OYiVFqAdFCZ0r0Wj6i2FfQgppOs" />
-126-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:92:13-68
-127
-128        <service android:name="com.example.finans.settings.SmsService" />
-128-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:94:9-55
-128-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:94:18-53
-129        <service
-129-->[com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:11:9-17:19
-130            android:name="com.google.firebase.components.ComponentDiscoveryService"
-130-->[com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:12:13-84
-131            android:directBootAware="true"
-131-->[com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:34:13-43
-132            android:exported="false" >
-132-->[com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:13:13-37
-133            <meta-data
-133-->[com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:14:13-16:85
-134                android:name="com.google.firebase.components:com.google.firebase.firestore.ktx.FirebaseFirestoreKtxRegistrar"
-134-->[com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:15:17-126
-135                android:value="com.google.firebase.components.ComponentRegistrar" />
-135-->[com.google.firebase:firebase-firestore-ktx:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\9256f2edc9230ce0e63c48881ca979bf\transformed\firebase-firestore-ktx-24.5.0\AndroidManifest.xml:16:17-82
-136            <meta-data
-136-->[com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:14:13-16:85
-137                android:name="com.google.firebase.components:com.google.firebase.storage.ktx.FirebaseStorageKtxRegistrar"
-137-->[com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:15:17-122
-138                android:value="com.google.firebase.components.ComponentRegistrar" />
-138-->[com.google.firebase:firebase-storage-ktx:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\deef9a16946938fce48a6e7c91bdb30d\transformed\firebase-storage-ktx-20.1.0\AndroidManifest.xml:16:17-82
+124-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:88:9-90:55
+125            android:name="com.facebook.sdk.ApplicationId"
+125-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:89:13-58
+126            android:value="@string/facebook_app_id" />
+126-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:90:13-52
+127        <meta-data
+127-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:91:9-93:61
+128            android:name="com.facebook.sdk.ClientToken"
+128-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:92:13-56
+129            android:value="@string/facebook_client_token" />
+129-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:93:13-58
+130        <meta-data
+130-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:95:9-96:70
+131            android:name="com.google.android.geo.API_KEY"
+131-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:95:20-65
+132            android:value="AIzaSyCoujs0OYiVFqAdFCZ0r0Wj6i2FfQgppOs" />
+132-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:96:13-68
+133
+134        <service android:name="com.example.finans.settings.SmsService" />
+134-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:98:9-55
+134-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:98:18-53
+135        <service
+135-->[com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:11:9-17:19
+136            android:name="com.google.firebase.components.ComponentDiscoveryService"
+136-->[com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:12:13-84
+137            android:directBootAware="true"
+137-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:34:13-43
+138            android:exported="false" >
+138-->[com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:13:13-37
 139            <meta-data
-139-->[com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:11:13-13:85
-140                android:name="com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthKtxRegistrar"
-140-->[com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:12:17-116
+139-->[com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:14:13-16:85
+140                android:name="com.google.firebase.components:com.google.firebase.firestore.ktx.FirebaseFirestoreKtxRegistrar"
+140-->[com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:15:17-126
 141                android:value="com.google.firebase.components.ComponentRegistrar" />
-141-->[com.google.firebase:firebase-auth-ktx:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\9ac2e98a377782a39bdfed3f813551a5\transformed\firebase-auth-ktx-21.3.0\AndroidManifest.xml:13:17-82
+141-->[com.google.firebase:firebase-firestore-ktx:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\3b2840a7c06c9f56b1adfdff54613627\transformed\firebase-firestore-ktx-24.6.0\AndroidManifest.xml:16:17-82
 142            <meta-data
-142-->[com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:14:13-16:85
-143                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar"
-143-->[com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:15:17-113
+142-->[com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:14:13-16:85
+143                android:name="com.google.firebase.components:com.google.firebase.storage.ktx.FirebaseStorageKtxRegistrar"
+143-->[com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:15:17-122
 144                android:value="com.google.firebase.components.ComponentRegistrar" />
-144-->[com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:16:17-82
+144-->[com.google.firebase:firebase-storage-ktx:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\f884c3a712c518c3a8036a51e185e5fa\transformed\firebase-storage-ktx-20.2.0\AndroidManifest.xml:16:17-82
 145            <meta-data
-145-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:69:13-71:85
-146                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-146-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:70:17-109
+145-->[com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:11:13-13:85
+146                android:name="com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthKtxRegistrar"
+146-->[com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:12:17-116
 147                android:value="com.google.firebase.components.ComponentRegistrar" />
-147-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:71:17-82
+147-->[com.google.firebase:firebase-auth-ktx:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\62409b978e4900c62beb0809856019b9\transformed\firebase-auth-ktx-22.0.0\AndroidManifest.xml:13:17-82
 148            <meta-data
-148-->[com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:19:13-21:85
-149                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-149-->[com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:20:17-111
+148-->[com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:14:13-16:85
+149                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar"
+149-->[com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:15:17-113
 150                android:value="com.google.firebase.components.ComponentRegistrar" />
-150-->[com.google.firebase:firebase-firestore:24.5.0] C:\Users\Denis\.gradle\caches\transforms-3\b921bde109ef7dd190dbf25e52321449\transformed\firebase-firestore-24.5.0\AndroidManifest.xml:21:17-82
+150-->[com.google.firebase:firebase-common-ktx:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\1855699fc6759c42bb63d67096f04022\transformed\firebase-common-ktx-20.3.1\AndroidManifest.xml:16:17-82
 151            <meta-data
-151-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:32:13-34:85
-152                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
-152-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:33:17-107
+151-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:69:13-71:85
+152                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+152-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:70:17-109
 153                android:value="com.google.firebase.components.ComponentRegistrar" />
-153-->[com.google.firebase:firebase-storage:20.1.0] C:\Users\Denis\.gradle\caches\transforms-3\31f772a8bfa993fecc4c42b6684b399f\transformed\firebase-storage-20.1.0\AndroidManifest.xml:34:17-82
-154        </service>
-155
-156        <activity
-156-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:29:9-46:20
-157            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
-157-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:30:13-80
-158            android:excludeFromRecents="true"
-158-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:31:13-46
-159            android:exported="true"
-159-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:32:13-36
-160            android:launchMode="singleTask"
-160-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:33:13-44
-161            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-161-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:34:13-72
-162            <intent-filter>
-162-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:35:13-45:29
-163                <action android:name="android.intent.action.VIEW" />
-163-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:55:17-69
-163-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:55:25-66
-164
-165                <category android:name="android.intent.category.DEFAULT" />
-165-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:57:17-76
-165-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:57:27-73
-166                <category android:name="android.intent.category.BROWSABLE" />
-166-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:58:17-78
-166-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:58:27-75
-167
-168                <data
-168-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:60:17-75
-169                    android:host="firebase.auth"
-170                    android:path="/"
-171                    android:scheme="genericidp" />
-171-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:60:23-72
-172            </intent-filter>
-173        </activity>
-174        <activity
-174-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:47:9-64:20
-175            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
-175-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:48:13-79
-176            android:excludeFromRecents="true"
-176-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:49:13-46
-177            android:exported="true"
-177-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:50:13-36
-178            android:launchMode="singleTask"
-178-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:51:13-44
-179            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-179-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:52:13-72
-180            <intent-filter>
-180-->[com.google.firebase:firebase-auth:21.3.0] C:\Users\Denis\.gradle\caches\transforms-3\0f7893b72f1c37bdc2cb3fc2417edcfc\transformed\firebase-auth-21.3.0\AndroidManifest.xml:53:13-63:29
-181                <action android:name="android.intent.action.VIEW" />
-181-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:55:17-69
-181-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:55:25-66
-182
-183                <category android:name="android.intent.category.DEFAULT" />
-183-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:57:17-76
-183-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:57:27-73
-184                <category android:name="android.intent.category.BROWSABLE" />
-184-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:58:17-78
-184-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:58:27-75
-185
-186                <data
-186-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:60:17-75
-187                    android:host="firebase.auth"
-188                    android:path="/"
-189                    android:scheme="recaptcha" />
-189-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:60:23-72
-190            </intent-filter>
-191        </activity>
-192        <activity
-192-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:15:9-21:20
-193            android:name="com.google.android.libraries.places.widget.AutocompleteActivity"
-193-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:16:13-91
-194            android:exported="false"
-194-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:17:13-37
-195            android:label="@string/places_autocomplete_label"
-195-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:18:13-62
-196            android:theme="@style/PlacesAutocompleteOverlay"
-196-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:19:13-61
-197            android:windowSoftInputMode="adjustResize" >
-197-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:20:13-55
-198        </activity>
-199        <activity android:name="com.facebook.CustomTabMainActivity" />
-199-->[com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:34:9-71
-199-->[com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:34:19-68
-200        <activity
-200-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:23:9-27:75
-201            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-201-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:24:13-93
-202            android:excludeFromRecents="true"
-202-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:25:13-46
-203            android:exported="false"
-203-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:26:13-37
-204            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-204-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:27:13-72
-205        <!--
-206            Service handling Google Sign-In user revocation. For apps that do not integrate with
-207            Google Sign-In, this service will never be started.
-208        -->
-209        <service
-209-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:33:9-37:51
-210            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-210-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:34:13-89
-211            android:exported="true"
-211-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:35:13-36
-212            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-212-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:36:13-107
-213            android:visibleToInstantApps="true" />
-213-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:37:13-48
-214
-215        <provider
-215-->[com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:25:9-30:39
-216            android:name="com.google.firebase.provider.FirebaseInitProvider"
-216-->[com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:26:13-77
-217            android:authorities="com.example.finans.firebaseinitprovider"
-217-->[com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:27:13-72
-218            android:directBootAware="true"
-218-->[com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:28:13-43
-219            android:exported="false"
-219-->[com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:29:13-37
-220            android:initOrder="100" /> <!-- Needs to be explicitly declared on P+ -->
-220-->[com.google.firebase:firebase-common:20.3.1] C:\Users\Denis\.gradle\caches\transforms-3\0e297da17dc5efdacd3379aedc0d60d2\transformed\firebase-common-20.3.1\AndroidManifest.xml:30:13-36
-221        <uses-library
-221-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
-222            android:name="org.apache.http.legacy"
-222-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
-223            android:required="false" />
-223-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
-224
-225        <activity
-225-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
-226            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-226-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
-227            android:exported="false"
-227-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
-228            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-228-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
-229
-230        <meta-data
-230-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\Denis\.gradle\caches\transforms-3\5dca1d6b436939dfbb97b7d18bbdc662\transformed\play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
-231            android:name="com.google.android.gms.version"
-231-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\Denis\.gradle\caches\transforms-3\5dca1d6b436939dfbb97b7d18bbdc662\transformed\play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
-232            android:value="@integer/google_play_services_version" />
-232-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\Denis\.gradle\caches\transforms-3\5dca1d6b436939dfbb97b7d18bbdc662\transformed\play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
-233        <!--
-234         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
-235         with the application context. This config is merged in with the host app's manifest,
-236         but there can only be one provider with the same authority activated at any given
-237         point; so if the end user has two or more different apps that use Facebook SDK, only the
-238         first one will be able to use the provider. To work around this problem, we use the
-239         following placeholder in the authority to identify each host application as if it was
-240         a completely different provider.
-241        -->
-242        <provider
-242-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:39:9-42:40
-243            android:name="com.facebook.internal.FacebookInitProvider"
-243-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:40:13-70
-244            android:authorities="com.example.finans.FacebookInitProvider"
-244-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:41:13-72
-245            android:exported="false" />
-245-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:42:13-37
-246
-247        <receiver
-247-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:44:9-50:20
-248            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
-248-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:45:13-86
-249            android:exported="false" >
-249-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:46:13-37
-250            <intent-filter>
-250-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:47:13-49:29
-251                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
-251-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:48:17-95
-251-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:48:25-92
-252            </intent-filter>
-253        </receiver>
-254
-255        <provider
-255-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-256            android:name="androidx.startup.InitializationProvider"
-256-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
-257            android:authorities="com.example.finans.androidx-startup"
-257-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
-258            android:exported="false" >
-258-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
-259            <meta-data
-259-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-260                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-260-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
-261                android:value="androidx.startup" />
-261-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
-262            <meta-data
-262-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Denis\.gradle\caches\transforms-3\909ed60ab8098091c655c7b4d2258273\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
-263                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-263-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Denis\.gradle\caches\transforms-3\909ed60ab8098091c655c7b4d2258273\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
-264                android:value="androidx.startup" />
-264-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Denis\.gradle\caches\transforms-3\909ed60ab8098091c655c7b4d2258273\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
-265        </provider>
-266        <provider
-266-->[com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:8:9-11:40
-267            android:name="com.squareup.picasso.PicassoProvider"
-267-->[com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:9:13-64
-268            android:authorities="com.example.finans.com.squareup.picasso"
-268-->[com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:10:13-72
-269            android:exported="false" />
-269-->[com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:11:13-37
-270
-271        <service
-271-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:29:9-35:19
-272            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-272-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:30:13-103
-273            android:exported="false" >
-273-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:31:13-37
-274            <meta-data
-274-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:32:13-34:39
-275                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-275-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:33:17-94
-276                android:value="cct" />
-276-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:34:17-36
-277        </service>
-278        <service
-278-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:26:9-30:19
-279            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-279-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:27:13-117
-280            android:exported="false"
-280-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:28:13-37
-281            android:permission="android.permission.BIND_JOB_SERVICE" >
-281-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:29:13-69
-282        </service>
-283
-284        <receiver
-284-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:32:9-34:40
-285            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-285-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:33:13-132
-286            android:exported="false" />
-286-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:34:13-37
-287    </application>
-288
-289</manifest>
+153-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:71:17-82
+154            <meta-data
+154-->[com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:19:13-21:85
+155                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+155-->[com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:20:17-111
+156                android:value="com.google.firebase.components.ComponentRegistrar" />
+156-->[com.google.firebase:firebase-firestore:24.6.0] C:\Users\Denis\.gradle\caches\transforms-3\cbdb80a49d8be1f32f527086245d70ea\transformed\firebase-firestore-24.6.0\AndroidManifest.xml:21:17-82
+157            <meta-data
+157-->[com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:32:13-34:85
+158                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+158-->[com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:33:17-107
+159                android:value="com.google.firebase.components.ComponentRegistrar" />
+159-->[com.google.firebase:firebase-storage:20.2.0] C:\Users\Denis\.gradle\caches\transforms-3\be9b25ead759b18d7ebd1db49edaaaab\transformed\firebase-storage-20.2.0\AndroidManifest.xml:34:17-82
+160        </service>
+161
+162        <activity
+162-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:29:9-46:20
+163            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+163-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:30:13-80
+164            android:excludeFromRecents="true"
+164-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:31:13-46
+165            android:exported="true"
+165-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:32:13-36
+166            android:launchMode="singleTask"
+166-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:33:13-44
+167            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+167-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:34:13-72
+168            <intent-filter>
+168-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:35:13-45:29
+169                <action android:name="android.intent.action.VIEW" />
+169-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:59:17-69
+169-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:59:25-66
+170
+171                <category android:name="android.intent.category.DEFAULT" />
+171-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:61:17-76
+171-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:61:27-73
+172                <category android:name="android.intent.category.BROWSABLE" />
+172-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:62:17-78
+172-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:62:27-75
+173
+174                <data
+174-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:64:17-75
+175                    android:host="firebase.auth"
+176                    android:path="/"
+177                    android:scheme="genericidp" />
+177-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:64:23-72
+178            </intent-filter>
+179        </activity>
+180        <activity
+180-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:47:9-64:20
+181            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+181-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:48:13-79
+182            android:excludeFromRecents="true"
+182-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:49:13-46
+183            android:exported="true"
+183-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:50:13-36
+184            android:launchMode="singleTask"
+184-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:51:13-44
+185            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+185-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:52:13-72
+186            <intent-filter>
+186-->[com.google.firebase:firebase-auth:22.0.0] C:\Users\Denis\.gradle\caches\transforms-3\66808de977cda95fa33f27328d89482d\transformed\firebase-auth-22.0.0\AndroidManifest.xml:53:13-63:29
+187                <action android:name="android.intent.action.VIEW" />
+187-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:59:17-69
+187-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:59:25-66
+188
+189                <category android:name="android.intent.category.DEFAULT" />
+189-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:61:17-76
+189-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:61:27-73
+190                <category android:name="android.intent.category.BROWSABLE" />
+190-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:62:17-78
+190-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:62:27-75
+191
+192                <data
+192-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:64:17-75
+193                    android:host="firebase.auth"
+194                    android:path="/"
+195                    android:scheme="recaptcha" />
+195-->C:\Users\Denis\Desktop\part2\Finans\app\src\main\AndroidManifest.xml:64:23-72
+196            </intent-filter>
+197        </activity>
+198        <activity
+198-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:15:9-21:20
+199            android:name="com.google.android.libraries.places.widget.AutocompleteActivity"
+199-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:16:13-91
+200            android:exported="false"
+200-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:17:13-37
+201            android:label="@string/places_autocomplete_label"
+201-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:18:13-62
+202            android:theme="@style/PlacesAutocompleteOverlay"
+202-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:19:13-61
+203            android:windowSoftInputMode="adjustResize" >
+203-->[com.google.android.libraries.places:places:3.1.0] C:\Users\Denis\.gradle\caches\transforms-3\2ced1ebc8fd7e6b8863445ccd2c76ec4\transformed\places-3.1.0\AndroidManifest.xml:20:13-55
+204        </activity>
+205        <activity android:name="com.facebook.CustomTabMainActivity" />
+205-->[com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:34:9-71
+205-->[com.facebook.android:facebook-common:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\b9d6148761d891a613b554c1980370dc\transformed\facebook-common-8.2.0\AndroidManifest.xml:34:19-68
+206        <activity
+206-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:23:9-27:75
+207            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+207-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:24:13-93
+208            android:excludeFromRecents="true"
+208-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:25:13-46
+209            android:exported="false"
+209-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:26:13-37
+210            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+210-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:27:13-72
+211        <!--
+212            Service handling Google Sign-In user revocation. For apps that do not integrate with
+213            Google Sign-In, this service will never be started.
+214        -->
+215        <service
+215-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:33:9-37:51
+216            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+216-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:34:13-89
+217            android:exported="true"
+217-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:35:13-36
+218            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+218-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:36:13-107
+219            android:visibleToInstantApps="true" /> <!-- Needs to be explicitly declared on P+ -->
+219-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\Denis\.gradle\caches\transforms-3\294df31cccac402603828aedd15eeee1\transformed\play-services-auth-20.5.0\AndroidManifest.xml:37:13-48
+220        <uses-library
+220-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
+221            android:name="org.apache.http.legacy"
+221-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
+222            android:required="false" />
+222-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Denis\.gradle\caches\transforms-3\65c5686905adad22b2c5629facfddc3c\transformed\play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
+223
+224        <activity
+224-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+225            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+225-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+226            android:exported="false"
+226-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+227            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+227-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\Denis\.gradle\caches\transforms-3\4be2f91a02b4c2d8c4cd6d7462b3ec80\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+228
+229        <provider
+229-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:25:9-30:39
+230            android:name="com.google.firebase.provider.FirebaseInitProvider"
+230-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:26:13-77
+231            android:authorities="com.example.finans.firebaseinitprovider"
+231-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:27:13-72
+232            android:directBootAware="true"
+232-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:28:13-43
+233            android:exported="false"
+233-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:29:13-37
+234            android:initOrder="100" />
+234-->[com.google.firebase:firebase-common:20.3.2] C:\Users\Denis\.gradle\caches\transforms-3\262243f4a0be88b8438ed64fb55dc43a\transformed\firebase-common-20.3.2\AndroidManifest.xml:30:13-36
+235
+236        <meta-data
+236-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\Denis\.gradle\caches\transforms-3\5dca1d6b436939dfbb97b7d18bbdc662\transformed\play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
+237            android:name="com.google.android.gms.version"
+237-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\Denis\.gradle\caches\transforms-3\5dca1d6b436939dfbb97b7d18bbdc662\transformed\play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
+238            android:value="@integer/google_play_services_version" />
+238-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\Denis\.gradle\caches\transforms-3\5dca1d6b436939dfbb97b7d18bbdc662\transformed\play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
+239        <!--
+240         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+241         with the application context. This config is merged in with the host app's manifest,
+242         but there can only be one provider with the same authority activated at any given
+243         point; so if the end user has two or more different apps that use Facebook SDK, only the
+244         first one will be able to use the provider. To work around this problem, we use the
+245         following placeholder in the authority to identify each host application as if it was
+246         a completely different provider.
+247        -->
+248        <provider
+248-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:39:9-42:40
+249            android:name="com.facebook.internal.FacebookInitProvider"
+249-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:40:13-70
+250            android:authorities="com.example.finans.FacebookInitProvider"
+250-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:41:13-72
+251            android:exported="false" />
+251-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:42:13-37
+252
+253        <receiver
+253-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:44:9-50:20
+254            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+254-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:45:13-86
+255            android:exported="false" >
+255-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:46:13-37
+256            <intent-filter>
+256-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:47:13-49:29
+257                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+257-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:48:17-95
+257-->[com.facebook.android:facebook-core:8.2.0] C:\Users\Denis\.gradle\caches\transforms-3\4d840438e0ec3914e08720bbbe9e2a7c\transformed\facebook-core-8.2.0\AndroidManifest.xml:48:25-92
+258            </intent-filter>
+259        </receiver>
+260
+261        <provider
+261-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+262            android:name="androidx.startup.InitializationProvider"
+262-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+263            android:authorities="com.example.finans.androidx-startup"
+263-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+264            android:exported="false" >
+264-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+265            <meta-data
+265-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+266                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+266-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+267                android:value="androidx.startup" />
+267-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Denis\.gradle\caches\transforms-3\1d4168c9923b7149b1f770d64d97f50a\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+268            <meta-data
+268-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Denis\.gradle\caches\transforms-3\909ed60ab8098091c655c7b4d2258273\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+269                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+269-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Denis\.gradle\caches\transforms-3\909ed60ab8098091c655c7b4d2258273\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+270                android:value="androidx.startup" />
+270-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\Denis\.gradle\caches\transforms-3\909ed60ab8098091c655c7b4d2258273\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+271        </provider>
+272        <provider
+272-->[com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:8:9-11:40
+273            android:name="com.squareup.picasso.PicassoProvider"
+273-->[com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:9:13-64
+274            android:authorities="com.example.finans.com.squareup.picasso"
+274-->[com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:10:13-72
+275            android:exported="false" />
+275-->[com.squareup.picasso:picasso:2.71828] C:\Users\Denis\.gradle\caches\transforms-3\b3a364f7db50f8740b99c4d63b881335\transformed\picasso-2.71828\AndroidManifest.xml:11:13-37
+276
+277        <service
+277-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:29:9-35:19
+278            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+278-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:30:13-103
+279            android:exported="false" >
+279-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:31:13-37
+280            <meta-data
+280-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:32:13-34:39
+281                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+281-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:33:17-94
+282                android:value="cct" />
+282-->[com.google.android.datatransport:transport-backend-cct:2.3.0] C:\Users\Denis\.gradle\caches\transforms-3\c2a9b2efa002eb5d595e360927be01c1\transformed\transport-backend-cct-2.3.0\AndroidManifest.xml:34:17-36
+283        </service>
+284        <service
+284-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:26:9-30:19
+285            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+285-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:27:13-117
+286            android:exported="false"
+286-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:28:13-37
+287            android:permission="android.permission.BIND_JOB_SERVICE" >
+287-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:29:13-69
+288        </service>
+289
+290        <receiver
+290-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:32:9-34:40
+291            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+291-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:33:13-132
+292            android:exported="false" />
+292-->[com.google.android.datatransport:transport-runtime:2.2.3] C:\Users\Denis\.gradle\caches\transforms-3\75ed31f21e0e796e5ca259de67b55ba2\transformed\transport-runtime-2.2.3\AndroidManifest.xml:34:13-37
+293    </application>
+294
+295</manifest>

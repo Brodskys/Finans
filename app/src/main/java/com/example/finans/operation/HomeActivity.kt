@@ -1,7 +1,6 @@
 package com.example.finans.operation
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.ColorStateList
@@ -11,21 +10,23 @@ import android.preference.PreferenceManager
 import android.view.View
 import android.view.Window
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.finans.AnalyticsActivity
-import com.example.finans.BottomSheetNewOperationFragment
 import com.example.finans.PlansActivity
 import com.example.finans.R
-import com.example.finans.category.subcategory.BottomSheetSubcategoryFragment
+import com.example.finans.authorization.AuthorizationActivity
 import com.example.finans.language.loadLocale
 import com.example.finans.operation.operationDetail.BottomSheetOperationDetailFragment
 import com.example.finans.settings.SettingsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -33,6 +34,23 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+class SwipeToDeleteCallback(private val adapter: RecyclerView.Adapter<*>) : ItemTouchHelper.Callback() {
+
+
+    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+        val swipeFlags = ItemTouchHelper.START or ItemTouchHelper.END
+        return makeMovementFlags(0, swipeFlags)
+    }
+
+    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+        return false
+    }
+
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        val position = viewHolder.adapterPosition
+        adapter.notifyItemRemoved(position)
+    }
+}
 class HomeActivity : AppCompatActivity(), OnItemClickListener {
 
     private lateinit var pref : SharedPreferences
@@ -113,10 +131,16 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
 
         operationRecyclerView.adapter = operationAdapter
 
-
         operationAdapter.notifyDataSetChanged()
 
+
+
        getOperationData()
+
+
+        val swipeToDeleteCallback = SwipeToDeleteCallback(operationAdapter)
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(operationRecyclerView)
 
         val fireStoreDatabase = FirebaseFirestore.getInstance()
 
@@ -149,10 +173,8 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
 
         swipeRefreshLayout.setOnRefreshListener {
            swipeRefreshLayout.postDelayed({
-                //关闭刷新
                swipeRefreshLayout.isRefreshing = false
 
-                   //что-то рефрешить
                operationArrayList = arrayListOf()
 
                operationAdapter = OperationAdapter(operationArrayList)

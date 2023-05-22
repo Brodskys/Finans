@@ -19,6 +19,7 @@ import com.example.finans.category.BottomSheetCategoryFragment
 import com.example.finans.category.Category
 import com.example.finans.category.CategoryViewModel
 import com.example.finans.category.updateCategory.BottomSheetUpdateCategoriesFragment
+import com.example.finans.category.updateCategory.BottomSheetUpdateCategoryFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.ktx.auth
@@ -35,6 +36,7 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
     private lateinit var subcategoryAdapter: SubcategoryAdapter
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var categoryViewModel: CategoryViewModel
+    private lateinit var category: Category
     var switchState: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,6 +86,7 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
         val subcategorySearch = view.findViewById<SearchView>(R.id.subcategorySearch)
 
         subcategorySearch.queryHint = getText(R.string.search)
+        category = arguments?.getParcelable("category")!!
 
         if(switchState) {
             val searchEditText = subcategorySearch.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
@@ -102,19 +105,24 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
 
         categoryArrayList = arrayListOf()
 
-
-
-
         val prefs = activity?.getSharedPreferences("Settings", Context.MODE_PRIVATE)
         val prefs2 =  PreferenceManager.getDefaultSharedPreferences(requireContext())
+
+        val categoryTitle = view.findViewById<TextView>(R.id.categoryTitle)
+
+
+        val sharedPref =  prefs!!.getString("locale", "")
+        if (sharedPref == "ru"){
+            categoryTitle.text = category.nameRus
+        } else {
+            categoryTitle.text = category.nameEng
+        }
 
 
         subcategoryAdapter = SubcategoryAdapter(categoryArrayList)
         subcategoryAdapter.setOnItemClickListener(this)
 
-        if (prefs != null) {
-            subcategoryAdapter.setSharedPreferencesLocale(prefs,prefs2)
-        }
+        subcategoryAdapter.setSharedPreferencesLocale(prefs,prefs2)
 
         categoryRecyclerView.adapter = subcategoryAdapter
 
@@ -141,12 +149,23 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
         }
 
         view.findViewById<TextView>(R.id.subcategoryUpdate).setOnClickListener {
-            val bottomSheetFragment =
-                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetUpdateCategoriesFragment") as? BottomSheetUpdateCategoriesFragment
 
-            if (bottomSheetFragment == null)
-                BottomSheetUpdateCategoriesFragment().show(requireActivity().supportFragmentManager, "BottomSheetUpdateCategoriesFragment")
+            val existingFragment =
+                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetUpdateCategoryFragment")
 
+            if (existingFragment == null) {
+
+                val category = arguments?.getParcelable<Category>("category")
+
+                val newFragment = BottomSheetUpdateCategoryFragment.newInstance(category!!)
+                newFragment.setTargetFragment(this@BottomSheetSubcategoryFragment, 0)
+
+                newFragment.show(
+                    requireActivity().supportFragmentManager,
+                    "BottomSheetUpdateCategoryFragment"
+                )
+
+            }
         }
 
 
@@ -171,9 +190,6 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
 
     private fun getCategoryData() {
         dbref = FirebaseFirestore.getInstance()
-
-        val category = arguments?.getParcelable<Category>("category")
-
 
         FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString()).collection("category").document(category?.nameEng!!.lowercase(Locale.ROOT)).collection("subcategories")
             .addSnapshotListener { value, error ->

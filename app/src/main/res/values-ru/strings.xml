@@ -29,7 +29,7 @@
     <string name="exit">Выйти</string>
 
     <string name="enterUsername">Введите имя пользователя</string>
-    <string name="enterEmail">Введите свою электронную почту</string>
+    <string name="enterEmail">Введите электронную почту</string>
     <string name="enterPassword">Введите свой пароль</string>
     <string name="forgotPassword">Забыли пароль?</string>
     <string name="confirmPassword">Подтвердите пароль</string>
@@ -86,5 +86,53 @@
     <string name="update">Изменить</string>
     <string name="editCategories">Редактировать категории</string>
     <string name="editIcon">Иконка</string>
+
+    <string name="addCategory">Добавить категорию</string>
+
+    <string name="fingerprint">Используйте отвечаток пальцев для</string>
+
+    <string name="incorrectEmail">Неправильная электронная почта</string>
+    <string name="incorrectPasswordLength">Меньше 6 символов</string>
+    <string name="incorrectPasswordDigit">Не содержит цифр</string>
+    <string name="incorrectPasswordCapitalLetter">Не содержит заглавной буквы</string>
+    <string name="incorrectPasswordLowercaseLetter">Не содержит строчной буквы</string>
+    <string name="passwordsNotMatch">Пароли не совпадают</string>
+
+    <string name="error">Ошибка</string>
+
+    <string name="userNotFound">Неверный email или пароль</string>
+    <string name="userAlreadyRegistered">Такой пользователь уже зарегистрирован</string>
+
+    <string name="sendEnail">Сообщение отправлено на указанную почту</string>
+
+    <string name="internetConnection">Нет подключения к интернету</string>
+
+    <string name="financialAdvice">Финансовые советы</string>
+    <string name="help">Помощь</string>
+
+    <string name="aboutProgram">О программе</string>
+
+    <string name="privacyPolicy">Политика конфиденциальности</string>
+
+    <string name="str1">Название дипломного проект: «Мобильное приложение для учёта финансов на языке программирования Kotlin».</string>
+    <string name="str2">Дипломный проект выполнил: Кулай Денис Сергеевич.</string>
+    <string name="str3">Учащийся БГУИР, группа 051091.</string>
+    <string name="str4">Версия программного средства - 1.0.</string>
+    <string name="str5">Требуемая версия Android - 10.0 или новее</string>
+
+    <string name="next">Следующий</string>
+    <string name="previous">Предыдущий</string>
+
+    <string name="mainWindow">Главное окно</string>
+    <string name="mainWindowTxt">   Окно, на котором пользователю показываются все операции, добавленные им. Помимо этого, доступна возможность изменения операций и обновление данных.</string>
+
+    <string name="planningWindow">Окно планирования</string>
+    <string name="planningWindowTxt">   Окно, на котором пользователь может добавить свои финансовые планы и выполнить другие операции.</string>
+
+    <string name="analyticsWindow">Окно аналитики</string>
+    <string name="analyticsWindowTxt">   Окно, на котором пользователь может указать необходимый период и вывести статистику в виде круговой диаграммы.</string>
+
+    <string name="settingsWindow">Окно настроек</string>
+    <string name="settingsWindowTxt">   Окно, на котором пользователь может отредактировать приложение и свой профиль: валюту, язык, тему приложения, включить или выключить чтение СМС. Помимо этого, можно выйти из приложения. В окне редактирования пользователя можно удалить аккаунт или изменить регистрационные данные.</string>
 
 </resources>

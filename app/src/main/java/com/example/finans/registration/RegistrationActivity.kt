@@ -1,7 +1,9 @@
 package com.example.finans.registration
 
+import android.content.ContentValues
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -13,16 +15,19 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.finans.PinCodeActivity
 import com.example.finans.R
 import com.example.finans.authorization.AuthorizationActivity
-import com.example.finans.isEmailValid
-import com.example.finans.isValidPassword
+import com.example.finans.other.isConfirmPassword
+import com.example.finans.other.isEmailValid
+import com.example.finans.other.isValidPassword
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.lang.Math.abs
@@ -34,7 +39,6 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
     private lateinit var gestureDetector: GestureDetector
     private lateinit var auth: FirebaseAuth
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var text: TextInputEditText
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,7 +48,6 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
         if(switchState){
             setContentView(R.layout.activity_dark_registration)
             window.statusBarColor = getColor(R.color.background2_dark)
-
         }
         else{
             setContentView(R.layout.activity_registration)
@@ -68,18 +71,18 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
             val textInputLayout = editText.parent.parent as? TextInputLayout
 
             if (editText.inputType and InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS == InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS) {
-                editText.error = editText.text.toString().isEmailValid()
+                editText.error = editText.text.toString().isEmailValid(this@RegistrationActivity)
             } else
                 if (editText.inputType and InputType.TYPE_TEXT_VARIATION_PASSWORD == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
 
-                    if(editText.text.toString().isValidPassword() != null) {
+                    if(editText.text.toString().isValidPassword(this@RegistrationActivity) != null) {
 
                         textInputLayout?.setPasswordVisibilityToggleEnabled(false)
                     }
                     else
                         textInputLayout?.setPasswordVisibilityToggleEnabled(true)
 
-                    editText.error = editText.text.toString().isValidPassword()
+                    editText.error = editText.text.toString().isValidPassword(this@RegistrationActivity)
 
                 }
         }
@@ -136,7 +139,7 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
         val textInputLayout2 = confirmPassword.parent.parent as? TextInputLayout
 
 
-        if(password.text.toString().isValidPassword() != null) {
+        if(password.text.toString().isValidPassword(this) != null || password.text.toString().isConfirmPassword(this) != null) {
 
             textInputLayout?.setPasswordVisibilityToggleEnabled(false)
         }
@@ -144,7 +147,7 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
             textInputLayout?.setPasswordVisibilityToggleEnabled(true)
 
 
-        if(confirmPassword.text.toString().isValidPassword() != null) {
+        if(confirmPassword.text.toString().isValidPassword(this) != null|| confirmPassword.text.toString().isConfirmPassword(this) != null) {
 
             textInputLayout2?.setPasswordVisibilityToggleEnabled(false)
         }
@@ -152,14 +155,14 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
             textInputLayout2?.setPasswordVisibilityToggleEnabled(true)
 
 
-        email.error = email.text.toString().isEmailValid()
-        password.error = password.text.toString().isValidPassword()
-        confirmPassword.error = confirmPassword.text.toString().isValidPassword()
-
-        if(email.text.toString().isEmailValid() == null && password.text.toString().isValidPassword() == null
-            && confirmPassword.text.toString().isValidPassword() == null) {
 
 
+        email.error = email.text.toString().isEmailValid(this)
+        password.error = password.text.toString().isValidPassword(this)
+        confirmPassword.error = confirmPassword.text.toString().isValidPassword(this)
+
+        if(email.text.toString().isEmailValid(this) == null && password.text.toString().isValidPassword(this) == null
+            && confirmPassword.text.toString().isValidPassword(this) == null) {
 
             if (password.text.toString() == confirmPassword.text.toString()) {
                 auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
@@ -177,6 +180,22 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
                                         Log.d("Email", "Email sent.")
                                     }
                                 }
+
+                            val name: String = user.displayName ?: "UserName"
+                            val photo: Uri = user.photoUrl ?: Uri.parse("https://firebasestorage.googleapis.com/v0/b/finans-44544.appspot.com/o/images%2Fperson.png?alt=media&token=ee359b89-4846-4243-acd2-b7a09364c806")
+
+                            val profileUpdates = userProfileChangeRequest {
+                                displayName = name
+                                photoUri = photo
+                            }
+
+                            user.updateProfile(profileUpdates)
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        Log.d(ContentValues.TAG, "User profile updated.")
+                                    }
+                                }
+
                             val prefs: SharedPreferences =
                                 PreferenceManager.getDefaultSharedPreferences(this)
                             prefs.edit().putBoolean("isPassword", true).apply()
@@ -185,21 +204,31 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
                             finish()
 
                         } else {
-                            Log.w(
-                                "createUserWithEmail",
-                                "createUserWithEmail:failure",
-                                task.exception
-                            )
-                            Toast.makeText(
-                                baseContext, "Authentication failed.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            startActivity(Intent(this, AuthorizationActivity::class.java))
-                            finish()
-                        }
+
+                            val exception = task.exception
+                            if (exception is FirebaseAuthUserCollisionException) {
+
+                                    val builder = AlertDialog.Builder(view.context)
+
+                                    builder.setTitle(R.string.error)
+
+                                    builder.setMessage(R.string.userAlreadyRegistered)
+
+                                    builder.setNegativeButton(
+                                        "Ok") { dialog, id ->
+                                    }
+                                    builder.show()
+
+                                email.text.clear()
+                                password.text.clear()
+                                confirmPassword.text.clear()
+
+                                }
+                            }
                     }
             } else {
-                Toast.makeText(baseContext, "Passwords do not match.", Toast.LENGTH_SHORT).show()
+                password.error = email.text.toString().isConfirmPassword(this)
+                confirmPassword.error = email.text.toString().isConfirmPassword(this)
             }
         }
 
@@ -212,7 +241,6 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
         val hashMap = hashMapOf<String, Any>(
             "date_registration" to currentDate,
             "balance" to 0,
-            "image" to ""
         )
         val fireStoreDatabase = FirebaseFirestore.getInstance()
         fireStoreDatabase.collection("users").document(Firebase.auth.uid.toString()).collection("user").document("information").set(hashMap)
