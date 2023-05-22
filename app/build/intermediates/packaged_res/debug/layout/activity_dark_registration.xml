@@ -25,13 +25,12 @@
 
                 <Button
                     android:id="@+id/registration_back"
-                    android:layout_width="wrap_content"
+                    android:layout_width="54dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:background="#00000000"
+                    android:drawableLeft="@drawable/back_dark"
                     android:onClick="authorizationBack"
-                    android:text="@string/back"
-                    android:textColor="@color/background3_dark"
+                    android:textColor="@color/background3"
                     android:textSize="6.5pt" />
 
                 <TextView
