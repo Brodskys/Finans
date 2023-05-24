@@ -1,6 +1,7 @@
 package com.example.finans.operation.operationDetail
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -13,10 +14,12 @@ import android.graphics.Color
 import android.location.Geocoder
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -26,12 +29,15 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.example.finans.R
 import com.example.finans.authorization.authWithFacebook.AuthorizationPresenterFacebook.Companion.TAG
 import com.example.finans.category.BottomSheetCategoryFragment
+import com.example.finans.category.Category
 import com.example.finans.category.CategoryViewModel
 import com.example.finans.image.BottomSheetPhotoFragment
 import com.example.finans.image.ImageInfo
@@ -40,6 +46,7 @@ import com.example.finans.language.languageInit
 import com.example.finans.map.BottomSheetMapFragment
 import com.example.finans.map.MapViewModel
 import com.example.finans.operation.Operation
+import com.example.finans.other.deletionWarning
 import com.example.finans.сurrency.BottomSheetCurrencyFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -47,6 +54,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
@@ -70,12 +78,14 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
     private lateinit var currencyViewModel: CurrencyViewModel
     private lateinit var categoryViewModel: CategoryViewModel
     private lateinit var mapViewModel: MapViewModel
-    private var map = GeoPoint(0.0, 0.0)
+    private var map: GeoPoint? = null
     private lateinit var imageViewModel: ImageViewModel
     private var photo: ByteArray? = null
-
-    private var image : String = ""
-
+    private  var oldPhoto:Uri? = null
+    private var image : String? = ""
+    private  var category : Category? = null
+    private lateinit var operation: Operation
+    private lateinit var db: FirebaseFirestore
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -107,10 +117,24 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
         }
     }
 
+    @SuppressLint("CutPasteId")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val tabLayout: TabLayout = view.findViewById(R.id.operationDetail_tab_layout)
+        operation = arguments?.getParcelable("operation")!!
+
+        db = Firebase.firestore
+
+        val setngs = FirebaseFirestoreSettings.Builder()
+            .setPersistenceEnabled(true)
+            .build()
+
+        db.firestoreSettings = setngs
+
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.expense))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.income))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.translation))
 
         if(switchState) {
             tabLayout.setTabTextColors(Color.WHITE, Color.rgb(211, 138, 6))
@@ -125,23 +149,26 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
 
         }
 
+       val operationDetail_tab_layout = view.findViewById<TabLayout>(R.id.operationDetail_tab_layout)
+        val selectedTabPosition =
+            operationDetail_tab_layout.selectedTabPosition
+        val selectedTab =
+            operationDetail_tab_layout.getTabAt(selectedTabPosition)
+
+        val operationDetail_amount_field = view.findViewById<EditText>(R.id.operationDetail_amount_field)
+        val operationDetail_subcategory_txt = view.findViewById<TextView>(R.id.operationDetail_subcategory_txt)
+
+
+        val note = view.findViewById<TextView>(R.id.operationDetail_note).text.toString()
+
+
+
         view.findViewById<TextView>(R.id.operationDetailDone).setOnClickListener {
 
-            if(view.findViewById<EditText>(R.id.operationDetail_amount_field).text.toString().isNotEmpty()
-                && view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text.toString().isNotEmpty()) {
-                val value =
-                    view.findViewById<EditText>(R.id.operationDetail_amount_field).text.toString().toDouble()
+            if(operationDetail_amount_field.text.toString().isNotEmpty()
+                && operationDetail_subcategory_txt.text.toString().isNotEmpty()) {
 
-                val note = view.findViewById<TextView>(R.id.operationDetail_note).text.toString()
-
-                val category = view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text.toString()
-
-                val selectedTabPosition =
-                    view.findViewById<TabLayout>(R.id.operationDetail_tab_layout).selectedTabPosition
-                val selectedTab =
-                    view.findViewById<TabLayout>(R.id.operationDetail_tab_layout).getTabAt(selectedTabPosition)
-
-                uploadData(selectedTab?.text.toString(), value,  Timestamp(currentDateTime.time), note,category,image)
+                uploadData(selectedTab?.text.toString(), operationDetail_amount_field.text.toString().toDouble(),  Timestamp(currentDateTime.time), note, image)
             }
             else{
                 val builder = AlertDialog.Builder(requireContext())
@@ -155,26 +182,56 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
 
             dismiss()
 
+        }
+
+
+        view.findViewById<TextView>(R.id.delete_btn).setOnClickListener {
+
+            deletionWarning(requireContext()) { result ->
+
+                if (result) {
+
+                    val docRef =
+                        operation.id?.let {
+                            db.collection("users").document(Firebase.auth.uid.toString())
+                                .collection("operation").document(
+                                    it
+                                )
+                        }
+
+                    docRef!!
+                        .delete()
+                        .addOnSuccessListener {
+                            Log.d(
+                                TAG,
+                                "DocumentSnapshot successfully deleted!"
+                            )
+                        }
+                        .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+
+                    if (operation.photo != "") {
+                        val photoRef =
+                            FirebaseStorage.getInstance().getReferenceFromUrl(operation.photo!!)
+
+                        photoRef.delete()
+                            .addOnSuccessListener {
+                            }
+                            .addOnFailureListener {
+                            }
+                    }
+
+                    dismiss()
+                }
+            }
         }
 
 
         view.findViewById<TextView>(R.id.update_btn).setOnClickListener {
 
-            if(view.findViewById<EditText>(R.id.operationDetail_amount_field).text.toString().isNotEmpty()
-                && view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text.toString().isNotEmpty()) {
-                val value =
-                    view.findViewById<EditText>(R.id.operationDetail_amount_field).text.toString().toDouble()
+            if(operationDetail_amount_field.text.toString().isNotEmpty()
+                && operationDetail_subcategory_txt.text.toString().isNotEmpty()) {
 
-                val note = view.findViewById<TextView>(R.id.operationDetail_note).text.toString()
-
-                val category = view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text.toString()
-
-                val selectedTabPosition =
-                    view.findViewById<TabLayout>(R.id.operationDetail_tab_layout).selectedTabPosition
-                val selectedTab =
-                    view.findViewById<TabLayout>(R.id.operationDetail_tab_layout).getTabAt(selectedTabPosition)
-
-                uploadData(selectedTab?.text.toString(), value,  Timestamp(currentDateTime.time), note,category,image)
+                uploadData(selectedTab?.text.toString(), operationDetail_amount_field.text.toString().toDouble(),  Timestamp(currentDateTime.time), note, image)
             }
             else{
                 val builder = AlertDialog.Builder(requireContext())
@@ -185,16 +242,46 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
                 val dialog = builder.create()
                 dialog.show()
             }
-
             dismiss()
 
         }
 
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.expense))
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.income))
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.translation))
+
 
         amount = view.findViewById(R.id.operationDetail_amount_field)
+
+
+        var raz = false
+
+        amount.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().contains(".")) {
+                    val digitsAfterPoint = s.toString().substring(s.toString().indexOf(".") + 1)
+                    if (digitsAfterPoint.length > 2) {
+                        s?.replace(s.length - 1, s.length, "")
+                    }
+                }
+
+                val decimalRegex =
+                    "^\\\$?([1-9]{1}[0-9]{0,2}(\\,[0-9]{3})*(\\.[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\\.[0-9]{0,2})?|0(\\.[0-9]{0,2})?|(\\.[0-9]{1,2})?)\$"
+                val match = s.toString().matches(decimalRegex.toRegex())
+                if (!match) {
+                    amount.error = "Incorrect input format"
+                    s?.replace(s.length - 1, s.length, "")
+                }
+
+                if(raz) {
+                    update()
+                }
+                else raz = true
+            }
+        })
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -209,10 +296,11 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
                             amount.setHintTextColor(Color.rgb(0,128,0))
                         }
                         2 -> {
-                            amount.setTextColor(Color.rgb(255, 69, 0))
-                            amount.setHintTextColor(Color.rgb(255, 69, 0))
+                            amount.setTextColor(Color.rgb(0, 0, 255))
+                            amount.setHintTextColor(Color.rgb(0, 0, 255))
                         }
                     }
+                    update()
                 }
             }
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
@@ -221,13 +309,11 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
         })
 
 
-        val operation = arguments?.getParcelable<Operation>("operation")
 
-        for (i in 0 until tabLayout.tabCount) {
-            val tab = tabLayout.getTabAt(i)
-            if (tab?.text?.toString() == operation?.type) {
-                tabLayout.selectTab(tab)
-                when (tab?.text?.toString()) {
+        image = operation.image
+
+
+                when (selectedTab?.text.toString()) {
                     getText(R.string.expense) -> {
                         amount.setTextColor(Color.rgb(255,0,0))
                         amount.setHintTextColor(Color.rgb(255,0,0))
@@ -241,9 +327,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
                         amount.setHintTextColor(Color.rgb(255, 69, 0))
                     }
                 }
-                break
-            }
-        }
+
 
 
         view.findViewById<Button>(R.id.operationDetail_currency_btn).setOnClickListener {
@@ -260,9 +344,6 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
         }
 
 
-
-
-
         view.findViewById<EditText>(R.id.operationDetail_amount_field).text = Editable.Factory.getInstance().newEditable(operation?.value.toString())
 
         val sharedPref = context?.getSharedPreferences("Settings", Context.MODE_PRIVATE)
@@ -275,13 +356,11 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
         currencyViewModel.getSelectedCCurrency().observe(this) { currency ->
 
             view.findViewById<Button>(R.id.operationDetail_currency_btn).text = currency
+            update()
 
         }
 
-        Picasso.get().load(operation?.image)
-            .into(view.findViewById<ImageView>(R.id.operationDetail_categoryIcon))
-
-        var imageRef = operation?.image?.let { FirebaseStorage.getInstance().getReferenceFromUrl(it) }
+        var imageRef = operation.image?.let { FirebaseStorage.getInstance().getReferenceFromUrl(it) }
 
         imageRef?.downloadUrl?.addOnSuccessListener { uri ->
             Picasso.get().load(uri)
@@ -294,9 +373,10 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
 
         try {
             imageRef =
-                operation?.photo?.let { FirebaseStorage.getInstance().getReferenceFromUrl(it) }
+                operation.photo?.let { FirebaseStorage.getInstance().getReferenceFromUrl(it) }
 
             imageRef?.downloadUrl?.addOnSuccessListener { uri ->
+                oldPhoto = uri
                 Picasso.get().load(uri)
                     .placeholder(R.drawable.photo)
                     .error(R.drawable.photo)
@@ -317,7 +397,8 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
                 requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetPhotoFragment")
 
             if (existingFragment == null) {
-                val newFragment = BottomSheetPhotoFragment.newInstance("photo")
+
+                val newFragment = BottomSheetPhotoFragment.newInstance("photo", photo == null && oldPhoto == null)
                 newFragment.setTargetFragment(this@BottomSheetOperationDetailFragment, 0)
 
                 newFragment.show(
@@ -331,26 +412,50 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
 
         imageViewModel.cameraImageUri.observe(viewLifecycleOwner) { uri ->
 
-            imageLoad(uri)
+            if(uri != null) {
+                if(uri.cameraGallery == "camera") {
+                    imageLoad(uri)
+                    update()
+
+                }
+                else if (uri.cameraGallery == "delete"){
+                    photo = null
+                    oldPhoto = null
+                    view.findViewById<ImageView>(R.id.operationDetail_bill).setImageResource(R.drawable.photo)
+                    update()
+
+                }
+            }
 
         }
 
         imageViewModel.galleryImageUri.observe(viewLifecycleOwner) { uri ->
 
-            imageLoad(uri)
+            if(uri != null) {
+                if(uri.cameraGallery == "gallery") {
+                    imageLoad(uri)
+                    update()
+
+                }
+                else if (uri.cameraGallery == "delete"){
+                    photo = null
+                    oldPhoto = null
+                    view.findViewById<ImageView>(R.id.operationDetail_bill).setImageResource(R.drawable.photo)
+                    update()
+
+                }
+            }
 
         }
 
 
-
-
         categoryViewModel = ViewModelProvider(requireActivity())[CategoryViewModel::class.java]
-        categoryViewModel.getSelectedCategory().observe(this) { category ->
-            if(category!=null) {
+        categoryViewModel.getSelectedCategory().observe(this) { ctg ->
+            if(ctg!=null) {
                 val storage = Firebase.storage
-                image = category.image!!
+                image = ctg.image!!
 
-                val gsReference = storage.getReferenceFromUrl(image)
+                val gsReference = storage.getReferenceFromUrl(image!!)
 
                 gsReference.downloadUrl.addOnSuccessListener { uri ->
                     Picasso.get().load(uri.toString())
@@ -361,20 +466,27 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
                 }
                 if (languageInit(requireActivity())) {
                     view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text =
-                        category.nameRus
+                        ctg.nameRus
 
                 } else
                     view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text =
-                        category.nameEng
+                        ctg.nameEng
+
+                category = ctg
+                update()
+
                 categoryViewModel.clearCategory()
             }
         }
 
-        view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text = operation?.category
+        if (languageInit(requireActivity())){
+            view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text = operation.categoryRu
+        } else {
+            view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text = operation.categoryEn
+        }
 
 
         view.findViewById<RelativeLayout>(R.id.operationDetail_categoryRelativeLayout).setOnClickListener{
-
 
             val existingFragment = requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetCategoryFragment")
             if (existingFragment == null) {
@@ -386,7 +498,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
             }
         }
 
-        val date = operation?.timestamp?.toDate()
+        val date = operation.timestamp?.toDate()
         val pattern = "dd.MM.yyyy HH:mm"
         val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
 
@@ -400,7 +512,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
 
 
         currentDateTime = Calendar.getInstance()
-        currentDateTime.time = operation?.timestamp?.toDate() ?: Date()
+        currentDateTime.time = operation.timestamp?.toDate() ?: Date()
 
         val dateTimeFormat = SimpleDateFormat("dd/MM/y HH:mm", Locale.getDefault())
 
@@ -423,6 +535,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
 
 
                             dateTimeTextView.text = dateTimeFormat.format(currentDateTime.time)
+                            update()
 
                         },
                         currentDateTime.get(Calendar.HOUR_OF_DAY),
@@ -462,6 +575,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
                 val noteText = input.text.toString().trim()
 
                 view.findViewById<TextView>(R.id.operationDetail_note).text = noteText
+                update()
 
                 dialog.dismiss()
             }
@@ -475,9 +589,9 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
 
 
 
-        view.findViewById<TextView>(R.id.operationDetail_note).text = operation?.note
+        view.findViewById<TextView>(R.id.operationDetail_note).text = operation.note
 
-        val geoPoint = operation?.map
+        val geoPoint = operation.map
 
         if (!isGeoPointEmpty(geoPoint))
         {
@@ -489,6 +603,12 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
 
            view.findViewById<TextView>(R.id.operationDetail_location).text = address
 
+            if(switchState){
+                view.findViewById<ImageView>(R.id.operationDetail_mapImg).setImageResource(R.drawable.delete_dark)
+            } else{
+                view.findViewById<ImageView>(R.id.operationDetail_mapImg).setImageResource(R.drawable.delete)
+            }
+
        }
 
         mapViewModel = ViewModelProvider(requireActivity())[MapViewModel::class.java]
@@ -497,11 +617,39 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
             map = geo
             val geocoder = Geocoder(requireContext(), Locale.getDefault())
 
-                val addresses = geocoder.getFromLocation(map.latitude, map.longitude, 1)
+                val addresses = geocoder.getFromLocation(map!!.latitude, map!!.longitude, 1)
                 val address = addresses?.get(0)?.getAddressLine(0)
 
                 view.findViewById<TextView>(R.id.operationDetail_location).text = address
+
+                if(switchState){
+                    view.findViewById<ImageView>(R.id.operationDetail_mapImg).setImageResource(R.drawable.delete_dark)
+                } else{
+                    view.findViewById<ImageView>(R.id.operationDetail_mapImg).setImageResource(R.drawable.delete)
+                }
+
                 mapViewModel.clearMap()
+                update()
+
+            }
+        }
+
+
+        view.findViewById<ImageView>(R.id.operationDetail_mapImg).setOnClickListener {
+
+            if(map != GeoPoint(0.0, 0.0)) {
+                map = GeoPoint(0.0, 0.0)
+
+                view.findViewById<TextView>(R.id.operationDetail_location).text = null
+
+
+                if (switchState) {
+                    view.findViewById<ImageView>(R.id.operationDetail_mapImg)
+                        .setImageResource(R.drawable.right_dark)
+                } else {
+                    view.findViewById<ImageView>(R.id.operationDetail_mapImg).setImageResource(R.drawable.right)
+                }
+                update()
             }
         }
 
@@ -553,60 +701,95 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
         return geoPoint == null || (geoPoint.latitude == 0.0 && geoPoint.longitude == 0.0)
     }
 
-    private fun uploadData(operation: String, value: Double, dateTime: Timestamp, note: String?, category: String, image: String?) {
-
-        val db = Firebase.firestore
-
-        val oper = arguments?.getParcelable<Operation>("operation")
+    private fun uploadData(oper: String, value: Double, dateTime: Timestamp, note: String?, image: String?) {
 
 
+        var path : String? = ""
 
-        val uid = UUID.randomUUID().toString()
-        val path = photo?.let { "gs://finans-44544.appspot.com/images/${Firebase.auth.uid.toString()}/operation/${uid}.jpg" } ?: ""
+        val mp = map ?: operation.map
 
-        if (path != "") {
+            val uid = UUID.randomUUID().toString()
+             path =
+                photo?.let { "gs://finans-44544.appspot.com/images/${Firebase.auth.uid.toString()}/operation/${uid}.jpg" }
+                    ?: ""
 
-            val storageRef = Firebase.storage.reference
-            val imagesRef =
-                storageRef.child("images/${Firebase.auth.uid.toString()}/operation/${uid}.jpg")
+            if (path != "") {
 
-            val uploadTask = imagesRef.putBytes(photo!!)
-            uploadTask.addOnSuccessListener { taskSnapshot ->
-                taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener { uri ->
+                val storageRef = Firebase.storage.reference
+                val imagesRef =
+                    storageRef.child("images/${Firebase.auth.uid.toString()}/operation/${uid}.jpg")
+
+                val uploadTask = imagesRef.putBytes(photo!!)
+                uploadTask.addOnSuccessListener { taskSnapshot ->
+                    taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener { uri ->
+                    }
                 }
             }
+        else if(oldPhoto != null) {
+                path = operation.photo
+            }
+        else {
+                if(operation.photo != "") {
+                    val photoRef =
+                        FirebaseStorage.getInstance().getReferenceFromUrl(operation.photo!!)
 
+                    photoRef.delete()
+                        .addOnSuccessListener {
+                        }
+                        .addOnFailureListener {
+                        }
+                }
+                    path = ""
         }
 
-        val money = if (operation == getText(R.string.income)) value  else -value
 
-        val settings = FirebaseFirestoreSettings.Builder()
-            .setPersistenceEnabled(true)
-            .build()
+        if(value != operation.value) {
+            val money = if (oper == getText(R.string.income)) value else -value
 
-        db.firestoreSettings = settings
+            db.collection("users").document(Firebase.auth.uid.toString())
+                .collection("user").document("information")
+                .update("balance", FieldValue.increment(money))
+                .addOnSuccessListener {}
+                .addOnFailureListener {}
+        }
+
+        var operationRu = ""
+        var operationEng = ""
+
+        when (oper) {
+            getString(R.string.income) ->{
+                operationEng = "Income"
+                operationRu = "Доход"
+            }
+            getString(R.string.expense) ->{
+                operationEng = "Expense"
+                operationRu = "Расход"
+            }
+            getString(R.string.translation) ->{
+                operationEng = "Translation"
+                operationRu = "Перевод"
+            }
+        }
 
 
-        db.collection("users").document(Firebase.auth.uid.toString())
-            .collection("user").document("information")
-            .update("balance", FieldValue.increment(money))
-            .addOnSuccessListener {}
-            .addOnFailureListener {}
-
+     val categoryRu =  category?.nameRus ?:  operation.categoryRu!!
+     val categoryEn =  category?.nameEng ?:  operation.categoryEn!!
 
         val data = hashMapOf<String, Any>(
-            "type" to operation,
+            "typeRu" to operationRu,
+            "typeEn" to operationEng,
             "value" to value,
-            "date" to  dateTime,
+            "timestamp" to dateTime,
             "note" to note!!,
-            "category" to category,
+            "categoryRu" to categoryRu,
+            "categoryEn" to categoryEn,
             "image" to image!!,
-            "map" to map,
-            "photo" to path,
+            "map" to mp!!,
+            "photo" to path!!,
         )
 
         val docRef =
-            oper?.id?.let {
+            operation.id?.let {
                 db.collection("users").document(Firebase.auth.uid.toString()).collection("operation").document(
                     it
                 )
@@ -620,6 +803,10 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
 
     }
 
+    fun update(){
+        view?.findViewById<TextView>(R.id.operationDetailDone)?.isVisible = true
+        view?.findViewById<Button>(R.id.delete_btn)?.isVisible = false
+    }
 
     private fun imageLoad(uri: ImageInfo?){
         if(uri?.uri != null) {
@@ -633,6 +820,8 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
                 photo = baos.toByteArray()
 
                 bitmap = BitmapFactory.decodeByteArray(photo, 0, photo!!.size)
+
+                oldPhoto = null
 
                 requireView().findViewById<ImageView>(R.id.operationDetail_bill).setImageBitmap(bitmap)
             }

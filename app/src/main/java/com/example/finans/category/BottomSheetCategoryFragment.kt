@@ -96,12 +96,13 @@ class BottomSheetCategoryFragment : BottomSheetDialogFragment(), OnItemClickList
         }
 
         view.findViewById<TextView>(R.id.categoryUpdate).setOnClickListener {
+
             val bottomSheetFragment =
                 requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetUpdateCategoriesFragment") as? BottomSheetUpdateCategoriesFragment
 
             if (bottomSheetFragment == null)
                 BottomSheetUpdateCategoriesFragment().show(requireActivity().supportFragmentManager, "BottomSheetUpdateCategoriesFragment")
-
+            dismiss()
         }
 
         categorySearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{

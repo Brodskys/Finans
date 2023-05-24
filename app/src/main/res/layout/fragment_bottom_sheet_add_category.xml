@@ -70,6 +70,7 @@
                         android:background="@color/background"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
+                        android:src="@drawable/categories"
                         />
 
                     <ImageView
@@ -87,6 +88,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <LinearLayout
+                    android:id="@+id/categoryAdd_LinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -181,17 +183,50 @@
 
                     <Button
                         android:layout_alignParentBottom="true"
-                        android:id="@+id/saveAddCategory"
+                        android:id="@+id/addCategory"
                         style="@style/Widget.MaterialComponents.Button.Icon"
                         android:textStyle="bold"
                         app:backgroundTint="@color/color_selector"
                         app:cornerRadius="20dp"
+                        android:visibility="visible"
                         android:textColor="@color/background3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginBottom="20dp"
-                        android:text="Сохранить" />
+                        android:text="@string/addCategory" />
+
+                    <Button
+                        android:layout_alignParentBottom="true"
+                        android:id="@+id/updateCategory"
+                        style="@style/Widget.MaterialComponents.Button.Icon"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/color_selector"
+                        app:cornerRadius="20dp"
+                        android:visibility="gone"
+                        android:textColor="@color/background3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="@string/update" />
+
+                    <Button
+                        android:layout_alignParentBottom="true"
+                        android:id="@+id/deleteCategory"
+                        style="@style/Widget.MaterialComponents.Button.Icon"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/color_selector"
+                        app:cornerRadius="20dp"
+                        android:visibility="gone"
+                        android:drawableLeft="@drawable/trash"
+                        android:textColor="@color/red"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="@string/delete" />
 
 
                 </RelativeLayout>

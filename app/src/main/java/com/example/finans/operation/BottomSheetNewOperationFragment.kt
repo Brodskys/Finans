@@ -22,12 +22,15 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.finans.R
 import com.example.finans.category.BottomSheetCategoryFragment
+import com.example.finans.category.Category
 import com.example.finans.category.CategoryViewModel
 import com.example.finans.image.BottomSheetPhotoFragment
 import com.example.finans.image.ImageInfo
@@ -68,6 +71,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
     private lateinit var currentDateTime: Calendar
     private var map = GeoPoint(0.0, 0.0)
     private lateinit var db: FirebaseFirestore
+    private lateinit var category: Category
 
     private lateinit var amount: EditText
     private lateinit var dateTimeTextView: TextView
@@ -95,7 +99,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
 
     }
 
-    @SuppressLint("ResourceType")
+    @SuppressLint("ResourceType", "CutPasteId")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -126,6 +130,17 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
         amount.setTextColor(Color.rgb(255,0,0))
         amount.setHintTextColor(Color.rgb(255,0,0))
 
+        amount.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                val inputMethodManager =
+                    requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(amount.windowToken, 0)
+                true
+            } else {
+                false
+            }
+        }
+
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
@@ -139,8 +154,8 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
                             amount.setHintTextColor(Color.rgb(0,128,0))
                         }
                         2 -> {
-                            amount.setTextColor(Color.rgb(255, 69, 0))
-                            amount.setHintTextColor(Color.rgb(255, 69, 0))
+                            amount.setTextColor(Color.rgb(0, 0, 255))
+                            amount.setHintTextColor(Color.rgb(0, 0, 255))
                         }
                     }
                 }
@@ -164,15 +179,22 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
                 val address = addresses?.get(0)?.getAddressLine(0)
 
                 view.findViewById<TextView>(R.id.locationTextView).text = address
+
+                if(switchState){
+                    view.findViewById<ImageView>(R.id.Imgright33).setImageResource(R.drawable.delete_dark)
+                } else{
+                    view.findViewById<ImageView>(R.id.Imgright33).setImageResource(R.drawable.delete)
+                }
+
                 mapViewModel.clearMap()
             }
         }
 
         categoryViewModel = ViewModelProvider(requireActivity())[CategoryViewModel::class.java]
-        categoryViewModel.getSelectedCategory().observe(this) { category ->
-            if(category!=null) {
+        categoryViewModel.getSelectedCategory().observe(this) { ctg ->
+            if(ctg!=null) {
                 val storage = Firebase.storage
-                image = category.image!!
+                image = ctg.image!!
 
                 val gsReference = storage.getReferenceFromUrl(image)
 
@@ -184,11 +206,11 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
                         .into(view.findViewById<ImageView>(R.id.categoryIcon))
                 }
                 if (languageInit(requireActivity())) {
-                    view.findViewById<TextView>(R.id.subcategory_txt).text = category.nameRus
+                    view.findViewById<TextView>(R.id.subcategory_txt).text = ctg.nameRus
 
                 } else
-                    view.findViewById<TextView>(R.id.subcategory_txt).text = category.nameEng
-
+                    view.findViewById<TextView>(R.id.subcategory_txt).text = ctg.nameEng
+                category = ctg
                 categoryViewModel.clearCategory()
             }
         }
@@ -199,14 +221,26 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
         imageViewModel.cameraImageUri.observe(viewLifecycleOwner) { uri ->
 
             if(uri != null) {
-                imageLoad(uri)
+                if(uri.cameraGallery == "camera") {
+                    imageLoad(uri)
+                }
+               else if (uri.cameraGallery == "delete"){
+                    photo = null
+                    view.findViewById<ImageView>(R.id.currencyIcon4).setImageResource(R.drawable.photo)
+                }
             }
         }
 
         imageViewModel.galleryImageUri.observe(viewLifecycleOwner) { uri ->
 
             if(uri != null) {
-                imageLoad(uri)
+                if(uri.cameraGallery == "gallery") {
+                    imageLoad(uri)
+                }
+                else if (uri.cameraGallery == "delete"){
+                    photo = null
+                    view.findViewById<ImageView>(R.id.currencyIcon4).setImageResource(R.drawable.photo)
+                }
             }
 
         }
@@ -280,15 +314,17 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
 
                 val note = view.findViewById<TextView>(R.id.noteTextView).text.toString()
 
-                val category = view.findViewById<TextView>(R.id.subcategory_txt).text.toString()
-
-
                 val selectedTabPosition =
                     view.findViewById<TabLayout>(R.id.tab_layout).selectedTabPosition
                 val selectedTab =
                     view.findViewById<TabLayout>(R.id.tab_layout).getTabAt(selectedTabPosition)
 
-                uploadData(selectedTab?.text.toString(), value,  Timestamp(currentDateTime.time), note,category,image)
+                uploadData(
+                    selectedTab?.text.toString(),
+                    value,
+                    Timestamp(currentDateTime.time),
+                    note
+                )
             }
             else{
                 val builder = AlertDialog.Builder(requireContext())
@@ -314,15 +350,17 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
 
                 val note = view.findViewById<TextView>(R.id.noteTextView).text.toString()
 
-                val category = view.findViewById<TextView>(R.id.subcategory_txt).text.toString()
-
-
                 val selectedTabPosition =
                     view.findViewById<TabLayout>(R.id.tab_layout).selectedTabPosition
                 val selectedTab =
                     view.findViewById<TabLayout>(R.id.tab_layout).getTabAt(selectedTabPosition)
 
-                uploadData(selectedTab?.text.toString(), value,  Timestamp(currentDateTime.time), note,category,image)
+                uploadData(
+                    selectedTab?.text.toString(),
+                    value,
+                    Timestamp(currentDateTime.time),
+                    note
+                )
             }
             else{
                 val builder = AlertDialog.Builder(requireContext())
@@ -407,6 +445,24 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
         }
 
 
+
+        view.findViewById<ImageView>(R.id.Imgright33).setOnClickListener {
+
+          if(map != GeoPoint(0.0, 0.0)) {
+              map = GeoPoint(0.0, 0.0)
+
+              view.findViewById<TextView>(R.id.locationTextView).text = null
+
+
+              if (switchState) {
+                  view.findViewById<ImageView>(R.id.Imgright33)
+                      .setImageResource(R.drawable.right_dark)
+              } else {
+                  view.findViewById<ImageView>(R.id.Imgright33).setImageResource(R.drawable.right)
+              }
+          }
+        }
+
         view.findViewById<RelativeLayout>(R.id.relativeLayoutLocation).setOnClickListener{
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
@@ -449,7 +505,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
                 requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetPhotoFragment")
 
             if (existingFragment == null) {
-                val newFragment = BottomSheetPhotoFragment.newInstance("photo")
+                val newFragment = BottomSheetPhotoFragment.newInstance("photo", photo == null)
                 newFragment.setTargetFragment(this@BottomSheetNewOperationFragment, 0)
 
                 newFragment.show(
@@ -465,7 +521,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
                 requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetPhotoFragment")
 
             if (existingFragment == null) {
-                val newFragment = BottomSheetPhotoFragment.newInstance("ocr")
+                val newFragment = BottomSheetPhotoFragment.newInstance("ocr", photo == null)
                 newFragment.setTargetFragment(this@BottomSheetNewOperationFragment, 0)
 
                 newFragment.show(
@@ -479,6 +535,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
         view.findViewById<RelativeLayout>(R.id.categoryRelativeLayout).setOnClickListener{
 
 
+
             val existingFragment = requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetCategoryFragment")
             if (existingFragment == null) {
                 val newFragment = BottomSheetCategoryFragment()
@@ -487,6 +544,11 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
                     "BottomSheetCategoryFragment"
                 )
             }
+            image = ""
+
+
+            view.findViewById<ImageView>(R.id.categoryIcon).setImageResource(R.drawable.category)
+            view.findViewById<TextView>(R.id.subcategory_txt).text = ""
         }
 
     }
@@ -515,16 +577,15 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
         }
             else {
 
-                val str = ocr(requireActivity(), uri.bitmap)
+                val str = ocr(requireActivity(), uri.bitmap!!)
 
               val result = parsing(str)
 
 
-
-                val date: String? = result[0]
+                val date: String = result[0]
                 val time: String = result[1]
-                val dateTime: String? = result[2]
-                val money: String? = result[3]
+                val dateTime: String = result[2]
+                val money: String = result[3]
 
                 if (date!= "" && time!= ""){
                     dateTimeTextView.text = "${date} ${time}"
@@ -547,8 +608,13 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
     }
 
 
-    @SuppressLint("SuspiciousIndentation")
-    private fun uploadData(operation: String, value: Double, dateTime: Timestamp, note: String, category: String, image: String) {
+    @SuppressLint("SuspiciousIndentation", "StringFormatInvalid")
+    private fun uploadData(
+        operation: String,
+        value: Double,
+        dateTime: Timestamp,
+        note: String
+    ) {
 
         val uid = UUID.randomUUID().toString()
         val path = photo?.let { "gs://finans-44544.appspot.com/images/${Firebase.auth.uid.toString()}/operation/${uid}.jpg" } ?: ""
@@ -568,12 +634,33 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
         }
         val money = if (operation == getText(R.string.income)) value  else -value
 
+        var operationRu = ""
+        var operationEng = ""
+
+        when (operation) {
+            getString(R.string.income) ->{
+                operationEng = "Income"
+                operationRu = "Доход"
+            }
+            getString(R.string.expense) ->{
+                operationEng = "Expense"
+                operationRu = "Расход"
+            }
+            getString(R.string.translation) ->{
+                operationEng = "Translation"
+                operationRu = "Перевод"
+            }
+        }
+
+
         val hashMap = hashMapOf<String, Any>(
-                "type" to operation,
+                "typeRu" to operationRu,
+                "typeEn" to operationEng,
                 "value" to value,
                 "timestamp" to dateTime,
                 "note" to note,
-                "category" to category,
+                "categoryRu" to category.nameRus!!,
+                "categoryEn" to category.nameEng!!,
                 "image" to image,
                 "map" to map,
                 "photo" to path,

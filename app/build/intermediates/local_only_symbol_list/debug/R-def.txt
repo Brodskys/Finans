@@ -35,10 +35,13 @@ drawable banking
 drawable biometric
 drawable bottom_sheet_background
 drawable camera
+drawable categories
 drawable category
 drawable coins
 drawable currency
 drawable datetime
+drawable delete
+drawable delete_dark
 drawable edit
 drawable email
 drawable email_dark
@@ -81,7 +84,7 @@ drawable splash_image
 drawable tab_indicator
 drawable tablayout_shape
 drawable tablayout_shape_dark
-drawable taxi
+drawable trash
 id Imgright1
 id Imgright2
 id Imgright22
@@ -90,11 +93,13 @@ id Imgright33
 id PinView
 id SettinglinearLayout
 id aboutProgram
+id addCategory
 id addCategoryEditIcon
 id addCategoryExit
 id addCategoryIcon
+id addCategoryLinearLayout
 id addCategoryName
-id addCategoryRelativeLayout
+id addUpdateTextView
 id amount_field
 id analytics
 id authBtn
@@ -112,6 +117,7 @@ id bottomRelativeLayout
 id bottomSheet
 id cardView
 id categoriesEditExit
+id categoryAdd_LinearLayout
 id categoryEditExit
 id categoryEditIcon
 id categoryExit
@@ -154,6 +160,8 @@ id currency_textView
 id dateTimeRelativeLayout
 id dateTimeTextView
 id dateandtimeIcon
+id deleteCategory
+id delete_btn
 id deliteUser
 id donthaveanAccount
 id editProfile_btn
@@ -175,9 +183,7 @@ id home_balance
 id home_currency
 id imageView1
 id imageView2
-id imageView3
 id imageView4
-id imageView5
 id introDescriptionTxt
 id introHeadingTxt
 id introImg
@@ -225,6 +231,7 @@ id operationDetail_currency_btn
 id operationDetail_dateTimeRelativeLayout
 id operationDetail_dateTimeTextView
 id operationDetail_location
+id operationDetail_mapImg
 id operationDetail_note
 id operationDetail_noteRelativeLayout
 id operationDetail_relativeLayoutLocation
@@ -248,6 +255,7 @@ id questionsProgram
 id registeremailIcon
 id registerpasswordIcon
 id registration_back
+id relationDelete
 id relationgallery
 id relationphoto
 id relativeLayoutLocation
@@ -256,7 +264,6 @@ id relativeLayoutOperation
 id relativeLayoutPhoto
 id resetPasswordExit
 id resetPassword_btn
-id saveAddCategory
 id setting_layout
 id settingsExit
 id settingsSave
@@ -283,6 +290,7 @@ id textView2
 id txtLocation
 id txtNote
 id updateCategoriesRecyclerView
+id updateCategory
 id updateCategoryName
 id updateCategoryNameEdit
 id updateIconRecyclerView
@@ -329,6 +337,7 @@ layout fragment_bottom_sheet_dark_settings_help
 layout fragment_bottom_sheet_dark_subcategory
 layout fragment_bottom_sheet_dark_update_categories
 layout fragment_bottom_sheet_dark_update_category
+layout fragment_bottom_sheet_dark_update_icon_category
 layout fragment_bottom_sheet_financial_advice
 layout fragment_bottom_sheet_language
 layout fragment_bottom_sheet_map
@@ -346,6 +355,7 @@ layout icon_item
 layout intro
 layout intro_dark
 layout language_item
+layout operation_dark_item
 layout operation_item
 menu bottom_nav
 mipmap ic_launcher
@@ -362,16 +372,19 @@ string analytics
 string analyticsWindow
 string analyticsWindowTxt
 string app_name
+string areYouSure
 string attachPhoto
 string authorization
 string back
 string cancel
 string categories
+string categoryName
 string choosefromGallery
 string confirmPassword
 string currency
 string dateandtime
 string default_web_client_id
+string delete
 string deleteAccount
 string details
 string done
@@ -418,6 +431,7 @@ string mainWindowTxt
 string more
 string newOperation
 string next
+string no
 string note
 string or
 string password
@@ -455,12 +469,15 @@ string str3
 string str4
 string str5
 string takeapicture
+string title
 string total
 string translation
 string update
 string userAlreadyRegistered
 string userNotFound
+string warning
 string web_client_id
+string yes
 style AppBottomSheetDialogTheme
 style AppBottomSheetStyle
 style SpinnerText

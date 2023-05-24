@@ -297,12 +297,10 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
 
         val user = Firebase.auth.currentUser
 
-        val name: String = user?.displayName ?: "UserName"
-        val photo: Uri = user?.photoUrl ?: Uri.parse("https://firebasestorage.googleapis.com/v0/b/finans-44544.appspot.com/o/images%2Fperson.png?alt=media&token=ee359b89-4846-4243-acd2-b7a09364c806")
+        val name: String = user?.displayName ?: "Username"
 
         val profileUpdates = userProfileChangeRequest {
             displayName = name
-            photoUri = photo
         }
 
         user!!.updateProfile(profileUpdates)

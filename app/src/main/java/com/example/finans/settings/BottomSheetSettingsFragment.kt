@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.*
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.text.Editable
@@ -25,7 +26,9 @@ import com.example.finans.authorization.AuthorizationActivity
 import com.example.finans.authorization.authWithFacebook.AuthorizationPresenterFacebook.Companion.TAG
 import com.example.finans.authorization.profile.BottomSheetAutorizationEmailFragment
 import com.example.finans.image.BottomSheetPhotoFragment
+import com.example.finans.image.ImageInfo
 import com.example.finans.image.ImageViewModel
+import com.example.finans.other.deletionWarning
 import com.example.finans.other.isValidPassword
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -36,6 +39,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
@@ -69,6 +73,46 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
         requireActivity().recreate()
     }
 
+    fun updatePhoto(uri: ImageInfo?){
+        if(uri?.uri != null) {
+            val inputStream = requireContext().contentResolver.openInputStream(uri.uri)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
+
+            val storageRef = Firebase.storage.reference
+            val imagesRef =
+                storageRef.child("images/${Firebase.auth.uid.toString()}/${Firebase.auth.uid.toString()}.jpg")
+
+            val uploadTask = imagesRef.putBytes(data)
+            uploadTask.addOnSuccessListener { taskSnapshot ->
+
+                taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener { uri ->
+                    val profileUpdates = userProfileChangeRequest {
+                        photoUri = uri
+                    }
+
+                    Firebase.auth.currentUser!!.updateProfile(profileUpdates)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d(ContentValues.TAG, "User profile updated.")
+
+
+
+                                dismiss()
+                                imageViewModel.clearCameraImage()
+                                imageViewModel.clearGalleryImage()
+                            }
+                        }
+                }
+
+            }
+                .addOnFailureListener { exception -> }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -84,79 +128,74 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
 
         imageViewModel.cameraImageUri.observe(viewLifecycleOwner) { uri ->
 
-            if(uri?.uri != null) {
-                val inputStream = requireContext().contentResolver.openInputStream(uri.uri)
-                val bitmap = BitmapFactory.decodeStream(inputStream)
 
-                val baos = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-                val data = baos.toByteArray()
+            if(uri != null) {
+                if(uri.cameraGallery == "camera") {
+                    updatePhoto(uri)
+                }
+                else if (uri.cameraGallery == "delete"){
 
-                val storageRef = Firebase.storage.reference
-                val imagesRef =
-                    storageRef.child("images/${Firebase.auth.uid.toString()}/${Firebase.auth.uid.toString()}.jpg")
+                        val photoRef = FirebaseStorage.getInstance().reference.child("images/${Firebase.auth.uid.toString()}/${Firebase.auth.uid.toString()}.jpg")
 
-                val uploadTask = imagesRef.putBytes(data)
-                uploadTask.addOnSuccessListener { taskSnapshot ->
-
-                    taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener { uri ->
-                        val profileUpdates = userProfileChangeRequest {
-                            photoUri = uri
-                        }
-
-                        Firebase.auth.currentUser!!.updateProfile(profileUpdates)
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    Log.d(ContentValues.TAG, "User profile updated.")
-
-                                    Picasso.get().load(Firebase.auth.currentUser?.photoUrl)
-                                        .into(view.findViewById<ImageView>(R.id.profileImage))
-
-                                    imageViewModel.clearCameraImage()
-                                }
+                        photoRef.delete()
+                            .addOnSuccessListener {
                             }
+                            .addOnFailureListener {
+                            }
+
+                    val profileUpdates = userProfileChangeRequest {
+                        photoUri = null
                     }
 
+                    Firebase.auth.currentUser!!.updateProfile(profileUpdates)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d(ContentValues.TAG, "User profile updated.")
+                            }
+                        }
+
+                    Picasso.get().load(R.drawable.person)
+                        .placeholder(R.drawable.person)
+                        .error(R.drawable.person)
+                        .into(view.findViewById<ImageView>(R.id.profileImage))
+
                 }
-                    .addOnFailureListener { exception -> }
             }
         }
 
         imageViewModel.galleryImageUri.observe(viewLifecycleOwner) { uri ->
-            if(uri?.uri != null) {
-                val inputStream = requireContext().contentResolver.openInputStream(uri.uri)
-                val bitmap = BitmapFactory.decodeStream(inputStream)
 
-                val baos = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-                val data = baos.toByteArray()
+            updatePhoto(uri)
+            if(uri != null) {
+                if(uri.cameraGallery == "gallery") {
+                    updatePhoto(uri)
+                }
+                else if (uri.cameraGallery == "delete"){
 
-                val storageRef = Firebase.storage.reference
-                val imagesRef =
-                    storageRef.child("images/${Firebase.auth.uid.toString()}/${Firebase.auth.uid.toString()}.jpg")
+                    val photoRef = FirebaseStorage.getInstance().reference.child("images/${Firebase.auth.uid.toString()}/${Firebase.auth.uid.toString()}.jpg")
 
-                val uploadTask = imagesRef.putBytes(data)
-                uploadTask.addOnSuccessListener { taskSnapshot ->
-
-                    taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener { uri ->
-                        val profileUpdates = userProfileChangeRequest {
-                            photoUri = uri
+                    photoRef.delete()
+                        .addOnSuccessListener {
+                        }
+                        .addOnFailureListener {
                         }
 
-                        Firebase.auth.currentUser!!.updateProfile(profileUpdates)
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    Log.d(ContentValues.TAG, "User profile updated.")
-
-                                    Picasso.get().load(Firebase.auth.currentUser?.photoUrl)
-                                        .into(view.findViewById<ImageView>(R.id.profileImage))
-
-                                    imageViewModel.clearGalleryImage()
-                                }
-                            }
+                    val profileUpdates = userProfileChangeRequest {
+                        photoUri = null
                     }
+
+                    Firebase.auth.currentUser!!.updateProfile(profileUpdates)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d(ContentValues.TAG, "User profile updated.")
+                            }
+                        }
+
+                    Picasso.get().load(R.drawable.person)
+                        .placeholder(R.drawable.person)
+                        .error(R.drawable.person)
+                        .into(view.findViewById<ImageView>(R.id.profileImage))
                 }
-                    .addOnFailureListener { exception -> }
             }
         }
 
@@ -195,8 +234,11 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
 
             val existingFragment =
                 requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetPhotoFragment")
+
             if (existingFragment == null) {
-                val newFragment = BottomSheetPhotoFragment()
+                val newFragment = BottomSheetPhotoFragment.newInstance("photo", Firebase.auth.currentUser?.photoUrl == null)
+                newFragment.setTargetFragment(this@BottomSheetSettingsFragment, 0)
+
                 newFragment.show(
                     requireActivity().supportFragmentManager,
                     "BottomSheetPhotoFragment"
@@ -236,10 +278,17 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
 
 
         view.findViewById<LinearLayout>(R.id.deliteUser).setOnClickListener {
-            sharedPreferences = activity?.getSharedPreferences("Settings", Context.MODE_PRIVATE)!!
 
-            deleteUser(sharedPreferences, requireActivity())
+            deletionWarning(requireContext()) { result ->
 
+                if (result) {
+
+                    sharedPreferences =
+                        activity?.getSharedPreferences("Settings", Context.MODE_PRIVATE)!!
+
+                    deleteUser(sharedPreferences, requireActivity())
+                }
+            }
         }
 
         view.findViewById<TextView>(R.id.settingsExit).setOnClickListener {

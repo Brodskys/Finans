@@ -108,7 +108,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="5dp"
-                                android:text="Название"
+                                android:text="@string/title"
                                 android:textSize="17sp"
                                 android:textColor="@color/background3"
                                 android:textStyle="bold" />
@@ -138,35 +138,45 @@
                      android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <RelativeLayout
-                        android:id="@+id/addCategoryRelativeLayout"
+                    <LinearLayout
+                        android:id="@+id/addCategoryLinearLayout"
+                        android:clickable="true"
                         android:layout_alignParentBottom="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:background="@color/background2"
                         android:padding="10dp"
-                        android:layout_marginVertical="10dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true">
+                        android:layout_marginVertical="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cornerRadius="20dp">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:id="@+id/addUpdateTextView"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="5dp"
+                                android:gravity="center"
                                 android:text="@string/addCategory"
                                 android:textColor="@color/background3"
                                 android:textSize="17sp"
-                                android:textStyle="bold"
-                                />
+                                android:textStyle="bold" />
 
-                    </RelativeLayout>
+
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:layout_above="@+id/addCategoryRelativeLayout"
+                        android:layout_above="@+id/addCategoryLinearLayout"
                         android:id="@+id/updateSubcategoryRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

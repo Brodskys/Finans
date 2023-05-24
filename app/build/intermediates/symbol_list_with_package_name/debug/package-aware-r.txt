@@ -3486,6 +3486,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable camera
+drawable categories
 drawable category
 drawable coins
 drawable com_facebook_auth_dialog_background
@@ -3534,6 +3535,8 @@ drawable compat_splash_screen
 drawable compat_splash_screen_no_icon_background
 drawable currency
 drawable datetime
+drawable delete
+drawable delete_dark
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
@@ -3696,10 +3699,10 @@ drawable splash_image
 drawable tab_indicator
 drawable tablayout_shape
 drawable tablayout_shape_dark
-drawable taxi
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable trash
 id ALT
 id BOTTOM_END
 id BOTTOM_START
@@ -3780,11 +3783,13 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addCategory
 id addCategoryEditIcon
 id addCategoryExit
 id addCategoryIcon
+id addCategoryLinearLayout
 id addCategoryName
-id addCategoryRelativeLayout
+id addUpdateTextView
 id adjust_height
 id adjust_width
 id alertTitle
@@ -3845,6 +3850,7 @@ id cancel_button
 id cardView
 id carryVelocity
 id categoriesEditExit
+id categoryAdd_LinearLayout
 id categoryEditExit
 id categoryEditIcon
 id categoryExit
@@ -3938,6 +3944,8 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
+id deleteCategory
+id delete_btn
 id deliteUser
 id deltaRelative
 id dependency_ordering
@@ -4043,9 +4051,7 @@ id ignoreRequest
 id image
 id imageView1
 id imageView2
-id imageView3
 id imageView4
-id imageView5
 id immediateStop
 id included
 id indeterminate
@@ -4203,6 +4209,7 @@ id operationDetail_currency_btn
 id operationDetail_dateTimeRelativeLayout
 id operationDetail_dateTimeTextView
 id operationDetail_location
+id operationDetail_mapImg
 id operationDetail_note
 id operationDetail_noteRelativeLayout
 id operationDetail_relativeLayoutLocation
@@ -4278,6 +4285,7 @@ id rectangles
 id registeremailIcon
 id registerpasswordIcon
 id registration_back
+id relationDelete
 id relationgallery
 id relationphoto
 id relativeLayoutLocation
@@ -4296,7 +4304,6 @@ id right_side
 id rounded
 id row_index_key
 id satellite
-id saveAddCategory
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -4454,6 +4461,7 @@ id unknown
 id unlabeled
 id up
 id updateCategoriesRecyclerView
+id updateCategory
 id updateCategoryName
 id updateCategoryNameEdit
 id updateIconRecyclerView
@@ -4659,6 +4667,7 @@ layout fragment_bottom_sheet_dark_settings_help
 layout fragment_bottom_sheet_dark_subcategory
 layout fragment_bottom_sheet_dark_update_categories
 layout fragment_bottom_sheet_dark_update_category
+layout fragment_bottom_sheet_dark_update_icon_category
 layout fragment_bottom_sheet_financial_advice
 layout fragment_bottom_sheet_language
 layout fragment_bottom_sheet_map
@@ -4748,6 +4757,7 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout operation_dark_item
 layout operation_item
 layout place_autocomplete_fragment
 layout place_autocomplete_item_powered_by_google
@@ -4813,6 +4823,7 @@ string analyticsWindowTxt
 string androidx_startup
 string app_name
 string appbar_scrolling_view_behavior
+string areYouSure
 string attachPhoto
 string authorization
 string back
@@ -4833,6 +4844,7 @@ string call_notification_ongoing_text
 string call_notification_screening_text
 string cancel
 string categories
+string categoryName
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
@@ -4886,6 +4898,7 @@ string currency
 string dateandtime
 string default_error_msg
 string default_web_client_id
+string delete
 string deleteAccount
 string details
 string done
@@ -5058,6 +5071,7 @@ string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
 string newOperation
 string next
+string no
 string note
 string or
 string password
@@ -5118,6 +5132,7 @@ string str3
 string str4
 string str5
 string takeapicture
+string title
 string total
 string translation
 string update
@@ -5130,7 +5145,9 @@ string use_fingerprint_or_screen_lock_label
 string use_screen_lock_label
 string userAlreadyRegistered
 string userNotFound
+string warning
 string web_client_id
+string yes
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

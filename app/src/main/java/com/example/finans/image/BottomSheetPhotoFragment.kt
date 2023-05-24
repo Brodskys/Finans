@@ -18,13 +18,13 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import com.example.finans.operation.BottomSheetNewOperationFragment
 import com.example.finans.R
-import com.example.finans.settings.BottomSheetSettingsFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import java.io.InputStream
 
 
@@ -35,7 +35,8 @@ class BottomSheetPhotoFragment : BottomSheetDialogFragment() {
     private val REQUEST_IMAGE_CAPTURE = 1
     val REQUEST_PICK_PHOTO = 2
     private lateinit var sharedPreferences: SharedPreferences
-
+    private lateinit var type: String
+    private var isPhoto: Boolean = false
     private lateinit var imageViewModel: ImageViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +62,8 @@ class BottomSheetPhotoFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+         type = arguments?.getString("typePhoto")!!
+         isPhoto = arguments?.getBoolean("isPhoto")!!
 
         view.findViewById<LinearLayout>(R.id.relationphoto).setOnClickListener {
 
@@ -78,26 +81,48 @@ class BottomSheetPhotoFragment : BottomSheetDialogFragment() {
             val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(pickPhoto, REQUEST_PICK_PHOTO)
         }
+        view.findViewById<LinearLayout>(R.id.relationDelete).isVisible =
+            !(type =="ocr" || isPhoto)
+
+        view.findViewById<LinearLayout>(R.id.relationDelete).setOnClickListener {
+
+            imageViewModel.setCameraImageUri(null, null, "delete", type)
+
+            dismiss()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        val type = arguments?.getString("typePhoto")
+
 
 
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 REQUEST_PICK_PHOTO -> {
-                    val imageUri = data?.data
 
-                    val inputStream: InputStream? = requireActivity().contentResolver.openInputStream(imageUri!!)
-                    val bitmap: Bitmap = BitmapFactory.decodeStream(inputStream)
-                    inputStream?.close()
+                    try {
+                        val imageUri = data?.data
+                        val inputStream: InputStream? = requireActivity().contentResolver.openInputStream(imageUri!!)
 
-                    imageViewModel.setGalleryImageUri(imageUri, bitmap, type)
+                        if (inputStream != null) {
+                            val bitmap: Bitmap? = BitmapFactory.decodeStream(inputStream)
+                            inputStream.close()
 
-                    dismiss()
+                            if (bitmap != null) {
+                                imageViewModel.setGalleryImageUri(imageUri, bitmap, "gallery", type)
+                            }
+                        }
+                        dismiss()
+
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        dismiss()
+                    }
+
+
+
                 }
                 REQUEST_IMAGE_CAPTURE  -> {
                    val imageBitmap = data?.extras?.get("data") as? Bitmap
@@ -109,7 +134,7 @@ class BottomSheetPhotoFragment : BottomSheetDialogFragment() {
                     outputStream.close()
                     val imageUri = Uri.fromFile(file)
 
-                    imageViewModel.setCameraImageUri(imageUri, imageBitmap!!, type)
+                    imageViewModel.setCameraImageUri(imageUri, imageBitmap!!, "camera", type)
 
                     dismiss()
                 }
@@ -119,10 +144,12 @@ class BottomSheetPhotoFragment : BottomSheetDialogFragment() {
 
     companion object {
         fun newInstance(
-            string: String
+            string: String,
+            photo: Boolean
         ): BottomSheetPhotoFragment {
             val args = Bundle()
             args.putString("typePhoto", string)
+            args.putBoolean("isPhoto", photo)
 
             val fragment = BottomSheetPhotoFragment()
             fragment.arguments = args

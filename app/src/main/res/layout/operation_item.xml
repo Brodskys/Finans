@@ -32,7 +32,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@+id/categoryIcon"
-                android:text="@string/categories"
                 android:textSize="8pt"
                 android:textColor="@color/background3"
                 android:textStyle="bold" />
@@ -44,7 +43,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/categoryIcon"
                 android:layout_marginTop="30dp"
-                android:text="@string/categories"
                 android:textSize="4.7pt"
                 android:textColor="@color/background3"
                 android:textStyle="bold" />
@@ -57,7 +55,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/categories"
                 android:textSize="6.5pt"
                 android:textColor="@color/background3"
                 android:textStyle="bold" />
@@ -69,7 +66,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
                 android:layout_alignParentEnd="true"
-                android:text="@string/categories"
                 android:textSize="5.5pt"
                 android:textColor="@color/background3"
                 android:textStyle="bold" />

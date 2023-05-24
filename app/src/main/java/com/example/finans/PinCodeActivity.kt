@@ -22,6 +22,7 @@ import com.example.finans.authorization.AuthorizationActivity
 import com.example.finans.language.loadLocale
 import com.example.finans.operation.BottomSheetNewOperationFragment
 import com.example.finans.operation.HomeActivity
+import com.example.finans.settings.deleteUser
 import com.example.finans.сurrency.BottomSheetCurrencyFragment
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -205,12 +206,20 @@ class PinCodeActivity : AppCompatActivity() {
                             pinErrorText.text = sb
 
                             if (error == 0) {
+
                                 val editor = pref.edit()
                                 editor?.remove("Pincode")
                                 editor?.apply()
-                                Firebase.auth.signOut()
-                                pinErrorText.visibility = View.INVISIBLE
-                                intentActivity(AuthorizationActivity())
+
+                                if (Firebase.auth.currentUser!!.isAnonymous) {
+                                    deleteUser(sharedPreferences, this@PinCodeActivity)
+                                }
+                                else {
+
+                                    Firebase.auth.signOut()
+                                    pinErrorText.visibility = View.INVISIBLE
+                                    intentActivity(AuthorizationActivity())
+                                }
                             }
                         }
 

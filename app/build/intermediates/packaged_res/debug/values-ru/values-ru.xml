@@ -10,15 +10,18 @@
     <string name="analyticsWindow">Окно аналитики</string>
     <string name="analyticsWindowTxt">   Окно, на котором пользователь может указать необходимый период и вывести статистику в виде круговой диаграммы.</string>
     <string name="app_name">Finans</string>
+    <string name="areYouSure">Вы уверены?</string>
     <string name="attachPhoto">Прикрепить фото</string>
     <string name="authorization">Авторизация</string>
     <string name="back">НАЗАД</string>
     <string name="cancel">Отмена</string>
     <string name="categories">Категории</string>
+    <string name="categoryName">Заполните название категории</string>
     <string name="choosefromGallery">Выбрать из галереи</string>
     <string name="confirmPassword">Подтвердите пароль</string>
     <string name="currency">Валюта</string>
     <string name="dateandtime">Дата и время</string>
+    <string name="delete">Удалить</string>
     <string name="deleteAccount">Удалить аккаунт</string>
     <string name="details">Подробнее</string>
     <string name="done">Готово</string>
@@ -56,6 +59,7 @@
     <string name="more">Еще</string>
     <string name="newOperation">Новая операция</string>
     <string name="next">Следующий</string>
+    <string name="no">Нет</string>
     <string name="note">Заметка</string>
     <string name="or">ИЛИ</string>
     <string name="password">Пароль</string>
@@ -92,9 +96,12 @@
     <string name="str4">Версия программного средства - 1.0.</string>
     <string name="str5">Требуемая версия Android - 10.0 или новее</string>
     <string name="takeapicture">Сфотографировать</string>
+    <string name="title">Название</string>
     <string name="total">Итого</string>
     <string name="translation">Перевод</string>
     <string name="update">Изменить</string>
     <string name="userAlreadyRegistered">Такой пользователь уже зарегистрирован</string>
     <string name="userNotFound">Неверный email или пароль</string>
+    <string name="warning">Предупреждение</string>
+    <string name="yes">Да</string>
 </resources>

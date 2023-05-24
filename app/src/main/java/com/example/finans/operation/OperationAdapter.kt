@@ -1,19 +1,12 @@
 package com.example.finans.operation
 
 import android.content.SharedPreferences
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Filter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
 import com.google.firebase.ktx.Firebase
@@ -31,7 +24,8 @@ interface OnItemClickListener {
 class OperationAdapter(private val operationList: ArrayList<Operation>) :
     RecyclerView.Adapter<OperationAdapter.ViewHolder>() {
     var selectedItem  = -1
-    lateinit var sharedPreferences: SharedPreferences
+    var sharedPreferences: SharedPreferences? = null
+    var switchState: Boolean? = null
 
     private var  operationListFiltered: ArrayList<Operation> =  operationList
     private var listener: OnItemClickListener? = null
@@ -47,7 +41,7 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
                 } else {
                     val resultList = ArrayList<Operation>()
                     for (row in  operationList) {
-                        if (row.type?.lowercase(Locale.ROOT)
+                        if (row.typeEn?.lowercase(Locale.ROOT)
                                 ?.contains(charSearch.lowercase(Locale.ROOT)) == true
                         )
                         {
@@ -70,11 +64,17 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
+       val itemView = if(switchState!!){
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.operation_dark_item,
+                parent, false)
+        } else{
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.operation_item,
+                parent, false)
+        }
 
 
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.operation_item,
-            parent, false)
         return ViewHolder(itemView)
     }
 
@@ -97,12 +97,15 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
                 Picasso.get().load(R.drawable.category).into(holder.image)
             }
         }
-//        val sharedPref =  sharedPreferences.getString("locale", "")
-//        if (sharedPref == "ru"){
-//            holder.Name.text = category.NameRus
-//        } else {
-//            holder.Name.text = category.NameEng
-//        }
+        val settings = sharedPreferences?.getString("locale", "")
+
+        if (settings == "ru"){
+            holder.type.text = operation.typeRu
+            holder.category.text = operation.categoryRu
+        } else {
+            holder.type.text = operation.typeEn
+            holder.category.text = operation.categoryEn
+        }
         val date = operation.timestamp?.toDate()
         val pattern = "dd.MM.yyyy HH:mm"
         val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
@@ -110,10 +113,11 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
 
         val dateString = date?.let { simpleDateFormat.format(it) }
 
-        holder.type.text = operation.type
+
         holder.time.text = dateString
         holder.value.text = operation.value.toString()
-        holder.category.text = operation.category
+
+
 
         holder.itemView.isSelected = selectedItem == position
 
@@ -125,8 +129,9 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
 
     }
 
-    fun setSharedPreferencesLocale(sharedPreferences: SharedPreferences) {
+    fun setSharedPreferencesLocale(sharedPreferences: SharedPreferences, switchState: Boolean) {
         this.sharedPreferences = sharedPreferences
+        this.switchState = switchState
     }
 
     override fun getItemCount(): Int {

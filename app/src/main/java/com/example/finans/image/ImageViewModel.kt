@@ -17,12 +17,12 @@ class ImageViewModel : ViewModel() {
     val galleryImageUri: LiveData<ImageInfo?>
         get() = _galleryImageUri
 
-    fun setCameraImageUri(uri: Uri?, bitmap: Bitmap, type: String?) {
-        _cameraImageUri.value = ImageInfo(uri, bitmap, type)
+    fun setCameraImageUri(uri: Uri?, bitmap: Bitmap?,cameraGallery: String, type: String) {
+        _cameraImageUri.value = ImageInfo(uri, bitmap, cameraGallery, type)
     }
 
-    fun setGalleryImageUri(uri: Uri?, bitmap: Bitmap, type: String?) {
-        _galleryImageUri.value = ImageInfo(uri, bitmap, type)
+    fun setGalleryImageUri(uri: Uri?, bitmap: Bitmap?,cameraGallery: String, type: String) {
+        _galleryImageUri.value = ImageInfo(uri, bitmap, cameraGallery, type)
     }
 
     fun clearCameraImage() {

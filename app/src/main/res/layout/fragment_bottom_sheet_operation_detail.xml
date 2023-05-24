@@ -48,6 +48,7 @@
                     android:layout_alignParentEnd="true"
                     android:clickable="true"
                     android:padding="5dp"
+                    android:visibility="gone"
                     android:background="?attr/editTextBackground"
                     android:text="@string/done"
                     android:textColor="@color/background3"
@@ -74,7 +75,7 @@
                         android:id="@+id/tab_layout2"
                         android:layout_marginStart="30dp"
                         android:layout_marginEnd="30dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="15dp"
                         tools:ignore="MissingConstraints">
 
                         <com.google.android.material.tabs.TabLayout
@@ -117,7 +118,8 @@
                             <Button
                                 android:id="@+id/operationDetail_currency_btn"
                                 android:layout_width="70dp"
-                                android:layout_height="45dp"
+                                android:layout_height="43dp"
+                                android:textSize="16sp"
                                 app:backgroundTint="@color/color_selector"
                                 android:textColor="@color/background3"
                                 android:layout_below="@id/currency_textView"/>
@@ -156,10 +158,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
                         android:padding="5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="@string/main"
                         android:textColor="@color/background3"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -188,11 +190,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="20dp"
+                                android:layout_marginStart="5dp"
                                 android:layout_toEndOf="@+id/languageIcon"
                                 android:text="@string/account"
                                 android:textColor="@color/background3"
-                                android:textSize="15.5sp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -234,11 +236,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="20dp"
+                                android:layout_marginStart="5dp"
                                 android:layout_toEndOf="@+id/operationDetail_categoryIcon"
                                 android:text="@string/categories"
                                 android:textColor="@color/background3"
-                                android:textSize="15.5sp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -282,11 +284,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="20dp"
+                                android:layout_marginStart="5dp"
                                 android:layout_toEndOf="@+id/dateandtimeIcon"
                                 android:text="@string/dateandtime"
                                 android:textColor="@color/background3"
-                                android:textSize="15.5sp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -309,40 +311,6 @@
 
                         </RelativeLayout>
 
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:cornerRadius="20dp">
-
-                            <ImageView
-                                android:id="@+id/passwordIcon"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:padding="7dp"
-                                android:src="@drawable/repeat" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="20dp"
-                                android:layout_toEndOf="@+id/passwordIcon"
-                                android:text="@string/repeattheoperation"
-                                android:textColor="@color/background3"
-                                android:textSize="15.5sp"
-                                android:textStyle="bold" />
-
-                            <androidx.appcompat.widget.SwitchCompat
-                                android:id="@+id/passwordSwitch"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:switchMinWidth="50dp"
-                                android:theme="@style/passwordSwitch" />
-                        </RelativeLayout>
-
                     </LinearLayout>
 
                     <TextView
@@ -350,10 +318,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
                         android:padding="5dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="13dp"
                         android:text="@string/details"
                         android:textColor="@color/background3"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -373,8 +341,8 @@
 
                             <ImageView
                                 android:id="@+id/languageIcon2"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
                                 android:padding="7dp"
                                 android:src="@drawable/note" />
 
@@ -383,11 +351,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="20dp"
+                                android:layout_marginStart="5dp"
                                 android:layout_toEndOf="@+id/languageIcon2"
                                 android:text="@string/note"
                                 android:textColor="@color/background3"
-                                android:textSize="15.5sp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -422,8 +390,8 @@
 
                             <ImageView
                                 android:id="@+id/currencyIcon3"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
                                 android:padding="7dp"
                                 android:src="@drawable/geolocation" />
 
@@ -432,11 +400,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="20dp"
+                                android:layout_marginStart="5dp"
                                 android:layout_toEndOf="@+id/currencyIcon3"
                                 android:text="@string/addLocation"
                                 android:textColor="@color/background3"
-                                android:textSize="15.5sp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -446,7 +414,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="10dp"
                                 android:layout_toEndOf="@+id/txtLocation"
-                                android:layout_toStartOf="@+id/Imgright33"
+                                android:layout_toStartOf="@+id/operationDetail_mapImg"
                                 android:textColor="@color/background3"
                                 android:singleLine="true"
                                 android:ellipsize="marquee"
@@ -455,7 +423,7 @@
 
 
                             <ImageView
-                                android:id="@+id/Imgright33"
+                                android:id="@+id/operationDetail_mapImg"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
@@ -472,8 +440,8 @@
 
                             <ImageView
                                 android:id="@+id/operationDetail_bill"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
                                 android:padding="7dp"
                                 android:src="@drawable/photo" />
 
@@ -481,11 +449,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="20dp"
+                                android:layout_marginStart="5dp"
                                 android:layout_toEndOf="@+id/operationDetail_bill"
                                 android:text="@string/attachPhoto"
                                 android:textColor="@color/background3"
-                                android:textSize="15.5sp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
 
@@ -502,6 +470,22 @@
                     </LinearLayout>
 
                     <Button
+                        android:id="@+id/delete_btn"
+                        style="@style/Widget.MaterialComponents.Button.Icon"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/color_selector"
+                        app:cornerRadius="20dp"
+                        android:textSize="14sp"
+                        android:drawableLeft="@drawable/trash"
+                        android:textColor="@color/red"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="35dp"
+                        android:text="@string/delete" />
+
+                    <Button
                         android:id="@+id/update_btn"
                         style="@style/Widget.MaterialComponents.Button.Icon"
                         android:textStyle="bold"
@@ -511,9 +495,11 @@
                         android:textColor="@color/background3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="35dp"
                         android:text="@string/update" />
+
+
 
                 </LinearLayout>
 

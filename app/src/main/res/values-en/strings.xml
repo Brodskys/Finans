@@ -135,5 +135,14 @@
 
     <string name="settingsWindow">Settings Window</string>
     <string name="settingsWindowTxt">   A window where the user can edit the application and his profile: currency, language, application theme, enable or disable SMS reading. In addition, you can exit the application. In the user editing window, you can delete the account or change the registration data.</string>
+    <string name="delete">Delete</string>
+
+    <string name="categoryName">Fill in the category name</string>
+    <string name="title">Title</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="warning">Warning</string>
+    <string name="areYouSure">Are you sure?</string>
 
 </resources>

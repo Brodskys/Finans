@@ -20,24 +20,16 @@
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\layout\\fragment_bottom_sheet_dark_subcategory.xml"
     },
     {
-        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\layout_fragment_bottom_sheet_photo.xml.flat",
-        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\layout\\fragment_bottom_sheet_photo.xml"
-    },
-    {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\layout_category_item.xml.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\layout\\category_item.xml"
     },
     {
+        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\layout_fragment_bottom_sheet_photo.xml.flat",
+        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\layout\\fragment_bottom_sheet_photo.xml"
+    },
+    {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\mipmap-xhdpi_ic_launcher_adaptive_fore.png.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\mipmap-xhdpi\\ic_launcher_adaptive_fore.png"
-    },
-    {
-        "merged": "com.example.finans.app-merged_res-48:/layout_fragment_bottom_sheet_subcategory.xml.flat",
-        "source": "com.example.finans.app-main-50:/layout/fragment_bottom_sheet_subcategory.xml"
-    },
-    {
-        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_online.png.flat",
-        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\online.png"
     },
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_currency.xml.flat",
@@ -56,16 +48,24 @@
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\mipmap-hdpi\\ic_launcher.png"
     },
     {
+        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_delete.xml.flat",
+        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\delete.xml"
+    },
+    {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_search.xml.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\search.xml"
     },
     {
-        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_datetime.xml.flat",
-        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\datetime.xml"
+        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_trash.xml.flat",
+        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\trash.xml"
     },
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_receipt.xml.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\receipt.xml"
+    },
+    {
+        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_datetime.xml.flat",
+        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\datetime.xml"
     },
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\xml_shortcuts.xml.flat",
@@ -200,10 +200,6 @@
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\round_20_dark.xml"
     },
     {
-        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\layout_fragment_bottom_sheet_dark_authorization.xml.flat",
-        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\layout\\fragment_bottom_sheet_dark_authorization.xml"
-    },
-    {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_key.xml.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\key.xml"
     },
@@ -272,12 +268,16 @@
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\reload.xml"
     },
     {
-        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\raw_test.json.flat",
-        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\raw\\test.json"
-    },
-    {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\mipmap-mdpi_ic_launcher_adaptive_fore.png.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\mipmap-mdpi\\ic_launcher_adaptive_fore.png"
+    },
+    {
+        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_categories.xml.flat",
+        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\categories.xml"
+    },
+    {
+        "merged": "com.example.finans.app-merged_res-48:/layout_operation_dark_item.xml.flat",
+        "source": "com.example.finans.app-main-50:/layout/operation_dark_item.xml"
     },
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\layout_fragment_bottom_sheet_dark_new_operation.xml.flat",
@@ -320,10 +320,6 @@
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\layout\\currency_item.xml"
     },
     {
-        "merged": "com.example.finans.app-merged_res-48:/layout_activity_home.xml.flat",
-        "source": "com.example.finans.app-main-50:/layout/activity_home.xml"
-    },
-    {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_analytics.xml.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\analytics.xml"
     },
@@ -352,6 +348,10 @@
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\right_dark.xml"
     },
     {
+        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_delete_dark.xml.flat",
+        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\delete_dark.xml"
+    },
+    {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\color_color_selector.xml.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\color\\color_selector.xml"
     },
@@ -360,8 +360,16 @@
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\layout\\fragment_bottom_sheet_dark_update_categories.xml"
     },
     {
+        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\drawable_trash_dark.xml.flat",
+        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\drawable\\trash_dark.xml"
+    },
+    {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\layout_fragment_bottom_sheet_dark_photo.xml.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\layout\\fragment_bottom_sheet_dark_photo.xml"
+    },
+    {
+        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\layout_fragment_bottom_sheet_dark_update_icon_category.xml.flat",
+        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\layout\\fragment_bottom_sheet_dark_update_icon_category.xml"
     },
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
@@ -414,10 +422,6 @@
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\mipmap-mdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\mipmap-mdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\layout_fragment_bottom_sheet_authorization.xml.flat",
-        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-50:\\layout\\fragment_bottom_sheet_authorization.xml"
     },
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-48:\\layout_activity_settings.xml.flat",

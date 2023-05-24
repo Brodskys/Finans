@@ -10,15 +10,18 @@
     <string name="analyticsWindow">Analytics Window</string>
     <string name="analyticsWindowTxt">   A window where the user can specify the required period and display statistics in the form of a pie chart.</string>
     <string name="app_name">Finans</string>
+    <string name="areYouSure">Are you sure?</string>
     <string name="attachPhoto">Attach a photo</string>
     <string name="authorization">Authorization</string>
     <string name="back">BACK</string>
     <string name="cancel">Cancel</string>
     <string name="categories">Categories</string>
+    <string name="categoryName">Fill in the category name</string>
     <string name="choosefromGallery">Choose from Gallery</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="currency">Currency</string>
     <string name="dateandtime">Date and time</string>
+    <string name="delete">Delete</string>
     <string name="deleteAccount">Delete Account</string>
     <string name="details">Details</string>
     <string name="done">Done</string>
@@ -56,6 +59,7 @@
     <string name="more">More</string>
     <string name="newOperation">New Operation</string>
     <string name="next">Next</string>
+    <string name="no">No</string>
     <string name="note">Note</string>
     <string name="or">OR</string>
     <string name="password">Password</string>
@@ -92,9 +96,12 @@
     <string name="str4">Software version - 1.0.</string>
     <string name="str5">Required Android version - 10.0 or later</string>
     <string name="takeapicture">Take a picture</string>
+    <string name="title">Title</string>
     <string name="total">Total</string>
     <string name="translation">Translation</string>
     <string name="update">Change</string>
     <string name="userAlreadyRegistered">Such a user is already registered</string>
     <string name="userNotFound">Invalid email or password</string>
+    <string name="warning">Warning</string>
+    <string name="yes">Yes</string>
 </resources>

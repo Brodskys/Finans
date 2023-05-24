@@ -119,6 +119,7 @@ class BottomSheetLanguageFragment : BottomSheetDialogFragment(), OnItemClickList
             editor?.apply()
 
             dismiss()
+            act?.recreateActivity()
         }
 
         languageSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
@@ -133,10 +134,6 @@ class BottomSheetLanguageFragment : BottomSheetDialogFragment(), OnItemClickList
 
         })
 
-    }
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        act?.recreateActivity()
     }
 
     fun setActivity(activity: SettingsActivity) {

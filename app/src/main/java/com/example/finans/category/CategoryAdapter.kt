@@ -40,6 +40,8 @@ class CategoryAdapter(private val categoryList: ArrayList<Category>) :RecyclerVi
                     val resultList = ArrayList<Category>()
                     for (row in categoryList) {
                         if (row.nameRus?.lowercase(Locale.ROOT)
+                                ?.contains(charSearch.lowercase(Locale.ROOT)) == true ||
+                            row.nameEng?.lowercase(Locale.ROOT)
                                 ?.contains(charSearch.lowercase(Locale.ROOT)) == true
                         )
                         {

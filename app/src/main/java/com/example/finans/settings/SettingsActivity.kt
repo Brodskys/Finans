@@ -1,12 +1,15 @@
 package com.example.finans.settings
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
@@ -14,6 +17,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.SwitchCompat
@@ -23,22 +27,15 @@ import com.example.finans.*
 import com.example.finans.authorization.AuthorizationActivity
 import com.example.finans.language.BottomSheetLanguageFragment
 import com.example.finans.language.loadLocale
+import com.example.finans.operation.BottomSheetNewOperationFragment
 import com.example.finans.operation.HomeActivity
+import com.example.finans.other.deletionWarning
 import com.example.finans.сurrency.BottomSheetCurrencyFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
-import android.Manifest
-import android.app.ActivityManager
-import android.net.Uri
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.core.view.isVisible
-import com.example.finans.image.BottomSheetPhotoFragment
-import com.example.finans.operation.BottomSheetNewOperationFragment
-import com.google.android.material.textfield.TextInputEditText
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var bottomNav: BottomNavigationView
@@ -54,14 +51,17 @@ class SettingsActivity : AppCompatActivity() {
         val switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
 
-        if(switchState){
+        if (switchState) {
             setContentView(R.layout.activity_dark_settings)
             window.statusBarColor = getColor(R.color.background2_dark)
 
-            findViewById<BottomNavigationView>(R.id.bottomNavigationView).itemIconTintList = ContextCompat.getColorStateList(this, R.drawable.selector_dark)
-            findViewById<BottomNavigationView>(R.id.bottomNavigationView).itemTextColor = ContextCompat.getColorStateList(this, R.drawable.selector_dark)
+            findViewById<BottomNavigationView>(R.id.bottomNavigationView).itemIconTintList =
+                ContextCompat.getColorStateList(this, R.drawable.selector_dark)
+            findViewById<BottomNavigationView>(R.id.bottomNavigationView).itemTextColor =
+                ContextCompat.getColorStateList(this, R.drawable.selector_dark)
 
-            findViewById<AppCompatButton>(R.id.editProfile_btn).background = getDrawable(R.drawable.round_20_dark)
+            findViewById<AppCompatButton>(R.id.editProfile_btn).background =
+                getDrawable(R.drawable.round_20_dark)
 
             val parentLayout = findViewById<LinearLayout>(R.id.setting_layout)
 
@@ -72,14 +72,16 @@ class SettingsActivity : AppCompatActivity() {
                     childView.background = getDrawable(R.drawable.round_20_dark)
                 }
             }
-        }
-        else{
+        } else {
             setContentView(R.layout.activity_settings)
 
-            findViewById<BottomNavigationView>(R.id.bottomNavigationView).itemIconTintList = ContextCompat.getColorStateList(this, R.drawable.selector)
-            findViewById<BottomNavigationView>(R.id.bottomNavigationView).itemTextColor = ContextCompat.getColorStateList(this, R.drawable.selector)
+            findViewById<BottomNavigationView>(R.id.bottomNavigationView).itemIconTintList =
+                ContextCompat.getColorStateList(this, R.drawable.selector)
+            findViewById<BottomNavigationView>(R.id.bottomNavigationView).itemTextColor =
+                ContextCompat.getColorStateList(this, R.drawable.selector)
 
-            findViewById<AppCompatButton>(R.id.editProfile_btn).background = getDrawable(R.drawable.round_20)
+            findViewById<AppCompatButton>(R.id.editProfile_btn).background =
+                getDrawable(R.drawable.round_20)
 
             val parentLayout = findViewById<LinearLayout>(R.id.setting_layout)
 
@@ -98,9 +100,9 @@ class SettingsActivity : AppCompatActivity() {
         findViewById<FloatingActionButton>(R.id.navigationViewAdd).backgroundTintList =
             ColorStateList.valueOf(Color.parseColor("#2d313d"))
 
-         Picasso.get().load(Firebase.auth.currentUser?.photoUrl)
-             .placeholder(R.drawable.person)
-             .error(R.drawable.person)
+        Picasso.get().load(Firebase.auth.currentUser?.photoUrl)
+            .placeholder(R.drawable.person)
+            .error(R.drawable.person)
             .into(findViewById<ImageView>(R.id.userImageSetting))
 
 
@@ -160,8 +162,16 @@ class SettingsActivity : AppCompatActivity() {
         smsSwith.setOnCheckedChangeListener { _, isChecked ->
             val intent = Intent(this, SmsService::class.java)
             if (isChecked) {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_SMS), REQUEST_CODE_SMS_PERMISSION)
+                if (ContextCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.READ_SMS
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    ActivityCompat.requestPermissions(
+                        this,
+                        arrayOf(Manifest.permission.READ_SMS),
+                        REQUEST_CODE_SMS_PERMISSION
+                    )
                     smsSwith.isChecked = false
                 } else {
                     startService(intent)
@@ -172,22 +182,29 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         findViewById<LinearLayout>(R.id.exitBtn).setOnClickListener {
-            sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)!!
+
+            deletionWarning(this) { result ->
+
+                if (result) {
+
+                    sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE)!!
 
 
-            if (Firebase.auth.currentUser!!.isAnonymous) {
-                deleteUser(sharedPreferences, this)
+                    if (Firebase.auth.currentUser!!.isAnonymous) {
+                        deleteUser(sharedPreferences, this)
 
-            } else {
+                    } else {
 
-            val editor = sharedPreferences.edit()
-            editor?.remove("Pincode")
-            editor?.apply()
+                        val editor = sharedPreferences.edit()
+                        editor?.remove("Pincode")
+                        editor?.apply()
+                    }
+
+                    Firebase.auth.signOut()
+                    startActivity(Intent(this, AuthorizationActivity::class.java))
+                    finish()
+                }
             }
-
-            Firebase.auth.signOut()
-            startActivity(Intent(this, AuthorizationActivity::class.java))
-            finish()
         }
 
         findViewById<AppCompatButton>(R.id.editProfile_btn).setOnClickListener {
@@ -324,9 +341,6 @@ class SettingsActivity : AppCompatActivity() {
     }
 
 
-
-
-
     private val navListener = BottomNavigationView.OnNavigationItemSelectedListener {
 
         when (it.itemId) {
@@ -334,6 +348,7 @@ class SettingsActivity : AppCompatActivity() {
                 this.startActivity(Intent(this, HomeActivity::class.java))
                 overridePendingTransition(0, 0)
             }
+
             R.id.planning -> {
                 this.startActivity(Intent(this, PlansActivity::class.java))
                 overridePendingTransition(0, 0)
@@ -343,6 +358,7 @@ class SettingsActivity : AppCompatActivity() {
                 this.startActivity(Intent(this, AnalyticsActivity::class.java))
                 overridePendingTransition(0, 0)
             }
+
             R.id.menu -> {
                 this.startActivity(Intent(this, SettingsActivity::class.java))
                 overridePendingTransition(0, 0)

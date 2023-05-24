@@ -41,7 +41,6 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         categoryViewModel = ViewModelProvider(requireActivity()).get(CategoryViewModel::class.java)
     }
 
@@ -164,8 +163,8 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
                     requireActivity().supportFragmentManager,
                     "BottomSheetUpdateCategoryFragment"
                 )
-
             }
+            dismiss()
         }
 
 
@@ -191,7 +190,8 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
     private fun getCategoryData() {
         dbref = FirebaseFirestore.getInstance()
 
-        FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString()).collection("category").document(category?.nameEng!!.lowercase(Locale.ROOT)).collection("subcategories")
+        FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString()).collection("category").document(
+            category.name!!).collection("subcategories")
             .addSnapshotListener { value, error ->
                 if (error != null) {
                     return@addSnapshotListener
