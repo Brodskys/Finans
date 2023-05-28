@@ -144,4 +144,9 @@
     <string name="warning">Предупреждение</string>
     <string name="areYouSure">Вы уверены?</string>
 
+    <string name="isEmailVerified">Ожидание подтверждения электронной почте</string>
+
+    <string name="fillInAllFields">Заполните все поля</string>
+
+
 </resources>

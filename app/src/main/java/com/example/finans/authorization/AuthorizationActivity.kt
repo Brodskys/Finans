@@ -28,7 +28,9 @@ import com.example.finans.authorization.authWithFacebook.AuthorizationPresenterF
 import com.example.finans.authorization.authWithGoogle.AuthorizationModelGoogle
 import com.example.finans.authorization.authWithGoogle.AuthorizationPresenterGoogle
 import com.example.finans.authorization.passwordResetEmail.BottomSheetPasswordResetFragment
+import com.example.finans.authorization.profile.BottomSheetIsEmailVerified
 import com.example.finans.language.loadLocale
+import com.example.finans.operation.BottomSheetNewOperationFragment
 import com.example.finans.other.isEmailValid
 import com.example.finans.other.isValidPassword
 import com.example.finans.operation.HomeActivity
@@ -166,13 +168,30 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
                         }
                     }
 
-                    if(isPassword) {
-                        this@AuthorizationActivity.startActivity(Intent(this@AuthorizationActivity, PinCodeActivity::class.java))
-                        finish()
-                    } else
-                        this@AuthorizationActivity.startActivity(Intent(this@AuthorizationActivity, HomeActivity::class.java))
-                    finish()
+                //    if(Firebase.auth.currentUser!!.isEmailVerified) {
 
+                        if (isPassword) {
+                            this@AuthorizationActivity.startActivity(
+                                Intent(
+                                    this@AuthorizationActivity,
+                                    PinCodeActivity::class.java
+                                )
+                            )
+                            finish()
+                        } else
+                            this@AuthorizationActivity.startActivity(
+                                Intent(
+                                    this@AuthorizationActivity,
+                                    HomeActivity::class.java
+                                )
+                            )
+                        finish()
+//                    }
+//                    else{
+//                        val bottomSheetFragment = supportFragmentManager.findFragmentByTag("BottomSheetIsEmailVerified") as? BottomSheetIsEmailVerified
+//                        if (bottomSheetFragment == null)
+//                            BottomSheetIsEmailVerified().show(supportFragmentManager, "BottomSheetIsEmailVerified")
+//                    }
                 }
 
 
@@ -256,13 +275,15 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
         val format = SimpleDateFormat("dd.M.yyyy", Locale.getDefault());
         val currentDate = format.format(Date())
 
-        val hashMap = hashMapOf<String, Any>(
-            "date_registration" to currentDate,
-            "balance" to 0
-        )
-        val fireStoreDatabase = FirebaseFirestore.getInstance()
+        val userId = FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString())
 
-        fireStoreDatabase.collection("users").document(Firebase.auth.uid.toString()).collection("user").document("information").set(hashMap, SetOptions.merge())
+        val informationMap = hashMapOf<String, Any>(
+            "date_registration" to currentDate,
+            "total_balance" to 0,
+            "accounts" to "cash"
+        )
+
+        userId.collection("user").document("information").set(informationMap, SetOptions.merge())
             .addOnSuccessListener {
                 Log.d("Registration", "Added document")
             }
@@ -271,8 +292,34 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
 
             }
 
+        val accountsMap = hashMapOf<String, Any>(
+            "name" to "cash",
+            "balance" to 0,
+            "nameRus" to "Наличные",
+            "nameEng" to "Cash",
+            "icon" to "gs://finans-44544.appspot.com/accounts/coins.png",
+            "currency" to ""
+        )
+
+            val sharedPref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+
+            val editor = sharedPref?.edit()
+            editor!!.putString("accounts", "cash")
+            editor.apply()
+
+
+        userId.collection("accounts").document("cash").set(accountsMap, SetOptions.merge())
+            .addOnSuccessListener {
+                Log.d("Registration", "Added document")
+            }
+            .addOnFailureListener { exception ->
+                Log.d("Registration", "Error adding document $exception")
+
+            }
+
+
         val sourceCollectionRef = FirebaseFirestore.getInstance().collection("category")
-        val targetCollectionRef = FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString()).collection("category")
+        val targetCollectionRef = userId.collection("category")
 
 
         sourceCollectionRef.get().addOnSuccessListener { querySnapshot ->

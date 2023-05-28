@@ -156,4 +156,9 @@
     <string name="warning">Warning</string>
     <string name="areYouSure">Are you sure?</string>
 
+    <string name="isEmailVerified">Waiting for confirmation by email</string>
+
+    <string name="fillInAllFields">Fill in all fields</string>
+
+
 </resources>

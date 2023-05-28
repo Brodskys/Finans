@@ -40,7 +40,11 @@ import com.example.finans.image.parsing
 import com.example.finans.language.languageInit
 import com.example.finans.map.BottomSheetMapFragment
 import com.example.finans.map.MapViewModel
-import com.example.finans.operation.operationDetail.CurrencyViewModel
+import com.example.finans.accounts.AccountsViewModel
+import com.example.finans.accounts.BottomSheetAccounts
+import com.example.finans.сurrency.CurrencyViewModel
+import com.example.finans.operation.qr.BottomSheetQR
+import com.example.finans.operation.qr.QrViewModel
 import com.example.finans.сurrency.BottomSheetCurrencyFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -55,16 +59,24 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.regex.Pattern
 
 class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
 
     private lateinit var categoryViewModel: CategoryViewModel
     private lateinit var mapViewModel: MapViewModel
     private lateinit var imageViewModel: ImageViewModel
+    private lateinit var accountsViewModel: AccountsViewModel
     private var image : String = ""
+    private var accountName : String? = null
     private lateinit var sharedPreferences: SharedPreferences
     private var switchState: Boolean = true
     private var photo: ByteArray? = null
@@ -72,11 +84,12 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
     private var map = GeoPoint(0.0, 0.0)
     private lateinit var db: FirebaseFirestore
     private lateinit var category: Category
+    private val requestCodeCameraPermission = 1001
+
 
     private lateinit var amount: EditText
     private lateinit var dateTimeTextView: TextView
-    private lateinit var currencyViewModel: CurrencyViewModel
-
+    private lateinit var qrViewModel: QrViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -96,7 +109,6 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
             inflater.inflate(R.layout.fragment_bottom_sheet_new_operation, container, false)
         }
 
-
     }
 
     @SuppressLint("ResourceType", "CutPasteId")
@@ -112,6 +124,65 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
             .build()
 
         db.firestoreSettings = settings
+
+        val s = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val accounts = s.getString("accounts", "")
+
+        val docRef = db.collection("users").document(Firebase.auth.uid.toString())
+            .collection("accounts")
+            .document(accounts!!)
+
+        var accountN = view.findViewById<TextView>(R.id.accountName_NewOperation)
+        val accountIcon = view.findViewById<ImageView>(R.id.accountIcon_NewOperation)
+        val locale = s.getString("locale", "")
+
+        docRef.get()
+            .addOnSuccessListener { snapshot ->
+
+                if (locale == "ru"){
+
+                    accountN.text = snapshot!!.getString("nameRus")
+
+                } else {
+                    accountN.text = snapshot!!.getString("nameEng")
+                }
+
+                val gsReference = Firebase.storage.getReferenceFromUrl(snapshot.getString("icon")!!)
+
+                gsReference.downloadUrl.addOnSuccessListener { uri ->
+                    Picasso.get().load(uri.toString()).into(accountIcon)
+                }.addOnFailureListener {
+                    Picasso.get().load(R.drawable.coins).into(accountIcon)
+                }
+                view.findViewById<Button>(R.id.currency_btn).text = snapshot.getString("currency")
+
+            }
+
+
+        accountsViewModel = ViewModelProvider(requireActivity())[AccountsViewModel::class.java]
+        accountsViewModel.getSelectedAccounts().observe(this) { acc ->
+            if(acc!=null) {
+
+                if (locale == "ru"){
+
+                    accountN.text = acc.nameRus
+
+                } else {
+                    accountN.text = acc.nameEng
+                }
+
+                val gsReference = Firebase.storage.getReferenceFromUrl(acc.icon!!)
+
+                gsReference.downloadUrl.addOnSuccessListener { uri ->
+                    Picasso.get().load(uri.toString()).into(accountIcon)
+                }.addOnFailureListener {
+                    Picasso.get().load(R.drawable.coins).into(accountIcon)
+                }
+                view.findViewById<Button>(R.id.currency_btn).text = acc.currency
+                accountName = acc.name!!
+                accountsViewModel.clearAccounts()
+            }
+        }
 
 
         if(switchState) {
@@ -214,7 +285,14 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
                 categoryViewModel.clearCategory()
             }
         }
+        qrViewModel = ViewModelProvider(requireActivity())[QrViewModel::class.java]
 
+        qrViewModel.getSelectedQr().observe(viewLifecycleOwner) { qr ->
+
+            if(qr != null) {
+                qrText(qr)
+            }
+        }
 
         imageViewModel = ViewModelProvider(requireActivity())[ImageViewModel::class.java]
 
@@ -278,34 +356,6 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
             }
         })
 
-        val sharedPref = context?.getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        val selectedCurrency = sharedPref?.getString("currency", "")
-        view.findViewById<Button>(R.id.currency_btn).text = selectedCurrency
-
-        currencyViewModel = ViewModelProvider(requireActivity())[CurrencyViewModel::class.java]
-        currencyViewModel.getSelectedCCurrency().observe(this) { currency ->
-
-            view.findViewById<Button>(R.id.currency_btn).text = currency
-
-        }
-
-        view.findViewById<Button>(R.id.currency_btn).setOnClickListener {
-
-            val existingFragment =
-                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetCurrencyFragment")
-            if (existingFragment == null) {
-                val newFragment = BottomSheetCurrencyFragment()
-
-                newFragment.show(
-                    requireActivity().supportFragmentManager,
-                    "BottomSheetCurrencyFragment"
-                )
-            }
-        }
-
-
-
-
         view.findViewById<Button>(R.id.good_btn).setOnClickListener {
             if (view.findViewById<EditText>(R.id.amount_field).text.toString().isNotEmpty()
                 && view.findViewById<TextView>(R.id.subcategory_txt).text.toString().isNotEmpty()) {
@@ -328,8 +378,8 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
             }
             else{
                 val builder = AlertDialog.Builder(requireContext())
-                builder.setTitle("Ошибка")
-                builder.setMessage("Заполните сумму и категорию")
+                builder.setTitle(R.string.error)
+                builder.setMessage(R.string.fillInAllFields)
                 builder.setIcon(android.R.drawable.ic_dialog_alert)
                 builder.setPositiveButton("OK", null)
                 val dialog = builder.create()
@@ -341,6 +391,23 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
         view.findViewById<TextView>(R.id.newOperationExit).setOnClickListener {
             dismiss()
         }
+
+
+        view.findViewById<RelativeLayout>(R.id.accountsRelativeLayout).setOnClickListener {
+
+            val existingFragment =
+                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetAccounts")
+            if (existingFragment == null) {
+                val newFragment = BottomSheetAccounts.newInstance("newOper")
+                newFragment.show(
+                    requireActivity().supportFragmentManager,
+                    "BottomSheetAccounts"
+                )
+            }
+
+        }
+
+
 
         view.findViewById<TextView>(R.id.newOperationDone).setOnClickListener {
             if (view.findViewById<EditText>(R.id.amount_field).text.toString().isNotEmpty()
@@ -364,8 +431,8 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
             }
             else{
                 val builder = AlertDialog.Builder(requireContext())
-                builder.setTitle("Ошибка")
-                builder.setMessage("Заполните сумму и категорию")
+                builder.setTitle(R.string.error)
+                builder.setMessage(R.string.fillInAllFields)
                 builder.setIcon(android.R.drawable.ic_dialog_alert)
                 builder.setPositiveButton("OK", null)
                 val dialog = builder.create()
@@ -515,6 +582,26 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
             }
         }
 
+        view.findViewById<RelativeLayout>(R.id.relativeLayoutQR).setOnClickListener {
+
+
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), requestCodeCameraPermission)
+            } else {
+                val existingFragment = requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetQR")
+                if (existingFragment == null) {
+                    val newFragment = BottomSheetQR()
+                    newFragment.show(
+                        requireActivity().supportFragmentManager,
+                        "BottomSheetQR"
+                    )
+                }
+            }
+
+        }
+
+
         view.findViewById<RelativeLayout>(R.id.relativeLayoutOCR).setOnClickListener{
 
             val existingFragment =
@@ -553,6 +640,23 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
 
     }
 
+    private fun qrText(qr: String) {
+
+        if(qr!=""){
+
+            val pattern = Pattern.compile("s=([0-9]+\\.?[0-9]*)")
+            val matcher = pattern.matcher(qr)
+            var value = ""
+            while (matcher.find()) {
+                value = matcher.group(1)
+            }
+            if(!value.isNullOrEmpty()){
+                amount.setText(value)
+            }
+        }
+        qrViewModel.clearQr()
+    }
+
     fun isInternetConnected(context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val network = connectivityManager.activeNetwork
@@ -576,27 +680,37 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
             requireView().findViewById<ImageView>(R.id.currencyIcon4).setImageBitmap(bitmap)
         }
             else {
+                val swipeRefreshLayout = requireView().findViewById<ProgressBar>(R.id.swipeNewOperation_refreshLayout)
+               var str = ""
+               var result: List<String>? = null
 
-                val str = ocr(requireActivity(), uri.bitmap!!)
+                CoroutineScope(Dispatchers.Main).launch {
+                    swipeRefreshLayout.visibility = View.VISIBLE
+                     str = withContext(Dispatchers.Default) {
+                       delay(100)
+                        ocr(requireActivity(), uri.bitmap!!)
+                    }
 
-              val result = parsing(str)
+                    result = parsing(str)
+                    val date: String? = result?.get(0)
+                    val time: String? = result?.get(1)
+                    val dateTime: String? = result?.get(2)
+                    val money: String? = result?.get(3)
 
+                    if (date!= "" && time!= ""){
+                        dateTimeTextView.text = "${date} ${time}"
+                    }
+                    else if(dateTime!=""){
+                        dateTimeTextView.text = dateTime
+                    }
 
-                val date: String = result[0]
-                val time: String = result[1]
-                val dateTime: String = result[2]
-                val money: String = result[3]
+                    if(money!=""){
+                        amount.setText(money)
+                    }
 
-                if (date!= "" && time!= ""){
-                    dateTimeTextView.text = "${date} ${time}"
+                    swipeRefreshLayout.visibility = View.GONE
                 }
-                else if(dateTime!=""){
-                    dateTimeTextView.text = dateTime
-                }
 
-                if(money!=""){
-                    amount.setText(money)
-                }
 
             }
 
@@ -606,7 +720,6 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
         }
 
     }
-
 
     @SuppressLint("SuspiciousIndentation", "StringFormatInvalid")
     private fun uploadData(
@@ -671,18 +784,33 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
             .setPersistenceEnabled(true)
             .build()
 
+
+        val userID = db.collection("users").document(Firebase.auth.uid.toString())
+
+        val sharedPref = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val accounts = sharedPref.getString("accounts", "")
+
+        val ac = accountName ?: accounts
+
         db.firestoreSettings = settings
 
-        db.collection("users").document(Firebase.auth.uid.toString())
+        userID
             .collection("user").document("information")
+            .update("total_balance", FieldValue.increment(money))
+            .addOnSuccessListener {}
+            .addOnFailureListener {}
+
+        userID
+            .collection("accounts").document(ac!!)
             .update("balance", FieldValue.increment(money))
             .addOnSuccessListener {}
             .addOnFailureListener {}
 
-
             var error = false
 
-             db.collection("users").document(Firebase.auth.uid.toString())
+        userID
+            .collection("accounts")
+            .document(ac)
             .collection("operation").add(hashMap)
             .addOnSuccessListener { documentReference ->
                 val id = hashMapOf<String, Any>(
@@ -690,7 +818,12 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment(){
                 )
                 documentReference.update(id)
                     .addOnSuccessListener {
-                        dismiss()
+                        if (isAdded) {
+                            requireActivity().recreate()
+                            dismiss()
+                        }
+
+
                     }
                     .addOnFailureListener { error = true }
             }

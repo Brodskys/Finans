@@ -4,6 +4,7 @@ package com.example.finans.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,15 +25,19 @@ public final class ActivityPinCodeBinding implements ViewBinding {
   public final PinView PinView;
 
   @NonNull
+  public final ImageView biometricImg;
+
+  @NonNull
   public final TextView pinErrorText;
 
   @NonNull
   public final TextView pinText;
 
   private ActivityPinCodeBinding(@NonNull ConstraintLayout rootView, @NonNull PinView PinView,
-      @NonNull TextView pinErrorText, @NonNull TextView pinText) {
+      @NonNull ImageView biometricImg, @NonNull TextView pinErrorText, @NonNull TextView pinText) {
     this.rootView = rootView;
     this.PinView = PinView;
+    this.biometricImg = biometricImg;
     this.pinErrorText = pinErrorText;
     this.pinText = pinText;
   }
@@ -70,6 +75,12 @@ public final class ActivityPinCodeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.biometricImg;
+      ImageView biometricImg = ViewBindings.findChildViewById(rootView, id);
+      if (biometricImg == null) {
+        break missingId;
+      }
+
       id = R.id.pinErrorText;
       TextView pinErrorText = ViewBindings.findChildViewById(rootView, id);
       if (pinErrorText == null) {
@@ -82,8 +93,8 @@ public final class ActivityPinCodeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityPinCodeBinding((ConstraintLayout) rootView, PinView, pinErrorText,
-          pinText);
+      return new ActivityPinCodeBinding((ConstraintLayout) rootView, PinView, biometricImg,
+          pinErrorText, pinText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

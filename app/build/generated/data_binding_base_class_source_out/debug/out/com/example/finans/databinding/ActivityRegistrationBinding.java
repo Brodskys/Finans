@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +14,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.finans.R;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -27,25 +28,22 @@ public final class ActivityRegistrationBinding implements ViewBinding {
   public final Button authUserBtn;
 
   @NonNull
-  public final ImageView confirmPasswordIcon;
-
-  @NonNull
   public final LinearLayout confirmPasswordLayout;
 
   @NonNull
   public final TextView confirmPasswordTxt;
 
   @NonNull
-  public final EditText createUserTextConfirmPassword;
+  public final ImageView confirmpasswordIcon;
 
   @NonNull
-  public final EditText createUserTextEmailAddress;
+  public final TextInputEditText createUserTextConfirmPassword;
 
   @NonNull
-  public final EditText createUserTextPassword;
+  public final TextInputEditText createUserTextEmailAddress;
 
   @NonNull
-  public final ImageView emailIcon;
+  public final TextInputEditText createUserTextPassword;
 
   @NonNull
   public final LinearLayout emailLayout;
@@ -57,42 +55,55 @@ public final class ActivityRegistrationBinding implements ViewBinding {
   public final LinearLayout linearLayout;
 
   @NonNull
-  public final ImageView passwordIcon;
-
-  @NonNull
   public final LinearLayout passwordLayout;
 
   @NonNull
   public final TextView passwordTxt;
 
   @NonNull
+  public final ImageView registeremailIcon;
+
+  @NonNull
+  public final ImageView registerpasswordIcon;
+
+  @NonNull
   public final Button registrationBack;
 
+  @NonNull
+  public final TextInputLayout textInputLayoutTextConfirmPassword;
+
+  @NonNull
+  public final TextInputLayout textInputLayoutTextPassword;
+
   private ActivityRegistrationBinding(@NonNull ConstraintLayout rootView,
-      @NonNull Button authUserBtn, @NonNull ImageView confirmPasswordIcon,
-      @NonNull LinearLayout confirmPasswordLayout, @NonNull TextView confirmPasswordTxt,
-      @NonNull EditText createUserTextConfirmPassword, @NonNull EditText createUserTextEmailAddress,
-      @NonNull EditText createUserTextPassword, @NonNull ImageView emailIcon,
-      @NonNull LinearLayout emailLayout, @NonNull TextView emailTxt,
-      @NonNull LinearLayout linearLayout, @NonNull ImageView passwordIcon,
+      @NonNull Button authUserBtn, @NonNull LinearLayout confirmPasswordLayout,
+      @NonNull TextView confirmPasswordTxt, @NonNull ImageView confirmpasswordIcon,
+      @NonNull TextInputEditText createUserTextConfirmPassword,
+      @NonNull TextInputEditText createUserTextEmailAddress,
+      @NonNull TextInputEditText createUserTextPassword, @NonNull LinearLayout emailLayout,
+      @NonNull TextView emailTxt, @NonNull LinearLayout linearLayout,
       @NonNull LinearLayout passwordLayout, @NonNull TextView passwordTxt,
-      @NonNull Button registrationBack) {
+      @NonNull ImageView registeremailIcon, @NonNull ImageView registerpasswordIcon,
+      @NonNull Button registrationBack, @NonNull TextInputLayout textInputLayoutTextConfirmPassword,
+      @NonNull TextInputLayout textInputLayoutTextPassword) {
     this.rootView = rootView;
     this.authUserBtn = authUserBtn;
-    this.confirmPasswordIcon = confirmPasswordIcon;
     this.confirmPasswordLayout = confirmPasswordLayout;
     this.confirmPasswordTxt = confirmPasswordTxt;
+    this.confirmpasswordIcon = confirmpasswordIcon;
     this.createUserTextConfirmPassword = createUserTextConfirmPassword;
     this.createUserTextEmailAddress = createUserTextEmailAddress;
     this.createUserTextPassword = createUserTextPassword;
-    this.emailIcon = emailIcon;
     this.emailLayout = emailLayout;
     this.emailTxt = emailTxt;
     this.linearLayout = linearLayout;
-    this.passwordIcon = passwordIcon;
     this.passwordLayout = passwordLayout;
     this.passwordTxt = passwordTxt;
+    this.registeremailIcon = registeremailIcon;
+    this.registerpasswordIcon = registerpasswordIcon;
     this.registrationBack = registrationBack;
+    this.textInputLayoutTextConfirmPassword = textInputLayoutTextConfirmPassword;
+    this.textInputLayoutTextPassword = textInputLayoutTextPassword;
   }
 
   @Override
@@ -128,12 +139,6 @@ public final class ActivityRegistrationBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.confirm_passwordIcon;
-      ImageView confirmPasswordIcon = ViewBindings.findChildViewById(rootView, id);
-      if (confirmPasswordIcon == null) {
-        break missingId;
-      }
-
       id = R.id.confirm_password_layout;
       LinearLayout confirmPasswordLayout = ViewBindings.findChildViewById(rootView, id);
       if (confirmPasswordLayout == null) {
@@ -146,27 +151,27 @@ public final class ActivityRegistrationBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.confirmpasswordIcon;
+      ImageView confirmpasswordIcon = ViewBindings.findChildViewById(rootView, id);
+      if (confirmpasswordIcon == null) {
+        break missingId;
+      }
+
       id = R.id.createUserTextConfirmPassword;
-      EditText createUserTextConfirmPassword = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText createUserTextConfirmPassword = ViewBindings.findChildViewById(rootView, id);
       if (createUserTextConfirmPassword == null) {
         break missingId;
       }
 
       id = R.id.createUserTextEmailAddress;
-      EditText createUserTextEmailAddress = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText createUserTextEmailAddress = ViewBindings.findChildViewById(rootView, id);
       if (createUserTextEmailAddress == null) {
         break missingId;
       }
 
       id = R.id.createUserTextPassword;
-      EditText createUserTextPassword = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText createUserTextPassword = ViewBindings.findChildViewById(rootView, id);
       if (createUserTextPassword == null) {
-        break missingId;
-      }
-
-      id = R.id.emailIcon;
-      ImageView emailIcon = ViewBindings.findChildViewById(rootView, id);
-      if (emailIcon == null) {
         break missingId;
       }
 
@@ -188,12 +193,6 @@ public final class ActivityRegistrationBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.passwordIcon;
-      ImageView passwordIcon = ViewBindings.findChildViewById(rootView, id);
-      if (passwordIcon == null) {
-        break missingId;
-      }
-
       id = R.id.password_layout;
       LinearLayout passwordLayout = ViewBindings.findChildViewById(rootView, id);
       if (passwordLayout == null) {
@@ -206,17 +205,42 @@ public final class ActivityRegistrationBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.registeremailIcon;
+      ImageView registeremailIcon = ViewBindings.findChildViewById(rootView, id);
+      if (registeremailIcon == null) {
+        break missingId;
+      }
+
+      id = R.id.registerpasswordIcon;
+      ImageView registerpasswordIcon = ViewBindings.findChildViewById(rootView, id);
+      if (registerpasswordIcon == null) {
+        break missingId;
+      }
+
       id = R.id.registration_back;
       Button registrationBack = ViewBindings.findChildViewById(rootView, id);
       if (registrationBack == null) {
         break missingId;
       }
 
+      id = R.id.textInputLayoutTextConfirmPassword;
+      TextInputLayout textInputLayoutTextConfirmPassword = ViewBindings.findChildViewById(rootView, id);
+      if (textInputLayoutTextConfirmPassword == null) {
+        break missingId;
+      }
+
+      id = R.id.textInputLayoutTextPassword;
+      TextInputLayout textInputLayoutTextPassword = ViewBindings.findChildViewById(rootView, id);
+      if (textInputLayoutTextPassword == null) {
+        break missingId;
+      }
+
       return new ActivityRegistrationBinding((ConstraintLayout) rootView, authUserBtn,
-          confirmPasswordIcon, confirmPasswordLayout, confirmPasswordTxt,
+          confirmPasswordLayout, confirmPasswordTxt, confirmpasswordIcon,
           createUserTextConfirmPassword, createUserTextEmailAddress, createUserTextPassword,
-          emailIcon, emailLayout, emailTxt, linearLayout, passwordIcon, passwordLayout, passwordTxt,
-          registrationBack);
+          emailLayout, emailTxt, linearLayout, passwordLayout, passwordTxt, registeremailIcon,
+          registerpasswordIcon, registrationBack, textInputLayoutTextConfirmPassword,
+          textInputLayoutTextPassword);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

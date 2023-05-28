@@ -120,6 +120,7 @@
                                 android:layout_width="70dp"
                                 android:layout_height="43dp"
                                 android:textSize="16sp"
+                                android:clickable="false"
                                 app:backgroundTint="@color/color_selector"
                                 android:textColor="@color/background3"
                                 android:layout_below="@id/currency_textView"/>
@@ -180,7 +181,7 @@
                             app:cornerRadius="20dp">
 
                             <ImageView
-                                android:id="@+id/languageIcon"
+                                android:id="@+id/accountIcon_operationDetail"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:padding="7dp"
@@ -191,13 +192,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="5dp"
-                                android:layout_toEndOf="@+id/languageIcon"
+                                android:layout_toEndOf="@+id/accountIcon_operationDetail"
                                 android:text="@string/account"
                                 android:textColor="@color/background3"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/accountName_operationDetail"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"

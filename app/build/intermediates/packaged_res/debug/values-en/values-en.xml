@@ -37,6 +37,7 @@
     <string name="error">Error</string>
     <string name="exit">Sign Out</string>
     <string name="expense">Expense</string>
+    <string name="fillInAllFields">Fill in all fields</string>
     <string name="financialAdvice">Financial advice</string>
     <string name="fingerprint">Use fingerprint for</string>
     <string name="forgotPassword">Forgot Password?</string>
@@ -49,6 +50,7 @@
     <string name="incorrectPasswordLength">Less than 6 characters</string>
     <string name="incorrectPasswordLowercaseLetter">Does not contain a lowercase letter</string>
     <string name="internetConnection">No internet connection</string>
+    <string name="isEmailVerified">Waiting for confirmation by email</string>
     <string name="isPassword">Login by PIN code</string>
     <string name="isSms">Reading sms</string>
     <string name="language">Language</string>

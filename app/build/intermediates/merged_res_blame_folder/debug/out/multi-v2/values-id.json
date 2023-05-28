@@ -4,7 +4,7 @@
             "outputFile": "com.example.finans.app-mergeDebugResources-46:/values-id/values-id.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\b9d6148761d891a613b554c1980370dc\\transformed\\facebook-common-8.2.0\\res\\values-id\\values-id.xml",
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\43e39cadbd7cff1b008581d3a41d28ba\\transformed\\facebook-common-8.2.0\\res\\values-id\\values-id.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

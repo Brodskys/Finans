@@ -12,6 +12,8 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.view.GestureDetector
+import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -36,12 +38,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
+import kotlin.math.abs
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
     private val REQUEST_CODE_SMS_PERMISSION = 100
+    private lateinit var gestureDetector: GestureDetector
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +54,7 @@ class SettingsActivity : AppCompatActivity() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
+        gestureDetector = GestureDetector(this, this)
 
         if (switchState) {
             setContentView(R.layout.activity_dark_settings)
@@ -225,7 +230,7 @@ class SettingsActivity : AppCompatActivity() {
             val existingFragment =
                 supportFragmentManager.findFragmentByTag("BottomSheetCurrencyFragment")
             if (existingFragment == null) {
-                val newFragment = BottomSheetCurrencyFragment()
+                val newFragment = BottomSheetCurrencyFragment.newInstance("change")
 
                 newFragment.show(
                     supportFragmentManager,
@@ -406,5 +411,44 @@ class SettingsActivity : AppCompatActivity() {
                 "BottomSheetNewOperationFragment"
             )
 
+    }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        return gestureDetector.onTouchEvent(event)
+    }
+    override fun onDown(p0: MotionEvent): Boolean {
+        return true
+    }
+
+    override fun onShowPress(p0: MotionEvent) {
+    }
+
+    override fun onSingleTapUp(p0: MotionEvent): Boolean {
+        return true
+    }
+
+    override fun onScroll(p0: MotionEvent, p1: MotionEvent, p2: Float, p3: Float): Boolean {
+        return true
+    }
+
+    override fun onLongPress(p0: MotionEvent) {
+    }
+
+    override fun onFling(
+        e1: MotionEvent,
+        e2: MotionEvent,
+        velocityX: Float,
+        velocityY: Float
+    ): Boolean {
+
+        val swipeThreshold = 200
+        val swipeVelocityThreshold = 200
+
+        if (e2.x > e1.x && abs(e2.x - e1.x) > swipeThreshold && abs(velocityX) > swipeVelocityThreshold) {
+            this.startActivity(Intent(this, AnalyticsActivity::class.java))
+            overridePendingTransition(0, 0)
+            return true
+        }
+        return false
     }
 }

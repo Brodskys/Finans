@@ -9,8 +9,10 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/new_operation_RelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -72,6 +74,9 @@
                     android:orientation="vertical">
 
 
+
+
+
                     <LinearLayout
                         android:id="@+id/tab_layout2"
                         android:layout_width="match_parent"
@@ -125,6 +130,7 @@
                                 android:layout_below="@id/currency_textView"
                                 android:textColor="@color/background3"
                                 android:textSize="16sp"
+                                android:clickable="false"
                                 app:backgroundTint="@color/color_selector" />
 
                         </RelativeLayout>
@@ -132,7 +138,6 @@
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-
                             android:orientation="vertical">
 
                             <TextView
@@ -162,7 +167,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="10dp"
                         android:padding="5dp"
                         android:text="@string/main"
                         android:textColor="@color/background3"
@@ -180,35 +185,36 @@
 
 
                         <RelativeLayout
+                            android:id="@+id/accountsRelativeLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:cornerRadius="20dp">
 
                             <ImageView
-                                android:id="@+id/languageIcon"
+                                android:id="@+id/accountIcon_NewOperation"
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
-                                android:padding="7dp"
-                                android:src="@drawable/coins" />
+                                android:src="@drawable/coins"
+                                android:padding="7dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="5dp"
-                                android:layout_toEndOf="@+id/languageIcon"
+                                android:layout_toEndOf="@+id/accountIcon_NewOperation"
                                 android:text="@string/account"
                                 android:textColor="@color/background3"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/accountName_NewOperation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="20dp"
                                 android:layout_toStartOf="@+id/Imgright1"
-                                android:text="Наличные"
                                 android:textColor="@color/background3"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
@@ -286,6 +292,7 @@
                                 android:src="@drawable/datetime" />
 
                             <TextView
+                                android:id="@+id/dateandtimeTxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -301,9 +308,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="20dp"
+                                android:layout_marginStart="7dp"
+                                android:layout_toEndOf="@+id/dateandtimeTxt"
                                 android:layout_toStartOf="@+id/Imgright3"
-                                android:text="26/04/2023 15:32:32"
+                                android:ellipsize="marquee"
+                                android:singleLine="true"
                                 android:textColor="@color/background3"
                                 android:textStyle="bold" />
 
@@ -324,7 +333,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="7dp"
                         android:padding="5dp"
                         android:text="@string/details"
                         android:textColor="@color/background3"
@@ -472,6 +481,40 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/relativeLayoutQR"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cornerRadius="20dp">
+
+                            <ImageView
+                                android:id="@+id/qrIcon"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:padding="7dp"
+                                android:src="@drawable/qr" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="5dp"
+                                android:layout_toEndOf="@+id/qrIcon"
+                                android:text="@string/scanningQRcode"
+                                android:textColor="@color/background3"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/right" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:id="@+id/relativeLayoutOCR"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -515,7 +558,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="30dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/add"
                         android:textColor="@color/background3"
                         android:textSize="16sp"
@@ -529,7 +572,13 @@
 
         </LinearLayout>
 
-
+        <ProgressBar
+            android:id="@+id/swipeNewOperation_refreshLayout"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_centerInParent="true"/>
     </RelativeLayout>
 
 

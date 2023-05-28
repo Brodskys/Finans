@@ -116,7 +116,10 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
         velocityX: Float,
         velocityY: Float
     ): Boolean {
-        if (e2.x > e1.x && abs(e2.x - e1.x) > 200 && abs(velocityX) > 200) {
+        val swipeThreshold = 200
+        val swipeVelocityThreshold = 200
+
+        if (e2.x > e1.x && abs(e2.x - e1.x) > swipeThreshold && abs(velocityX) > swipeVelocityThreshold) {
             this.startActivity(Intent(this, AuthorizationActivity::class.java))
             overridePendingTransition(0,0)
             finish()
@@ -238,7 +241,8 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
 
         val hashMap = hashMapOf<String, Any>(
             "date_registration" to currentDate,
-            "balance" to 0,
+            "total_balance" to 0,
+            "accounts" to "cash"
         )
         val fireStoreDatabase = FirebaseFirestore.getInstance()
         fireStoreDatabase.collection("users").document(Firebase.auth.uid.toString()).collection("user").document("information").set(hashMap)

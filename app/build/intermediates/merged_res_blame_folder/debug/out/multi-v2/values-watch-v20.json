@@ -4,7 +4,26 @@
             "outputFile": "com.example.finans.app-mergeDebugResources-46:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\294df31cccac402603828aedd15eeee1\\transformed\\play-services-auth-20.5.0\\res\\values-watch-v20\\values.xml",
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\26b28e7209e49f16a73fb180afbeeced\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    },
+                    "to": {
+                        "startLines": "18,21,24",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "1294,1453,1624",
+                        "endLines": "20,23,26",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "1448,1619,1792"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\793ebb485d3136296eb79ef40387067e\\transformed\\play-services-auth-20.5.0\\res\\values-watch-v20\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",
@@ -21,7 +40,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\468a4e6b6e0a4698c79288273d4924bc\\transformed\\core-splashscreen-1.0.1\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\fc0e2b29ce7126987ecb29d75e5f5e4b\\transformed\\core-splashscreen-1.0.1\\res\\values-watch-v20\\values-watch-v20.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -35,25 +54,6 @@
                         "startOffsets": "715,789,865,940,1017,1088,1156,1226",
                         "endColumns": "73,75,74,76,70,67,69,67",
                         "endOffsets": "784,860,935,1012,1083,1151,1221,1289"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\b14bbecb4e374e7fae985da6b376b60d\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
-                    "from": {
-                        "startLines": "2,5,8",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,214,385",
-                        "endLines": "4,7,10",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "209,380,553"
-                    },
-                    "to": {
-                        "startLines": "18,21,24",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "1294,1453,1624",
-                        "endLines": "20,23,26",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "1448,1619,1792"
                     }
                 }
             ]

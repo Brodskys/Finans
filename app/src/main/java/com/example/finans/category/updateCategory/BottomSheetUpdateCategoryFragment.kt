@@ -22,8 +22,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
 import com.example.finans.category.Category
-import com.example.finans.category.CategoryViewModel
-import com.example.finans.category.subcategory.BottomSheetSubcategoryFragment
 import com.example.finans.category.subcategory.OnItemClickListener
 import com.example.finans.category.subcategory.SubcategoryAdapter
 import com.example.finans.category.updateCategory.addCategory.BottomSheetAddCategoryFragment
@@ -36,7 +34,6 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
-import java.util.Locale
 
 
 class BottomSheetUpdateCategoryFragment : BottomSheetDialogFragment(), OnItemClickListener {
@@ -214,16 +211,16 @@ class BottomSheetUpdateCategoryFragment : BottomSheetDialogFragment(), OnItemCli
 
         view.findViewById<ImageView>(R.id.categoryUpdateIcon).setOnClickListener {
             val bottomSheetFragment =
-                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetUpdateIconCategoryFragment") as? BottomSheetUpdateIconCategoryFragment
+                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetUpdateIcon") as? BottomSheetUpdateIcon
 
             if (bottomSheetFragment == null) {
                 val newFragment =
-                    BottomSheetUpdateIconCategoryFragment.newInstance("updateCategory")
+                    BottomSheetUpdateIcon.newInstance("updateCategory")
                 newFragment.setTargetFragment(this@BottomSheetUpdateCategoryFragment, 0)
 
                 newFragment.show(
                     requireActivity().supportFragmentManager,
-                    "BottomSheetUpdateIconCategoryFragment"
+                    "BottomSheetUpdateIcon"
                 )
             }
         }

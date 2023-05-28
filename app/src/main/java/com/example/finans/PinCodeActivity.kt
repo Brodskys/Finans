@@ -26,6 +26,7 @@ import com.example.finans.settings.deleteUser
 import com.example.finans.сurrency.BottomSheetCurrencyFragment
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import render.animations.Attention
 import render.animations.Render
@@ -61,6 +62,42 @@ class PinCodeActivity : AppCompatActivity() {
         val switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
         loadLocale(resources, this)
+
+
+        val userRef = FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString()).collection("accounts").document("cash")
+
+        var currency:String?
+
+        userRef.get()
+            .addOnSuccessListener { snapshot ->
+                currency = snapshot.getString("currency")
+                if (currency == "") {
+
+                    BottomSheetCurrencyFragment().show(
+                        supportFragmentManager,
+                        "BottomSheetCurrencyFragment"
+                    )
+
+                }
+                else{
+                    val fingerprintManager = ContextCompat.getSystemService(this, FingerprintManager::class.java)
+                    if (fingerprintManager != null && fingerprintManager.isHardwareDetected) {
+
+                        if(fingerprintManager.hasEnrolledFingerprints()) {
+                            biometricPrompt.authenticate(promptInfo)
+                        }
+                        else {
+                            pinView.postDelayed({
+                                pinView.requestFocus()
+                                val imm =
+                                    getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                                imm.showSoftInput(pinView, InputMethodManager.SHOW_IMPLICIT)
+                            }, 350)
+                        }
+                    }
+                }
+            }
+
 
         if(switchState){
             setContentView(R.layout.activity_dark_pin_code)
@@ -122,31 +159,8 @@ class PinCodeActivity : AppCompatActivity() {
             .setNegativeButtonText(getString(R.string.cancel))
             .build()
 
-        if (!prefs.contains("currency")) {
 
-            BottomSheetCurrencyFragment().show(
-                supportFragmentManager,
-                "BottomSheetCurrencyFragment"
-            )
 
-        }
-        else{
-                val fingerprintManager = ContextCompat.getSystemService(this, FingerprintManager::class.java)
-                if (fingerprintManager != null && fingerprintManager.isHardwareDetected) {
-
-                    if(fingerprintManager.hasEnrolledFingerprints()) {
-                        biometricPrompt.authenticate(promptInfo)
-                    }
-                    else {
-                        pinView.postDelayed({
-                            pinView.requestFocus()
-                            val imm =
-                                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                            imm.showSoftInput(pinView, InputMethodManager.SHOW_IMPLICIT)
-                        }, 350)
-                    }
-                }
-        }
 
         if (prefs.contains("shortcuts")) {
 

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -16,6 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.finans.R;
+import com.google.android.material.textfield.TextInputEditText;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -28,10 +28,13 @@ public final class ActivityAuthorizationBinding implements ViewBinding {
   public final Button authUserBtn;
 
   @NonNull
-  public final EditText editTextTextEmailAddress;
+  public final TextView donthaveanAccount;
 
   @NonNull
-  public final EditText editTextTextPassword;
+  public final TextInputEditText editTextTextEmailAddress;
+
+  @NonNull
+  public final TextInputEditText editTextTextPassword;
 
   @NonNull
   public final ImageView emailIcon;
@@ -52,19 +55,13 @@ public final class ActivityAuthorizationBinding implements ViewBinding {
   public final ImageView imageView2;
 
   @NonNull
-  public final ImageView imageView3;
-
-  @NonNull
   public final ImageView imageView4;
 
   @NonNull
-  public final RelativeLayout languageBtn;
-
-  @NonNull
-  public final ImageView languageIcon;
-
-  @NonNull
   public final LinearLayout linearLayout;
+
+  @NonNull
+  public final ImageView passwordIcon;
 
   @NonNull
   public final LinearLayout passwordLayout;
@@ -82,17 +79,19 @@ public final class ActivityAuthorizationBinding implements ViewBinding {
   public final TextView textOR;
 
   private ActivityAuthorizationBinding(@NonNull ConstraintLayout rootView,
-      @NonNull Button authUserBtn, @NonNull EditText editTextTextEmailAddress,
-      @NonNull EditText editTextTextPassword, @NonNull ImageView emailIcon,
+      @NonNull Button authUserBtn, @NonNull TextView donthaveanAccount,
+      @NonNull TextInputEditText editTextTextEmailAddress,
+      @NonNull TextInputEditText editTextTextPassword, @NonNull ImageView emailIcon,
       @NonNull LinearLayout emailLayout, @NonNull TextView emailTxt,
       @NonNull TextView forgotPassword, @NonNull ImageView imageView1,
-      @NonNull ImageView imageView2, @NonNull ImageView imageView3, @NonNull ImageView imageView4,
-      @NonNull RelativeLayout languageBtn, @NonNull ImageView languageIcon,
-      @NonNull LinearLayout linearLayout, @NonNull LinearLayout passwordLayout,
-      @NonNull TextView passwordTxt, @NonNull TextView signUpButton,
-      @NonNull RelativeLayout socialNetwork, @NonNull TextView textOR) {
+      @NonNull ImageView imageView2, @NonNull ImageView imageView4,
+      @NonNull LinearLayout linearLayout, @NonNull ImageView passwordIcon,
+      @NonNull LinearLayout passwordLayout, @NonNull TextView passwordTxt,
+      @NonNull TextView signUpButton, @NonNull RelativeLayout socialNetwork,
+      @NonNull TextView textOR) {
     this.rootView = rootView;
     this.authUserBtn = authUserBtn;
+    this.donthaveanAccount = donthaveanAccount;
     this.editTextTextEmailAddress = editTextTextEmailAddress;
     this.editTextTextPassword = editTextTextPassword;
     this.emailIcon = emailIcon;
@@ -101,11 +100,9 @@ public final class ActivityAuthorizationBinding implements ViewBinding {
     this.forgotPassword = forgotPassword;
     this.imageView1 = imageView1;
     this.imageView2 = imageView2;
-    this.imageView3 = imageView3;
     this.imageView4 = imageView4;
-    this.languageBtn = languageBtn;
-    this.languageIcon = languageIcon;
     this.linearLayout = linearLayout;
+    this.passwordIcon = passwordIcon;
     this.passwordLayout = passwordLayout;
     this.passwordTxt = passwordTxt;
     this.signUpButton = signUpButton;
@@ -146,14 +143,20 @@ public final class ActivityAuthorizationBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.donthaveanAccount;
+      TextView donthaveanAccount = ViewBindings.findChildViewById(rootView, id);
+      if (donthaveanAccount == null) {
+        break missingId;
+      }
+
       id = R.id.editTextTextEmailAddress;
-      EditText editTextTextEmailAddress = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText editTextTextEmailAddress = ViewBindings.findChildViewById(rootView, id);
       if (editTextTextEmailAddress == null) {
         break missingId;
       }
 
       id = R.id.editTextTextPassword;
-      EditText editTextTextPassword = ViewBindings.findChildViewById(rootView, id);
+      TextInputEditText editTextTextPassword = ViewBindings.findChildViewById(rootView, id);
       if (editTextTextPassword == null) {
         break missingId;
       }
@@ -194,33 +197,21 @@ public final class ActivityAuthorizationBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.imageView3;
-      ImageView imageView3 = ViewBindings.findChildViewById(rootView, id);
-      if (imageView3 == null) {
-        break missingId;
-      }
-
       id = R.id.imageView4;
       ImageView imageView4 = ViewBindings.findChildViewById(rootView, id);
       if (imageView4 == null) {
         break missingId;
       }
 
-      id = R.id.languageBtn;
-      RelativeLayout languageBtn = ViewBindings.findChildViewById(rootView, id);
-      if (languageBtn == null) {
-        break missingId;
-      }
-
-      id = R.id.languageIcon;
-      ImageView languageIcon = ViewBindings.findChildViewById(rootView, id);
-      if (languageIcon == null) {
-        break missingId;
-      }
-
       id = R.id.linearLayout;
       LinearLayout linearLayout = ViewBindings.findChildViewById(rootView, id);
       if (linearLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.passwordIcon;
+      ImageView passwordIcon = ViewBindings.findChildViewById(rootView, id);
+      if (passwordIcon == null) {
         break missingId;
       }
 
@@ -255,9 +246,9 @@ public final class ActivityAuthorizationBinding implements ViewBinding {
       }
 
       return new ActivityAuthorizationBinding((ConstraintLayout) rootView, authUserBtn,
-          editTextTextEmailAddress, editTextTextPassword, emailIcon, emailLayout, emailTxt,
-          forgotPassword, imageView1, imageView2, imageView3, imageView4, languageBtn, languageIcon,
-          linearLayout, passwordLayout, passwordTxt, signUpButton, socialNetwork, textOR);
+          donthaveanAccount, editTextTextEmailAddress, editTextTextPassword, emailIcon, emailLayout,
+          emailTxt, forgotPassword, imageView1, imageView2, imageView4, linearLayout, passwordIcon,
+          passwordLayout, passwordTxt, signUpButton, socialNetwork, textOR);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

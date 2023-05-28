@@ -31,7 +31,7 @@ import java.io.InputStream
 class BottomSheetPhotoFragment : BottomSheetDialogFragment() {
 
     override fun getTheme() = R.style.AppBottomSheetDialogTheme
-    private val CAMERA_PERMISSION_CODE = 101
+    private val requestCodeCameraPermission = 1001
     private val REQUEST_IMAGE_CAPTURE = 1
     val REQUEST_PICK_PHOTO = 2
     private lateinit var sharedPreferences: SharedPreferences
@@ -69,7 +69,7 @@ class BottomSheetPhotoFragment : BottomSheetDialogFragment() {
 
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
+                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), requestCodeCameraPermission)
             } else {
                 val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 takePictureIntent.putExtra("android.intent.extras.CAMERA_FACING", CameraCharacteristics.LENS_FACING_FRONT)

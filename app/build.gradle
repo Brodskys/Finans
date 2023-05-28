@@ -9,10 +9,13 @@ android {
     namespace 'com.example.finans'
     compileSdk 33
 
+    buildFeatures {
+        viewBinding = true
+    }
 
     defaultConfig {
         applicationId "com.example.finans"
-        minSdk 29
+        minSdk 28
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -71,4 +74,7 @@ dependencies {
     implementation 'com.rmtheis:tess-two:9.1.0'
 
     implementation "com.airbnb.android:lottie:5.0.1"
+
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
+
 }

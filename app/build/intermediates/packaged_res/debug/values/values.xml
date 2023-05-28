@@ -64,6 +64,7 @@
     <string name="facebook_app_id" translatable="false">1284252622492329</string>
     <string name="facebook_client_token" translatable="false">f7c7cdb14d6dcf8385a579c31a5f2ddc</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb1284252622492329</string>
+    <string name="fillInAllFields">Fill in all fields</string>
     <string name="financialAdvice">Financial advice</string>
     <string name="fingerprint">Use fingerprint for</string>
     <string name="forgotPassword">Forgot Password?</string>
@@ -82,6 +83,7 @@
     <string name="incorrectPasswordLength">Less than 6 characters</string>
     <string name="incorrectPasswordLowercaseLetter">Does not contain a lowercase letter</string>
     <string name="internetConnection">No internet connection</string>
+    <string name="isEmailVerified">Waiting for confirmation by email</string>
     <string name="isPassword">Login by PIN code</string>
     <string name="isSms">Reading sms</string>
     <string name="language">Language</string>

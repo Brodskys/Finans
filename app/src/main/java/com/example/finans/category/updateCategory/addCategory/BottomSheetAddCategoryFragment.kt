@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.finans.R
 import com.example.finans.category.Category
 import com.example.finans.category.updateCategory.BottomSheetUpdateCategoryFragment
-import com.example.finans.category.updateCategory.BottomSheetUpdateIconCategoryFragment
+import com.example.finans.category.updateCategory.BottomSheetUpdateIcon
 import com.example.finans.category.updateCategory.IconViewModel
 import com.example.finans.other.deletionWarning
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -191,16 +191,16 @@ class BottomSheetAddCategoryFragment : BottomSheetDialogFragment() {
 
         view.findViewById<ImageView>(R.id.categoryUpdateIcon).setOnClickListener {
             val bottomSheetFragment =
-                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetUpdateIconCategoryFragment") as? BottomSheetUpdateIconCategoryFragment
+                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetUpdateIcon") as? BottomSheetUpdateIcon
 
             if (bottomSheetFragment == null) {
 
-                val newFragment = BottomSheetUpdateIconCategoryFragment.newInstance("addCategory")
+                val newFragment = BottomSheetUpdateIcon.newInstance("addCategory")
                 newFragment.setTargetFragment(this@BottomSheetAddCategoryFragment, 0)
 
                 newFragment.show(
                     requireActivity().supportFragmentManager,
-                    "BottomSheetUpdateIconCategoryFragment"
+                    "BottomSheetUpdateIcon"
                 )
 
             }

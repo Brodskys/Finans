@@ -29,7 +29,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -48,12 +48,12 @@ import com.example.finans.map.MapViewModel
 import com.example.finans.operation.Operation
 import com.example.finans.other.deletionWarning
 import com.example.finans.сurrency.BottomSheetCurrencyFragment
+import com.example.finans.сurrency.CurrencyViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.GeoPoint
@@ -75,7 +75,6 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
     var switchState: Boolean = false
     private lateinit var currentDateTime: Calendar
     private lateinit var amount: EditText
-    private lateinit var currencyViewModel: CurrencyViewModel
     private lateinit var categoryViewModel: CategoryViewModel
     private lateinit var mapViewModel: MapViewModel
     private var map: GeoPoint? = null
@@ -86,6 +85,8 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
     private  var category : Category? = null
     private lateinit var operation: Operation
     private lateinit var db: FirebaseFirestore
+    private lateinit var pref: SharedPreferences
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -96,7 +97,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         switchState = sharedPreferences.getBoolean("modeSwitch", false)
-
+        pref = requireActivity().getSharedPreferences("Settings", AppCompatActivity.MODE_PRIVATE)
         return if(switchState){
             inflater.inflate(R.layout.fragment_bottom_sheet_dark_operation_detail, container, false)
         } else{
@@ -117,7 +118,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
         }
     }
 
-    @SuppressLint("CutPasteId")
+    @SuppressLint("CutPasteId", "SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -180,8 +181,6 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
                 dialog.show()
             }
 
-            dismiss()
-
         }
 
 
@@ -191,23 +190,18 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
 
                 if (result) {
 
-                    val docRef =
-                        operation.id?.let {
-                            db.collection("users").document(Firebase.auth.uid.toString())
-                                .collection("operation").document(
-                                    it
-                                )
-                        }
+                    val docRef = operation.id?.let {
+                        db.collection("users").document(Firebase.auth.uid.toString())
+                            .collection("operation").document(it)
+                    }
 
-                    docRef!!
-                        .delete()
-                        .addOnSuccessListener {
-                            Log.d(
-                                TAG,
-                                "DocumentSnapshot successfully deleted!"
-                            )
+                    docRef?.delete()
+                        ?.addOnSuccessListener {
+                            Log.d(TAG, "DocumentSnapshot successfully deleted!")
                         }
-                        .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+                        ?.addOnFailureListener { e ->
+                            Log.w(TAG, "Error deleting document", e)
+                        }
 
                     if (operation.photo != "") {
                         val photoRef =
@@ -220,7 +214,10 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
                             }
                     }
 
-                    dismiss()
+                    if (isAdded) {
+                        requireActivity().recreate()
+                        dismiss()
+                    }
                 }
             }
         }
@@ -233,7 +230,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
 
                 uploadData(selectedTab?.text.toString(), operationDetail_amount_field.text.toString().toDouble(),  Timestamp(currentDateTime.time), note, image)
             }
-            else{
+            else {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle("Ошибка")
                 builder.setMessage("Заполните сумму и категорию")
@@ -242,8 +239,6 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
                 val dialog = builder.create()
                 dialog.show()
             }
-            dismiss()
-
         }
 
 
@@ -329,36 +324,41 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
                 }
 
 
-
-        view.findViewById<Button>(R.id.operationDetail_currency_btn).setOnClickListener {
-
-            val existingFragment =
-                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetCurrencyFragment")
-            if (existingFragment == null) {
-                val newFragment = BottomSheetCurrencyFragment()
-                newFragment.show(
-                    requireActivity().supportFragmentManager,
-                    "BottomSheetCurrencyFragment"
-                )
-            }
-        }
-
-
         view.findViewById<EditText>(R.id.operationDetail_amount_field).text = Editable.Factory.getInstance().newEditable(operation?.value.toString())
 
-        val sharedPref = context?.getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        val selectedCurrency = sharedPref?.getString("currency", "")
-        view.findViewById<Button>(R.id.operationDetail_currency_btn).text = selectedCurrency
+        val s = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val accounts = s.getString("accounts", "")
 
+        val docRef = db.collection("users").document(Firebase.auth.uid.toString())
+            .collection("accounts")
+            .document(accounts!!)
 
+        docRef.get()
+            .addOnSuccessListener { snapshot ->
 
-        currencyViewModel = ViewModelProvider(requireActivity())[CurrencyViewModel::class.java]
-        currencyViewModel.getSelectedCCurrency().observe(this) { currency ->
+                val accountName = view.findViewById<TextView>(R.id.accountName_operationDetail)
+                val accountIcon = view.findViewById<ImageView>(R.id.accountIcon_operationDetail)
 
-            view.findViewById<Button>(R.id.operationDetail_currency_btn).text = currency
-            update()
+                val locale = s.getString("locale", "")
 
-        }
+                if (locale == "ru"){
+
+                    accountName.text = snapshot!!.getString("nameRus")
+
+                } else {
+                    accountName.text = snapshot!!.getString("nameEng")
+                }
+
+                val gsReference = Firebase.storage.getReferenceFromUrl(snapshot.getString("icon")!!)
+
+                gsReference.downloadUrl.addOnSuccessListener { uri ->
+                    Picasso.get().load(uri.toString()).into(accountIcon)
+                }.addOnFailureListener {
+                    Picasso.get().load(R.drawable.coins).into(accountIcon)
+                }
+                view.findViewById<Button>(R.id.operationDetail_currency_btn).text = snapshot.getString("currency")
+
+            }
 
         var imageRef = operation.image?.let { FirebaseStorage.getInstance().getReferenceFromUrl(it) }
 
@@ -743,15 +743,18 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
         }
 
 
-        if(value != operation.value) {
-            val money = if (oper == getText(R.string.income)) value else -value
-
-            db.collection("users").document(Firebase.auth.uid.toString())
-                .collection("user").document("information")
-                .update("balance", FieldValue.increment(money))
-                .addOnSuccessListener {}
-                .addOnFailureListener {}
-        }
+//        if(value != operation.value) {
+//            val money = if (oper == getText(R.string.income)) value else -value
+//
+//
+//
+//
+//            db.collection("users").document(Firebase.auth.uid.toString())
+//                .collection("user").document("information")
+//                .update("balance", FieldValue.increment(money))
+//                .addOnSuccessListener {}
+//                .addOnFailureListener {}
+//        }
 
         var operationRu = ""
         var operationEng = ""
@@ -788,17 +791,26 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment(){
             "photo" to path!!,
         )
 
+        val accounts = pref.getString("accounts", "")
+
         val docRef =
             operation.id?.let {
-                db.collection("users").document(Firebase.auth.uid.toString()).collection("operation").document(
+                db.collection("users").document(Firebase.auth.uid.toString()).collection("accounts")
+                    .document(accounts!!)
+                    .collection("operation")
+                    .document(
                     it
                 )
             }
 
         docRef?.update(data)?.addOnSuccessListener {
-            Log.d("Update", "DocumentSnapshot successfully updated!")
+
         }?.addOnFailureListener { e ->
             Log.w("Update", "Error updating document", e)
+        }
+        if (isAdded) {
+            requireActivity().recreate()
+            dismiss()
         }
 
     }

@@ -46,7 +46,7 @@ class BottomSheetMapFragment : BottomSheetDialogFragment(), OnMapReadyCallback, 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mapViewModel = ViewModelProvider(requireActivity()).get(MapViewModel::class.java)
+        mapViewModel = ViewModelProvider(requireActivity())[MapViewModel::class.java]
     }
 
 

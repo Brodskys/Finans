@@ -35,39 +35,48 @@
                     android:id="@+id/layout_balance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp">
+                    android:layout_marginHorizontal="10dp">
 
 
                     <RelativeLayout
+                        android:id="@+id/accounts_RelativeLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/home_balance"
+                            android:id="@+id/accounts_balance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="5dp"
+                            android:maxWidth="95sp"
+                            android:ellipsize="marquee"
+                            android:singleLine="true"
                             android:paddingRight="5dp"
+                            android:layout_above="@+id/accounts_name"
                             android:textColor="@color/background3"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/home_currency"
+                            android:id="@+id/accounts_currency"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toEndOf="@+id/home_balance"
+                            android:layout_toEndOf="@+id/accounts_balance"
                             android:paddingTop="5dp"
-                            android:text="BYN"
                             android:textColor="@color/background3"
                             android:textSize="16.5sp"
+
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/accounts_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/home_currency"
-                            android:text="Баланс"
+                            android:layout_below="@id/accounts_currency"
+                            android:maxWidth="130sp"
+                            android:ellipsize="marquee"
+                            android:singleLine="true"
+                            android:gravity="center_horizontal"
                             android:textColor="@color/background3"
                             android:textSize="15sp"
                             android:textStyle="bold" />

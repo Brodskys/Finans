@@ -41,7 +41,7 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        categoryViewModel = ViewModelProvider(requireActivity()).get(CategoryViewModel::class.java)
+        categoryViewModel = ViewModelProvider(requireActivity())[CategoryViewModel::class.java]
     }
 
     override fun onCreateView(

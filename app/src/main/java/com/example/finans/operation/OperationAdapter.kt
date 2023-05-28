@@ -64,15 +64,10 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-       val itemView = if(switchState!!){
+       val itemView =
             LayoutInflater.from(parent.context).inflate(
                 R.layout.operation_dark_item,
                 parent, false)
-        } else{
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.operation_item,
-                parent, false)
-        }
 
 
         return ViewHolder(itemView)

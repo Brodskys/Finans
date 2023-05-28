@@ -37,6 +37,7 @@
     <string name="error">Ошибка</string>
     <string name="exit">Выйти</string>
     <string name="expense">Расход</string>
+    <string name="fillInAllFields">Заполните все поля</string>
     <string name="financialAdvice">Финансовые советы</string>
     <string name="fingerprint">Используйте отвечаток пальцев для</string>
     <string name="forgotPassword">Забыли пароль?</string>
@@ -49,6 +50,7 @@
     <string name="incorrectPasswordLength">Меньше 6 символов</string>
     <string name="incorrectPasswordLowercaseLetter">Не содержит строчной буквы</string>
     <string name="internetConnection">Нет подключения к интернету</string>
+    <string name="isEmailVerified">Ожидание подтверждения электронной почте</string>
     <string name="isPassword">Вход по пин-коду</string>
     <string name="isSms">Чтение смс</string>
     <string name="language">Язык</string>
