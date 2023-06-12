@@ -15,6 +15,7 @@ data class Operation(var categoryRu: String ?= null,
                      var timestamp: Timestamp? = null,
                      var typeRu: String?= null,
                      var typeEn: String?= null,
+                     var account: String?= null,
                      var value: Double? = null):
     Parcelable {
 
@@ -27,6 +28,7 @@ data class Operation(var categoryRu: String ?= null,
         parcel.readString(),
         parcel.readString(),
         Timestamp(parcel.readLong(), parcel.readLong().toInt()),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readValue(Double::class.java.classLoader) as? Double
@@ -43,16 +45,12 @@ data class Operation(var categoryRu: String ?= null,
         parcel.writeLong((timestamp?.nanoseconds ?: 0).toLong())
         parcel.writeString(typeRu)
         parcel.writeString(typeEn)
+        parcel.writeString(account)
         parcel.writeValue(value)
 
     }
     override fun describeContents(): Int {
         return 0
-    }
-
-
-    override fun toString(): String {
-        return "Operation(category=$categoryRu, category=$categoryEn, timestamp=$timestamp, image=$image, note=$note, photo=$photo, type=$typeRu, type=$typeEn, value=$value), id=$id)"
     }
 
     companion object CREATOR : Parcelable.Creator<Operation> {

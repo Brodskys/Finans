@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.finans.app-mergeDebugResources-46:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.finans.app-mergeDebugResources-51:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\a8a9f841e3f0e7743e5261cfa9d0f046\\transformed\\material-1.9.0\\res\\values-night-v8\\values-night-v8.xml",
@@ -18,16 +18,6 @@
                         "startOffsets": "1394,1469,1580,1669,1770,1877,1984,2083,2190,2293,2381,2505,2607,2709,2825,2927,3041,3169,3285,3407,3543,3663,3797,3917,4029,4244,4361,4485,4615,4737,4875,5009,5125",
                         "endColumns": "74,110,88,100,106,106,98,106,102,87,123,101,101,115,101,113,127,115,121,135,119,133,119,111,125,116,123,129,121,137,133,115,119",
                         "endOffsets": "1464,1575,1664,1765,1872,1979,2078,2185,2288,2376,2500,2602,2704,2820,2922,3036,3164,3280,3402,3538,3658,3792,3912,4024,4150,4356,4480,4610,4732,4870,5004,5120,5240"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\fc0e2b29ce7126987ecb29d75e5f5e4b\\transformed\\core-splashscreen-1.0.1\\res\\values-night-v8\\values-night-v8.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "85",
-                        "endOffsets": "136"
                     }
                 },
                 {
@@ -64,6 +54,16 @@
                         "startOffsets": "141,211,295,379,475,577,679,4155",
                         "endColumns": "69,83,83,95,101,101,93,88",
                         "endOffsets": "206,290,374,470,572,674,768,4239"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\29eaebb34eaf045d3fb2d4c16036c70e\\transformed\\jetified-core-splashscreen-1.0.1\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "85",
+                        "endOffsets": "136"
                     }
                 }
             ]

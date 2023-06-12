@@ -22,12 +22,14 @@ import com.example.finans.authorization.AuthorizationActivity
 import com.example.finans.language.loadLocale
 import com.example.finans.operation.BottomSheetNewOperationFragment
 import com.example.finans.operation.HomeActivity
+import com.example.finans.plans.paymentPlanning.PaymentPlanning
 import com.example.finans.settings.deleteUser
 import com.example.finans.сurrency.BottomSheetCurrencyFragment
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
 import render.animations.Attention
 import render.animations.Render
 import java.util.concurrent.Executor
@@ -170,6 +172,18 @@ class PinCodeActivity : AppCompatActivity() {
             prefs.edit().remove("shortcuts").apply()
 
         }
+
+        if (prefs.contains("paymentPlanning")) {
+
+            val paymentPlanningJson = prefs.getString("paymentPlanning", null)
+            val paymentPlanning = Gson().fromJson(paymentPlanningJson, PaymentPlanning::class.java)
+
+            val fragment = BottomSheetNewOperationFragment.newInstance(paymentPlanning)
+            fragment.show(supportFragmentManager, "BottomSheetNewOperationFragment")
+
+            prefs.edit().remove("paymentPlanning").apply()
+        }
+
         errorPin = pinErrorText.text.toString()
 
 

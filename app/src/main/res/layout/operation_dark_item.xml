@@ -1,22 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/categoryViewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue">
+
+        <ImageView
+            android:id="@+id/categoryDeleteIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/delete2"
+            app:tint="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:layout_toLeftOf="@id/categoryDeleteIcon"
+            android:text="@string/delete"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/categoryViewForeground"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginVertical="6dp"
-        android:orientation="vertical">
+        android:padding="10dp"
+        app:cornerRadius="20dp"
+        android:background="@color/background_dark">
 
         <RelativeLayout
             android:id="@+id/relativeLayoutOperation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cornerRadius="20dp">
+            app:cornerRadius="20dp"
+            tools:ignore="MissingConstraints">
 
             <ImageView
                 android:id="@+id/categoryIcon"
@@ -76,7 +107,7 @@
         </RelativeLayout>
 
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</RelativeLayout>
+</FrameLayout>

@@ -85,6 +85,8 @@ class BottomSheetUpdateIcon : BottomSheetDialogFragment(), OnItemClickListener{
 
         storageRef = if(type == "addAccounts")
             storage.reference.child("accounts")
+        else if(type == "addGoals" || type == "goals" )
+            storage.reference.child("purposes")
         else
             storage.reference.child("category")
 

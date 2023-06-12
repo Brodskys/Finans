@@ -10,13 +10,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
+import com.example.finans.other.deletionWarning
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.ktx.auth
@@ -26,9 +31,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.ktx.Firebase
+import okhttp3.OkHttpClient
+import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 
-class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListener {
+class BottomSheetCurrencyFragment : BottomSheetDialogFragment(), OnItemClickListener {
 
     private lateinit var currencyRecyclerView: RecyclerView
     private lateinit var currencyArrayList: ArrayList<Currency>
@@ -51,13 +59,14 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
             return fragment
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         (dialog as? BottomSheetDialog)?.let {
-            it.behavior.peekHeight  = R.style.AppBottomSheetDialogTheme
+            it.behavior.peekHeight = R.style.AppBottomSheetDialogTheme
         }
 
         dialog?.setCancelable(false)
@@ -66,9 +75,9 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
 
         switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
-        return if(switchState){
+        return if (switchState) {
             inflater.inflate(R.layout.fragment_bottom_sheet_dark_currency, container, false)
-        } else{
+        } else {
             inflater.inflate(R.layout.fragment_bottom_sheet_currency, container, false)
         }
     }
@@ -78,15 +87,17 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
 
         currencyViewModel = ViewModelProvider(requireActivity())[CurrencyViewModel::class.java]
     }
+
     @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val currencySearch = view.findViewById<SearchView>(R.id.currencySearch)
-        val currencyExit =  view.findViewById<TextView>(R.id.currencyExit)
-        val currencySave =  view.findViewById<TextView>(R.id.currencySave)
+        val currencyExit = view.findViewById<TextView>(R.id.currencyExit)
+        val currencySave = view.findViewById<TextView>(R.id.currencySave)
 
-        val userRef = FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString()).collection("accounts").document("cash")
+        val userRef = FirebaseFirestore.getInstance().collection("users")
+            .document(Firebase.auth.uid.toString()).collection("accounts").document("cash")
 
         var currency = ""
 
@@ -103,15 +114,36 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
         currencySearch.queryHint = getText(R.string.search)
         type = arguments?.getString("type").toString()
 
-        if(switchState) {
-            val searchEditText = currencySearch.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
-            searchEditText.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.background3_dark))
-            searchEditText.setTextColor(ContextCompat.getColor(requireContext(), R.color.background3_dark))
-        }
-        else{
-            val searchEditText = currencySearch.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
-            searchEditText.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.background3))
-            searchEditText.setTextColor(ContextCompat.getColor(requireContext(), R.color.background3))
+        if (switchState) {
+            val searchEditText =
+                currencySearch.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+            searchEditText.setHintTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.background3_dark
+                )
+            )
+            searchEditText.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.background3_dark
+                )
+            )
+        } else {
+            val searchEditText =
+                currencySearch.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+            searchEditText.setHintTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.background3
+                )
+            )
+            searchEditText.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.background3
+                )
+            )
         }
 
         currencyRecyclerView = view.findViewById(R.id.currencyRecyclerView)
@@ -121,12 +153,12 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
         currencyArrayList = arrayListOf()
 
         val prefs = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE)
-        val prefs2 =  PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val prefs2 = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
 
         currencyAdapter = CurrencyAdapter(currencyArrayList)
         currencyAdapter.setOnItemClickListener(this)
-        currencyAdapter.setSharedPreferencesLocale(prefs,prefs2)
+        currencyAdapter.setSharedPreferencesLocale(prefs, prefs2)
         currencyRecyclerView.adapter = currencyAdapter
 
 
@@ -141,36 +173,143 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
         }
 
         currencySave.setOnClickListener {
-            if(type == "change" || currency == "") {
+            if (type == "change" || currency == "" || type == "changeAc") {
                 val sharedPref =
                     requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE)
 
                 val accounts = sharedPref.getString("accounts", "")
 
-                val docRef = FirebaseFirestore.getInstance().collection("users")
-                    .document(Firebase.auth.uid.toString()).collection("accounts")
+                val userID = FirebaseFirestore.getInstance().collection("users")
+                    .document(Firebase.auth.uid.toString())
+
+                val docRef = userID.collection("accounts")
                     .document(accounts!!)
 
-                val accountsCurrncy = hashMapOf<String, Any>(
-                    "currency" to currencyName
-                )
+                if(type == "changeAc"){
+                    currencyViewModel.selectedCurrency(currencyName)
+                }
 
-                docRef.update(accountsCurrncy)
-                    .addOnSuccessListener {
+
+
+                val client = OkHttpClient.Builder()
+                    .connectTimeout(10, TimeUnit.SECONDS)
+                    .readTimeout(10, TimeUnit.SECONDS)
+                    .build()
+
+
+                if(currencyExit.isVisible) {
+                    docRef.get().addOnSuccessListener { documentSnapshot ->
+                        if (documentSnapshot.exists()) {
+                            val currency = documentSnapshot.getString("currency")!!
+                            var balanc = documentSnapshot.getDouble("balance")!!
+
+                            if (currency != currencyName) {
+
+                                convertCurrency(
+                                    lifecycleScope,
+                                    client,
+                                    currency,
+                                    currencyName
+                                ) { value ->
+                                    requireActivity().runOnUiThread {
+                                        currencyConvertWarning(
+                                            currency,
+                                            currencyName,
+                                            value
+                                        ) { result ->
+
+
+                                            if (result) {
+
+                                                userID.collection("accounts")
+                                                    .document(accounts).collection("operation")
+                                                    .get().addOnSuccessListener { querySnapshot ->
+                                                        for (document in querySnapshot.documents) {
+                                                            val sum = document.getDouble("value")!!
+
+                                                            val convertedValue = String.format(
+                                                                Locale.ENGLISH,
+                                                                "%.2f",
+                                                                sum * value.toDouble()
+                                                            ).toDouble()
+
+                                                            document.reference.update(
+                                                                "value",
+                                                                convertedValue
+                                                            )
+                                                                .addOnSuccessListener {
+
+                                                                    val accountsCurrncy =
+                                                                        hashMapOf<String, Any>(
+                                                                            "currency" to currencyName,
+                                                                            "balance" to String.format(
+                                                                                Locale.ENGLISH,
+                                                                                "%.2f",
+                                                                                balanc * value.toDouble()
+                                                                            ).toDouble(),
+                                                                        )
+
+                                                                    docRef.update(accountsCurrncy)
+                                                                        .addOnSuccessListener {
+                                                                            dismiss()
+                                                                        }
+                                                                        .addOnFailureListener { e ->
+                                                                        }
+                                                                }
+                                                                .addOnFailureListener { e ->
+
+                                                                }
+                                                        }
+                                                    }
+
+                                            } else {
+                                                val accountsCurrncy = hashMapOf<String, Any>(
+                                                    "currency" to currencyName,
+                                                )
+
+                                                docRef.update(accountsCurrncy)
+                                                    .addOnSuccessListener {
+                                                        dismiss()
+                                                    }
+                                                    .addOnFailureListener { e ->
+                                                    }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                Toast.makeText(
+                                    requireContext(),
+                                    getString(R.string.currencyWarning),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
                     }
-                    .addOnFailureListener { e ->
-                    }
+                }
+                else{
+                    val accountsCurrency = hashMapOf<String, Any>(
+                        "currency" to currencyName,
+                    )
+
+                    docRef.update(accountsCurrency)
+                        .addOnSuccessListener {
+                            dismiss()
+                        }
+                        .addOnFailureListener { e ->
+                        }
+                }
 
             }
-            else
+            else {
                 currencyViewModel.selectedCurrency(currencyName)
-
                 dismiss()
+            }
 
         }
 
 
-        currencySearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+        currencySearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -185,6 +324,44 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
 
     }
 
+    fun currencyConvertWarning(
+        biloDo: String,
+        staloPosle: String,
+        value: String,
+        callback: (Boolean) -> Unit
+    ) {
+
+        val pref =
+            requireActivity().getSharedPreferences("Settings", AppCompatActivity.MODE_PRIVATE)
+        val locale = pref.getString("locale", "")
+
+        val builder = AlertDialog.Builder(requireContext())
+
+        builder.setTitle(getString(R.string.сonversion))
+
+
+        if (locale == "ru") {
+            builder.setMessage("Вы хотите конвертировать ${biloDo} в ${staloPosle} по курсу ${value}?")
+        } else {
+            builder.setMessage("Do you want to convert ${biloDo} to ${staloPosle} at the rate of ${value}?")
+        }
+
+        builder.setPositiveButton(
+            getString(R.string.yes)
+        ) { dialog, id ->
+            callback(true)
+        }
+
+        builder.setNegativeButton(
+            getString(R.string.no)
+        ) { dialog, id ->
+            callback(false)
+        }
+
+        builder.show()
+
+    }
+
     override fun onItemClick(currency: Currency) {
         view?.findViewById<TextView>(R.id.currencySave)!!.isVisible = true
         currencyName = currency.Name.toString()
@@ -194,8 +371,7 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
         dbref = FirebaseFirestore.getInstance()
 
 
-        dbref.collection("currency").
-        addSnapshotListener(object : EventListener<QuerySnapshot> {
+        dbref.collection("currency").addSnapshotListener(object : EventListener<QuerySnapshot> {
             override fun onEvent(
                 value: QuerySnapshot?,
                 error: FirebaseFirestoreException?
@@ -204,8 +380,8 @@ class BottomSheetCurrencyFragment: BottomSheetDialogFragment(), OnItemClickListe
                     return
                 }
 
-                for (dc: DocumentChange in value?.documentChanges!!){
-                    if (dc.type == DocumentChange.Type.ADDED){
+                for (dc: DocumentChange in value?.documentChanges!!) {
+                    if (dc.type == DocumentChange.Type.ADDED) {
                         currencyArrayList.add(dc.document.toObject(Currency::class.java))
                     }
                 }

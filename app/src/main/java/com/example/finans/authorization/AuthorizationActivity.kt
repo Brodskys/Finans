@@ -1,21 +1,27 @@
 package com.example.finans.authorization
 
 import android.annotation.SuppressLint
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.InputType
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextWatcher
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.StyleSpan
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -28,23 +34,21 @@ import com.example.finans.authorization.authWithFacebook.AuthorizationPresenterF
 import com.example.finans.authorization.authWithGoogle.AuthorizationModelGoogle
 import com.example.finans.authorization.authWithGoogle.AuthorizationPresenterGoogle
 import com.example.finans.authorization.passwordResetEmail.BottomSheetPasswordResetFragment
-import com.example.finans.authorization.profile.BottomSheetIsEmailVerified
 import com.example.finans.language.loadLocale
-import com.example.finans.operation.BottomSheetNewOperationFragment
+import com.example.finans.operation.HomeActivity
 import com.example.finans.other.isEmailValid
 import com.example.finans.other.isValidPassword
-import com.example.finans.operation.HomeActivity
 import com.example.finans.registration.RegistrationActivity
 import com.facebook.CallbackManager
 import com.facebook.FacebookSdk
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -142,6 +146,36 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
 
         email.addTextChangedListener(textWatcher(findViewById(R.id.editTextTextEmailAddress)))
         password.addTextChangedListener(textWatcher(findViewById(R.id.editTextTextPassword)))
+
+
+
+        val privacyPolicyTextView = findViewById<TextView>(R.id.privacyPolicyTextView)
+        val text = privacyPolicyTextView.text
+
+        val spannableString = SpannableString(text)
+        val clickableSpan = object : ClickableSpan() {
+            override fun onClick(view: View) {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data =
+                    Uri.parse("https://www.freeprivacypolicy.com/live/7af84e6a-a34b-415b-985d-d43ae72f64c7")
+                startActivity(intent)
+            }
+        }
+
+        var startIndex =  text.indexOf("Privacy Policy")
+        var endIndex = startIndex + "Privacy Policy".length
+
+        if(startIndex == -1){
+                 startIndex =  text.indexOf("Политикой конфиденциальности")
+                 endIndex = startIndex + "Политикой конфиденциальности".length
+            }
+
+        spannableString.setSpan(clickableSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        spannableString.setSpan(StyleSpan(Typeface.BOLD), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        privacyPolicyTextView.text = spannableString
+        privacyPolicyTextView.movementMethod = LinkMovementMethod.getInstance()
     }
 
 
@@ -166,7 +200,11 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
                             editor!!.putString("shortcuts", intent.action.toString())
                             editor.apply()
                         }
+
                     }
+
+
+
 
                 //    if(Firebase.auth.currentUser!!.isEmailVerified) {
 
@@ -203,76 +241,50 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
         presenterFacebook.onActivityResult(requestCode, resultCode, data)
     }
 
-
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == AuthorizationPresenterGoogle.RC_SIGN_IN) {
-//            val tk = GoogleSignIn.getSignedInAccountFromIntent(data)
-//            try {
-//                val account = tk.getResult(ApiException::class.java)
-//                val email = account?.email
-//
-//                FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email!!)
-//                    .addOnCompleteListener { task ->
-//                        if (task.isSuccessful) {
-//                            val result = task.result
-//                            if ((result?.signInMethods?.size ?: 0) > 0) {
-//                                Toast.makeText(requireContext(), "Такой уже есть", Toast.LENGTH_SHORT).show()
-//                            } else {
-//
-//                                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-//                                FirebaseAuth.getInstance().signInWithCredential(credential)
-//                                    .addOnCompleteListener { tsk ->
-//                                        if (tsk.isSuccessful) {
-//                                            Log.d(ContentValues.TAG, "linkWithCredential:success")
-//                                            bottomSheetSettingsFragment?.dismiss()
-//                                            dismiss()
-//                                            requireActivity().recreate()
-//
-//                                        } else {
-//                                            Log.w(ContentValues.TAG, "linkWithCredential:failure", tsk.exception)
-//                                            Toast.makeText(
-//                                                requireContext(), "Authentication failed.",
-//                                                Toast.LENGTH_SHORT
-//                                            ).show()
-//                                        }
-//                                    }
-//
-//                            }
-//                        }
-//                    }
-//
-//
-//            } catch (e: ApiException) {
-//            }
-//        }
-//    }
-//
-    override fun showMainScreen() {
+    override fun showMainScreen(account: GoogleSignInAccount?) {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         prefs.edit().putBoolean("isPassword", true).apply()
 
         val db = FirebaseFirestore.getInstance()
 
-        db.document("/users/${Firebase.auth.uid.toString()}").get().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val document = task.result
-                if (document.exists()) {
-                    startActivity(Intent(this, PinCodeActivity::class.java))
-                    finish()
-                } else {
-                    uploadData()
-                    startActivity(Intent(this, PinCodeActivity::class.java))
-                    finish()
-                }
-            }
-        }
+        val email = account?.email
 
+        if (email != null) {
+            FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val result = task.result
+                        if ((result?.signInMethods?.size ?: 0) > 0) {
+                            startActivity(Intent(this, PinCodeActivity::class.java))
+                            finish()
+                        } else {
+                            uploadData()
+                            startActivity(Intent(this, PinCodeActivity::class.java))
+                            finish()
+                        }
+                    }
+                }
+        }
+        else {
+            db.document("/users/${Firebase.auth.uid.toString()}").get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val document = task.result
+                        if (document.exists()) {
+                            startActivity(Intent(this, PinCodeActivity::class.java))
+                            finish()
+                        } else {
+                            uploadData()
+                            startActivity(Intent(this, PinCodeActivity::class.java))
+                            finish()
+                        }
+                    }
+                }
+        }
     }
 
     private fun uploadData() {
-        val format = SimpleDateFormat("dd.M.yyyy", Locale.getDefault());
+        val format = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         val currentDate = format.format(Date())
 
         val userId = FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString())
@@ -386,12 +398,10 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("signInAnonymously", "signInAnonymously:success")
                     uploadData()
-                    showMainScreen()
+                    showMainScreen(null)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("signInAnonymously", "signInAnonymously:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
                     showErrorScreen()
                 }
             }
@@ -417,7 +427,12 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         Log.d("signInWithEmail", "signInWithEmail:success")
-                        showMainScreen()
+                       // showMainScreen()
+
+                        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+                        prefs.edit().putBoolean("isPassword", true).apply()
+                        startActivity(Intent(this, PinCodeActivity::class.java))
+
                     } else {
                             val builder = AlertDialog.Builder(view.context)
 

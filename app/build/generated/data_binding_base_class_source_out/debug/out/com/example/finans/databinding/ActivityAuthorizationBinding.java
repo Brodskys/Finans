@@ -70,6 +70,9 @@ public final class ActivityAuthorizationBinding implements ViewBinding {
   public final TextView passwordTxt;
 
   @NonNull
+  public final TextView privacyPolicyTextView;
+
+  @NonNull
   public final TextView signUpButton;
 
   @NonNull
@@ -87,8 +90,8 @@ public final class ActivityAuthorizationBinding implements ViewBinding {
       @NonNull ImageView imageView2, @NonNull ImageView imageView4,
       @NonNull LinearLayout linearLayout, @NonNull ImageView passwordIcon,
       @NonNull LinearLayout passwordLayout, @NonNull TextView passwordTxt,
-      @NonNull TextView signUpButton, @NonNull RelativeLayout socialNetwork,
-      @NonNull TextView textOR) {
+      @NonNull TextView privacyPolicyTextView, @NonNull TextView signUpButton,
+      @NonNull RelativeLayout socialNetwork, @NonNull TextView textOR) {
     this.rootView = rootView;
     this.authUserBtn = authUserBtn;
     this.donthaveanAccount = donthaveanAccount;
@@ -105,6 +108,7 @@ public final class ActivityAuthorizationBinding implements ViewBinding {
     this.passwordIcon = passwordIcon;
     this.passwordLayout = passwordLayout;
     this.passwordTxt = passwordTxt;
+    this.privacyPolicyTextView = privacyPolicyTextView;
     this.signUpButton = signUpButton;
     this.socialNetwork = socialNetwork;
     this.textOR = textOR;
@@ -227,6 +231,12 @@ public final class ActivityAuthorizationBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.privacyPolicyTextView;
+      TextView privacyPolicyTextView = ViewBindings.findChildViewById(rootView, id);
+      if (privacyPolicyTextView == null) {
+        break missingId;
+      }
+
       id = R.id.signUpButton;
       TextView signUpButton = ViewBindings.findChildViewById(rootView, id);
       if (signUpButton == null) {
@@ -248,7 +258,7 @@ public final class ActivityAuthorizationBinding implements ViewBinding {
       return new ActivityAuthorizationBinding((ConstraintLayout) rootView, authUserBtn,
           donthaveanAccount, editTextTextEmailAddress, editTextTextPassword, emailIcon, emailLayout,
           emailTxt, forgotPassword, imageView1, imageView2, imageView4, linearLayout, passwordIcon,
-          passwordLayout, passwordTxt, signUpButton, socialNetwork, textOR);
+          passwordLayout, passwordTxt, privacyPolicyTextView, signUpButton, socialNetwork, textOR);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

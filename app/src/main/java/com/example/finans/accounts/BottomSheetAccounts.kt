@@ -1,23 +1,18 @@
 package com.example.finans.accounts
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
-import com.example.finans.category.CategoryViewModel
-import com.example.finans.category.subcategory.BottomSheetSubcategoryFragment
-import com.example.finans.category.updateCategory.BottomSheetUpdateIcon
-import com.example.finans.operation.Operation
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.ktx.auth
@@ -31,10 +26,12 @@ class BottomSheetAccounts : BottomSheetDialogFragment(), OnItemClickListener {
     private lateinit var accountsAdapter: AccountsAdapter
     private lateinit var type: String
     private lateinit var accountsViewModel: AccountsViewModel
-
+    private  var accountsList: ArrayList<Accounts>? = null
+    private lateinit var accountsBudgetsViewModel: AccountsBudgetsViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         accountsViewModel = ViewModelProvider(requireActivity())[AccountsViewModel::class.java]
+        accountsBudgetsViewModel = ViewModelProvider(requireActivity())[AccountsBudgetsViewModel::class.java]
     }
 
     companion object {
@@ -64,10 +61,14 @@ class BottomSheetAccounts : BottomSheetDialogFragment(), OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
         type = arguments?.getString("type")!!
 
+        if(type == "budgets") {
+            view.findViewById<LinearLayout>(R.id.accountsLinearLayout).visibility = View.GONE
+
+            view.findViewById<TextView>(R.id.accountsEditExit).setText(R.string.back2)
+        }
 
         accountsRecyclerView = view.findViewById(R.id.accountsRecyclerView)
         accountsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        accountsRecyclerView.setHasFixedSize(true)
 
         accountsArrayList = arrayListOf()
 
@@ -77,7 +78,7 @@ class BottomSheetAccounts : BottomSheetDialogFragment(), OnItemClickListener {
         val loc = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE)
 
 
-        accountsAdapter.setSharedPreferencesLocale(loc)
+        accountsAdapter.setSharedPreferencesLocale(loc,type)
 
         accountsRecyclerView.adapter = accountsAdapter
 
@@ -102,6 +103,10 @@ class BottomSheetAccounts : BottomSheetDialogFragment(), OnItemClickListener {
         }
 
         view.findViewById<TextView>(R.id.accountsEditExit).setOnClickListener {
+
+            if (accountsList!= null)
+            accountsBudgetsViewModel.selectAccountsBudgets(accountsList!!)
+
             dismiss()
         }
 
@@ -169,6 +174,12 @@ class BottomSheetAccounts : BottomSheetDialogFragment(), OnItemClickListener {
         }
 
         dismiss()
+
+    }
+
+    override fun onItemsClick(accounts: java.util.ArrayList<Accounts>) {
+
+        accountsList = accounts
 
     }
 

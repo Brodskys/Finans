@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.finans.app-mergeDebugResources-46:/values-xlarge-v4/values-xlarge-v4.xml",
+            "outputFile": "com.example.finans.app-mergeDebugResources-51:/values-xlarge-v4/values-xlarge-v4.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\26b28e7209e49f16a73fb180afbeeced\\transformed\\appcompat-1.6.1\\res\\values-xlarge-v4\\values-xlarge-v4.xml",

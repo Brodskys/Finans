@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.finans.app-mergeDebugResources-46:/values-gl/values-gl.xml",
+            "outputFile": "com.example.finans.app-mergeDebugResources-51:/values-gl/values-gl.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\a8a9f841e3f0e7743e5261cfa9d0f046\\transformed\\material-1.9.0\\res\\values-gl\\values-gl.xml",
@@ -23,6 +23,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\ec29716f41383344285d6318739a1807\\transformed\\jetified-play-services-places-17.0.0\\res\\values-gl\\values.xml",
+                    "from": {
+                        "startLines": "4,5",
+                        "startColumns": "0,0",
+                        "startOffsets": "193,293",
+                        "endColumns": "99,91",
+                        "endOffsets": "292,384"
+                    },
+                    "to": {
+                        "startLines": "143,144",
+                        "startColumns": "4,4",
+                        "startOffsets": "14206,14310",
+                        "endColumns": "103,95",
+                        "endOffsets": "14305,14401"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\539c0f5009f4f6941cbe7f851e39ce57\\transformed\\browser-1.4.0\\res\\values-gl\\values-gl.xml",
                     "from": {
                         "startLines": "2,3,4,5",
@@ -40,41 +57,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\7b9ecbf66e748251607166f462dcaea8\\transformed\\places-3.1.0\\res\\values-gl\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11",
-                        "startColumns": "0,0,0,0,0,0,0,0",
-                        "startOffsets": "184,254,320,422,485,532,606,703",
-                        "endColumns": "69,65,101,62,46,73,96,55",
-                        "endOffsets": "253,319,421,484,531,605,702,758"
-                    },
-                    "to": {
-                        "startLines": "145,146,147,148,149,150,151,152",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "14406,14480,14550,14656,14723,14774,14852,14953",
-                        "endColumns": "73,69,105,66,50,77,100,59",
-                        "endOffsets": "14475,14545,14651,14718,14769,14847,14948,15008"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\6bbd23291e9b962a62abab10b26fffd6\\transformed\\play-services-places-17.0.0\\res\\values-gl\\values.xml",
-                    "from": {
-                        "startLines": "4,5",
-                        "startColumns": "0,0",
-                        "startOffsets": "193,293",
-                        "endColumns": "99,91",
-                        "endOffsets": "292,384"
-                    },
-                    "to": {
-                        "startLines": "143,144",
-                        "startColumns": "4,4",
-                        "startOffsets": "14206,14310",
-                        "endColumns": "103,95",
-                        "endOffsets": "14305,14401"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\7db79fc6b3b160cc4fa77cea59d3d602\\transformed\\play-services-basement-18.2.0\\res\\values-gl\\values.xml",
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\2272e35376afacb891f7006d451c8930\\transformed\\jetified-play-services-basement-18.2.0\\res\\values-gl\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -142,7 +125,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\3b5a3093497d72748bb7d45654a9404d\\transformed\\play-services-base-18.0.1\\res\\values-gl\\values.xml",
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\dbdeda5a57679b7580252084387fac05\\transformed\\jetified-play-services-base-18.0.1\\res\\values-gl\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -156,6 +139,23 @@
                         "startOffsets": "4867,4973,5136,5265,5373,5532,5664,5783,6026,6197,6306,6475,6610,6775,6927,6994,7063",
                         "endColumns": "105,162,128,107,158,131,118,108,170,108,168,134,164,151,66,68,84",
                         "endOffsets": "4968,5131,5260,5368,5527,5659,5778,5887,6192,6301,6470,6605,6770,6922,6989,7058,7143"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\d24e5e82413812ec39ef65e1cf43c674\\transformed\\jetified-places-3.1.0\\res\\values-gl\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11",
+                        "startColumns": "0,0,0,0,0,0,0,0",
+                        "startOffsets": "184,254,320,422,485,532,606,703",
+                        "endColumns": "69,65,101,62,46,73,96,55",
+                        "endOffsets": "253,319,421,484,531,605,702,758"
+                    },
+                    "to": {
+                        "startLines": "145,146,147,148,149,150,151,152",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "14406,14480,14550,14656,14723,14774,14852,14953",
+                        "endColumns": "73,69,105,66,50,77,100,59",
+                        "endOffsets": "14475,14545,14651,14718,14769,14847,14948,15008"
                     }
                 }
             ]

@@ -1,6 +1,7 @@
 package com.example.finans.registration
 
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
@@ -29,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import java.lang.Math.abs
 import java.text.SimpleDateFormat
@@ -236,37 +238,89 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
     }
 
     private fun uploadData() {
-        val format = SimpleDateFormat("dd.M.yyyy", Locale.getDefault());
+        val format = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         val currentDate = format.format(Date())
 
-        val hashMap = hashMapOf<String, Any>(
+        val userId = FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString())
+
+        val informationMap = hashMapOf<String, Any>(
             "date_registration" to currentDate,
             "total_balance" to 0,
             "accounts" to "cash"
         )
-        val fireStoreDatabase = FirebaseFirestore.getInstance()
-        fireStoreDatabase.collection("users").document(Firebase.auth.uid.toString()).collection("user").document("information").set(hashMap)
+
+        userId.collection("user").document("information").set(informationMap, SetOptions.merge())
             .addOnSuccessListener {
-                Log.d("Registration", "Added document with ID")
+                Log.d("Registration", "Added document")
             }
             .addOnFailureListener { exception ->
                 Log.d("Registration", "Error adding document $exception")
 
             }
 
-        val sourceCollectionRef = FirebaseFirestore.getInstance().collection("category")
-        val targetCollectionRef = FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString()).collection("category")
+        val accountsMap = hashMapOf<String, Any>(
+            "name" to "cash",
+            "balance" to 0,
+            "nameRus" to "Наличные",
+            "nameEng" to "Cash",
+            "icon" to "gs://finans-44544.appspot.com/accounts/coins.png",
+            "currency" to ""
+        )
 
-        sourceCollectionRef.get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val data = document.data
-                    val documentId = document.id
-                    targetCollectionRef.document(documentId).set(data)
-                }
+        val sharedPref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+
+        val editor = sharedPref?.edit()
+        editor!!.putString("accounts", "cash")
+        editor.apply()
+
+
+        userId.collection("accounts").document("cash").set(accountsMap, SetOptions.merge())
+            .addOnSuccessListener {
+                Log.d("Registration", "Added document")
             }
             .addOnFailureListener { exception ->
-                Log.w("category", "Ошибка получения документов: ", exception)
+                Log.d("Registration", "Error adding document $exception")
+
+            }
+
+
+        val sourceCollectionRef = FirebaseFirestore.getInstance().collection("category")
+        val targetCollectionRef = userId.collection("category")
+
+
+        sourceCollectionRef.get().addOnSuccessListener { querySnapshot ->
+            for (documentSnapshot in querySnapshot.documents) {
+                val documentData = documentSnapshot.data
+                if (documentData != null) {
+                    val targetDocumentRef = targetCollectionRef.document(documentSnapshot.id)
+                    targetDocumentRef.set(documentData)
+                        .addOnSuccessListener { Log.d(ContentValues.TAG, "Document copied successfully!") }
+                        .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Error copying document", e) }
+
+                    val subCollectionRef = sourceCollectionRef.document(documentSnapshot.id).collection("subcategories")
+                    val targetSubCollectionRef = targetDocumentRef.collection("subcategories")
+                    subCollectionRef.get().addOnSuccessListener { subCollectionQuerySnapshot ->
+                        for (subCollectionDocSnapshot in subCollectionQuerySnapshot.documents) {
+                            targetSubCollectionRef.document(subCollectionDocSnapshot.id).set(subCollectionDocSnapshot.data!!)
+                        }
+                    }
+                }
+            }
+        }
+
+        val user = Firebase.auth.currentUser
+
+        val name: String = user?.displayName ?: "Username"
+
+        val profileUpdates = userProfileChangeRequest {
+            displayName = name
+        }
+
+        user!!.updateProfile(profileUpdates)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(ContentValues.TAG, "User profile updated.")
+                }
             }
     }
 }

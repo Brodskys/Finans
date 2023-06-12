@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.database.ContentObserver
 import android.net.Uri
@@ -19,11 +20,13 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.Locale
+import java.util.UUID
 
 class SmsService : Service() {
 
@@ -47,19 +50,12 @@ class SmsService : Service() {
 
         contentResolver.registerContentObserver(Uri.parse("content://sms"), true, smsObserver)
 
-
-        val input = intent.getStringExtra("inputExtra")
         createNotificationChannel()
-        val notificationIntent = Intent(this, SettingsActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(
-            this,
-            0, notificationIntent, PendingIntent.FLAG_IMMUTABLE
-        )
+
         val notification = NotificationCompat.Builder(this, "SMS foregroundService")
-            .setContentTitle(getString(R.string.isSms))
-            .setContentText(input)
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentIntent(pendingIntent)
+            .setContentText(getString(R.string.isSms))
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+
             .build()
 
         startForeground(1, notification)
@@ -69,7 +65,7 @@ class SmsService : Service() {
 
     private fun createNotificationChannel() {
 
-        val serviceChannel = NotificationChannel("SMS foregroundService", "Foreground Service Channel",
+        val serviceChannel = NotificationChannel("SMS foregroundService", "Notification",
             NotificationManager.IMPORTANCE_DEFAULT)
         val manager = getSystemService(NotificationManager::class.java)
         manager!!.createNotificationChannel(serviceChannel)
@@ -104,7 +100,7 @@ class SmsService : Service() {
             val db = Firebase.firestore
 
             var regex = Regex("^\\w+")
-            val operation = regex.find(smsBody)?.value
+            var operation = regex.find(smsBody)?.value
 
             regex = Regex("\\d+\\.\\d+")
             val value = regex.find(smsBody)!!.value.toDouble()
@@ -116,62 +112,76 @@ class SmsService : Service() {
             val dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
             val date = dateFormat.parse(dateTime!!)
             val timestamp = Timestamp(date!!)
-            val map: GeoPoint? = null
+            val map = GeoPoint(0.0, 0.0)
 
 
-            val fireStoreDatabase = FirebaseFirestore.getInstance()
+            val id = UUID.randomUUID().toString()
+
+            if(operation == "POPOLNENIE") operation = getText(R.string.income).toString()
+            else operation = getText(R.string.expense).toString()
+
+            val money = if (operation == getText(R.string.income)) value  else -value
+
+            val sharedPref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+            val accounts = sharedPref.getString("accounts", "")
+
+            var operationRu = ""
+            var operationEng = ""
 
             when (operation) {
-
-                getText(R.string.expense) -> {
-                    fireStoreDatabase.collection("users").document(Firebase.auth.uid.toString())
-                        .collection("user").document("information")
-                        .update("balance", FieldValue.increment(-value))
-                        .addOnSuccessListener {
-                            Log.w("expense", "Да")
-                        }
-                        .addOnFailureListener { e ->
-                            Log.w("expense", "Ошибка при добавлении суммы к балансу", e)
-                        }
+                getString(R.string.income) ->{
+                    operationEng = "Income"
+                    operationRu = "Доход"
                 }
-                getText(R.string.income) -> {
-                    fireStoreDatabase.collection("users").document(Firebase.auth.uid.toString())
-                        .collection("user").document("information")
-                        .update("balance", FieldValue.increment(value))
-                        .addOnSuccessListener {
-                            Log.w("income", "Да")
-                        }
-                        .addOnFailureListener { e ->
-                            Log.w("income", "Ошибка при добавлении суммы к балансу", e)
-                        }
+                getString(R.string.expense) ->{
+                    operationEng = "Expense"
+                    operationRu = "Расход"
                 }
-                getText(R.string.translation) -> {
-                    fireStoreDatabase.collection("users").document(Firebase.auth.uid.toString())
-                        .collection("user").document("information")
-                        .update("balance", FieldValue.increment(-value))
-                        .addOnSuccessListener {
-                            Log.w("translation", "Да")
-                        }
-                        .addOnFailureListener { e ->
-                            Log.w("translation", "Ошибка при добавлении суммы к балансу", e)
-                        }
+                getString(R.string.translation) ->{
+                    operationEng = "Translation"
+                    operationRu = "Перевод"
                 }
-
             }
 
-            val sms = hashMapOf(
-                "type" to operation,
+            val sms = hashMapOf<String, Any>(
+                "id" to id,
+                "typeRu" to operationRu,
+                "typeEn" to operationEng,
                 "value" to value,
                 "timestamp" to timestamp,
                 "note" to smsHeader,
-                "category" to "Продукты",
-                "image" to  "gs://finans-44544.appspot.com/category/question.png",
+                "categoryRu" to "Отсутствует",
+                "categoryEn" to "Absent",
+                "image" to "gs://finans-44544.appspot.com/category/other.png",
                 "map" to map,
                 "photo" to "",
+                "account" to accounts!!
             )
 
-            db.collection("users").document(Firebase.auth.uid.toString())
-                .collection("operation").document()
+            val settings = FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build()
+
+            db.firestoreSettings = settings
+
+            val userID = db.collection("users").document(Firebase.auth.uid.toString())
+
+            userID
+                .collection("user").document("information")
+                .update("total_balance", FieldValue.increment(money))
+                .addOnSuccessListener {}
+                .addOnFailureListener {}
+
+            userID
+                .collection("accounts").document(accounts)
+                .update("balance", FieldValue.increment(money))
+                .addOnSuccessListener {}
+                .addOnFailureListener {}
+
+
+            userID.collection("accounts")
+                .document(accounts)
+                .collection("operation").document(id)
                 .set(sms)
                 .addOnSuccessListener { Log.d("d", "DocumentSnapshot successfully written!") }
                 .addOnFailureListener { e -> Log.w("d", "Error writing document", e) }

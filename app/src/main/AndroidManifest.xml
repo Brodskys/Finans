@@ -5,8 +5,12 @@
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -32,11 +36,11 @@
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".AnalyticsActivity"
+            android:name=".analytics.AnalyticsActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".PlansActivity"
+            android:name=".plans.PlansActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
@@ -96,6 +100,8 @@
             android:value="AIzaSyCoujs0OYiVFqAdFCZ0r0Wj6i2FfQgppOs"/>
 
         <service android:name=".settings.SmsService"/>
+
+        <receiver android:name=".plans.paymentPlanning.NotificationReceiver" />
 
     </application>
 

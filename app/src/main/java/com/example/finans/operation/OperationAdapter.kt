@@ -1,17 +1,21 @@
 package com.example.finans.operation
 
 import android.content.SharedPreferences
+import android.graphics.Region.Op
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -22,7 +26,8 @@ interface OnItemClickListener {
 }
 
 class OperationAdapter(private val operationList: ArrayList<Operation>) :
-    RecyclerView.Adapter<OperationAdapter.ViewHolder>() {
+    RecyclerView.Adapter<OperationAdapter.ViewHolder>(),
+    ItemTouchHelperAdapter {
     var selectedItem  = -1
     var sharedPreferences: SharedPreferences? = null
     var switchState: Boolean? = null
@@ -41,7 +46,13 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
                 } else {
                     val resultList = ArrayList<Operation>()
                     for (row in  operationList) {
-                        if (row.typeEn?.lowercase(Locale.ROOT)
+                        if (row.categoryRu?.lowercase(Locale.ROOT)
+                                ?.contains(charSearch.lowercase(Locale.ROOT)) == true ||
+                            row.categoryEn?.lowercase(Locale.ROOT)
+                                ?.contains(charSearch.lowercase(Locale.ROOT)) == true ||
+                            row.typeEn?.lowercase(Locale.ROOT)
+                                ?.contains(charSearch.lowercase(Locale.ROOT)) == true ||
+                            row.typeRu?.lowercase(Locale.ROOT)
                                 ?.contains(charSearch.lowercase(Locale.ROOT)) == true
                         )
                         {
@@ -64,13 +75,27 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-       val itemView =
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.operation_dark_item,
-                parent, false)
+        switchState = sharedPreferences!!.getBoolean("modeSwitch", false)
 
 
-        return ViewHolder(itemView)
+        if(switchState!!){
+            val itemView =
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.operation_dark_item,
+                    parent, false)
+
+
+            return ViewHolder(itemView)
+        } else{
+            val itemView =
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.operation_item,
+                    parent, false)
+
+            return ViewHolder(itemView)
+        }
+
+
     }
 
     fun setOnItemClickListener(listener: HomeActivity) {
@@ -78,6 +103,7 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
 
         val operation: Operation = operationListFiltered[position]
 
@@ -102,23 +128,22 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
             holder.category.text = operation.categoryEn
         }
         val date = operation.timestamp?.toDate()
-        val pattern = "dd.MM.yyyy HH:mm"
+        val pattern = "dd MMMM HH:mm"
         val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
-
 
         val dateString = date?.let { simpleDateFormat.format(it) }
 
+        val decimalFormat = DecimalFormat("#,##0.00")
 
         holder.time.text = dateString
-        holder.value.text = operation.value.toString()
-
+        holder.value.text =  decimalFormat.format(operation.value).toString()
 
 
         holder.itemView.isSelected = selectedItem == position
 
         holder.itemView.setOnClickListener {
             selectedItem = position
-            notifyDataSetChanged()
+
             listener?.onItemClick(operationListFiltered[position])
         }
 
@@ -135,7 +160,7 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
     }
 
 
-    class  ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder internal constructor(view: View) : RecyclerView.ViewHolder(view) {
 
         val image = itemView.findViewById<ImageView>(R.id.categoryIcon)
         val type = itemView.findViewById<TextView>(R.id.operationType)
@@ -143,7 +168,21 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
         val value = itemView.findViewById<TextView>(R.id.operationValue)
         val category = itemView.findViewById<TextView>(R.id.operationCategory)
 
+        val categoryViewForeground = itemView.findViewById<ConstraintLayout>(R.id.categoryViewForeground)
 
+
+    }
+    fun removeItem(position: Int) {
+        operationList.removeAt(position)
+        notifyItemRemoved(position)
+    }
+    override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
+        return true
+    }
+
+    override fun onItemDismiss(position: Int) {
+        operationList.removeAt(position)
+        notifyItemRemoved(position)
     }
 
 }

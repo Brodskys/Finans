@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
+import com.example.finans.category.Category
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
@@ -18,7 +19,7 @@ import java.util.*
 
 interface OnItemClickListener {
     fun onItemClick(accounts: Accounts)
-
+    fun onItemsClick(accounts: ArrayList<Accounts>)
 }
 
 class AccountsAdapter(private val accountsList: ArrayList<Accounts>) :
@@ -26,10 +27,12 @@ class AccountsAdapter(private val accountsList: ArrayList<Accounts>) :
     var selectedItem  = -1
     var sharedPreferences: SharedPreferences? = null
     var switchState: Boolean? = null
+    var typeAccounts: String? = null
 
     private var  accountsListFiltered: ArrayList<Accounts> = accountsList
     private var listener: OnItemClickListener? = null
 
+    private val selectedItemsList = ArrayList<Accounts>()
 
 
     fun getFilter(): Filter {
@@ -104,16 +107,43 @@ class AccountsAdapter(private val accountsList: ArrayList<Accounts>) :
 
         holder.itemView.isSelected = selectedItem == position
 
+        if (typeAccounts == "budgets") {
+            if (selectedItemsList.contains(accounts)) {
+                holder.cheackImage.setImageResource(R.drawable.done)
+            } else {
+                holder.cheackImage.setImageResource(R.drawable.right)
+            }
+        }
+
+
         holder.itemView.setOnClickListener {
-            selectedItem = position
-            notifyDataSetChanged()
-            listener?.onItemClick(accountsListFiltered[position])
+            if (typeAccounts == "budgets") {
+                if (selectedItemsList.contains(accounts)) {
+                    selectedItemsList.remove(accounts)
+                    holder.cheackImage.setImageResource(R.drawable.right)
+                } else {
+                    selectedItemsList.add(accounts)
+                    holder.cheackImage.setImageResource(R.drawable.done)
+                }
+
+                listener?.onItemsClick(selectedItemsList)
+
+                selectedItem = position
+            } else {
+                selectedItem = position
+
+                listener?.onItemClick(accountsListFiltered[position])
+            }
+
+
+
         }
 
     }
 
-    fun setSharedPreferencesLocale(sharedPreferences: SharedPreferences) {
+    fun setSharedPreferencesLocale(sharedPreferences: SharedPreferences,   type: String?) {
         this.sharedPreferences = sharedPreferences
+        this.typeAccounts = type
     }
 
     override fun getItemCount(): Int {
@@ -126,7 +156,7 @@ class AccountsAdapter(private val accountsList: ArrayList<Accounts>) :
 
         val image = itemView.findViewById<ImageView>(R.id.accounts_itemIcon)
         val name = itemView.findViewById<TextView>(R.id.accounts_itemName)
-
+        val cheackImage = itemView.findViewById<ImageView>(R.id.Imgright323)
 
     }
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="month_year_array_ru">
+        <item>месяца</item>
+        <item>года</item>
+    </string-array>
+
+    <string-array name="month_year_array_en">
+        <item>months</item>
+        <item>years</item>
+    </string-array>
+
+    <string-array name="repayment_procedure_ru">
+        <item>Дифференцированный</item>
+        <item>Аннуитетный</item>
+    </string-array>
+
+    <string-array name="repayment_procedure_en">
+        <item>Differentiated</item>
+        <item>Annuity</item>
+    </string-array>
+
+    <string-array name="interest_accrual_mode_ru">
+        <item>Простой процент</item>
+        <item>Сложный процент</item>
+    </string-array>
+
+    <string-array name="interest_accrual_mode_en">
+        <item>Simple percentage</item>
+        <item>Compound interest</item>
+    </string-array>
+
+    <string-array name="currency">
+        <item>BYN</item>
+        <item>USD</item>
+        <item>RUS</item>
+        <item>EUR</item>
+    </string-array>
+</resources>

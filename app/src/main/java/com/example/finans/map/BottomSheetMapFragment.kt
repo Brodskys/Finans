@@ -25,6 +25,7 @@ import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.GeoPoint
+import java.io.IOException
 import java.util.*
 
 
@@ -105,8 +106,6 @@ class BottomSheetMapFragment : BottomSheetDialogFragment(), OnMapReadyCallback, 
 
                         placeMarkerOnMap(latLng)
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
-                    } else {
-                        Toast.makeText(requireContext(), "Адрес не найден", Toast.LENGTH_SHORT).show()
                     }
                 }
                 catch(e: Exception) {
@@ -155,17 +154,19 @@ class BottomSheetMapFragment : BottomSheetDialogFragment(), OnMapReadyCallback, 
     }
 
     private fun placeMarkerOnMap(currentLatLong: LatLng) {
+
         val geocoder = Geocoder(requireContext(), Locale.getDefault())
         val addresses = geocoder.getFromLocation(currentLatLong.latitude, currentLatLong.longitude, 1)
         val address = addresses?.get(0)?.getAddressLine(0)
         val markerOptions = MarkerOptions().position(currentLatLong)
         markerOptions.title(address)
 
-
         markerAddress = GeoPoint(currentLatLong.latitude, currentLatLong.longitude)
 
         marker = mMap.addMarker(markerOptions)!!
         marker.showInfoWindow()
+
+
     }
 
 

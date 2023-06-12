@@ -40,6 +40,8 @@
     <string name="signup">Зарегистрироваться</string>
 
     <string name="back">НАЗАД</string>
+    <string name="back2">Назад</string>
+
     <string name="editProfile">Редактировать профиль</string>
     <string name="questions">Вопросы</string>
     <string name="abouttheprogram">О программе</string>
@@ -53,7 +55,7 @@
     <string name="account">Аккаунт</string>
     <string name="categories">Категории</string>
     <string name="dateandtime">Дата и время</string>
-    <string name="repeattheoperation">Повторить операцию</string>
+    <string name="repeattheoperation">Повторить</string>
     <string name="note">Заметка</string>
     <string name="addLocation">Местоположение</string>
     <string name="attachPhoto">Прикрепить фото</string>
@@ -148,5 +150,102 @@
 
     <string name="fillInAllFields">Заполните все поля</string>
 
+    <string name="сonversion">Конвертация</string>
+    <string name="currencyWarning">Эта валюта уже выбрана</string>
+
+    <string name="paymentPlanning">Планирование платежей</string>
+    <string name="futurePayments">Ваши будущие платежи</string>
+
+    <string name="budgets">Бюджеты</string>
+    <string name="spendingPlan">Ваш план расходов</string>
+
+    <string name="calculator">Калькулятор</string>
+    <string name="financialCalculations">Финансовые расчёты</string>
+
+    <string name="loanCalculator">Калькулятор кредитования</string>
+    <string name="investmentCalculator">Калькулятор инвестиций</string>
+    <string name="сushionСalculator">Калькулятор фин. подушки</string>
+
+    <string name="goals">Цели</string>
+    <string name="financialGoals">Ваши финансовые цели</string>
+
+    <string name="loan1">Сумма кредита/займа</string>
+    <string name="loan2">Процентная ставка, % годовых</string>
+    <string name="loan3">Срок кредита/займа</string>
+    <string name="loan4">Дата выдачи</string>
+    <string name="loan5">Рассчитать</string>
+    <string name="loan6">Сумма платежей</string>
+    <string name="loan7">Переплата</string>
+    <string name="loan8">Общая сумма выплат</string>
+    <string name="loan9">Процент переплат</string>
+    <string name="loan10">Окончание выплат</string>
+    <string name="loan11">Процент больше 100</string>
+
+
+    <string name="investment1">Cумма инвестиций</string>
+    <string name="investment2">Процентная ставка</string>
+    <string name="investment3">Период инвестирования</string>
+    <string name="investment4">Первоначальная сумма</string>
+    <string name="investment5">Сумма дохода</string>
+    <string name="investment6">Итоговая сумма</string>
+
+    <string name="financialCushion1">Ежемесячный доход</string>
+    <string name="financialCushion2">Ежемесячные расходы</string>
+    <string name="financialCushion3">Желаемый период</string>
+    <string name="financialCushion5">Необходимая сумма</string>
+
+    <string name="balance">Баланс</string>
+
+    <string name="makePayment">Внести платёж</string>
+
+    <string name="privacyPolicyText">Зарегистрировавшись, вы соглашаетесь с Политикой конфиденциальности, описывающей методы обработки персональных данных.</string>
+
+    <string name="value">Значение</string>
+
+    <string name="date1">Срок оплаты через</string>
+    <string name="date11">дня(дней)</string>
+    <string name="date2">просрочки</string>
+    <string name="date3">Срок оплаты сегодня</string>
+
+    <string name="paid">Оплачено</string>
+
+    <string name="notification">Оповещение</string>
+
+    <string name="forPeriod">За период</string>
+
+    <string name="thisMonth">Этот месяц</string>
+    <string name="threeMonths">3 месяца</string>
+    <string name="sixMonths">6 месяцев</string>
+    <string name="thisYear">За год</string>
+    <string name="setUp">Настроить</string>
+
+    <string name="fromDate">С даты</string>
+    <string name="beforeDate">До даты</string>
+А
+    <string name="report">Создать отчёт</string>
+
+    <string name="user">Пользователь</string>
+    <string name="dateRegistration">Дата регистрации</string>
+    <string name="totalBalance">Общий баланс</string>
+
+    <string name="operationsReport">Отчёт по операциям</string>
+    <string name="chartOperations">Диаграмма операций за период</string>
+    <string name="emailSent">Отчёт отправлен на вашу почту</string>
+
+    <string name="dateOperation">Дата операции</string>
+    <string name="typeOperation">Тип операции</string>
+    <string name="сategory">Категория</string>
+    <string name="amount">Сумма</string>
+
+    <string name="weekly">Недельный</string>
+    <string name="monthly">Месячный</string>
+    <string name="annual">Годовой</string>
+
+    <string name="budgetPeriod">Период бюджета</string>
+    <string name="all">Все</string>
+
+    <string name="period">Период</string>
+
+    <string name="toPay">Оплатить</string>
 
 </resources>

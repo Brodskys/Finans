@@ -21,8 +21,8 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="25dp">
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="130dp"
+                android:layout_marginTop="70dp"
                 android:layout_marginHorizontal="25dp">
 
                 <TextView
@@ -263,7 +263,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:gravity="center_horizontal"
                 android:layout_marginHorizontal="25dp">
 
@@ -291,6 +291,20 @@
                     android:layout_centerHorizontal="true"
                     />
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/privacyPolicyTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:clickable="true"
+                android:onClick="signUp"
+                android:text="@string/privacyPolicyText"
+                android:textAlignment="center"
+                android:textColor="@color/background3_dark"
+                android:textSize="7pt" />
 
         </LinearLayout>
 

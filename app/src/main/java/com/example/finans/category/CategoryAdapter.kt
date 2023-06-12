@@ -17,18 +17,21 @@ import java.util.*
 
 interface OnItemClickListener {
     fun onItemClick(category: Category)
-
+    fun onItemsClick(category: ArrayList<Category>)
 }
 
-class CategoryAdapter(private val categoryList: ArrayList<Category>) :RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
-    var selectedItem  = -1
+class CategoryAdapter(private val categoryList: ArrayList<Category>) :
+    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+    var selectedItem = -1
     lateinit var sharedPreferencesLanguage: SharedPreferences
     lateinit var sharedPreferencesTheme: SharedPreferences
+    var typeCategory: String? = null
 
     private var categoryListFiltered: ArrayList<Category> = categoryList
     private var listener: OnItemClickListener? = null
+    private val selectedItemsList = ArrayList<Category>()
 
-    var switchState:Boolean = false
+    var switchState: Boolean = false
 
     fun getFilter(): Filter {
         return object : Filter() {
@@ -43,8 +46,7 @@ class CategoryAdapter(private val categoryList: ArrayList<Category>) :RecyclerVi
                                 ?.contains(charSearch.lowercase(Locale.ROOT)) == true ||
                             row.nameEng?.lowercase(Locale.ROOT)
                                 ?.contains(charSearch.lowercase(Locale.ROOT)) == true
-                        )
-                        {
+                        ) {
                             resultList.add(row)
                         }
                     }
@@ -64,15 +66,15 @@ class CategoryAdapter(private val categoryList: ArrayList<Category>) :RecyclerVi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-         switchState = sharedPreferencesTheme.getBoolean("modeSwitch", false)
+        switchState = sharedPreferencesTheme.getBoolean("modeSwitch", false)
 
-        return if(switchState) {
+        return if (switchState) {
             val itemView = LayoutInflater.from(parent.context).inflate(
                 R.layout.category_dark_item,
                 parent, false
             )
             ViewHolder(itemView)
-        } else{
+        } else {
             val itemView = LayoutInflater.from(parent.context).inflate(
                 R.layout.category_item,
                 parent, false
@@ -100,13 +102,12 @@ class CategoryAdapter(private val categoryList: ArrayList<Category>) :RecyclerVi
         gsReference.downloadUrl.addOnSuccessListener { uri ->
             Picasso.get().load(uri.toString()).into(holder.Image)
         }.addOnFailureListener {
-           Picasso.get().load(R.drawable.category).into(holder.Image)
+            Picasso.get().load(R.drawable.category).into(holder.Image)
         }
 
 
-
-        val sharedPref =  sharedPreferencesLanguage.getString("locale", "")
-        if (sharedPref == "ru"){
+        val sharedPref = sharedPreferencesLanguage.getString("locale", "")
+        if (sharedPref == "ru") {
             holder.Name.text = category.nameRus
         } else {
             holder.Name.text = category.nameEng
@@ -115,17 +116,47 @@ class CategoryAdapter(private val categoryList: ArrayList<Category>) :RecyclerVi
 
         holder.itemView.isSelected = selectedItem == position
 
+        println(typeCategory)
+
+        if (typeCategory == "budgets") {
+            if (selectedItemsList.contains(category)) {
+                holder.cheackImage.setImageResource(R.drawable.done) // Устанавливаем галочку, если элемент выбран
+            } else {
+                holder.cheackImage.setImageResource(R.drawable.right) // Устанавливаем крестик, если элемент не выбран
+            }
+        }
+
         holder.itemView.setOnClickListener {
-            selectedItem = position
-            notifyDataSetChanged()
-            listener?.onItemClick(categoryListFiltered[position])
+            if (typeCategory == "budgets") {
+                if (selectedItemsList.contains(category)) {
+                    selectedItemsList.remove(category) // Удаляем элемент из списка выбранных, если он уже выбран
+                    holder.cheackImage.setImageResource(R.drawable.right) // Устанавливаем крестик
+                } else {
+                    selectedItemsList.add(category) // Добавляем элемент в список выбранных, если он еще не выбран
+                    holder.cheackImage.setImageResource(R.drawable.done) // Устанавливаем галочку
+                }
+
+                listener?.onItemsClick(selectedItemsList)
+
+                selectedItem = position
+            } else {
+                selectedItem = position
+
+                listener?.onItemClick(categoryListFiltered[position])
+            }
+
         }
 
     }
 
-    fun setSharedPreferencesLocale(sharedPreferencesLanguage: SharedPreferences, sharedPreferencesTheme: SharedPreferences) {
+    fun setSharedPreferencesLocale(
+        sharedPreferencesLanguage: SharedPreferences,
+        sharedPreferencesTheme: SharedPreferences,
+        type: String?
+    ) {
         this.sharedPreferencesLanguage = sharedPreferencesLanguage
         this.sharedPreferencesTheme = sharedPreferencesTheme
+        this.typeCategory = type
     }
 
     override fun getItemCount(): Int {
@@ -134,11 +165,11 @@ class CategoryAdapter(private val categoryList: ArrayList<Category>) :RecyclerVi
     }
 
 
-    class  ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val Image = itemView.findViewById<ImageView>(R.id.categoryIcon)
         val Name = itemView.findViewById<TextView>(R.id.categoryName)
-
+        val cheackImage = itemView.findViewById<ImageView>(R.id.Imgright3)
 
 
     }

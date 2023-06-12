@@ -75,11 +75,8 @@ class LanguageAdapter(private val languageList: ArrayList<Language>) :RecyclerVi
 
         val language: Language = currencyListFiltered[position]
 
-        if (languageConvert(sharedPreferencesLanguage)){
-            holder.fullName.text = language.FullName
-        }
-        else
-            holder.fullName.text = language.FullNameEng
+        holder.fullName.text = language.FullName
+
 
         holder.name.text = language.Name
 

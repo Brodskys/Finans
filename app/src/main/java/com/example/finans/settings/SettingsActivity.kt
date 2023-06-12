@@ -26,12 +26,14 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.finans.*
+import com.example.finans.analytics.AnalyticsActivity
 import com.example.finans.authorization.AuthorizationActivity
 import com.example.finans.language.BottomSheetLanguageFragment
 import com.example.finans.language.loadLocale
 import com.example.finans.operation.BottomSheetNewOperationFragment
 import com.example.finans.operation.HomeActivity
 import com.example.finans.other.deletionWarning
+import com.example.finans.plans.PlansActivity
 import com.example.finans.сurrency.BottomSheetCurrencyFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -310,7 +312,7 @@ class SettingsActivity : AppCompatActivity(), GestureDetector.OnGestureListener 
 
                             val intent = Intent(Intent.ACTION_VIEW)
                             intent.data =
-                                Uri.parse("https://www.freeprivacypolicy.com/live/904635b0-ce5f-4401-8520-47945da12508")
+                                Uri.parse("https://www.freeprivacypolicy.com/live/7af84e6a-a34b-415b-985d-d43ae72f64c7")
                             startActivity(intent)
 
                         }

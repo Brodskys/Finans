@@ -80,7 +80,7 @@ class BottomSheetAccount : BottomSheetDialogFragment() {
 
                 val new: String? = documentSnapshot.getString("new")
 
-                if (new!= null){
+                if (new != null) {
                     accountChangeDeleteTextView.text = getString(R.string.delete)
                 }
 
@@ -148,12 +148,12 @@ class BottomSheetAccount : BottomSheetDialogFragment() {
 
         updateAccountNameEdit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(update) {
+                if (update) {
                     accountChangeDeleteTextView.text = getString(R.string.update)
-                }
-                else
+                } else
                     update = true
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
@@ -162,14 +162,13 @@ class BottomSheetAccount : BottomSheetDialogFragment() {
             }
         })
 
-      var update2 = false
+        var update2 = false
 
         amount.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                if(update2) {
+                if (update2) {
                     accountChangeDeleteTextView.text = getString(R.string.update)
-                }
-                else
+                } else
                     update2 = true
             }
 
@@ -224,7 +223,7 @@ class BottomSheetAccount : BottomSheetDialogFragment() {
             val existingFragment =
                 requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetCurrencyFragment")
             if (existingFragment == null) {
-                val newFragment = BottomSheetCurrencyFragment()
+                val newFragment = BottomSheetCurrencyFragment.newInstance("changeAc")
 
                 newFragment.show(
                     requireActivity().supportFragmentManager,
@@ -267,10 +266,10 @@ class BottomSheetAccount : BottomSheetDialogFragment() {
         amount: String,
         accountsCurrenc: String
     ) {
-        if(accountChangeDeleteTextView.text == getString(R.string.delete)){
+        if (accountChangeDeleteTextView.text == getString(R.string.delete)) {
             deletionWarning(requireContext()) { result ->
 
-                if(result){
+                if (result) {
                     val documentRef = FirebaseFirestore.getInstance().collection("users")
                         .document(Firebase.auth.uid.toString()).collection("accounts")
                         .document(id)
@@ -279,7 +278,10 @@ class BottomSheetAccount : BottomSheetDialogFragment() {
                         .addOnSuccessListener {
                             println("Документ успешно удален.")
 
-                            val sharedPref = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+                            val sharedPref = requireActivity().getSharedPreferences(
+                                "Settings",
+                                Context.MODE_PRIVATE
+                            )
 
                             val docRef = FirebaseFirestore.getInstance().collection("users")
                                 .document(Firebase.auth.uid.toString()).collection("user")
@@ -312,40 +314,38 @@ class BottomSheetAccount : BottomSheetDialogFragment() {
                 }
 
             }
-        }
+        } else
+            if (icon != "" && accountsName != "" && amount != "" && accountsCurrenc != "") {
 
-        else
-        if (icon != "" && accountsName != "" && amount != "" && accountsCurrenc != "") {
-
-            val accountsMap = hashMapOf<String, Any>(
-                "balance" to amount.toDouble(),
-                "nameRus" to accountsName,
-                "nameEng" to accountsName,
-                "icon" to icon,
-                "currency" to accountsCurrenc
-            )
+                val accountsMap = hashMapOf<String, Any>(
+                    "balance" to amount.toDouble(),
+                    "nameRus" to accountsName,
+                    "nameEng" to accountsName,
+                    "icon" to icon,
+                    "currency" to accountsCurrenc
+                )
 
 
-            val documentRef = FirebaseFirestore.getInstance().collection("users")
-                .document(Firebase.auth.uid.toString()).collection("accounts")
-                .document(id)
-            documentRef.update(accountsMap as Map<String, Any>)
-                .addOnSuccessListener {
-                    requireActivity().recreate()
-                    dismiss()
-                }
-                .addOnFailureListener { exception -> }
+                val documentRef = FirebaseFirestore.getInstance().collection("users")
+                    .document(Firebase.auth.uid.toString()).collection("accounts")
+                    .document(id)
+                documentRef.update(accountsMap as Map<String, Any>)
+                    .addOnSuccessListener {
+                        requireActivity().recreate()
+                        dismiss()
+                    }
+                    .addOnFailureListener { exception -> }
 
 
-        } else {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle(R.string.error)
-            builder.setMessage(R.string.fillInAllFields)
-            builder.setIcon(android.R.drawable.ic_dialog_alert)
-            builder.setPositiveButton("OK", null)
-            val dialog = builder.create()
-            dialog.show()
-        }
+            } else {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle(R.string.error)
+                builder.setMessage(R.string.fillInAllFields)
+                builder.setIcon(android.R.drawable.ic_dialog_alert)
+                builder.setPositiveButton("OK", null)
+                val dialog = builder.create()
+                dialog.show()
+            }
 
 
     }

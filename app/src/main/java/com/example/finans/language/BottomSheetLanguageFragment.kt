@@ -147,8 +147,8 @@ class BottomSheetLanguageFragment : BottomSheetDialogFragment(), OnItemClickList
 
     private fun getLanguageData() {
 
-        languageArrayList.add(Language("Русский язык", "Russian language","RUS", "ru"))
-        languageArrayList.add(Language("Английский язык", "English language", "ENG","en"))
+        languageArrayList.add(Language("Русский язык", "RUS", "ru"))
+        languageArrayList.add(Language("English language", "ENG","en"))
 
 
 

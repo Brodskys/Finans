@@ -11,11 +11,13 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
 import com.example.finans.category.subcategory.BottomSheetSubcategoryFragment
 import com.example.finans.category.updateCategory.BottomSheetUpdateCategoriesFragment
+import com.example.finans.plans.budgets.Budgets
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.ktx.auth
@@ -28,7 +30,16 @@ class BottomSheetCategoryFragment : BottomSheetDialogFragment(), OnItemClickList
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var dbref: FirebaseFirestore
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var categoriesBudgetsViewModel: CategoriesBudgetsViewModel
+    private lateinit var categories: ArrayList<Category>
+
     var switchState: Boolean = false
+    private var type: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        categoriesBudgetsViewModel = ViewModelProvider(requireActivity())[CategoriesBudgetsViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,10 +76,15 @@ class BottomSheetCategoryFragment : BottomSheetDialogFragment(), OnItemClickList
             searchEditText.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.background3))
             searchEditText.setTextColor(ContextCompat.getColor(requireContext(), R.color.background3))
         }
+        type = arguments?.getString("type")
+
+        if(type == "budgets") {
+            view.findViewById<TextView>(R.id.categoryUpdate).text = getString(R.string.add)
+            view.findViewById<TextView>(R.id.categoryUpdate).visibility = View.GONE
+        }
 
         categoryRecyclerView = view.findViewById(R.id.categoryRecyclerView)
         categoryRecyclerView.layoutManager = LinearLayoutManager(context)
-        categoryRecyclerView.setHasFixedSize(true)
 
         categoryArrayList = arrayListOf()
 
@@ -78,8 +94,10 @@ class BottomSheetCategoryFragment : BottomSheetDialogFragment(), OnItemClickList
         categoryAdapter = CategoryAdapter(categoryArrayList)
         categoryAdapter.setOnItemClickListener(this)
 
+
+
         if (prefs != null) {
-            categoryAdapter.setSharedPreferencesLocale(prefs,prefs2)
+            categoryAdapter.setSharedPreferencesLocale(prefs,prefs2, type)
         }
 
         categoryRecyclerView.adapter = categoryAdapter
@@ -90,19 +108,28 @@ class BottomSheetCategoryFragment : BottomSheetDialogFragment(), OnItemClickList
         getCategoryData()
 
 
-
         view.findViewById<TextView>(R.id.categoryExit).setOnClickListener {
             dismiss()
         }
 
         view.findViewById<TextView>(R.id.categoryUpdate).setOnClickListener {
 
-            val bottomSheetFragment =
-                requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetUpdateCategoriesFragment") as? BottomSheetUpdateCategoriesFragment
+            if(type != "budgets") {
+                val bottomSheetFragment =
+                    requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetUpdateCategoriesFragment") as? BottomSheetUpdateCategoriesFragment
 
-            if (bottomSheetFragment == null)
-                BottomSheetUpdateCategoriesFragment().show(requireActivity().supportFragmentManager, "BottomSheetUpdateCategoriesFragment")
-            dismiss()
+                if (bottomSheetFragment == null)
+                    BottomSheetUpdateCategoriesFragment().show(
+                        requireActivity().supportFragmentManager,
+                        "BottomSheetUpdateCategoriesFragment"
+                    )
+                dismiss()
+            }
+            else{
+                categoriesBudgetsViewModel.selectCategoriesBudgets(categories)
+                dismiss()
+            }
+
         }
 
         categorySearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
@@ -114,11 +141,8 @@ class BottomSheetCategoryFragment : BottomSheetDialogFragment(), OnItemClickList
                 categoryAdapter.getFilter().filter(newText)
                 return false
             }
-
         })
-
     }
-
 
     override fun onItemClick(category: Category) {
 
@@ -131,6 +155,16 @@ class BottomSheetCategoryFragment : BottomSheetDialogFragment(), OnItemClickList
             )
 
             dismiss()
+    }
+
+    override fun onItemsClick(category: java.util.ArrayList<Category>) {
+
+        if(category.size>0)
+            view?.findViewById<TextView>(R.id.categoryUpdate)?.visibility = View.VISIBLE
+        else
+            view?.findViewById<TextView>(R.id.categoryUpdate)?.visibility = View.GONE
+
+        categories = category
     }
 
 
@@ -148,16 +182,49 @@ class BottomSheetCategoryFragment : BottomSheetDialogFragment(), OnItemClickList
                     return
                 }
 
-                for (dc: DocumentChange in value?.documentChanges!!){
-                    if (dc.type == DocumentChange.Type.ADDED){
-                        categoryArrayList.add(dc.document.toObject(Category::class.java))
+
+                for (dc in value?.documentChanges!!) {
+                    val category = dc.document.toObject(Category::class.java)
+                    val index = categoryArrayList.indexOfFirst { it.name == category.name }
+                    when (dc.type) {
+                        DocumentChange.Type.ADDED -> {
+                            if (index == -1) {
+                                categoryArrayList.add(category)
+                            }
+                        }
+
+                        DocumentChange.Type.MODIFIED -> {
+                            if (index != -1) {
+                                categoryArrayList[index] = category
+                            }
+                        }
+
+                        DocumentChange.Type.REMOVED -> {
+                            if (index != -1) {
+                                categoryArrayList.removeAt(index)
+                            }
+                        }
                     }
                 }
+
                 categoryAdapter.notifyDataSetChanged()
             }
         })
 
     }
 
+    companion object {
+        fun newInstance(
+            type: String
+        ): BottomSheetCategoryFragment {
+            val args = Bundle()
+            args.putString("type", type)
+
+            val fragment = BottomSheetCategoryFragment()
+            fragment.arguments = args
+
+            return fragment
+        }
+    }
 
 }

@@ -100,7 +100,6 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
 
         categoryRecyclerView = view.findViewById(R.id.subcategoryRecyclerView)
         categoryRecyclerView.layoutManager = LinearLayoutManager(context)
-        categoryRecyclerView.setHasFixedSize(true)
 
         categoryArrayList = arrayListOf()
 
@@ -198,10 +197,29 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
                 }
 
                 for (dc in value?.documentChanges!!) {
-                    if (dc.type == DocumentChange.Type.ADDED) {
-                        categoryArrayList.add(dc.document.toObject(Category::class.java))
+                    val category = dc.document.toObject(Category::class.java)
+                    val index = categoryArrayList.indexOfFirst { it.name == category.name }
+                    when (dc.type) {
+                        DocumentChange.Type.ADDED -> {
+                            if (index == -1) {
+                                categoryArrayList.add(category)
+                            }
+                        }
+
+                        DocumentChange.Type.MODIFIED -> {
+                            if (index != -1) {
+                                categoryArrayList[index] = category
+                            }
+                        }
+
+                        DocumentChange.Type.REMOVED -> {
+                            if (index != -1) {
+                                categoryArrayList.removeAt(index)
+                            }
+                        }
                     }
                 }
+
                 subcategoryAdapter.notifyDataSetChanged()
             }
 

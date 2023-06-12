@@ -264,7 +264,7 @@ class BottomSheetUpdateCategoryFragment : BottomSheetDialogFragment(), OnItemCli
                     documentRef.update(newDocumentData as Map<String, Any>)
                         .addOnSuccessListener {}
                         .addOnFailureListener { exception -> }
-
+                    dismiss()
 
                 } else {
                     Toast.makeText(
@@ -300,7 +300,6 @@ class BottomSheetUpdateCategoryFragment : BottomSheetDialogFragment(), OnItemCli
                 "BottomSheetAddCategoryFragment"
             )
 
-            dismiss()
         }
     }
 
@@ -318,9 +317,28 @@ class BottomSheetUpdateCategoryFragment : BottomSheetDialogFragment(), OnItemCli
                     return@addSnapshotListener
                 }
 
+
                 for (dc in value?.documentChanges!!) {
-                    if (dc.type == DocumentChange.Type.ADDED) {
-                        categoryArrayList.add(dc.document.toObject(Category::class.java))
+                    val categ = dc.document.toObject(Category::class.java)
+                    val index = categoryArrayList.indexOfFirst { it.name == categ.name }
+                    when (dc.type) {
+                        DocumentChange.Type.ADDED -> {
+                            if (index == -1) {
+                                categoryArrayList.add(categ)
+                            }
+                        }
+
+                        DocumentChange.Type.MODIFIED -> {
+                            if (index != -1) {
+                                categoryArrayList[index] = categ
+                            }
+                        }
+
+                        DocumentChange.Type.REMOVED -> {
+                            if (index != -1) {
+                                categoryArrayList.removeAt(index)
+                            }
+                        }
                     }
                 }
 

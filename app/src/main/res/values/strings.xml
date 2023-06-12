@@ -49,6 +49,7 @@
     <string name="signup">Sign up</string>
 
     <string name="back">BACK</string>
+    <string name="back2">Back</string>
 
     <string name="editProfile">Edit Profile</string>
     <string name="questions">Questions</string>
@@ -63,7 +64,7 @@
     <string name="account">Account</string>
     <string name="categories">Categories</string>
     <string name="dateandtime">Date and time</string>
-    <string name="repeattheoperation">Repeat the operation</string>
+    <string name="repeattheoperation">Repeat</string>
     <string name="note">Note</string>
     <string name="addLocation">Location</string>
     <string name="attachPhoto">Attach a photo</string>
@@ -159,6 +160,107 @@
     <string name="isEmailVerified">Waiting for confirmation by email</string>
 
     <string name="fillInAllFields">Fill in all fields</string>
+
+
+    <string name="сonversion">Conversion</string>
+    <string name="currencyWarning">This currency has already been selected</string>
+
+    <string name="paymentPlanning">Payment planning</string>
+    <string name="futurePayments">Your future payments</string>
+
+    <string name="budgets">Budgets</string>
+    <string name="spendingPlan">Your spending plan</string>
+
+    <string name="calculator">Сalculator</string>
+    <string name="financialCalculations">Financial calculations</string>
+
+    <string name="loanCalculator">Loan Calculator</string>
+    <string name="investmentCalculator">Investment Calculator</string>
+    <string name="сushionСalculator">Financial Cushion Calculator</string>
+
+    <string name="goals">Goals</string>
+    <string name="financialGoals">Your financial goals</string>
+
+
+    <string name="loan1">Loan amount</string>
+    <string name="loan2">Interest rate, % per annum</string>
+    <string name="loan3">Term of the loan/loan</string>
+    <string name="loan4">Date of issue</string>
+    <string name="loan5">Calculate</string>
+    <string name="loan6">Amount of payments</string>
+    <string name="loan7">Overpayment</string>
+    <string name="loan8">Total amount of payments</string>
+    <string name="loan9">Percentage of overpayments</string>
+    <string name="loan10">End of payments</string>
+    <string name="loan11">Percentage greater than 100</string>
+
+    <string name="investment1">Investment amount</string>
+    <string name="investment2">Interest rate</string>
+    <string name="investment3">Investment period</string>
+    <string name="investment4">Initial amount</string>
+    <string name="investment5">Amount of income</string>
+    <string name="investment6">Total amount</string>
+
+    <string name="financialCushion1">Monthly income</string>
+    <string name="financialCushion2">Monthly expenses</string>
+    <string name="financialCushion3">Desired period</string>
+    <string name="financialCushion5">Required amount</string>
+
+    <string name="balance">Balance</string>
+
+    <string name="makePayment">Make a payment</string>
+
+
+    <string name="privacyPolicyText">By registering, you agree to the Privacy Policy describing the methods of personal data processing.</string>
+
+    <string name="value">Value</string>
+
+    <string name="date1">Payment due in</string>
+    <string name="date11">day(days)</string>
+    <string name="date2">delays</string>
+    <string name="date3">Payment due today</string>
+
+    <string name="paid">Paid for</string>
+
+    <string name="notification">Notification</string>
+
+    <string name="forPeriod">For the period</string>
+
+    <string name="thisMonth">This month</string>
+    <string name="threeMonths">3 months</string>
+    <string name="sixMonths">6 months</string>
+    <string name="thisYear">This year</string>
+    <string name="setUp">Set up</string>
+
+    <string name="fromDate">From the date</string>
+    <string name="beforeDate">Before the date</string>
+
+    <string name="report">Create a report</string>
+
+
+    <string name="user">User</string>
+    <string name="dateRegistration">Date of registration</string>
+    <string name="totalBalance">Total balance</string>
+
+    <string name="operationsReport">Operations Report</string>
+    <string name="chartOperations">Chart of operations for the period</string>
+    <string name="emailSent">The report has been sent to your email</string>
+
+    <string name="dateOperation">Date of operation</string>
+    <string name="typeOperation">Type of operation</string>
+    <string name="сategory">Category</string>
+    <string name="amount">The amount</string>
+
+    <string name="weekly">Weekly</string>
+    <string name="monthly">Monthly</string>
+    <string name="annual">Annual</string>
+
+    <string name="budgetPeriod">Budget period</string>
+
+    <string name="all">All</string>
+
+    <string name="period">Period</string>
+    <string name="toPay">To pay</string>
 
 
 </resources>

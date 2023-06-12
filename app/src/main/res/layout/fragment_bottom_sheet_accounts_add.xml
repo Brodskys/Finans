@@ -133,7 +133,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="5dp"
-                                android:text="Название"
+                                android:text="@string/title"
                                 android:textSize="17sp"
                                 android:textColor="@color/background3"
                                 android:textStyle="bold" />
@@ -189,7 +189,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="5dp"
-                                android:text="Баланс"
+                                android:text="@string/balance"
                                 android:textSize="17sp"
                                 android:textColor="@color/background3"
                                 android:textStyle="bold" />

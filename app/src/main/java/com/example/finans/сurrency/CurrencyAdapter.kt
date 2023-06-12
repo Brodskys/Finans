@@ -130,8 +130,7 @@ class CurrencyAdapter(private val currencyList: ArrayList<Currency>) :RecyclerVi
 
         holder.itemView.setOnClickListener {
 
-            selectedItem = position // устанавливаем выбранный элемент
-            notifyDataSetChanged() // обновляем адаптер, чтобы перерисовать список
+            selectedItem = position
             listener?.onItemClick(currencyListFiltered[position])
         }
 

@@ -147,7 +147,6 @@
                                 android:inputType="numberDecimal"
                                 android:textColor="@color/background3"
                                 android:textColorHint="@color/background3"
-                                android:hint="0.00"
                                 android:layout_below="@id/currency_EditText" />
 
                         </RelativeLayout>
@@ -176,6 +175,7 @@
                         android:padding="10dp">
 
                         <RelativeLayout
+                            android:id="@+id/operationDetailAccountsAddBtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:cornerRadius="20dp">

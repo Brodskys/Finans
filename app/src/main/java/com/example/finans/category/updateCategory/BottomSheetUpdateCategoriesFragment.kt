@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import com.example.finans.R
 import com.example.finans.category.Category
 import com.example.finans.category.CategoryAdapter
 import com.example.finans.category.OnItemClickListener
-import com.example.finans.category.subcategory.BottomSheetSubcategoryFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.ktx.auth
@@ -73,7 +71,6 @@ class BottomSheetUpdateCategoriesFragment : BottomSheetDialogFragment(), OnItemC
 
         categoryRecyclerView = view.findViewById(R.id.updateCategoriesRecyclerView)
         categoryRecyclerView.layoutManager = LinearLayoutManager(context)
-        categoryRecyclerView.setHasFixedSize(true)
 
         categoryArrayList = arrayListOf()
 
@@ -84,7 +81,7 @@ class BottomSheetUpdateCategoriesFragment : BottomSheetDialogFragment(), OnItemC
         categoryAdapter.setOnItemClickListener(this)
 
         if (prefs != null) {
-            categoryAdapter.setSharedPreferencesLocale(prefs,prefs2)
+            categoryAdapter.setSharedPreferencesLocale(prefs, prefs2, null)
         }
 
         categoryRecyclerView.adapter = categoryAdapter
@@ -110,8 +107,11 @@ class BottomSheetUpdateCategoriesFragment : BottomSheetDialogFragment(), OnItemC
                 "BottomSheetUpdateCategoryFragment"
             )
 
-            dismiss()
         }
+    }
+
+    override fun onItemsClick(category: java.util.ArrayList<Category>) {
+        TODO("Not yet implemented")
     }
 
 
@@ -129,11 +129,30 @@ class BottomSheetUpdateCategoriesFragment : BottomSheetDialogFragment(), OnItemC
                     return
                 }
 
-                for (dc: DocumentChange in value?.documentChanges!!){
-                    if (dc.type == DocumentChange.Type.ADDED){
-                        categoryArrayList.add(dc.document.toObject(Category::class.java))
+                for (dc in value?.documentChanges!!) {
+                    val category = dc.document.toObject(Category::class.java)
+                    val index = categoryArrayList.indexOfFirst { it.name == category.name }
+                    when (dc.type) {
+                        DocumentChange.Type.ADDED -> {
+                            if (index == -1) {
+                                categoryArrayList.add(category)
+                            }
+                        }
+
+                        DocumentChange.Type.MODIFIED -> {
+                            if (index != -1) {
+                                categoryArrayList[index] = category
+                            }
+                        }
+
+                        DocumentChange.Type.REMOVED -> {
+                            if (index != -1) {
+                                categoryArrayList.removeAt(index)
+                            }
+                        }
                     }
                 }
+
                 categoryAdapter.notifyDataSetChanged()
             }
         })

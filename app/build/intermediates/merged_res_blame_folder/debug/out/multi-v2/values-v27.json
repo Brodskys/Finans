@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.finans.app-mergeDebugResources-46:/values-v27/values-v27.xml",
+            "outputFile": "com.example.finans.app-mergeDebugResources-51:/values-v27/values-v27.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\fc0e2b29ce7126987ecb29d75e5f5e4b\\transformed\\core-splashscreen-1.0.1\\res\\values-v27\\values-v27.xml",
+                    "source": "C:\\Users\\Denis\\.gradle\\caches\\transforms-3\\29eaebb34eaf045d3fb2d4c16036c70e\\transformed\\jetified-core-splashscreen-1.0.1\\res\\values-v27\\values-v27.xml",
                     "from": {
                         "startLines": "2,3,4,7",
                         "startColumns": "4,4,4,4",

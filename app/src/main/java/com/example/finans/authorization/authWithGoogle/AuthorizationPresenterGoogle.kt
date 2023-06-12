@@ -3,9 +3,11 @@ package com.example.finans.authorization.authWithGoogle
 import android.app.Activity
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import com.example.finans.authorization.AuthorizationActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
 
 class AuthorizationPresenterGoogle(private val activity: Activity, private val view: AuthorizationActivity, private val model: AuthorizationModelGoogle) {
 
@@ -19,9 +21,10 @@ class AuthorizationPresenterGoogle(private val activity: Activity, private val v
             try {
                 val account = task.getResult(ApiException::class.java)!!
                 Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
+
                 model.firebaseAuthWithGoogle(account.idToken!!) { isSuccess ->
                     if (isSuccess) {
-                        view.showMainScreen()
+                        view.showMainScreen(account)
                     } else {
                         view.showErrorScreen()
                     }

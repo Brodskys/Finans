@@ -14,6 +14,8 @@
         android:layout_height="match_parent">
 
 
+
+
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
@@ -74,9 +76,6 @@
                     android:orientation="vertical">
 
 
-
-
-
                     <LinearLayout
                         android:id="@+id/tab_layout2"
                         android:layout_width="match_parent"
@@ -128,9 +127,9 @@
                                 android:layout_width="70dp"
                                 android:layout_height="43dp"
                                 android:layout_below="@id/currency_textView"
+                                android:clickable="false"
                                 android:textColor="@color/background3"
                                 android:textSize="16sp"
-                                android:clickable="false"
                                 app:backgroundTint="@color/color_selector" />
 
                         </RelativeLayout>
@@ -194,8 +193,8 @@
                                 android:id="@+id/accountIcon_NewOperation"
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
-                                android:src="@drawable/coins"
-                                android:padding="7dp" />
+                                android:padding="7dp"
+                                android:src="@drawable/coins" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -309,9 +308,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="7dp"
-                                android:layout_toEndOf="@+id/dateandtimeTxt"
                                 android:layout_toStartOf="@+id/Imgright3"
+                                android:layout_toEndOf="@+id/dateandtimeTxt"
                                 android:ellipsize="marquee"
+                                android:gravity="right"
                                 android:singleLine="true"
                                 android:textColor="@color/background3"
                                 android:textStyle="bold" />
@@ -453,7 +453,7 @@
                             app:cornerRadius="20dp">
 
                             <ImageView
-                                android:id="@+id/currencyIcon4"
+                                android:id="@+id/photoBillImageView"
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
                                 android:padding="7dp"
@@ -464,7 +464,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="5dp"
-                                android:layout_toEndOf="@+id/currencyIcon4"
+                                android:layout_toEndOf="@+id/photoBillImageView"
                                 android:text="@string/attachPhoto"
                                 android:textColor="@color/background3"
                                 android:textSize="16sp"
@@ -577,8 +577,16 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/fullScreenImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:visibility="gone"
-            android:layout_centerInParent="true"/>
+            android:scaleType="fitCenter" />
+
     </RelativeLayout>
 
 

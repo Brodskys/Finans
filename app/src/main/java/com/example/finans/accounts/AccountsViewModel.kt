@@ -3,6 +3,7 @@ package com.example.finans.accounts
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.util.ArrayList
 
 class AccountsViewModel : ViewModel() {
 
@@ -18,5 +19,22 @@ class AccountsViewModel : ViewModel() {
 
     fun clearAccounts() {
         _selectedAccounts.value = null
+    }
+}
+
+class AccountsBudgetsViewModel : ViewModel() {
+
+    private val _selectedAccountsBudgets = MutableLiveData<ArrayList<Accounts>>()
+
+    fun selectAccountsBudgets(accounts: ArrayList<Accounts>) {
+        _selectedAccountsBudgets.value = accounts
+    }
+
+    fun getSelectedAccountsBudgets(): LiveData<ArrayList<Accounts>> {
+        return _selectedAccountsBudgets
+    }
+
+    fun clearAccountsBudgets() {
+        _selectedAccountsBudgets.value = null
     }
 }

@@ -11,9 +11,6 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 
 class AuthorizationModelFacebook(private val auth: FirebaseAuth, private val activity: Activity) {
 
@@ -27,14 +24,14 @@ class AuthorizationModelFacebook(private val auth: FirebaseAuth, private val act
 
 
 
-                    activity.showMainScreen()
+                    activity.showMainScreen(null)
                 } else {
                     Log.w(
                         AuthorizationPresenterFacebook.TAG,
                         "signInWithCredential:failure",
                         task.exception
                     )
-                    activity.showMainScreen()
+                    activity.showMainScreen(null)
                 }
             }
     }
