@@ -144,6 +144,7 @@
     <string name="google_storage_bucket" translatable="false">finans-44544.appspot.com</string>
     <string name="help">Help</string>
     <string name="home">Home</string>
+    <string name="imageRecognized">The image is not recognized</string>
     <string name="income">Income</string>
     <string name="incorrectEmail">Incorrect email</string>
     <string name="incorrectPasswordCapitalLetter">Does not contain a capital letter</string>

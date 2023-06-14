@@ -3,8 +3,17 @@ package com.example.finans.image
 import android.app.Activity
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
+import android.graphics.Paint
 import android.net.Uri
 import android.provider.MediaStore
+import android.renderscript.Allocation
+import android.renderscript.Element
+import android.renderscript.RenderScript
+import android.renderscript.ScriptIntrinsicBlur
 import com.example.finans.R
 import com.google.android.play.integrity.internal.c
 import com.googlecode.tesseract.android.TessBaseAPI
@@ -41,7 +50,6 @@ fun ocr(activity: Activity, bitmap: Bitmap): String{
 
     val tessBaseApi = TessBaseAPI()
     tessBaseApi.init(tessDataPath, "rus")
-
 
 
     tessBaseApi.setImage(bitmap)
@@ -149,7 +157,16 @@ fun parsing(str: String): List<String> {
                         }
 
                     }
+                    if(money == null) {
 
+                        val pattern = Pattern.compile("(?i)ИТОГ\\s*:(\\d+\\.?\\d*)")
+                        val matcher = pattern.matcher(str)
+
+                        while (matcher.find()) {
+                            money = matcher.group(1)
+                        }
+
+                    }
                 }
             }
 

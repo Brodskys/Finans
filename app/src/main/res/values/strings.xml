@@ -273,5 +273,7 @@
     <string name="changeBudget">Change the budget</string>
     <string name="totalAmount">Total amount</string>
 
+    <string name="imageRecognized">The image is not recognized</string>
+
 
 </resources>

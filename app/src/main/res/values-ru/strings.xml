@@ -257,5 +257,7 @@
     <string name="changeBudget">Изменить бюджет</string>
     <string name="totalAmount">Общая сумма</string>
 
+    <string name="imageRecognized">Изображение не распознано</string>
+
 
 </resources>

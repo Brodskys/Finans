@@ -104,6 +104,8 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
     private var toAccounts: Accounts? = null
     private lateinit var fullScreenImage: Uri
 
+    private lateinit var dt: Timestamp
+
     private lateinit var amount: EditText
     private lateinit var dateTimeTextView: TextView
     private lateinit var qrViewModel: QrViewModel
@@ -561,10 +563,10 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
                     if (view.findViewById<TextView>(R.id.toAcountName_NewOperation).text.toString()
                             .isNotEmpty()
                     ) {
+                        dt = Timestamp(currentDateTime.time)
                         uploadData(
                             selectedTab?.text.toString(),
                             value,
-                            Timestamp(currentDateTime.time),
                             note
                         )
                     } else {
@@ -577,10 +579,10 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
                         dialog.show()
                     }
                 } else {
+                    dt = Timestamp(currentDateTime.time)
                     uploadData(
                         selectedTab?.text.toString(),
                         value,
-                        Timestamp(currentDateTime.time),
                         note
                     )
                 }
@@ -626,10 +628,10 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
                     val selectedTab =
                         view.findViewById<TabLayout>(R.id.tab_layout).getTabAt(selectedTabPosition)
 
+                    dt = Timestamp(currentDateTime.time)
                     uploadData(
                         selectedTab?.text.toString(),
                         value,
-                        Timestamp(currentDateTime.time),
                         note
                     )
                 } else {
@@ -914,6 +916,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
         return capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
     }
 
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     private fun imageLoad(uri: ImageInfo?) {
         if (uri?.uri != null) {
             if (uri.type == "photo") {
@@ -935,6 +938,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
                 var str = ""
                 var result: List<String>? = null
 
+
                 CoroutineScope(Dispatchers.Main).launch {
                     swipeRefreshLayout.visibility = View.VISIBLE
                     str = withContext(Dispatchers.Default) {
@@ -945,20 +949,38 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
                     result = parsing(str)
                     val date: String? = result?.get(0)
                     val time: String? = result?.get(1)
-                    val dateTime: String? = result?.get(2)
+                    val dateAndTime: String? = result?.get(2)
                     val money: String? = result?.get(3)
 
                     if (date != "" && time != "") {
                         dateTimeTextView.text = "${date} ${time}"
-                    } else if (dateTime != "") {
-                        dateTimeTextView.text = dateTime
+
+                        val format = SimpleDateFormat("dd/MM/yyyy HH:mm")
+                        val date = format.parse("${date} ${time}")
+                        dt = Timestamp(date.time / 1000, 0)
+
+                    } else if (dateAndTime != "") {
+
+                        val format = SimpleDateFormat("dd/MM/yyyy HH:mm")
+                        val date = format.parse(dateAndTime)
+                        dt = Timestamp(date.time / 1000, 0)
+
+                        dateTimeTextView.text = dateAndTime
                     }
 
                     if (money != "") {
                         amount.setText(money)
                     }
+                    Timestamp(currentDateTime.time)
 
                     swipeRefreshLayout.visibility = View.GONE
+
+                    if (isAdded) {
+                        val allEmpty = result!!.all { it == "" }
+                        if (allEmpty) {
+                            Toast.makeText(context, getString(R.string.imageRecognized), Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
 
 
@@ -975,7 +997,6 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
     private fun uploadData(
         operation: String,
         value: Double,
-        dateTime: Timestamp,
         note: String
     ) {
 
@@ -1032,7 +1053,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
             "typeRu" to operationRu,
             "typeEn" to operationEng,
             "value" to value,
-            "timestamp" to dateTime,
+            "timestamp" to dt,
             "note" to note,
             "category" to uri,
             "map" to map,
@@ -1050,7 +1071,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
         val userID = db.collection("users").document(Firebase.auth.uid.toString())
 
         if (operation == getString(R.string.expense))
-            updateBudgets(id, dateTime, ac, uri, value)
+            updateBudgets(id, dt, ac, uri, value)
 
         if (toAccounts == null) {
             userID

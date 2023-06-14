@@ -1,13 +1,16 @@
 package com.example.finans.settings
 
 import android.app.Activity
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import com.example.finans.authorization.AuthorizationActivity
+import com.example.finans.plans.paymentPlanning.PaymentPlanning
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -49,6 +52,11 @@ fun deleteUser (sharedPreferences: SharedPreferences, context: Activity){
 
     val uid = Firebase.firestore.collection("users").document(Firebase.auth.uid.toString())
 
+
+    val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    notificationManager.cancelAll()
+
+
     var ref = uid.collection("user")
 
     deleteCollection(ref)
@@ -57,10 +65,22 @@ fun deleteUser (sharedPreferences: SharedPreferences, context: Activity){
 
     deleteCollection(ref)
 
-    ref = uid.collection("operation")
+
+    ref = uid.collection("accounts")
 
     deleteCollection(ref)
 
+    ref = uid.collection("budgets")
+
+    deleteCollection(ref)
+
+    ref = uid.collection("goals")
+
+    deleteCollection(ref)
+
+    ref = uid.collection("paymentPlanning")
+
+    deleteCollection(ref)
 
     val editor = sharedPreferences.edit()
     editor?.remove("Pincode")
@@ -88,6 +108,9 @@ fun deleteCollection(collection: CollectionReference) {
                 val documentRef = collection.document(document.id)
                 deleteCollection(documentRef.collection("subcategories"))
                 documentRef.delete()
+                val documentRef2 = collection.document(document.id)
+                deleteCollection(documentRef2.collection("operation"))
+                documentRef2.delete()
             }
         }
     collection.document().delete()

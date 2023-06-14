@@ -5324,6 +5324,7 @@ int string help 0x7f1200c5
 int string hide_bottom_view_on_scroll_behavior 0x7f1200c6
 int string home 0x7f1200c7
 int string icon_content_description 0x7f1200c8
+int string imageRecognized 0x7f1201bb
 int string income 0x7f1200c9
 int string incorrectEmail 0x7f1200ca
 int string incorrectPasswordCapitalLetter 0x7f1200cb

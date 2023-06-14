@@ -784,6 +784,7 @@ string google_maps_key
 string google_storage_bucket
 string help
 string home
+string imageRecognized
 string income
 string incorrectEmail
 string incorrectPasswordCapitalLetter

@@ -74,6 +74,7 @@
     <string name="goals">Цели</string>
     <string name="help">Помощь</string>
     <string name="home">Главная</string>
+    <string name="imageRecognized">Изображение не распознано</string>
     <string name="income">Доход</string>
     <string name="incorrectEmail">Неправильная электронная почта</string>
     <string name="incorrectPasswordCapitalLetter">Не содержит заглавной буквы</string>
