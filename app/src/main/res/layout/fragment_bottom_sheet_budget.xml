@@ -136,9 +136,16 @@
                 <com.anychart.AnyChartView
                     android:id="@+id/lineChartBudgets"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="300dp"
                     android:layout_margin="10dp"
                     android:background="@color/background" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/staticBudgetsOperationRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    tools:listitem="@layout/operation_item" />
 
             </LinearLayout>
 

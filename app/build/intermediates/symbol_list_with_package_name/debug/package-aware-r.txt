@@ -3679,6 +3679,7 @@ drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
 drawable night_mode
 drawable note
+drawable notification
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -3734,6 +3735,7 @@ drawable text
 drawable time
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable towallet
 drawable trash
 drawable wallet
 id ALT
@@ -3742,6 +3744,7 @@ id BOTTOM_START
 id CTRL
 id FUNCTION
 id Imgright1
+id Imgright11
 id Imgright2
 id Imgright22
 id Imgright3
@@ -3968,6 +3971,8 @@ id budgetsProgressBar
 id budgetsSearch
 id budgetsSummaTextView
 id budgetsTextView
+id budgetsUpdateDelete
+id budgetsUpdateExit
 id budgetsValueNowTextView
 id budgetsValueTextView
 id budgetssRecyclerView
@@ -4016,6 +4021,7 @@ id changeTextEmailAddress
 id changeTextPassword
 id changeTextPasswordBtn
 id changeTextPasswordTextInputLayout
+id changeTextTotalAmount
 id changeTextUser
 id checkbox
 id checked
@@ -4412,6 +4418,8 @@ id normal
 id north
 id noteRelativeLayout
 id noteTextView
+id notification80Switch
+id notificationIcon
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -4444,6 +4452,7 @@ id operationType
 id operationValue
 id outline
 id outward
+id overrunsSwitch
 id overshoot
 id packed
 id page
@@ -4649,6 +4658,7 @@ id startDateTextView
 id startHorizontal
 id startToEnd
 id startVertical
+id staticBudgetsOperationRecyclerView
 id staticChart
 id staticLayout
 id staticOperationRecyclerView
@@ -4700,6 +4710,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textTotalAmountInputLayout
 id textView
 id text_input_end_icon
 id text_input_error_icon
@@ -4714,6 +4725,9 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
+id toAccountsRelativeLayout
+id toAcountIcon_NewOperation
+id toAcountName_NewOperation
 id toggle
 id top
 id topPanel
@@ -4739,12 +4753,25 @@ id updateAccountCurrencyNameEdit
 id updateAccountEditIcon
 id updateAccountNameEdit
 id updateAccountUpdateIcon
+id updateBudgetsAccountsBtn
+id updateBudgetsAccountsIcon
+id updateBudgetsAccountsNameEdit
+id updateBudgetsBalanceNameEdit
+id updateBudgetsCategoryBtn
+id updateBudgetsCategoryIcon
+id updateBudgetsCategoryNameEdit
+id updateBudgetsLinearLayout
+id updateBudgetsNameEdit
+id updateBudgetsPeriodAddBtn
+id updateBudgetsPeriodNameEdit
 id updateCategoriesRecyclerView
 id updateCategory
 id updateCategoryName
 id updateCategoryNameEdit
 id updateGoalCardTextView
 id updateIconRecyclerView
+id updateNotification80Switch
+id updateOverrunsSwitch
 id updatePaymentPlanRelativeLayout
 id updatePaymentPlanTextView2
 id updateSubcategoryRecyclerView
@@ -4940,6 +4967,7 @@ layout fragment_bottom_sheet_add_budgets
 layout fragment_bottom_sheet_add_category
 layout fragment_bottom_sheet_autorization_email
 layout fragment_bottom_sheet_budget
+layout fragment_bottom_sheet_budget_update
 layout fragment_bottom_sheet_budgets
 layout fragment_bottom_sheet_calculator_choice
 layout fragment_bottom_sheet_category
@@ -5153,6 +5181,8 @@ string bottomsheet_action_expand
 string bottomsheet_action_expand_halfway
 string bottomsheet_drag_handle_clicked
 string bottomsheet_drag_handle_content_description
+string budget20
+string budgetOverruns
 string budgetPeriod
 string budgets
 string calculator
@@ -5166,6 +5196,7 @@ string call_notification_screening_text
 string cancel
 string categories
 string categoryName
+string changeBudget
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
@@ -5509,10 +5540,13 @@ string thisMonth
 string thisYear
 string threeMonths
 string title
+string toAccount
 string toPay
 string total
+string totalAmount
 string totalBalance
 string translation
+string trend
 string typeOperation
 string update
 string use_biometric_label

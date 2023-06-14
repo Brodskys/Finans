@@ -349,6 +349,98 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/background2"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cornerRadius="20dp">
+
+                        <ImageView
+                            android:id="@+id/notificationIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:padding="7dp"
+                            android:src="@drawable/notification" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="20dp"
+                            android:layout_toEndOf="@+id/notificationIcon"
+                            android:text="@string/budget20"
+                            android:textColor="@color/background3"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/notification80Switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:checked="true"
+                            android:switchMinWidth="50dp"
+                            />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/background2"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cornerRadius="20dp">
+
+                        <ImageView
+                            android:id="@+id/smsIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:padding="7dp"
+                            android:src="@drawable/notification" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="20dp"
+                            android:layout_toEndOf="@+id/smsIcon"
+                            android:text="@string/budgetOverruns"
+                            android:textColor="@color/background3"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/overrunsSwitch"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:switchMinWidth="50dp"
+                            />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"

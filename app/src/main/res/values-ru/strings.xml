@@ -248,4 +248,14 @@
 
     <string name="toPay">Оплатить</string>
 
+    <string name="toAccount">На аккаунт</string>
+
+    <string name="budget20">Превышено 80% бюджета</string>
+    <string name="budgetOverruns">Перерасход бюджета</string>
+    <string name="trend">Тенденция расходов</string>
+
+    <string name="changeBudget">Изменить бюджет</string>
+    <string name="totalAmount">Общая сумма</string>
+
+
 </resources>

@@ -7,9 +7,12 @@ import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
@@ -79,6 +82,23 @@ class BottomSheetBudgets : BottomSheetDialogFragment(), OnItemClickListener {
             .document(Firebase.auth.uid.toString())
 
         getBudgetData()
+
+        val searchView = view.findViewById<SearchView>(R.id.budgetsSearch)
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(searchView.windowToken, 0)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                budgetAdapter.getFilter().filter(newText)
+                return false
+            }
+
+        })
 
         view.findViewById<LinearLayout>(R.id.addBudgetsLinearLayout).setOnClickListener {
             val bottomSheetFragment =

@@ -22,6 +22,23 @@ class AccountsViewModel : ViewModel() {
     }
 }
 
+class AccountsViewModel2 : ViewModel() {
+
+    private val _selectedAccountsType = MutableLiveData<accountsType>()
+
+    fun selectAccounts(accounts: accountsType) {
+        _selectedAccountsType.value = accounts
+    }
+
+    fun getSelectedAccounts(): LiveData<accountsType> {
+        return _selectedAccountsType
+    }
+
+    fun clearAccounts() {
+        _selectedAccountsType.value = null
+    }
+}
+
 class AccountsBudgetsViewModel : ViewModel() {
 
     private val _selectedAccountsBudgets = MutableLiveData<ArrayList<Accounts>>()

@@ -5,10 +5,12 @@ import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
+import com.example.finans.operation.Operation
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
@@ -30,7 +32,37 @@ class BudgetsAdapter(private val budgetsList: ArrayList<Budgets>) :
     private var budgetsListFiltered: ArrayList<Budgets> = budgetsList
     private var listener: OnItemClickListener? = null
 
+    fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                budgetsListFiltered = if (charSearch.isEmpty()) {
+                    budgetsList
+                } else {
+                    val resultList = ArrayList<Budgets>()
+                    for (row in  budgetsList) {
+                        if (row.name!!.lowercase(Locale.ROOT)
+                                .contains(charSearch.lowercase(Locale.ROOT)) || row.typeEn!!.lowercase(Locale.ROOT)
+                                .contains(charSearch.lowercase(Locale.ROOT)) || row.typeRu?.lowercase(Locale.ROOT)
+                                ?.contains(charSearch.lowercase(Locale.ROOT)) == true
+                        )
+                        {
+                            resultList.add(row)
+                        }
+                    }
+                    resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values =  budgetsListFiltered
+                return filterResults
+            }
 
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                budgetsListFiltered = results?.values as ArrayList<Budgets>
+                notifyDataSetChanged()
+            }
+        }
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val itemView =

@@ -4,6 +4,13 @@ import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finans.R
 import com.example.finans.operation.Operation
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.apache.poi.xddf.usermodel.chart.ChartTypes
 import org.apache.poi.xddf.usermodel.chart.LegendPosition
 import org.apache.poi.xddf.usermodel.chart.XDDFCategoryDataSource
@@ -26,6 +33,10 @@ import javax.mail.Transport
 import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 
+private lateinit var array: ArrayList<Array<String>>
+private var lenght = 0
+
+@OptIn(DelicateCoroutinesApi::class)
 fun sendEmail(
     email: String?,
     templateData: Map<String, String?>,
@@ -33,31 +44,85 @@ fun sendEmail(
     activity: Activity
 ) {
     try {
-        var file: File? = null
         val pref = activity.getSharedPreferences("Settings", AppCompatActivity.MODE_PRIVATE)
         val locale = pref.getString("locale", "")
         val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
 
+        lenght = tableOperation.size
 
-        val array = arrayListOf<Array<String>>()
+        array = arrayListOf()
 
-        array.add(arrayOf(activity.getString(R.string.dateOperation), activity.getString(R.string.typeOperation), activity.getString(R.string.сategory), activity.getString(R.string.amount)))
+        array.add(
+            arrayOf(
+                activity.getString(R.string.dateOperation),
+                activity.getString(R.string.typeOperation),
+                activity.getString(R.string.сategory),
+                activity.getString(R.string.amount)
+            )
+        )
 
         for (operation in tableOperation) {
 
-            val type = if (locale == "ru") operation.typeRu else operation.typeEn
-            val category = if (locale == "ru") operation.categoryRu else operation.categoryEn
 
-            val row = arrayOf(
-                dateFormat.format(operation.timestamp!!.toDate()),
-                type!!,
-                category!!,
-                operation.value.toString()
-            )
-            array.add(row)
+            val documentRef = FirebaseFirestore.getInstance()
+                .document("users/${Firebase.auth.uid.toString()}${operation.category}")
+
+            val type = if (locale == "ru") operation.typeRu else operation.typeEn
+
+
+
+            documentRef.get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        val documentData = documentSnapshot.data
+
+                        val categoryEn = documentData!!["nameEng"].toString()
+                        val categoryRu = documentData["nameRus"].toString()
+
+                        val category = if (locale == "ru") {
+                            categoryRu
+                        } else {
+                            categoryEn
+                        }
+                        val row = arrayOf(
+                            dateFormat.format(operation.timestamp!!.toDate()),
+                            type!!,
+                            category,
+                            operation.value.toString()
+                        )
+                        GlobalScope.launch(Dispatchers.IO) {
+                            processData(row, templateData, activity, email)
+                        }
+
+
+                    }
+                }
+                .addOnFailureListener { exception ->
+
+                }
         }
 
-        val tableData = array.toTypedArray()
+    } catch (e: Exception) {
+        e.printStackTrace()
+        println("Email failed to send")
+    }
+
+}
+
+fun processData(
+    row: Array<String>,
+    templateData: Map<String, String?>,
+    activity: Activity,
+    email: String?
+) {
+    try {
+        var file: File?
+
+
+        array.add(row)
+
+        if (array.size == lenght+1) {
+            val tableData = array.toTypedArray()
 
             val wb = XSSFWorkbook()
             val sheet = wb.createSheet("Report")
@@ -150,41 +215,40 @@ fun sendEmail(
             wb.close()
 
 
+            val props = Properties()
+            props["mail.smtp.host"] = "smtp.gmail.com"
+            props["mail.smtp.port"] = "587"
+            props["mail.smtp.auth"] = "true"
+            props["mail.smtp.starttls.enable"] = "true"
 
-        val props = Properties()
-        props["mail.smtp.host"] = "smtp.gmail.com"
-        props["mail.smtp.port"] = "587"
-        props["mail.smtp.auth"] = "true"
-        props["mail.smtp.starttls.enable"] = "true"
+            val session = Session.getInstance(props, object : Authenticator() {
+                override fun getPasswordAuthentication(): PasswordAuthentication {
+                    return PasswordAuthentication(
+                        "finansappfordiplom@gmail.com",
+                        "njpbleolrzbggwhf"
+                    )
+                }
+            })
 
-        val session = Session.getInstance(props, object : Authenticator() {
-            override fun getPasswordAuthentication(): PasswordAuthentication {
-                return PasswordAuthentication(
-                    "finansappfordiplom@gmail.com",
-                    "njpbleolrzbggwhf"
-                )
-            }
-        })
+            val message = MimeMessage(session)
+            message.setFrom(InternetAddress("finansappfordiplom@gmail.com"))
+            message.setRecipients(
+                Message.RecipientType.TO,
+                InternetAddress.parse(email)
+            )
+            message.subject = activity.getString(R.string.operationsReport)
+            message.setText("message")
 
-        val message = MimeMessage(session)
-        message.setFrom(InternetAddress("finansappfordiplom@gmail.com"))
-        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email))
-        message.subject = activity.getString(R.string.operationsReport)
-        message.setText("message")
+            val fileDataSource = FileDataSource(file)
+            message.dataHandler = DataHandler(fileDataSource)
+            message.fileName = fileDataSource.name
 
-        val fileDataSource = FileDataSource(file)
-        message.dataHandler = DataHandler(fileDataSource)
-        message.fileName = fileDataSource.name
+            Transport.send(message)
 
-        Transport.send(message)
-
-        println("Email sent successfully")
-
-
+            println("Email sent successfully")
+        }
     } catch (e: Exception) {
         e.printStackTrace()
         println("Email failed to send")
     }
-
 }
-

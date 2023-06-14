@@ -262,5 +262,16 @@
     <string name="period">Period</string>
     <string name="toPay">To pay</string>
 
+    <string name="toAccount">To the account</string>
+
+    <string name="budget20">Exceeded 80% of the budget</string>
+
+    <string name="budgetOverruns">Budget overruns</string>
+
+    <string name="trend">Spending trend</string>
+
+    <string name="changeBudget">Change the budget</string>
+    <string name="totalAmount">Total amount</string>
+
 
 </resources>

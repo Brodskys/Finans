@@ -42,6 +42,7 @@ class NotificationReceiver : BroadcastReceiver() {
             .setContentText(message)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
 
         val notificationManager = NotificationManagerCompat.from(context)
         notificationManager.notify(uid, notificationBuilder.build())

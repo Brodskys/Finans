@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.finans.R
 import com.example.finans.accounts.AccountsBudgetsViewModel
@@ -295,18 +296,24 @@ class BottomSheetAddBudgets : BottomSheetDialogFragment() {
 
                 val ac = accounts
                 val categ = categories
+                val notification80 = (view.findViewById<SwitchCompat>(R.id.notification80Switch).isChecked).toString()
+                val notificationOverruns = (view.findViewById<SwitchCompat>(R.id.overrunsSwitch).isChecked).toString()
 
                 val hashMap = hashMapOf<String, Any>(
                     "id" to id,
                     "name" to addBudgetsNameEdit.text.toString(),
-                    "maxValue" to budgetsBalanceNameEdit.text.toString().toInt(),
+                    "maxValue" to budgetsBalanceNameEdit.text.toString().toDouble(),
                     "valueNow" to 0,
                     "accounts" to ac!!,
                     "categories" to categ!!,
                     "typeRu" to selectTypeRu,
                     "typeEn" to selectTypeEn,
                     "timeStart" to startDate,
-                    "timeEnd" to endDate
+                    "timeEnd" to endDate,
+                    "notification80" to "",
+                    "notificationOverruns" to "",
+                    "notification80Is" to notification80,
+                    "notificationOverrunsIs" to notificationOverruns
                 )
                 accounts = null
                 categories = null

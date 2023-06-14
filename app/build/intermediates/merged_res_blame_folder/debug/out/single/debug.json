@@ -8,12 +8,20 @@
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-55:\\layout\\fragment_bottom_sheet_dark_category.xml"
     },
     {
+        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-53:\\drawable_towallet.xml.flat",
+        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-55:\\drawable\\towallet.xml"
+    },
+    {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-53:\\layout_fragment_bottom_sheet_dark_language.xml.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-55:\\layout\\fragment_bottom_sheet_dark_language.xml"
     },
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-53:\\layout_fragment_bottom_sheet_operation_detail.xml.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-55:\\layout\\fragment_bottom_sheet_operation_detail.xml"
+    },
+    {
+        "merged": "com.example.finans.app-merged_res-53:/layout_fragment_bottom_sheet_settings.xml.flat",
+        "source": "com.example.finans.app-main-55:/layout/fragment_bottom_sheet_settings.xml"
     },
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-53:\\drawable_budgets.xml.flat",
@@ -86,6 +94,10 @@
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-53:\\anim_scanner_animation.xml.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-55:\\anim\\scanner_animation.xml"
+    },
+    {
+        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-53:\\layout_fragment_bottom_sheet_budget_update.xml.flat",
+        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-55:\\layout\\fragment_bottom_sheet_budget_update.xml"
     },
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-53:\\layout_operation_dark_item.xml.flat",
@@ -336,10 +348,6 @@
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-55:\\layout\\fragment_bottom_sheet_dark_operation_detail.xml"
     },
     {
-        "merged": "com.example.finans.app-merged_res-53:/layout_fragment_bottom_sheet_add_budgets.xml.flat",
-        "source": "com.example.finans.app-main-55:/layout/fragment_bottom_sheet_add_budgets.xml"
-    },
-    {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-53:\\drawable_goals.xml.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-55:\\drawable\\goals.xml"
     },
@@ -586,6 +594,10 @@
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-53:\\drawable_photo.xml.flat",
         "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-55:\\drawable\\photo.xml"
+    },
+    {
+        "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-53:\\drawable_notification.xml.flat",
+        "source": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-main-55:\\drawable\\notification.xml"
     },
     {
         "merged": "C:\\Users\\Denis\\.gradle\\daemon\\8.0\\com.example.finans.app-merged_res-53:\\drawable_person.xml.flat",

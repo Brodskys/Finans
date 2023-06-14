@@ -229,6 +229,53 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/toAccountsRelativeLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:cornerRadius="20dp">
+
+                            <ImageView
+                                android:id="@+id/toAcountIcon_NewOperation"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:padding="7dp"
+                                android:src="@drawable/towallet" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="5dp"
+                                android:layout_toEndOf="@+id/toAcountIcon_NewOperation"
+                                android:text="@string/toAccount"
+                                android:textColor="@color/background3"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/toAcountName_NewOperation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="20dp"
+                                android:layout_toStartOf="@+id/Imgright11"
+                                android:textColor="@color/background3"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/Imgright11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/right" />
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
                             android:id="@+id/categoryRelativeLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -563,6 +610,7 @@
                         android:textColor="@color/background3"
                         android:textSize="16sp"
                         android:textStyle="bold"
+                        android:layout_marginBottom="10dp"
                         app:backgroundTint="@color/color_selector"
                         app:cornerRadius="20dp" />
 

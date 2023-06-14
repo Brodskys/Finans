@@ -4,9 +4,16 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Category(
-    var nameEng: String ?= null, var name: String ?= null, var nameRus: String ?= null, var image: String? = null, var new: String? = null) :
+    var nameEng: String? = null,
+    var name: String? = null,
+    var nameRus: String? = null,
+    var image: String? = null,
+    var new: String? = null,
+    var url: String? = null
+) :
     Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -20,6 +27,7 @@ data class Category(
         parcel.writeString(nameRus)
         parcel.writeString(image)
         parcel.writeString(new)
+        parcel.writeString(url)
     }
 
     override fun describeContents(): Int {

@@ -227,6 +227,7 @@ class BottomSheetAddCategoryFragment : BottomSheetDialogFragment() {
                         val subcollectionRef = documentRef.collection("subcategories")
                         val newDocumentData = hashMapOf(
                             "image" to icn,
+                            "url" to "/category/${category.name}/subcategories/${nameCategory.text}",
                             "name" to nameCategory.text.toString(),
                             "nameEng" to nameCategory.text.toString(),
                             "nameRus" to nameCategory.text.toString(),

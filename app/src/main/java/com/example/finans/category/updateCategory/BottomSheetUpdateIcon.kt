@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -81,7 +82,6 @@ class BottomSheetUpdateIcon : BottomSheetDialogFragment(), OnItemClickListener{
         }
 
         val storage = FirebaseStorage.getInstance()
-
 
         storageRef = if(type == "addAccounts")
             storage.reference.child("accounts")

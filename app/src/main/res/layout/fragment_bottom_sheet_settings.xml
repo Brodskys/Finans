@@ -105,6 +105,56 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginHorizontal="20dp">
 
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textTotalAmountInputLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            app:boxStrokeWidth="0dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/changeTextTotalAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:textColor="@color/background3"
+                                android:background="@color/background"
+                                android:hint="@string/totalAmount"
+                                android:inputType="numberDecimal"
+                                android:paddingStart="0dp"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInputLayoutEmail"
+                            android:layout_below="@+id/textTotalAmountInputLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            app:boxStrokeWidth="0dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/changeTextEmailAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:enabled="false"
+                                android:textColor="@color/background3"
+                                android:background="@color/background"
+                                android:hint="@string/email"
+                                android:inputType="textEmailAddress"
+                                android:paddingStart="0dp"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/textInputLayoutUser"
                             android:layout_below="@+id/textInputLayoutEmail"
@@ -127,29 +177,7 @@
                                 />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayoutEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        app:boxStrokeWidth="0dp">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/changeTextEmailAddress"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:enabled="false"
-                            android:textColor="@color/background3"
-                            android:background="@color/background"
-                            android:hint="@string/email"
-                            android:inputType="textEmailAddress"
-                            android:paddingStart="0dp"
-                            />
-                    </com.google.android.material.textfield.TextInputLayout>
 
 
                         <com.google.android.material.textfield.TextInputLayout

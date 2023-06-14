@@ -30,6 +30,7 @@ import com.example.finans.language.loadLocale
 import com.example.finans.operation.operationDetail.BottomSheetOperationDetailFragment
 import com.example.finans.other.deletionWarning
 import com.example.finans.plans.PlansActivity
+import com.example.finans.plans.budgets.Budgets
 import com.example.finans.plans.paymentPlanning.PaymentPlanning
 import com.example.finans.settings.SettingsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -40,6 +41,7 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import java.text.DecimalFormat
@@ -106,6 +108,54 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener{
                                         .addOnSuccessListener {}
                                         .addOnFailureListener {}
 
+                                    if(operation.typeEn == "Expense") {
+                                        val budgetsCollectionRef =
+                                            Firebase.firestore.collection("users")
+                                                .document(Firebase.auth.uid.toString())
+                                                .collection("budgets")
+
+                                        budgetsCollectionRef
+                                            .whereGreaterThan("timeEnd", Timestamp.now())
+                                            .get()
+                                            .addOnSuccessListener { querySnapshot ->
+                                                for (document in querySnapshot.documents) {
+                                                    val data =
+                                                        document.toObject(Budgets::class.java)
+
+                                                    val accountsList = data!!.accounts
+
+                                                    if (accountsList != null && (accountsList.isEmpty() || accounts in accountsList)) {
+
+                                                        val categoriesList = data.categories
+
+                                                        val parts = operation.category!!.split("/")
+                                                        val categoryName = parts.getOrNull(2)
+
+                                                        if (categoriesList != null && (categoriesList.isEmpty() || categoryName in categoriesList)) {
+
+                                                            println("${data.name}   $categoriesList")
+
+                                                            budgetsCollectionRef.document(data.id!!)
+                                                                .update(
+                                                                    "valueNow",
+                                                                    FieldValue.increment(-operation.value!!)
+                                                                )
+                                                                .addOnSuccessListener {
+                                                                    budgetsCollectionRef.document(data.id!!)
+                                                                        .collection("operation")
+                                                                        .document(documentId)
+                                                                        .delete()
+                                                                        .addOnSuccessListener {}
+                                                                }
+                                                                .addOnFailureListener {}
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            .addOnFailureListener { e ->
+
+                                            }
+                                    }
 
                                 }
                                 .addOnFailureListener { error ->

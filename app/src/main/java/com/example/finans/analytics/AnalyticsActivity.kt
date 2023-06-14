@@ -96,7 +96,7 @@ class AnalyticsActivity : AppCompatActivity() {
 
 
     @OptIn(DelicateCoroutinesApi::class)
-    @SuppressLint("ResourceType", "CutPasteId")
+    @SuppressLint("ResourceType", "CutPasteId", "SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -458,18 +458,13 @@ class AnalyticsActivity : AppCompatActivity() {
                                         getString(R.string.forPeriod) to options[selectedOptionIndex]
                                     )
 
+                                    sendEmail(
+                                        Firebase.auth.currentUser?.email,
+                                        templateData,
+                                        operationArrayList,
+                                        th
+                                    )
 
-                                    GlobalScope.launch(Dispatchers.IO) {
-
-                                        sendEmail(
-                                            Firebase.auth.currentUser?.email,
-                                            templateData,
-                                            operationArrayList,
-                                            th
-                                        )
-
-
-                                    }
                                     Toast.makeText(
                                         th,
                                         th.getString(R.string.emailSent),
@@ -518,15 +513,46 @@ class AnalyticsActivity : AppCompatActivity() {
                 calendar.set(Calendar.MILLISECOND, 0)
                 val endDate = calendar.time
 
-                val categ = if (locale == "ru") "categoryRu" else "categoryEn"
+                val categ = if (locale == "ru") "nameRus" else "nameEng"
 
-                val query = operation.document(acNam!!)
-                    .collection("operation")
-                    .whereGreaterThanOrEqualTo("timestamp", startDate)
-                    .whereLessThanOrEqualTo("timestamp", endDate)
-                    .whereEqualTo(categ, selectedCategory)
 
-                getOperationData(query)
+                val collectionRef = FirebaseFirestore.getInstance().collection("users")
+                    .document(Firebase.auth.uid.toString())
+                    .collection("category")
+
+                collectionRef.get()
+                    .addOnSuccessListener { querySnapshot ->
+                        for (categoryDocumentSnapshot in querySnapshot) {
+                            val subcategoriesCollectionRef = categoryDocumentSnapshot.reference
+                                .collection("subcategories")
+
+                            val query2 = subcategoriesCollectionRef.whereEqualTo(categ, selectedCategory)
+
+                            query2.get()
+                                .addOnSuccessListener { subcategoriesQuerySnapshot ->
+                                    for (subcategoryDocumentSnapshot in subcategoriesQuerySnapshot) {
+
+                                        val data = subcategoryDocumentSnapshot.data
+
+                                        val url = data["url"].toString()
+
+                                        val query = operation.document(acNam!!)
+                                            .collection("operation")
+                                            .whereGreaterThanOrEqualTo("timestamp", startDate)
+                                            .whereLessThanOrEqualTo("timestamp", endDate)
+                                            .whereEqualTo("category", url)
+
+                                        getOperationData(query)
+                                    }
+                                }
+                                .addOnFailureListener { exception ->
+                                }
+                        }
+                    }
+                    .addOnFailureListener { exception ->
+                    }
+
+
             }
         })
 
@@ -592,6 +618,8 @@ class AnalyticsActivity : AppCompatActivity() {
 
         acNam = acNam ?: ac
 
+
+
         db.collection("users").document(Firebase.auth.uid.toString()).collection("accounts")
             .document(acNam!!)
             .collection("operation")
@@ -603,67 +631,88 @@ class AnalyticsActivity : AppCompatActivity() {
 
                 for (document in result) {
                     val value = document.getDouble("value")?.toFloat()
+                    val categ = document.getString("category")
 
-                    val label = if (locale == "ru") {
-                        document.getString("categoryRu")!!
-                    } else {
-                        document.getString("categoryEn")!!
-                    }
+                    val documentRef = FirebaseFirestore.getInstance()
+                        .document("users/${Firebase.auth.uid.toString()}${categ}")
 
-                    if (value != null) {
+                    documentRef.get()
+                        .addOnSuccessListener { documentSnapshot ->
+                            if (documentSnapshot.exists()) {
+                                val documentData = documentSnapshot.data
 
-                        if (entriesMap.containsKey(label)) {
-                            val oldValue = entriesMap[label]
-                            entriesMap[label] = oldValue!! + value
-                        } else {
-                            entriesMap[label] = value
+                                val categoryEn = documentData!!["nameEng"].toString()
+                                val categoryRu = documentData["nameRus"].toString()
+
+
+                                val label = if (locale == "ru") {
+                                    categoryRu
+                                } else {
+                                    categoryEn
+                                }
+                                if (value != null) {
+
+                                    if (entriesMap.containsKey(label)) {
+                                        val oldValue = entriesMap[label]
+                                        entriesMap[label] = oldValue!! + value
+                                    } else {
+                                        entriesMap[label] = value
+                                    }
+
+                                }
+
+                                val entries = mutableListOf<DataEntry>()
+                                for ((label, value) in entriesMap) {
+                                    entries.add(ValueDataEntry(label, value))
+                                }
+
+
+
+                                if (entries.size > 0) {
+
+                                    chart.visibility = View.VISIBLE
+
+
+                                    pie.background().fill("#fdf4e3")
+
+                                    pie.legend().title().enabled(false);
+
+                                    pie.data(entries)
+
+                                }
+
+                                val calendar = Calendar.getInstance()
+
+                                calendar.time = startD!!
+                                calendar.set(Calendar.HOUR_OF_DAY, 0)
+                                calendar.set(Calendar.MINUTE, 0)
+                                calendar.set(Calendar.SECOND, 0)
+                                calendar.set(Calendar.MILLISECOND, 0)
+                                val startDate = calendar.time
+
+                                calendar.time = endD!!
+                                calendar.set(Calendar.HOUR_OF_DAY, 0)
+                                calendar.set(Calendar.MINUTE, 0)
+                                calendar.set(Calendar.SECOND, 0)
+                                calendar.set(Calendar.MILLISECOND, 0)
+                                val endDate = calendar.time
+
+                                val query = operation.document(acNam!!)
+                                    .collection("operation")
+                                    .whereGreaterThanOrEqualTo("timestamp", startDate)
+                                    .whereLessThanOrEqualTo("timestamp", endDate)
+
+                                getOperationData(query)
+                            }
+                        }
+                        .addOnFailureListener { exception ->
+
                         }
 
-                    }
-                }
-
-                val entries = mutableListOf<DataEntry>()
-                for ((label, value) in entriesMap) {
-                    entries.add(ValueDataEntry(label, value))
-                }
-
-
-
-                if (entries.size > 0) {
-
-                    chart.visibility = View.VISIBLE
-
-
-                    pie.background().fill("#fdf4e3")
-
-                    pie.legend().title().enabled(false);
-
-                    pie.data(entries)
 
                 }
 
-                val calendar = Calendar.getInstance()
 
-                calendar.time = startD!!
-                calendar.set(Calendar.HOUR_OF_DAY, 0)
-                calendar.set(Calendar.MINUTE, 0)
-                calendar.set(Calendar.SECOND, 0)
-                calendar.set(Calendar.MILLISECOND, 0)
-                val startDate = calendar.time
-
-                calendar.time = endD!!
-                calendar.set(Calendar.HOUR_OF_DAY, 0)
-                calendar.set(Calendar.MINUTE, 0)
-                calendar.set(Calendar.SECOND, 0)
-                calendar.set(Calendar.MILLISECOND, 0)
-                val endDate = calendar.time
-
-                val query = operation.document(acNam!!)
-                    .collection("operation")
-                    .whereGreaterThanOrEqualTo("timestamp", startDate)
-                    .whereLessThanOrEqualTo("timestamp", endDate)
-
-                getOperationData(query)
             }
 
     }

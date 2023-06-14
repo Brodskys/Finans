@@ -232,7 +232,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/staticOperationRecyclerView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="400dp"
                         android:layout_marginTop="10dp"
                         tools:listitem="@layout/operation_item" />
 

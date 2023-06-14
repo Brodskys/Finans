@@ -131,6 +131,7 @@ class CurrencyAdapter(private val currencyList: ArrayList<Currency>) :RecyclerVi
         holder.itemView.setOnClickListener {
 
             selectedItem = position
+            notifyDataSetChanged()
             listener?.onItemClick(currencyListFiltered[position])
         }
 

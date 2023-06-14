@@ -5,10 +5,9 @@ import android.os.Parcelable
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.GeoPoint
 
-data class Operation(var categoryRu: String ?= null,
-                     var categoryEn: String ?= null,
+data class Operation(
+                     var category: String ?= null,
                      var id: String? = null,
-                     var image: String ?= null,
                      var map: GeoPoint ?= null,
                      var note: String ?= null,
                      var photo: String ?= null,
@@ -22,8 +21,6 @@ data class Operation(var categoryRu: String ?= null,
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
         parcel.readParcelable(GeoPoint::class.java.classLoader),
         parcel.readString(),
         parcel.readString(),
@@ -35,10 +32,8 @@ data class Operation(var categoryRu: String ?= null,
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(categoryRu)
-        parcel.writeString(categoryEn)
+        parcel.writeString(category)
         parcel.writeString(id)
-        parcel.writeString(image)
         parcel.writeString(note)
         parcel.writeString(photo)
         parcel.writeLong(timestamp?.seconds ?: 0)

@@ -38,11 +38,14 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
+import java.math.BigDecimal
 
 class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
 
@@ -296,7 +299,21 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
         }
 
         view.findViewById<TextInputEditText>(R.id.changeTextUser).addTextChangedListener(userWatcher(view.findViewById(R.id.changeTextUser)))
+
+        view.findViewById<TextInputEditText>(R.id.changeTextTotalAmount).addTextChangedListener(userWatcher2(view.findViewById(R.id.changeTextTotalAmount)))
+
+
         password.addTextChangedListener(textWatcher(password))
+
+        FirebaseFirestore.getInstance().collection("users")
+            .document(Firebase.auth.uid.toString()).collection("user").document("information").get()
+            .addOnSuccessListener { snapshot ->
+                val date = snapshot.getDouble("total_balance")
+
+
+
+                view.findViewById<TextInputEditText>(R.id.changeTextTotalAmount)?.setText(date.toString())
+            }
 
     }
 
@@ -321,6 +338,25 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
                     editText.error = editText.text.toString().isValidPassword(requireContext())
 
                 }
+        }
+    }
+
+    private fun userWatcher2(editText: TextInputEditText): TextWatcher = object : TextWatcher {
+
+        override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+
+        }
+        override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+        override fun afterTextChanged(editable: Editable) {
+
+
+            FirebaseFirestore.getInstance().collection("users")
+                .document(Firebase.auth.uid.toString())
+                        .collection("user").document("information")
+                        .update("total_balance", editText.text.toString().toDouble())
+                        .addOnSuccessListener {}
+                        .addOnFailureListener {}
+
         }
     }
     private fun userWatcher(editText: TextInputEditText): TextWatcher = object : TextWatcher {

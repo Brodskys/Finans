@@ -3,14 +3,17 @@ package com.example.finans.plans.budgets
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.GeoPoint
 
 data class Budgets(
+    var notification80Is: String? = null,
+    var notificationOverrunsIs: String? = null,
+    var notification80: String? = null,
+    var notificationOverruns: String? = null,
     var id: String? = null,
     var name: String? = null,
     var maxValue: Double? = null,
     var valueNow: Double? = null,
-    var account:  ArrayList<String>? = null,
+    var accounts:  ArrayList<String>? = null,
     var categories:  ArrayList<String>? = null,
     var typeRu: String? = null,
     var typeEn: String? = null,
@@ -20,6 +23,10 @@ data class Budgets(
     Parcelable {
 
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readValue(Double::class.java.classLoader) as? Double,
@@ -33,11 +40,15 @@ data class Budgets(
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(notification80)
+        parcel.writeString(notificationOverruns)
+        parcel.writeString(notification80Is)
+        parcel.writeString(notificationOverrunsIs)
         parcel.writeString(id)
         parcel.writeString(name)
         parcel.writeValue(maxValue)
         parcel.writeValue(valueNow)
-        parcel.writeStringList(account)
+        parcel.writeStringList(accounts)
         parcel.writeStringList(categories)
         parcel.writeString(typeRu)
         parcel.writeString(typeEn)

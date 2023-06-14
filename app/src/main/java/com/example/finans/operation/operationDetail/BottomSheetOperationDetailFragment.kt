@@ -53,6 +53,7 @@ import com.example.finans.map.BottomSheetMapFragment
 import com.example.finans.map.MapViewModel
 import com.example.finans.operation.Operation
 import com.example.finans.other.deletionWarning
+import com.example.finans.plans.budgets.Budgets
 import com.example.finans.сurrency.BottomSheetCurrencyFragment
 import com.example.finans.сurrency.CurrencyViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -89,7 +90,6 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
     private lateinit var imageViewModel: ImageViewModel
     private var photo: ByteArray? = null
     private var oldPhoto: Uri? = null
-    private var image: String? = ""
     private var category: Category? = null
     private lateinit var operation: Operation
     private lateinit var db: FirebaseFirestore
@@ -293,13 +293,6 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
 
 
 
-
-
-        image = operation.image
-
-
-
-
         view.findViewById<RelativeLayout>(R.id.operationDetailAccountsAddBtn).setOnClickListener {
             val existingFragment =
                 requireActivity().supportFragmentManager.findFragmentByTag("BottomSheetAccounts")
@@ -350,21 +343,44 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
 
             }
 
-        var imageRef =
-            operation.image?.let { FirebaseStorage.getInstance().getReferenceFromUrl(it) }
+        val documentRef = FirebaseFirestore.getInstance().document("users/${Firebase.auth.uid.toString()}${operation.category}")
 
-        imageRef?.downloadUrl?.addOnSuccessListener { uri ->
-            Picasso.get().load(uri)
-                .placeholder(R.drawable.category)
-                .error(R.drawable.category)
-                .into(view.findViewById<ImageView>(R.id.operationDetail_categoryIcon))
-        }?.addOnFailureListener {
-            view.findViewById<ImageView>(R.id.operationDetail_categoryIcon)
-                .setImageResource(R.drawable.category)
-        }
+        documentRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val documentData = documentSnapshot.data
+
+                    val image = documentData!!["image"].toString()
+                   val categoryEn = documentData["nameEng"].toString()
+                    val categoryRu = documentData["nameRus"].toString()
+
+                    val gsReference = Firebase.storage.getReferenceFromUrl(image)
+
+                    gsReference.downloadUrl.addOnSuccessListener { uri ->
+                        Picasso.get().load(uri)
+                            .placeholder(R.drawable.category)
+                            .error(R.drawable.category)
+                            .into(view.findViewById<ImageView>(R.id.operationDetail_categoryIcon))
+                    }.addOnFailureListener {
+                        view.findViewById<ImageView>(R.id.operationDetail_categoryIcon)
+                            .setImageResource(R.drawable.category)
+                    }
+
+                    if (locale == "ru"){
+                        view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text = categoryRu
+                    } else {
+                        view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text = categoryEn
+                    }
+
+                }
+            }
+            .addOnFailureListener { exception ->
+
+            }
+
 
         try {
-            imageRef =
+          val  imageRef =
                 operation.photo?.let { FirebaseStorage.getInstance().getReferenceFromUrl(it) }
 
             imageRef?.downloadUrl?.addOnSuccessListener { uri ->
@@ -471,9 +487,8 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
         categoryViewModel.getSelectedCategory().observe(this) { ctg ->
             if (ctg != null) {
                 val storage = Firebase.storage
-                image = ctg.image!!
 
-                val gsReference = storage.getReferenceFromUrl(image!!)
+                val gsReference = storage.getReferenceFromUrl(ctg.image!!)
 
                 gsReference.downloadUrl.addOnSuccessListener { uri ->
                     Picasso.get().load(uri.toString())
@@ -496,15 +511,6 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
                 categoryViewModel.clearCategory()
             }
         }
-
-        if (languageInit(requireActivity())) {
-            view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text =
-                operation.categoryRu
-        } else {
-            view.findViewById<TextView>(R.id.operationDetail_subcategory_txt).text =
-                operation.categoryEn
-        }
-
 
         view.findViewById<RelativeLayout>(R.id.operationDetail_categoryRelativeLayout)
             .setOnClickListener {
@@ -734,8 +740,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
                 uploadData(
                     amount.text.toString().toDouble(),
                     Timestamp(currentDateTime.time),
-                    note,
-                    image
+                    note
                 )
             } else {
                 val builder = AlertDialog.Builder(requireContext())
@@ -801,8 +806,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
 
                     amount.text.toString().toDouble(),
                     Timestamp(currentDateTime.time),
-                    note,
-                    image
+                    note
                 )
             } else {
                 val builder = AlertDialog.Builder(requireContext())
@@ -834,8 +838,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
     private fun uploadData(
         value: Double,
         dateTime: Timestamp,
-        note: String?,
-        image: String?
+        note: String?
     ) {
 
 
@@ -904,9 +907,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
             }
         }
 
-
-        val categoryRu = category?.nameRus ?: operation.categoryRu!!
-        val categoryEn = category?.nameEng ?: operation.categoryEn!!
+        val url = category?.url ?: operation.category
 
         val data = hashMapOf<String, Any>(
             "account" to accountName,
@@ -915,9 +916,7 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
             "value" to value,
             "timestamp" to dateTime,
             "note" to note!!,
-            "categoryRu" to categoryRu,
-            "categoryEn" to categoryEn,
-            "image" to image!!,
+            "category" to url!!,
             "map" to mp!!,
             "photo" to path!!,
         )
@@ -950,6 +949,131 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
 
             val isTypeChanged = operation.typeEn != operationEng
             val isAmountChanged = operation.value != value
+
+            val budgetsCollectionRef =
+                Firebase.firestore.collection("users")
+                    .document(Firebase.auth.uid.toString())
+                    .collection("budgets")
+
+            val hashMap = hashMapOf<String, Any>(
+                "id" to operation.id!!,
+                "value" to value,
+                "timestamp" to dateTime
+            )
+
+
+
+
+            budgetsCollectionRef
+                .whereGreaterThan("timeEnd", Timestamp.now())
+                .get()
+                .addOnSuccessListener { querySnapshot ->
+                    for (document in querySnapshot.documents) {
+                        val data =
+                            document.toObject(Budgets::class.java)
+
+                        val accountsList = data!!.accounts
+
+                        if (accountsList != null && (accountsList.isEmpty() || accounts in accountsList)) {
+
+                            val categoriesList = data.categories
+
+                            val parts = operation.category!!.split("/")
+                            val categoryName = parts.getOrNull(2)
+
+                            if (categoriesList != null && (categoriesList.isEmpty() || categoryName in categoriesList)) {
+
+                                if(operation.timestamp != dateTime){
+                                    budgetsCollectionRef.document(data.id!!)
+                                        .collection("operation")
+                                        .document(operation.id!!)
+                                        .update(hashMap)
+                                        .addOnSuccessListener {}
+                                }
+
+
+                                if (isTypeChanged) {
+                                    if(operation.typeEn == "Income" && operationEng == "Expense") {
+                                            budgetsCollectionRef.document(data.id!!)
+                                                .update(
+                                                    "valueNow",
+                                                    FieldValue.increment(operation.value!!)
+                                                )
+                                                .addOnSuccessListener {
+                                                    budgetsCollectionRef
+                                                        .document(data.id!!)
+                                                        .collection("operation").document(operation.id!!)
+                                                        .set(hashMap)
+                                                        .addOnSuccessListener { documentReference ->
+                                                        }
+                                                }
+                                                .addOnFailureListener {}
+
+                                    }
+                                    if(operation.typeEn == "Expense" && (operationEng == "Income" || operationEng == "Translation")) {
+
+                                        budgetsCollectionRef.document(data.id!!)
+                                            .update(
+                                                "valueNow",
+                                                FieldValue.increment(-value)
+                                            )
+                                            .addOnSuccessListener {
+                                                budgetsCollectionRef.document(data.id!!)
+                                                    .collection("operation")
+                                                    .document(operation.id!!)
+                                                    .delete()
+                                                    .addOnSuccessListener {}
+                                            }
+                                            .addOnFailureListener {}
+                                    }
+                                }
+                                else{
+
+                                    if(isAmountChanged){
+
+                                       if(operationEng == "Expense") {
+
+                                           budgetsCollectionRef.document(data.id!!)
+                                               .collection("operation")
+                                               .document(operation.id!!)
+                                               .update(hashMap)
+                                               .addOnSuccessListener {}
+
+                                           budgetsCollectionRef.document(data.id!!)
+                                               .update(
+                                                   "valueNow",
+                                                   FieldValue.increment(-operation.value!!)
+                                               )
+                                               .addOnSuccessListener {
+                                                   budgetsCollectionRef.document(data.id!!)
+                                                       .update(
+                                                           "valueNow",
+                                                           FieldValue.increment(value)
+                                                       )
+                                                       .addOnSuccessListener {
+
+                                                       }
+                                                       .addOnFailureListener {}
+                                               }
+                                               .addOnFailureListener {}
+                                       }
+                                    }
+
+                                }
+
+                            }
+                        }
+                    }
+                }
+                .addOnFailureListener { e ->
+
+                }
+
+
+
+
+
+
 
             val userRef = userId.collection("user").document("information")
 

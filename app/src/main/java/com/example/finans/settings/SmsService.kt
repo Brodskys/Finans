@@ -55,7 +55,6 @@ class SmsService : Service() {
         val notification = NotificationCompat.Builder(this, "SMS foregroundService")
             .setContentText(getString(R.string.isSms))
             .setSmallIcon(android.R.drawable.ic_dialog_info)
-
             .build()
 
         startForeground(1, notification)
@@ -150,9 +149,7 @@ class SmsService : Service() {
                 "value" to value,
                 "timestamp" to timestamp,
                 "note" to smsHeader,
-                "categoryRu" to "Отсутствует",
-                "categoryEn" to "Absent",
-                "image" to "gs://finans-44544.appspot.com/category/other.png",
+                "category" to "/category/other/subcategories/absent",
                 "map" to map,
                 "photo" to "",
                 "account" to accounts!!

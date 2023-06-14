@@ -12,12 +12,15 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.CountDownLatch
 
 
 interface OnItemClickListener {
@@ -34,8 +37,8 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
 
     private var  operationListFiltered: ArrayList<Operation> =  operationList
     private var listener: OnItemClickListener? = null
-
-
+    private lateinit var categoryRu: String
+    private lateinit var categoryEn: String
 
     fun getFilter(): Filter {
         return object : Filter() {
@@ -45,24 +48,37 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
                     operationList
                 } else {
                     val resultList = ArrayList<Operation>()
-                    for (row in  operationList) {
-                        if (row.categoryRu?.lowercase(Locale.ROOT)
-                                ?.contains(charSearch.lowercase(Locale.ROOT)) == true ||
-                            row.categoryEn?.lowercase(Locale.ROOT)
-                                ?.contains(charSearch.lowercase(Locale.ROOT)) == true ||
-                            row.typeEn?.lowercase(Locale.ROOT)
-                                ?.contains(charSearch.lowercase(Locale.ROOT)) == true ||
-                            row.typeRu?.lowercase(Locale.ROOT)
-                                ?.contains(charSearch.lowercase(Locale.ROOT)) == true
-                        )
-                        {
-                            resultList.add(row)
-                        }
+                    val latch = CountDownLatch(operationList.size)
+
+                    for (row in operationList) {
+                        val documentRef = FirebaseFirestore.getInstance().document("users/${Firebase.auth.uid.toString()}${row.category}")
+
+                        documentRef.get()
+                            .addOnSuccessListener { documentSnapshot ->
+                                if (documentSnapshot.exists()) {
+                                    val documentData = documentSnapshot.data
+
+                                    categoryEn = documentData!!["nameEng"].toString()
+                                    categoryRu = documentData["nameRus"].toString()
+
+                                    if (categoryRu.lowercase(Locale.ROOT).contains(charSearch.lowercase(Locale.ROOT))
+                                        || categoryEn.lowercase(Locale.ROOT).contains(charSearch.lowercase(Locale.ROOT))
+                                        || row.typeEn?.lowercase(Locale.ROOT)?.contains(charSearch.lowercase(Locale.ROOT)) == true
+                                        || row.typeRu?.lowercase(Locale.ROOT)?.contains(charSearch.lowercase(Locale.ROOT)) == true
+                                    ) {
+                                        resultList.add(row)
+                                    }
+                                }
+                                latch.countDown()
+                            }
                     }
+
+                    latch.await()
+
                     resultList
                 }
                 val filterResults = FilterResults()
-                filterResults.values =  operationListFiltered
+                filterResults.values = operationListFiltered
                 return filterResults
             }
 
@@ -109,24 +125,44 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
 
         val storage = Firebase.storage
 
-        if(operation.image != null) {
-            val gsReference = storage.getReferenceFromUrl(operation.image!!)
 
-            gsReference.downloadUrl.addOnSuccessListener { uri ->
-                Picasso.get().load(uri.toString()).into(holder.image)
-            }.addOnFailureListener {
-                Picasso.get().load(R.drawable.category).into(holder.image)
-            }
-        }
+
+
+        val documentRef = FirebaseFirestore.getInstance().document("users/${Firebase.auth.uid.toString()}${operation.category}")
         val settings = sharedPreferences?.getString("locale", "")
 
-        if (settings == "ru"){
-            holder.type.text = operation.typeRu
-            holder.category.text = operation.categoryRu
-        } else {
-            holder.type.text = operation.typeEn
-            holder.category.text = operation.categoryEn
-        }
+        documentRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val documentData = documentSnapshot.data
+
+                    val image = documentData!!["image"].toString()
+                    categoryEn = documentData["nameEng"].toString()
+                    categoryRu = documentData["nameRus"].toString()
+
+                    val gsReference = storage.getReferenceFromUrl(image)
+
+                    gsReference.downloadUrl.addOnSuccessListener { uri ->
+                        Picasso.get().load(uri.toString()).into(holder.image)
+                    }.addOnFailureListener {
+                        Picasso.get().load(R.drawable.category).into(holder.image)
+                    }
+
+                    if (settings == "ru"){
+                        holder.type.text = operation.typeRu
+                        holder.category.text = categoryRu
+                    } else {
+                        holder.type.text = operation.typeEn
+                        holder.category.text = categoryEn
+                    }
+
+                }
+            }
+            .addOnFailureListener { exception ->
+
+            }
+
+
         val date = operation.timestamp?.toDate()
         val pattern = "dd MMMM HH:mm"
         val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())

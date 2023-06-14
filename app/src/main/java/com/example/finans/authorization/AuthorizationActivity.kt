@@ -69,7 +69,7 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
     private lateinit var splashScreen: SplashScreen
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
-
+    private  var authType: String = ""
     private lateinit var email: EditText
     private lateinit var password: EditText
 
@@ -237,8 +237,12 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        presenterGoogle.onActivityResult(requestCode, resultCode, data)
-        presenterFacebook.onActivityResult(requestCode, resultCode, data)
+        if(authType == "g") {
+            presenterGoogle.onActivityResult(requestCode, resultCode, data)
+        }
+        else if (authType == "f") {
+            presenterFacebook.onActivityResult(requestCode, resultCode, data)
+        }
     }
 
     override fun showMainScreen(account: GoogleSignInAccount?) {
@@ -247,40 +251,20 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
 
         val db = FirebaseFirestore.getInstance()
 
-        val email = account?.email
-
-        if (email != null) {
-            FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val result = task.result
-                        if ((result?.signInMethods?.size ?: 0) > 0) {
-                            startActivity(Intent(this, PinCodeActivity::class.java))
-                            finish()
-                        } else {
-                            uploadData()
-                            startActivity(Intent(this, PinCodeActivity::class.java))
-                            finish()
-                        }
+        db.document("/users/${Firebase.auth.uid.toString()}").get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val document = task.result
+                    if (!document.exists()) {
+                        startActivity(Intent(this, PinCodeActivity::class.java))
+                        finish()
+                    } else {
+                        uploadData()
+                        startActivity(Intent(this, PinCodeActivity::class.java))
+                        finish()
                     }
                 }
-        }
-        else {
-            db.document("/users/${Firebase.auth.uid.toString()}").get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val document = task.result
-                        if (document.exists()) {
-                            startActivity(Intent(this, PinCodeActivity::class.java))
-                            finish()
-                        } else {
-                            uploadData()
-                            startActivity(Intent(this, PinCodeActivity::class.java))
-                            finish()
-                        }
-                    }
-                }
-        }
+            }
     }
 
     private fun uploadData() {
@@ -376,10 +360,12 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
     }
 
     fun signInWithGoogle(view: View) {
+        authType = "g"
        presenterGoogle.signInWithGoogle()
     }
 
     fun signInWithFacebook(view: View) {
+        authType = "f"
       presenterFacebook.signInWithFacebook()
     }
 
