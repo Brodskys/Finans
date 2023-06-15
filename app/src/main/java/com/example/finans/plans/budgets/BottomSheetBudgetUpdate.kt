@@ -1,12 +1,12 @@
-package com.example.finans.pla
+package com.example.finans.plans.budgets
 
-import com.example.finans.plans.budgets.Budgets
 import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,13 +29,11 @@ import com.example.finans.language.languageInit
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.Calendar
 import java.util.Date
-import java.util.UUID
 
 class BottomSheetBudgetUpdate : BottomSheetDialogFragment() {
     private lateinit var budgets: Budgets
@@ -62,6 +60,7 @@ class BottomSheetBudgetUpdate : BottomSheetDialogFragment() {
     private  var selectTypeEn: String? = null
     private lateinit var startDate: Date
     private lateinit var endDate: Date
+    private lateinit var sharedPreferencesTheme : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,7 +71,15 @@ class BottomSheetBudgetUpdate : BottomSheetDialogFragment() {
             it.behavior.peekHeight = R.style.AppBottomSheetDialogTheme
         }
         dialog?.setCancelable(false)
-        return inflater.inflate(R.layout.fragment_bottom_sheet_budget_update, container, false)
+
+        sharedPreferencesTheme = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferencesTheme.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_budget_update, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_budget_update, container, false)
+        }
     }
 
 

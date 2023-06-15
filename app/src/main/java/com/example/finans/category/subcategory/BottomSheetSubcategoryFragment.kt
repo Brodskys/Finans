@@ -110,12 +110,18 @@ class BottomSheetSubcategoryFragment : BottomSheetDialogFragment(), OnItemClickL
 
 
         val sharedPref =  prefs!!.getString("locale", "")
-        if (sharedPref == "ru"){
-            categoryTitle.text = category.nameRus
-        } else {
-            categoryTitle.text = category.nameEng
-        }
 
+        try {
+
+            if (sharedPref == "ru") {
+                categoryTitle.text = category.nameRus
+            } else {
+                categoryTitle.text = category.nameEng
+            }
+        }
+        catch (e: NullPointerException) {
+            println(e.message)
+        }
 
         subcategoryAdapter = SubcategoryAdapter(categoryArrayList)
         subcategoryAdapter.setOnItemClickListener(this)

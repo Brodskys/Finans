@@ -35,7 +35,7 @@
                     android:textStyle="bold"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:text="Настройка аккаунта"/>
+                    android:text="@string/accountSetup"/>
 
             </RelativeLayout>
 
@@ -60,7 +60,7 @@
                     android:textStyle="bold"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:text="Выбрать основной аккаунт" />
+                    android:text="@string/selectMainAccount" />
 
                 <View
                     android:layout_width="match_parent"

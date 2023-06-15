@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +36,7 @@ class BottomSheetBudgets : BottomSheetDialogFragment(), OnItemClickListener {
     private lateinit var budgetAdapter: BudgetsAdapter
     private lateinit var userId: DocumentReference
     private lateinit var pref: SharedPreferences
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,9 +46,17 @@ class BottomSheetBudgets : BottomSheetDialogFragment(), OnItemClickListener {
 
             it.behavior.peekHeight = R.style.AppBottomSheetDialogTheme
         }
-
         dialog?.setCancelable(false)
-        return inflater.inflate(R.layout.fragment_bottom_sheet_budgets, container, false)
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        return if (switchState) {
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_budgets, container, false)
+        } else {
+            inflater.inflate(R.layout.fragment_bottom_sheet_budgets, container, false)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -84,6 +95,42 @@ class BottomSheetBudgets : BottomSheetDialogFragment(), OnItemClickListener {
         getBudgetData()
 
         val searchView = view.findViewById<SearchView>(R.id.budgetsSearch)
+
+        searchView.queryHint = getText(R.string.search)
+
+
+        if (switchState) {
+            val searchEditText =
+                searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+            searchEditText.setHintTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.background3_dark
+                )
+            )
+            searchEditText.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.background3_dark
+                )
+            )
+        } else {
+            val searchEditText =
+                searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+            searchEditText.setHintTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.background3
+                )
+            )
+            searchEditText.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.background3
+                )
+            )
+        }
+
 
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {

@@ -1,7 +1,9 @@
 package com.example.finans.plans.goals
 
 import android.app.AlertDialog
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -22,13 +24,20 @@ import com.google.firebase.ktx.Firebase
 class BottomSheetGoalCard : BottomSheetDialogFragment() {
     private lateinit var goals: Goals
     private lateinit var valueEditText: EditText
+    private lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
-        return inflater.inflate(R.layout.fragment_bottom_sheet_goal_card, container, false)
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_goal_card, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_goal_card, container, false)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

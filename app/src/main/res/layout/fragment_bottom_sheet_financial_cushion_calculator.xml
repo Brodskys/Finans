@@ -115,7 +115,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:layout_toLeftOf="@+id/monthYearInvestmentSpinner">
+                            android:layout_toLeftOf="@+id/monthYearFinancialCushionSpinner">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/periodFinancialCushionTextInputEditText"

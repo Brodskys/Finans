@@ -25,6 +25,8 @@
     <string name="language">Language</string>
     <string name="currency">Currency</string>
     <string name="isPassword">Login by PIN code</string>
+    <string name="isBiometric">Login by fingerprint</string>
+
     <string name="isSms">Reading sms</string>
 
     <string name="exit">Sign Out</string>
@@ -260,6 +262,10 @@
     <string name="totalAmount">Total amount</string>
 
     <string name="imageRecognized">The image is not recognized</string>
+
+    <string name="accountSetup">Account Setup</string>
+    <string name="selectMainAccount">Select the main account</string>
+    <string name="newAccount">New account</string>
 
 
 </resources>

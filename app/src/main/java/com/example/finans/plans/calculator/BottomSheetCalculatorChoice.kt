@@ -1,21 +1,21 @@
 package com.example.finans.plans.calculator
 
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.finans.R
-import com.example.finans.operation.BottomSheetNewOperationFragment
-import com.example.finans.plans.calcula.BottomSheetLoanCalculator
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class BottomSheetCalculatorChoice : BottomSheetDialogFragment() {
 
+    private lateinit var sharedPreferences : SharedPreferences
 
 
     override fun onCreateView(
@@ -28,12 +28,16 @@ class BottomSheetCalculatorChoice : BottomSheetDialogFragment() {
         }
 
         dialog?.setCancelable(false)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_calculator_choice, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_calculator_choice, container, false)
+        }
 
-        return inflater.inflate(R.layout.fragment_bottom_sheet_calculator_choice, container, false)
     }
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

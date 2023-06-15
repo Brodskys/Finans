@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    tools:context=".plans.paymentPlanning.BottomSheetPaymentPlanningAdd">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_dark"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/paymentPlanningAddExit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:background="?attr/editTextBackground"
+                        android:clickable="true"
+                        android:padding="5dp"
+                        android:text="@string/cancel"
+                        android:textColor="@color/background3_dark"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@color/background2_dark"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        app:cornerRadius="20dp">
+
+                        <ImageView
+                            android:id="@+id/addAccountsIcon"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:src="@drawable/text"
+                            android:padding="7dp" />
+
+                        <TextView
+                            android:id="@+id/addAccountsName"
+                            android:layout_toEndOf="@+id/addAccountsIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:text="@string/title"
+                            android:textSize="17sp"
+                            android:textColor="@color/background3_dark"
+                            android:textStyle="bold" />
+
+
+                        <EditText
+                            android:id="@+id/paymentPlanningAddNameEdit"
+                            android:layout_toEndOf="@+id/addAccountsName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/background3_dark"
+                            android:singleLine="true"
+                            />
+
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@color/background_dark"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/background2_dark">
+
+                        <Spinner
+                            android:id="@+id/currencyPaymentPlanningAddSpinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="7dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@color/background2_dark"
+                            android:spinnerMode="dropdown"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/paymentPlanningAddValueEditText"
+                            android:layout_toEndOf="@+id/currencyPaymentPlanningAddSpinner"
+                            android:layout_marginStart="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:inputType="numberDecimal"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/background3_dark"
+                            android:textSize="19sp"
+                            android:singleLine="true" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@color/background2_dark"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <RelativeLayout
+                        android:id="@+id/paymentPlanningAddCategoryRelativeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cornerRadius="20dp">
+
+                        <ImageView
+                            android:id="@+id/paymentPlanningAddCategoryIcon"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:padding="7dp"
+                            android:src="@drawable/category" />
+
+                        <TextView
+                            android:id="@+id/category_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@+id/paymentPlanningAddCategoryIcon"
+                            android:text="@string/categories"
+                            android:textColor="@color/background3_dark"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/paymentPlanningAddSubcategoryTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_toStartOf="@+id/Imgright2"
+                            android:layout_toEndOf="@+id/category_txt"
+                            android:ellipsize="marquee"
+                            android:singleLine="true"
+                            android:textColor="@color/background3_dark"
+                            android:textDirection="rtl"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/Imgright2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/right_dark" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@color/background2_dark"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <RelativeLayout
+                        android:id="@+id/paymentPlanningAddDateTimeRelativeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cornerRadius="20dp">
+
+                        <ImageView
+                            android:id="@+id/dateandtimeIcon"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:padding="7dp"
+                            android:src="@drawable/datetime" />
+
+                        <TextView
+                            android:id="@+id/dateAndTimeTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@+id/dateandtimeIcon"
+                            android:text="@string/dateandtime"
+                            android:textColor="@color/background3_dark"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/paymentPlanningAddDateTimeTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="7dp"
+                            android:layout_toEndOf="@+id/dateAndTimeTxt"
+                            android:layout_toStartOf="@+id/Imgright3"
+                            android:ellipsize="marquee"
+                            android:gravity="right"
+                            android:singleLine="true"
+                            android:textColor="@color/background3_dark"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/Imgright3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/right_dark" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/addNawGoalsLinearLayout"
+                android:clickable="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/background2_dark"
+                android:padding="10dp"
+                android:layout_marginVertical="10dp">
+
+                <RelativeLayout
+                    android:id="@+id/addPaymentPlanningRelativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cornerRadius="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="@string/add"
+                        android:textColor="@color/background3_dark"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</FrameLayout>

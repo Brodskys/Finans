@@ -2,7 +2,9 @@ package com.example.finans.plans.budgets.addBudgets
 
 import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -42,6 +44,7 @@ class BottomSheetAddBudgets : BottomSheetDialogFragment() {
     private lateinit var selectTypeEn: String
     private lateinit var startDate: Date
     private lateinit var endDate: Date
+    private lateinit var sharedPreferencesTheme : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +56,16 @@ class BottomSheetAddBudgets : BottomSheetDialogFragment() {
         }
 
         dialog?.setCancelable(false)
-        return inflater.inflate(R.layout.fragment_bottom_sheet_add_budgets, container, false)
+
+        sharedPreferencesTheme = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferencesTheme.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_add_budgets, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_add_budgets, container, false)
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

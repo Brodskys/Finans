@@ -91,9 +91,6 @@ class OperationAdapter(private val operationList: ArrayList<Operation>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        switchState = sharedPreferences!!.getBoolean("modeSwitch", false)
-
-
         if(switchState!!){
             val itemView =
                 LayoutInflater.from(parent.context).inflate(

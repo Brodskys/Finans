@@ -1,12 +1,12 @@
 package com.example.finans.plans.budgets
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,26 +16,22 @@ import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.anychart.charts.Cartesian
-import com.anychart.core.annotations.Line
 import com.anychart.data.Mapping
+import com.anychart.data.Set
 import com.anychart.enums.Anchor
 import com.anychart.enums.MarkerType
 import com.anychart.enums.TooltipPositionMode
 import com.anychart.graphics.vector.Stroke
 import com.example.finans.R
+import com.example.finans.operation.Operation
+import com.example.finans.operation.OperationAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.anychart.data.Set
-import com.example.finans.operation.Operation
-import com.example.finans.operation.OperationAdapter
-import com.example.finans.pla.BottomSheetBudgetUpdate
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import java.text.SimpleDateFormat
-import java.util.Collections
 import java.util.Locale
 
 class BottomSheetBudget : BottomSheetDialogFragment() {
@@ -44,6 +40,7 @@ class BottomSheetBudget : BottomSheetDialogFragment() {
     private lateinit var operationRecyclerView: RecyclerView
     private lateinit var operationArrayList: ArrayList<Operation>
     private lateinit var operationAdapter: OperationAdapter
+    private lateinit var sharedPreferences : SharedPreferences
 
     private lateinit var chart: AnyChartView
     override fun onCreateView(
@@ -55,8 +52,14 @@ class BottomSheetBudget : BottomSheetDialogFragment() {
             it.behavior.peekHeight = R.style.AppBottomSheetDialogTheme
         }
         dialog?.setCancelable(false)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
-        return inflater.inflate(R.layout.fragment_bottom_sheet_budget, container, false)
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_budget, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_budget, container, false)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,7 +80,7 @@ class BottomSheetBudget : BottomSheetDialogFragment() {
         operationRecyclerView.adapter = operationAdapter
         operationAdapter.notifyDataSetChanged()
 
-
+        view.findViewById<TextView>(R.id.budgetNameTextView).text = budgets.name
 
         view.findViewById<EditText>(R.id.budgetsBalanceNameEdit)
             .setText(budgets.valueNow.toString())

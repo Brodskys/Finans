@@ -13,6 +13,7 @@ import android.preference.PreferenceManager
 import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -314,6 +315,40 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener{
         getOperationData()
 
         val searchView = findViewById<SearchView>(R.id.operationSearchView)
+        searchView.queryHint = getText(R.string.search)
+
+
+        if (switchState) {
+            val searchEditText =
+                searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+            searchEditText.setHintTextColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.background3_dark
+                )
+            )
+            searchEditText.setTextColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.background3_dark
+                )
+            )
+        } else {
+            val searchEditText =
+                searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+            searchEditText.setHintTextColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.background3
+                )
+            )
+            searchEditText.setTextColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.background3
+                )
+            )
+        }
 
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {

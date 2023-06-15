@@ -1,6 +1,8 @@
 package com.example.finans.accounts
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class BottomSheetAccountsChange : BottomSheetDialogFragment() {
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun getTheme() = R.style.AppBottomSheetDialogTheme
 
@@ -18,7 +21,14 @@ class BottomSheetAccountsChange : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bottom_sheet_accounts_change, container, false)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_accounts_change, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_accounts_change, container, false)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -3,7 +3,9 @@ package com.example.finans.plans.goals
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
@@ -50,6 +52,7 @@ class BottomSheetGoal : BottomSheetDialogFragment() {
     private  var icon: String = ""
     private var ic: String = ""
     private lateinit var iconViewModel: IconViewModel
+    private lateinit var sharedPreferences : SharedPreferences
 
     private  var isFull: Boolean = false
 
@@ -88,7 +91,14 @@ class BottomSheetGoal : BottomSheetDialogFragment() {
         }
 
         dialog?.setCancelable(false)
-        return inflater.inflate(R.layout.fragment_bottom_sheet_goal, container, false)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_goal, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_goal, container, false)
+        }
     }
 
     @SuppressLint("CutPasteId")

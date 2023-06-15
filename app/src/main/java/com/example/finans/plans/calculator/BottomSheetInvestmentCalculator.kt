@@ -1,7 +1,9 @@
 package com.example.finans.plans.calculator
 
 import android.annotation.SuppressLint
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
@@ -23,6 +25,7 @@ import com.google.android.material.textfield.TextInputEditText
 import java.text.DecimalFormat
 
 class BottomSheetInvestmentCalculator : BottomSheetDialogFragment() {
+    private lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,11 +37,16 @@ class BottomSheetInvestmentCalculator : BottomSheetDialogFragment() {
         }
 
         dialog?.setCancelable(false)
-        return inflater.inflate(
-            R.layout.fragment_bottom_sheet_investment_calculator,
-            container,
-            false
-        )
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_investment_calculator, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_investment_calculator, container, false)
+        }
+
     }
 
     @SuppressLint("SetTextI18n")

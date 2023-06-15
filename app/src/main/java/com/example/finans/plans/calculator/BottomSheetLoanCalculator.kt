@@ -1,10 +1,12 @@
-package com.example.finans.plans.calcula
+package com.example.finans.plans.calculator
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.SharedPreferences
 import android.widget.DatePicker
 import java.util.Calendar
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
@@ -32,6 +34,7 @@ import kotlin.math.pow
 
 class BottomSheetLoanCalculator : BottomSheetDialogFragment() {
     private lateinit var startDate: Date
+    private lateinit var sharedPreferences : SharedPreferences
 
 
     override fun onCreateView(
@@ -44,7 +47,15 @@ class BottomSheetLoanCalculator : BottomSheetDialogFragment() {
         }
 
         dialog?.setCancelable(false)
-        return inflater.inflate(R.layout.fragment_bottom_sheet_loan_calculator, container, false)
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_loan_calculator, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_loan_calculator, container, false)
+        }
     }
 
     @SuppressLint("SetTextI18n")

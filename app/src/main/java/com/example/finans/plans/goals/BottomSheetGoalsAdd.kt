@@ -2,8 +2,10 @@ package com.example.finans.plans.goals
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Paint
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
@@ -35,6 +37,7 @@ import java.util.UUID
 class BottomSheetGoalsAdd : BottomSheetDialogFragment() {
     private lateinit var accountsViewModel: AccountsViewModel
     private lateinit var iconViewModel: IconViewModel
+    private lateinit var sharedPreferences : SharedPreferences
 
     private lateinit var amount: EditText
     private lateinit var name: EditText
@@ -55,7 +58,15 @@ class BottomSheetGoalsAdd : BottomSheetDialogFragment() {
 
         dialog?.setCancelable(false)
 
-        return inflater.inflate(R.layout.fragment_bottom_sheet_goals_add, container, false)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_goals_add, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_goals_add, container, false)
+        }
+
     }
 
 

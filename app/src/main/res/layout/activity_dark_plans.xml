@@ -20,6 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/background_dark"
             android:orientation="vertical">
 
             <LinearLayout
@@ -124,6 +125,55 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/goalsLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/round_20_dark"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <RelativeLayout
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cornerRadius="20dp">
+
+                        <TextView
+                            android:id="@+id/goalsTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/goals"
+                            android:textColor="@color/background3_dark"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/goalsDescriptionTextView"
+                            android:layout_below="@+id/goalsTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:textSize="16sp"
+                            android:text="@string/financialGoals"
+                            android:textColor="@color/background3_dark" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/goals" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:id="@+id/calculatorLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -180,7 +230,6 @@
 
 
     </RelativeLayout>
-
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,7 +15,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.finans.R;
-import com.google.android.material.textfield.TextInputEditText;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -27,7 +27,7 @@ public final class FragmentBottomSheetPasswordResetBinding implements ViewBindin
   public final ConstraintLayout bottomSheet;
 
   @NonNull
-  public final TextInputEditText editTextTextEmailAddressReset;
+  public final EditText editTextTextEmailAddressReset;
 
   @NonNull
   public final ImageView emailIcon;
@@ -51,9 +51,8 @@ public final class FragmentBottomSheetPasswordResetBinding implements ViewBindin
   public final TextView textResetPassword;
 
   private FragmentBottomSheetPasswordResetBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ConstraintLayout bottomSheet,
-      @NonNull TextInputEditText editTextTextEmailAddressReset, @NonNull ImageView emailIcon,
-      @NonNull LinearLayout emailLayout, @NonNull TextView emailTxt,
+      @NonNull ConstraintLayout bottomSheet, @NonNull EditText editTextTextEmailAddressReset,
+      @NonNull ImageView emailIcon, @NonNull LinearLayout emailLayout, @NonNull TextView emailTxt,
       @NonNull LinearLayout languageLayout, @NonNull Button resetPasswordBtn,
       @NonNull TextView resetPasswordExit, @NonNull TextView textResetPassword) {
     this.rootView = rootView;
@@ -98,7 +97,7 @@ public final class FragmentBottomSheetPasswordResetBinding implements ViewBindin
       ConstraintLayout bottomSheet = (ConstraintLayout) rootView;
 
       id = R.id.editTextTextEmailAddressReset;
-      TextInputEditText editTextTextEmailAddressReset = ViewBindings.findChildViewById(rootView, id);
+      EditText editTextTextEmailAddressReset = ViewBindings.findChildViewById(rootView, id);
       if (editTextTextEmailAddressReset == null) {
         break missingId;
       }

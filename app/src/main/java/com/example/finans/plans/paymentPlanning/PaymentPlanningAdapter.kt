@@ -44,14 +44,23 @@ class PaymentPlanningAdapter(private val paymentPlanningList: ArrayList<PaymentP
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.payment_planning_item,
-                parent, false
-            )
+        if(switchState!!){
+            val itemView =
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.payment_planning_dark_item,
+                    parent, false)
 
 
-        return ViewHolder(itemView)
+            return ViewHolder(itemView)
+        } else{
+            val itemView =
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.payment_planning_item,
+                    parent, false)
+
+            return ViewHolder(itemView)
+        }
+
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener) {

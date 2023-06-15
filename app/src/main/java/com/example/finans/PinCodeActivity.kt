@@ -1,5 +1,6 @@
 package com.example.finans
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -17,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.chaos.view.PinView
 import com.example.finans.authorization.AuthorizationActivity
 import com.example.finans.language.loadLocale
@@ -51,6 +53,7 @@ class PinCodeActivity : AppCompatActivity() {
     private lateinit var executor: Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
+    @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,7 +65,7 @@ class PinCodeActivity : AppCompatActivity() {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val switchState = sharedPreferences.getBoolean("modeSwitch", false)
-
+        val biometricState = sharedPreferences.getBoolean("isBiometric", false)
         loadLocale(resources, this)
 
 
@@ -82,20 +85,31 @@ class PinCodeActivity : AppCompatActivity() {
 
                 }
                 else{
-                    val fingerprintManager = ContextCompat.getSystemService(this, FingerprintManager::class.java)
-                    if (fingerprintManager != null && fingerprintManager.isHardwareDetected) {
+                    if(biometricState) {
+                    findViewById<ImageView>(R.id.biometricImg).isVisible = true
+                        val fingerprintManager =
+                            ContextCompat.getSystemService(this, FingerprintManager::class.java)
+                        if (fingerprintManager != null && fingerprintManager.isHardwareDetected) {
 
-                        if(fingerprintManager.hasEnrolledFingerprints()) {
-                            biometricPrompt.authenticate(promptInfo)
+                            if (fingerprintManager.hasEnrolledFingerprints()) {
+                                biometricPrompt.authenticate(promptInfo)
+                            } else {
+                                pinView.postDelayed({
+                                    pinView.requestFocus()
+                                    val imm =
+                                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                                    imm.showSoftInput(pinView, InputMethodManager.SHOW_IMPLICIT)
+                                }, 350)
+                            }
                         }
-                        else {
-                            pinView.postDelayed({
-                                pinView.requestFocus()
-                                val imm =
-                                    getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                                imm.showSoftInput(pinView, InputMethodManager.SHOW_IMPLICIT)
-                            }, 350)
-                        }
+                    }
+                    else{
+                        pinView.postDelayed({
+                            pinView.requestFocus()
+                            val imm =
+                                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                            imm.showSoftInput(pinView, InputMethodManager.SHOW_IMPLICIT)
+                        }, 350)
                     }
                 }
             }

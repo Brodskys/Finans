@@ -65,14 +65,23 @@ class BudgetsAdapter(private val budgetsList: ArrayList<Budgets>) :
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.budgets_item,
-                parent, false
-            )
+        if(switchState!!){
+            val itemView =
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.budgets_dark_item,
+                    parent, false)
 
 
-        return ViewHolder(itemView)
+            return ViewHolder(itemView)
+        } else{
+            val itemView =
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.budgets_item,
+                    parent, false)
+
+            return ViewHolder(itemView)
+        }
+
     }
 
     fun setOnItemClickListener(listener: BottomSheetBudgets) {

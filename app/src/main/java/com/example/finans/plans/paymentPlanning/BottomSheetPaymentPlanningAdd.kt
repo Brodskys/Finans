@@ -10,8 +10,10 @@ import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -57,6 +59,7 @@ class BottomSheetPaymentPlanningAdd : BottomSheetDialogFragment() {
     private lateinit var paymentPlanningSubcategoryTextView: TextView
     private lateinit var paymentPlanningDateTimeTextView: TextView
     private lateinit var categ: Category
+    private lateinit var sharedPreferences : SharedPreferences
 
 
     override fun onCreateView(
@@ -68,11 +71,17 @@ class BottomSheetPaymentPlanningAdd : BottomSheetDialogFragment() {
             it.behavior.peekHeight = R.style.AppBottomSheetDialogTheme
         }
         dialog?.setCancelable(false)
-        return inflater.inflate(
-            R.layout.fragment_bottom_sheet_payment_planning_add,
-            container,
-            false
-        )
+
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_payment_planning_add, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_payment_planning_add, container, false)
+        }
+
     }
 
     @SuppressLint("CutPasteId")
@@ -107,14 +116,32 @@ class BottomSheetPaymentPlanningAdd : BottomSheetDialogFragment() {
         val currencyPaymentPlanningSpinner =
             view.findViewById<Spinner>(R.id.currencyPaymentPlanningAddSpinner)
 
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.currency,
-            R.layout.spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(R.layout.spinner_item)
-            currencyPaymentPlanningSpinner.adapter = adapter
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        if(switchState){
+            ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.currency,
+                R.layout.spinner_dark_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(R.layout.spinner_dark_item)
+                currencyPaymentPlanningSpinner.adapter = adapter
+
+            }
         }
+        else{
+            ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.currency,
+                R.layout.spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(R.layout.spinner_item)
+                currencyPaymentPlanningSpinner.adapter = adapter
+            }
+        }
+
+
 
         paymentPlanningTextInputEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

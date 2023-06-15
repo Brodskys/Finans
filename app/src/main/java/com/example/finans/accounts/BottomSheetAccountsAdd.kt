@@ -2,7 +2,9 @@ package com.example.finans.accounts
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -36,6 +38,7 @@ class BottomSheetAccountsAdd : BottomSheetDialogFragment() {
     private lateinit var currencyViewModel: CurrencyViewModel
     private lateinit var iconViewModel: IconViewModel
     private lateinit var gsReference: StorageReference
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +47,15 @@ class BottomSheetAccountsAdd : BottomSheetDialogFragment() {
         (dialog as? BottomSheetDialog)?.let {
             it.behavior.peekHeight  = R.style.AppBottomSheetDialogTheme
         }
-        return inflater.inflate(R.layout.fragment_bottom_sheet_accounts_add, container, false)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_accounts_add, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_accounts_add, container, false)
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

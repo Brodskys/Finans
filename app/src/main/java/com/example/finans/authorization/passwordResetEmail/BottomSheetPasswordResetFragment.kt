@@ -109,7 +109,7 @@ class BottomSheetPasswordResetFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun textWatcher(editText: TextInputEditText): TextWatcher = object : TextWatcher {
+    private fun textWatcher(editText: EditText): TextWatcher = object : TextWatcher {
 
         override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
         override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}

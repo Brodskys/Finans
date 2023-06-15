@@ -19,8 +19,6 @@
             android:background="@color/background_dark"
             android:orientation="vertical">
 
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,19 +44,6 @@
                     android:layout_centerInParent="true"
                     android:padding="5dp"
                     android:text="@string/profile"
-                    android:textColor="@color/background3_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/settingsSave"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:clickable="true"
-                    android:padding="5dp"
-                    android:background="?attr/editTextBackground"
-                    android:text="@string/save"
                     android:textColor="@color/background3_dark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -120,36 +105,38 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginHorizontal="20dp">
 
+
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputLayoutUser"
-                            android:layout_below="@+id/textInputLayoutEmail"
+                            android:id="@+id/textTotalAmountInputLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="8dp"
-                            android:layout_marginVertical="5dp"
                             android:layout_marginStart="8dp"
-
-                            android:layout_marginEnd="8dp">
+                            android:layout_marginEnd="8dp"
+                            app:boxStrokeWidth="0dp">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/changeTextUser"
+                                android:id="@+id/changeTextTotalAmount"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ems="10"
+                                android:enabled="false"
                                 android:textColor="@color/background3_dark"
                                 android:background="@color/background_dark"
-                                android:hint="@string/enterUsername"
-                                android:inputType="textPersonName"
+                                android:textColorHint="@color/background3_dark"
+                                android:hint="@string/totalAmount"
+                                android:inputType="numberDecimal"
                                 android:paddingStart="0dp"
                                 />
                         </com.google.android.material.textfield.TextInputLayout>
 
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/textInputLayoutEmail"
+                            android:layout_below="@+id/textTotalAmountInputLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="8dp"
-                            android:layout_marginVertical="5dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
@@ -163,11 +150,37 @@
                                 android:enabled="false"
                                 android:textColor="@color/background3_dark"
                                 android:background="@color/background_dark"
+                                android:textColorHint="@color/background3_dark"
                                 android:hint="@string/email"
                                 android:inputType="textEmailAddress"
                                 android:paddingStart="0dp"
                                 />
                         </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInputLayoutUser"
+                            android:layout_below="@+id/textInputLayoutEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/changeTextUser"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:textColor="@color/background3_dark"
+                                android:background="@color/background_dark"
+                                android:textColorHint="@color/background3_dark"
+                                android:hint="@string/enterUsername"
+                                android:inputType="textPersonName"
+                                android:paddingStart="0dp"
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -183,7 +196,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:passwordToggleEnabled="true"
-                            app:passwordToggleTint="@color/white">
+                            app:passwordToggleTint="@color/blue_light2">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/changeTextPassword"
@@ -192,6 +205,7 @@
                                 android:ems="10"
                                 android:textColor="@color/background3_dark"
                                 android:background="@color/background_dark"
+                                android:textColorHint="@color/background3_dark"
                                 android:hint="@string/enterPassword"
                                 android:inputType="textPassword"
                                 android:paddingStart="0dp"

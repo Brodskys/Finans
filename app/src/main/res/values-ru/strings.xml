@@ -24,6 +24,7 @@
     <string name="language">Язык</string>
     <string name="currency">Валюта</string>
     <string name="isPassword">Вход по пин-коду</string>
+    <string name="isBiometric">Вход по отпечатку пальцев</string>
     <string name="isSms">Чтение смс</string>
 
     <string name="exit">Выйти</string>
@@ -258,6 +259,11 @@
     <string name="totalAmount">Общая сумма</string>
 
     <string name="imageRecognized">Изображение не распознано</string>
+
+
+    <string name="accountSetup">Настройка аккаунта</string>
+    <string name="selectMainAccount">Выбрать основной аккаунт</string>
+    <string name="newAccount">Новый счёт</string>
 
 
 </resources>

@@ -7,7 +7,9 @@ import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,6 +59,7 @@ class BottomSheetPaymentPlan : BottomSheetDialogFragment() {
     private lateinit var paymentPlanUpdateCategoryRelativeLayout: RelativeLayout
     private lateinit var paymentPlanUpdateDateTimeRelativeLayout: RelativeLayout
     private lateinit var paymentPlanUpdateDateTimeTextView: TextView
+    private lateinit var sharedPreferences : SharedPreferences
 
 
     private var categ:Category? = null
@@ -70,7 +73,16 @@ class BottomSheetPaymentPlan : BottomSheetDialogFragment() {
             it.behavior.peekHeight  = R.style.AppBottomSheetDialogTheme
         }
         dialog?.setCancelable(false)
-        return inflater.inflate(R.layout.fragment_bottom_sheet_payment_plan, container, false)
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_payment_plan, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_payment_plan, container, false)
+        }
+
     }
 
 
@@ -106,19 +118,37 @@ class BottomSheetPaymentPlan : BottomSheetDialogFragment() {
 
         paymentPlanUpdateNameEdit.setText(paymentPlanning.name!!)
 
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
+        if(switchState){
+            ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.currency,
+                R.layout.spinner_dark_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(R.layout.spinner_dark_item)
+                paymentPlanUpdateSpinner.adapter = adapter
 
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.currency,
-            R.layout.spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(R.layout.spinner_item)
-            paymentPlanUpdateSpinner.adapter = adapter
-
-            val currentPosition = adapter.getPosition(paymentPlanning.currency)
-            paymentPlanUpdateSpinner.setSelection(currentPosition)
+                val currentPosition = adapter.getPosition(paymentPlanning.currency)
+                paymentPlanUpdateSpinner.setSelection(currentPosition)
+            }
         }
+        else{
+            ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.currency,
+                R.layout.spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(R.layout.spinner_item)
+                paymentPlanUpdateSpinner.adapter = adapter
+
+                val currentPosition = adapter.getPosition(paymentPlanning.currency)
+                paymentPlanUpdateSpinner.setSelection(currentPosition)
+            }
+        }
+
+
 
         paymentPlanningUpdateValueEditText.setText(paymentPlanning.value.toString())
 

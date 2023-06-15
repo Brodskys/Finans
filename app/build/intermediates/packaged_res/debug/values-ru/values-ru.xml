@@ -3,6 +3,7 @@
     <string name="aboutProgram">О программе</string>
     <string name="abouttheprogram">О программе</string>
     <string name="account">Аккаунт</string>
+    <string name="accountSetup">Настройка аккаунта</string>
     <string name="add">Добавить</string>
     <string name="addCategory">Добавить категорию</string>
     <string name="addLocation">Местоположение</string>
@@ -89,6 +90,7 @@
     <string name="investment5">Сумма дохода</string>
     <string name="investment6">Итоговая сумма</string>
     <string name="investmentCalculator">Калькулятор инвестиций</string>
+    <string name="isBiometric">Вход по отпечатку пальцев</string>
     <string name="isEmailVerified">Ожидание подтверждения электронной почте</string>
     <string name="isPassword">Вход по пин-коду</string>
     <string name="isSms">Чтение смс</string>
@@ -112,6 +114,7 @@
     <string name="makePayment">Внести платёж</string>
     <string name="monthly">Месячный</string>
     <string name="more">Еще</string>
+    <string name="newAccount">Новый счёт</string>
     <string name="newOperation">Новая операция</string>
     <string name="next">Следующий</string>
     <string name="no">Нет</string>
@@ -143,6 +146,7 @@
     <string name="scanningQRcode">Сканирование QR-кода</string>
     <string name="scanningReceipt">Сканирование чека</string>
     <string name="search">Поиск</string>
+    <string name="selectMainAccount">Выбрать основной аккаунт</string>
     <string name="selected_location">Выбранное местоположение</string>
     <string name="sendEnail">Сообщение отправлено на указанную почту</string>
     <string name="setUp">Настроить</string>

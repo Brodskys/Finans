@@ -25,6 +25,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.example.finans.*
 import com.example.finans.analytics.AnalyticsActivity
 import com.example.finans.authorization.AuthorizationActivity
@@ -121,13 +122,21 @@ class SettingsActivity : AppCompatActivity(), GestureDetector.OnGestureListener 
 
         editor = sharedPreferences.edit()
 
+        val biometricSettingsRelativeLayout = findViewById<RelativeLayout>(R.id.biometricSettingsRelativeLayout)
+
         val passwordState = sharedPreferences.getBoolean("isPassword", false)
         findViewById<SwitchCompat>(R.id.passwordSwitch).isChecked = passwordState
+
+        biometricSettingsRelativeLayout.isVisible = passwordState
+
+        val biometricState = sharedPreferences.getBoolean("isBiometric", false)
+        findViewById<SwitchCompat>(R.id.biometricSettingsSwitch).isChecked = biometricState
 
 
         findViewById<SwitchCompat>(R.id.modeSwitch).isChecked = switchState
 
         isSwitchStateChecked(switchState)
+
 
 
         findViewById<SwitchCompat>(R.id.modeSwitch).setOnCheckedChangeListener { _, isChecked ->
@@ -153,10 +162,27 @@ class SettingsActivity : AppCompatActivity(), GestureDetector.OnGestureListener 
                     "isPassword",
                     findViewById<SwitchCompat>(R.id.passwordSwitch).isChecked
                 ).apply()
+                biometricSettingsRelativeLayout.isVisible = true
+
             } else {
                 editor.putBoolean(
                     "isPassword",
                     findViewById<SwitchCompat>(R.id.passwordSwitch).isChecked
+                ).apply()
+                biometricSettingsRelativeLayout.isVisible = false
+            }
+        }
+
+        findViewById<SwitchCompat>(R.id.biometricSettingsSwitch).setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                editor.putBoolean(
+                    "isBiometric",
+                    findViewById<SwitchCompat>(R.id.biometricSettingsSwitch).isChecked
+                ).apply()
+            } else {
+                editor.putBoolean(
+                    "isBiometric",
+                    findViewById<SwitchCompat>(R.id.biometricSettingsSwitch).isChecked
                 ).apply()
             }
         }

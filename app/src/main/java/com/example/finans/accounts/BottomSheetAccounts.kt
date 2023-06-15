@@ -1,7 +1,9 @@
 package com.example.finans.accounts
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +31,7 @@ class BottomSheetAccounts : BottomSheetDialogFragment(), OnItemClickListener {
     private var type: String? = null
     private var type2: String? = null
     private var toAccounts: Accounts? = null
+    private lateinit var sharedPreferences: SharedPreferences
 
     private lateinit var accountsViewModel: AccountsViewModel
     private lateinit var accountsViewModel2: AccountsViewModel2
@@ -76,7 +79,14 @@ class BottomSheetAccounts : BottomSheetDialogFragment(), OnItemClickListener {
         (dialog as? BottomSheetDialog)?.let {
             it.behavior.peekHeight = R.style.AppBottomSheetDialogTheme
         }
-        return inflater.inflate(R.layout.fragment_bottom_sheet_accounts, container, false)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_accounts, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_accounts, container, false)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -102,8 +112,10 @@ class BottomSheetAccounts : BottomSheetDialogFragment(), OnItemClickListener {
 
         val loc = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE)
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
-        accountsAdapter.setSharedPreferencesLocale(loc, type)
+        accountsAdapter.setSharedPreferencesLocale(loc,switchState, type)
 
         accountsRecyclerView.adapter = accountsAdapter
 

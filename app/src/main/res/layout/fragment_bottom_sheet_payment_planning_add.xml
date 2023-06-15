@@ -107,8 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
                     android:background="@color/background"
-                    android:orientation="vertical"
-                    android:padding="5dp">
+                    android:orientation="vertical">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -119,6 +118,7 @@
                             android:id="@+id/currencyPaymentPlanningAddSpinner"
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
+                            android:layout_marginStart="7dp"
                             android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"
                             android:spinnerMode="dropdown"

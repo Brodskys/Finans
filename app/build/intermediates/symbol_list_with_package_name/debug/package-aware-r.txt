@@ -3572,6 +3572,8 @@ drawable email_dark
 drawable expectation
 drawable facebook
 drawable filter_list
+drawable fingerprint
+drawable fingerprint_dark
 drawable fingerprint_dialog_error
 drawable fingerprint_dialog_fp_icon
 drawable geolocation
@@ -3920,6 +3922,9 @@ id beginOnFirstDraw
 id beginning
 id bestChoice
 id biometricImg
+id biometricSettingsIcon
+id biometricSettingsRelativeLayout
+id biometricSettingsSwitch
 id blocking
 id bottom
 id bottomNavigationView
@@ -4147,8 +4152,6 @@ id email_layout
 id email_txt
 id embed
 id end
-id endDateRelativeLayout
-id endDateTextView
 id endToStart
 id end_padder
 id enterAlways
@@ -4617,7 +4620,6 @@ id selected
 id selection_type
 id setting_layout
 id settingsExit
-id settingsSave
 id sharedValueSet
 id sharedValueUnset
 id shortcut
@@ -4653,7 +4655,6 @@ id src_in
 id src_over
 id standard
 id start
-id startDateRelativeLayout
 id startDateTextView
 id startHorizontal
 id startToEnd
@@ -4916,6 +4917,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout accounts_dark_item
 layout accounts_item
 layout activity_analytics
 layout activity_authorization
@@ -4933,6 +4935,7 @@ layout activity_registration
 layout activity_settings
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
+layout budgets_dark_item
 layout budgets_item
 layout category_dark_item
 layout category_item
@@ -4972,16 +4975,36 @@ layout fragment_bottom_sheet_budgets
 layout fragment_bottom_sheet_calculator_choice
 layout fragment_bottom_sheet_category
 layout fragment_bottom_sheet_currency
+layout fragment_bottom_sheet_dark_account
+layout fragment_bottom_sheet_dark_accounts
+layout fragment_bottom_sheet_dark_accounts_add
+layout fragment_bottom_sheet_dark_accounts_change
+layout fragment_bottom_sheet_dark_add_budgets
 layout fragment_bottom_sheet_dark_add_category
 layout fragment_bottom_sheet_dark_autorization_email
+layout fragment_bottom_sheet_dark_budget
+layout fragment_bottom_sheet_dark_budget_update
+layout fragment_bottom_sheet_dark_budgets
+layout fragment_bottom_sheet_dark_calculator_choice
 layout fragment_bottom_sheet_dark_category
 layout fragment_bottom_sheet_dark_currency
 layout fragment_bottom_sheet_dark_financial_advice
+layout fragment_bottom_sheet_dark_financial_cushion_calculator
+layout fragment_bottom_sheet_dark_goal
+layout fragment_bottom_sheet_dark_goal_card
+layout fragment_bottom_sheet_dark_goals
+layout fragment_bottom_sheet_dark_goals_add
+layout fragment_bottom_sheet_dark_investment_calculator
 layout fragment_bottom_sheet_dark_language
+layout fragment_bottom_sheet_dark_loan_calculator
 layout fragment_bottom_sheet_dark_map
 layout fragment_bottom_sheet_dark_new_operation
 layout fragment_bottom_sheet_dark_operation_detail
 layout fragment_bottom_sheet_dark_password_reset
+layout fragment_bottom_sheet_dark_payment_plan
+layout fragment_bottom_sheet_dark_payment_plan_card
+layout fragment_bottom_sheet_dark_payment_planning
+layout fragment_bottom_sheet_dark_payment_planning_add
 layout fragment_bottom_sheet_dark_photo
 layout fragment_bottom_sheet_dark_settings
 layout fragment_bottom_sheet_dark_settings_help
@@ -5015,6 +5038,7 @@ layout fragment_bottom_sheet_subcategory
 layout fragment_bottom_sheet_update_categories
 layout fragment_bottom_sheet_update_category
 layout fragment_bottom_sheet_update_icon_category
+layout goals_dark_item
 layout goals_item
 layout icon_item
 layout intro
@@ -5094,6 +5118,7 @@ layout notification_template_part_chronometer
 layout notification_template_part_time
 layout operation_dark_item
 layout operation_item
+layout payment_planning_dark_item
 layout payment_planning_item
 layout place_autocomplete_fragment
 layout place_autocomplete_item_powered_by_google
@@ -5110,6 +5135,7 @@ layout places_autocomplete_prediction
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
+layout spinner_dark_item
 layout spinner_item
 layout splash_screen_view
 layout support_simple_spinner_dropdown_item
@@ -5154,6 +5180,7 @@ string abc_toolbar_collapse_description
 string aboutProgram
 string abouttheprogram
 string account
+string accountSetup
 string add
 string addCategory
 string addLocation
@@ -5340,6 +5367,7 @@ string investment4
 string investment5
 string investment6
 string investmentCalculator
+string isBiometric
 string isEmailVerified
 string isPassword
 string isSms
@@ -5464,6 +5492,7 @@ string mtrl_switch_track_decoration_path
 string mtrl_switch_track_path
 string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
+string newAccount
 string newOperation
 string next
 string no
@@ -5516,6 +5545,7 @@ string search_menu_title
 string searchbar_scrolling_view_behavior
 string searchview_clear_text_content_description
 string searchview_navigation_content_description
+string selectMainAccount
 string selected_location
 string sendEnail
 string setUp

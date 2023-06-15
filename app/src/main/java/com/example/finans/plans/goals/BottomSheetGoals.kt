@@ -1,7 +1,9 @@
 package com.example.finans.plans.goals
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +30,7 @@ class BottomSheetGoals : BottomSheetDialogFragment(), OnItemClickListener {
     private lateinit var goalsAdapter: GoalsAdapter
     private lateinit var userId: DocumentReference
     private lateinit var pref: SharedPreferences
+    private lateinit var sharedPreferences : SharedPreferences
 
 
     override fun onCreateView(
@@ -38,9 +41,17 @@ class BottomSheetGoals : BottomSheetDialogFragment(), OnItemClickListener {
 
             it.behavior.peekHeight = R.style.AppBottomSheetDialogTheme
         }
-
         dialog?.setCancelable(false)
-        return inflater.inflate(R.layout.fragment_bottom_sheet_goals, container, false)
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_goals, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_goals, container, false)
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,7 +84,12 @@ class BottomSheetGoals : BottomSheetDialogFragment(), OnItemClickListener {
 
         goalsAdapter = GoalsAdapter(goalsArrayList)
         goalsAdapter.setOnItemClickListener(this)
+        val loc = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val  sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
+
+        goalsAdapter.setSharedPreferencesLocale(loc, switchState)
 
         goalsRecyclerView.adapter = goalsAdapter
 

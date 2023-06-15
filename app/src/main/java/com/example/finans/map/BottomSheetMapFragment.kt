@@ -26,6 +26,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.GeoPoint
 import java.io.IOException
+import java.lang.reflect.InvocationTargetException
 import java.util.*
 
 
@@ -155,16 +156,22 @@ class BottomSheetMapFragment : BottomSheetDialogFragment(), OnMapReadyCallback, 
 
     private fun placeMarkerOnMap(currentLatLong: LatLng) {
 
-        val geocoder = Geocoder(requireContext(), Locale.getDefault())
-        val addresses = geocoder.getFromLocation(currentLatLong.latitude, currentLatLong.longitude, 1)
-        val address = addresses?.get(0)?.getAddressLine(0)
-        val markerOptions = MarkerOptions().position(currentLatLong)
-        markerOptions.title(address)
+        try {
+            val geocoder = Geocoder(requireContext(), Locale.getDefault())
+            val addresses = geocoder.getFromLocation(currentLatLong.latitude, currentLatLong.longitude, 1)
+            val address = addresses?.get(0)?.getAddressLine(0)
+            val markerOptions = MarkerOptions().position(currentLatLong)
+            markerOptions.title(address)
 
-        markerAddress = GeoPoint(currentLatLong.latitude, currentLatLong.longitude)
+            markerAddress = GeoPoint(currentLatLong.latitude, currentLatLong.longitude)
 
-        marker = mMap.addMarker(markerOptions)!!
-        marker.showInfoWindow()
+            marker = mMap.addMarker(markerOptions)!!
+            marker.showInfoWindow()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: InvocationTargetException) {
+            e.printStackTrace()
+        }
 
 
     }

@@ -69,13 +69,23 @@ class AccountsAdapter(private val accountsList: ArrayList<Accounts>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-       val itemView =
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.accounts_item,
-                parent, false)
+        if(switchState!!){
+            val itemView =
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.accounts_dark_item,
+                    parent, false)
 
 
-        return ViewHolder(itemView)
+            return ViewHolder(itemView)
+        } else{
+            val itemView =
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.accounts_item,
+                    parent, false)
+
+            return ViewHolder(itemView)
+        }
+
     }
 
     fun setOnItemClickListener(listener: BottomSheetAccounts) {
@@ -136,13 +146,13 @@ class AccountsAdapter(private val accountsList: ArrayList<Accounts>) :
             }
 
 
-
         }
 
     }
 
-    fun setSharedPreferencesLocale(sharedPreferences: SharedPreferences,   type: String?) {
+    fun setSharedPreferencesLocale(sharedPreferences: SharedPreferences, switchState:Boolean,  type: String?) {
         this.sharedPreferences = sharedPreferences
+        this.switchState = switchState
         this.typeAccounts = type
     }
 

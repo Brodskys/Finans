@@ -82,6 +82,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
 import java.util.*
 import java.util.regex.Pattern
 
@@ -955,9 +958,14 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
                     if (date != "" && time != "") {
                         dateTimeTextView.text = "${date} ${time}"
 
-                        val format = SimpleDateFormat("dd/MM/yyyy HH:mm")
-                        val date = format.parse("${date} ${time}")
-                        dt = Timestamp(date.time / 1000, 0)
+                        val formatter = DateTimeFormatterBuilder()
+                            .appendPattern("[dd.MM.yy][dd MM yy] HH:mm")
+                            .toFormatter()
+
+                        val dateTime = LocalDateTime.parse("${date} ${time}", formatter)
+
+                        val outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+                        val formattedDateTime = dateTime.format(outputFormatter)
 
                     } else if (dateAndTime != "") {
 

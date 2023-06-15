@@ -1,6 +1,7 @@
 package com.example.finans.plans.paymentPlanning
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
@@ -27,6 +28,7 @@ class BottomSheetPaymentPlanning : BottomSheetDialogFragment(), OnItemClickListe
     private lateinit var paymentPlanningArrayList: ArrayList<PaymentPlanning>
     private lateinit var paymentPlanningAdapter: PaymentPlanningAdapter
     private lateinit var userId: DocumentReference
+    private lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +39,16 @@ class BottomSheetPaymentPlanning : BottomSheetDialogFragment(), OnItemClickListe
             it.behavior.peekHeight  = R.style.AppBottomSheetDialogTheme
         }
         dialog?.setCancelable(false)
-        return inflater.inflate(R.layout.fragment_bottom_sheet_payment_planning, container, false)
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val switchState = sharedPreferences.getBoolean("modeSwitch", false)
+
+        return if(switchState){
+            inflater.inflate(R.layout.fragment_bottom_sheet_dark_payment_planning, container, false)
+        } else{
+            inflater.inflate(R.layout.fragment_bottom_sheet_payment_planning, container, false)
+        }
+
     }
 
 

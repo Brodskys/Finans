@@ -63,6 +63,7 @@
     <string name="aboutProgram">About the program</string>
     <string name="abouttheprogram">About the program</string>
     <string name="account">Account</string>
+    <string name="accountSetup">Account Setup</string>
     <string name="add">Add</string>
     <string name="addCategory">Add category</string>
     <string name="addLocation">Location</string>
@@ -159,6 +160,7 @@
     <string name="investment5">Amount of income</string>
     <string name="investment6">Total amount</string>
     <string name="investmentCalculator">Investment Calculator</string>
+    <string name="isBiometric">Login by fingerprint</string>
     <string name="isEmailVerified">Waiting for confirmation by email</string>
     <string name="isPassword">Login by PIN code</string>
     <string name="isSms">Reading sms</string>
@@ -182,6 +184,7 @@
     <string name="makePayment">Make a payment</string>
     <string name="monthly">Monthly</string>
     <string name="more">More</string>
+    <string name="newAccount">New account</string>
     <string name="newOperation">New Operation</string>
     <string name="next">Next</string>
     <string name="no">No</string>
@@ -214,6 +217,7 @@
     <string name="scanningQRcode">Scanning a QR code</string>
     <string name="scanningReceipt">Scanning the receipt</string>
     <string name="search">Search</string>
+    <string name="selectMainAccount">Select the main account</string>
     <string name="selected_location">Selected Location</string>
     <string name="sendEnail">The message was sent to the specified email address</string>
     <string name="setUp">Set up</string>

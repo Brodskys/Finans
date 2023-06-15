@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:textCursorDrawable="@null"
                 app:iconifiedByDefault="false"
+                android:textColor="@color/background3_dark"
                 android:background="@color/background2_dark"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginBottom="10dp"
