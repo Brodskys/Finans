@@ -78,7 +78,7 @@ class BottomSheetPasswordResetFragment : BottomSheetDialogFragment() {
 
                                 builder.setTitle(R.string.error)
 
-                                builder.setMessage(R.string.userNotFound)
+                                builder.setMessage(R.string.userNotFound2)
 
                                 builder.setNegativeButton(
                                     "Ok"

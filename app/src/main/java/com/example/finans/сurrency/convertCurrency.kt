@@ -13,7 +13,7 @@ fun convertCurrency(scope: LifecycleCoroutineScope, client: OkHttpClient,
 
     scope.launch(Dispatchers.IO) {
         try {
-            val apiKey = "e892dc771674d2889c591cd02353db18677911e0"
+            val apiKey = "1ab85c34c5502247c7eaaac7999dac9777dd482e"
             val request = Request.Builder()
                 .url("https://api.getgeoapi.com/v2/currency/convert?api_key=$apiKey&from=$fromCurrency&to=$toCurrency&amount=1&format=json")
                 .build()

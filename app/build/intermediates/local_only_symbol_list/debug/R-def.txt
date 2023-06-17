@@ -43,6 +43,7 @@ dimen dot_margin
 drawable add_user
 drawable analytics
 drawable anonymous
+drawable anonymous_dark
 drawable back
 drawable back_dark
 drawable bank
@@ -918,6 +919,7 @@ string update
 string user
 string userAlreadyRegistered
 string userNotFound
+string userNotFound2
 string value
 string warning
 string web_client_id

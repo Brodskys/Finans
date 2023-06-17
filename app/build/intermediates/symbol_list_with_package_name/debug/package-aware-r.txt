@@ -3484,6 +3484,7 @@ drawable abc_vector_test
 drawable add_user
 drawable analytics
 drawable anonymous
+drawable anonymous_dark
 drawable avd_hide_password
 drawable avd_show_password
 drawable back
@@ -5590,6 +5591,7 @@ string use_screen_lock_label
 string user
 string userAlreadyRegistered
 string userNotFound
+string userNotFound2
 string value
 string warning
 string web_client_id

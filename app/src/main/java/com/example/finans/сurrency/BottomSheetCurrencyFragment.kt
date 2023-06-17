@@ -2,6 +2,7 @@ package com.example.finans.сurrency
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -14,12 +15,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.finans.PinCodeActivity
 import com.example.finans.R
 import com.example.finans.other.deletionWarning
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -47,6 +50,8 @@ class BottomSheetCurrencyFragment : BottomSheetDialogFragment(), OnItemClickList
     private lateinit var sharedPreferences: SharedPreferences
     var switchState: Boolean = false
     private lateinit var currencyViewModel: CurrencyViewModel
+    var isCurrency: Boolean = true
+    private lateinit var editor: SharedPreferences.Editor
 
     companion object {
         fun newInstance(type: String): BottomSheetCurrencyFragment {
@@ -106,6 +111,7 @@ class BottomSheetCurrencyFragment : BottomSheetDialogFragment(), OnItemClickList
                 currency = snapshot.getString("currency")!!
                 if (currency != "") {
                     currencyExit.isVisible = true
+                    isCurrency = false
                 }
             }
 
@@ -172,6 +178,9 @@ class BottomSheetCurrencyFragment : BottomSheetDialogFragment(), OnItemClickList
             dismiss()
         }
 
+        editor = sharedPreferences.edit()
+
+
         currencySave.setOnClickListener {
             if (type == "change" || currency == "" || type == "changeAc") {
                 val sharedPref =
@@ -188,8 +197,6 @@ class BottomSheetCurrencyFragment : BottomSheetDialogFragment(), OnItemClickList
                 if(type == "changeAc"){
                     currencyViewModel.selectedCurrency(currencyName)
                 }
-
-
 
                 val client = OkHttpClient.Builder()
                     .connectTimeout(10, TimeUnit.SECONDS)
@@ -295,6 +302,14 @@ class BottomSheetCurrencyFragment : BottomSheetDialogFragment(), OnItemClickList
                     docRef.update(accountsCurrency)
                         .addOnSuccessListener {
                             dismiss()
+                            val intent = Intent (requireContext(), PinCodeActivity::class.java)
+                            requireActivity().startActivity(intent)
+                            requireActivity().finish()
+
+                            editor.putBoolean(
+                                "isCurrency",
+                                true
+                            ).apply()
                         }
                         .addOnFailureListener { e ->
                         }

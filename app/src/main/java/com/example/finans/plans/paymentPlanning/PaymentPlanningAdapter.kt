@@ -14,6 +14,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finans.R
+import com.example.finans.category.Category
+import com.example.finans.language.languageInit
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
@@ -73,30 +77,41 @@ class PaymentPlanningAdapter(private val paymentPlanningList: ArrayList<PaymentP
         val paymentPlanning: PaymentPlanning = paymentPlanningListFiltered[position]
 
         val storage = Firebase.storage
+        val settings = sharedPreferences?.getString("locale", "")
 
-        if (paymentPlanning.icon != "") {
-            val gsReference = storage.getReferenceFromUrl(paymentPlanning.icon!!)
+        val documentRef = FirebaseFirestore.getInstance().document("users/${Firebase.auth.uid.toString()}${paymentPlanning!!.category}")
 
-            gsReference.downloadUrl.addOnSuccessListener { uri ->
-                Picasso.get().load(uri.toString()).into(holder.paymentPlanningIcon)
-            }.addOnFailureListener {
+
+        documentRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val categoryPaument = documentSnapshot.toObject(Category::class.java)
+
+                        val gsReference = storage.getReferenceFromUrl(categoryPaument!!.image!!)
+
+                        gsReference.downloadUrl.addOnSuccessListener { uri ->
+                            Picasso.get().load(uri.toString()).into(holder.paymentPlanningIcon)
+                        }.addOnFailureListener {
+
+                        }
+
+
+                    if (settings == "ru"){
+                        holder.paymentPlanningNameCategory.text = categoryPaument.nameRus
+                    } else {
+                        holder.paymentPlanningNameCategory.text = categoryPaument.nameEng
+                    }
+
+                }
+            }
+            .addOnFailureListener { exception ->
 
             }
-        } else {
-            holder.paymentPlanningIcon.setImageResource(R.drawable.category)
-        }
+
 
         holder.paymentPlanningName.text = paymentPlanning.name
 
 
-        val settings = sharedPreferences?.getString("locale", "")
-
-
-        if (settings == "ru"){
-            holder.paymentPlanningNameCategory.text = paymentPlanning.categoryRu
-        } else {
-            holder.paymentPlanningNameCategory.text = paymentPlanning.categoryEn
-        }
         val decimalFormat = DecimalFormat("#,##0.00")
 
         holder.paymentPlanningValue.text =  decimalFormat.format(paymentPlanning.value)

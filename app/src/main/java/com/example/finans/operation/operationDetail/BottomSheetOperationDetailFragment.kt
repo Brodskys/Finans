@@ -1134,6 +1134,25 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
 
         if (operation.account != accountName) {
 
+
+            userId
+                .collection("accounts").document(operation.account!!).get()
+                .addOnSuccessListener { snapshot ->
+
+
+                        var money = if (operation.typeEn == "Income") -operation.value!!  else operation.value
+
+
+                            userId
+                                .collection("accounts").document(operation.account!!)
+                                .update("balance", money)
+                                .addOnSuccessListener {}
+                                .addOnFailureListener {}
+
+                    }
+
+
+
             val sourceDocumentRef = sourceCollectionRef.document(operation.id!!)
 
             sourceDocumentRef.get().addOnSuccessListener { sourceDocumentSnapshot ->
@@ -1145,6 +1164,8 @@ class BottomSheetOperationDetailFragment : BottomSheetDialogFragment() {
 
                         sourceDocumentRef.delete().addOnSuccessListener {
                             dismiss()
+
+
 
                         }.addOnFailureListener { exception ->
                         }

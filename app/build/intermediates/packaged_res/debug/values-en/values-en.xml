@@ -181,6 +181,7 @@
     <string name="user">User</string>
     <string name="userAlreadyRegistered">Such a user is already registered</string>
     <string name="userNotFound">Invalid email or password</string>
+    <string name="userNotFound2">Invalid email</string>
     <string name="value">Value</string>
     <string name="warning">Warning</string>
     <string name="weekly">Weekly</string>

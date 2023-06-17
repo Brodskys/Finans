@@ -29,6 +29,55 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/budgetsLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/round_20"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <RelativeLayout
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cornerRadius="20dp">
+
+                            <TextView
+                                android:id="@+id/budgetsTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/budgets"
+                                android:textColor="@color/background3"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/budgetsDescriptionTextView"
+                                android:layout_below="@+id/budgetsTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:textSize="16sp"
+                                android:text="@string/spendingPlan"
+                                android:textColor="@color/background3" />
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/budgets" />
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
                         android:id="@+id/paymentPlanningLinearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -76,53 +125,6 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/budgetsLinearLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="20dp"
-                        android:background="@drawable/round_20"
-                        android:orientation="vertical"
-                        android:padding="8dp">
-
-                        <RelativeLayout
-                            android:layout_marginHorizontal="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:cornerRadius="20dp">
-
-                            <TextView
-                                android:id="@+id/budgetsTextView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/budgets"
-                                android:textColor="@color/background3"
-                                android:textSize="17sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/budgetsDescriptionTextView"
-                                android:layout_below="@+id/budgetsTextView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:textSize="16sp"
-                                android:text="@string/spendingPlan"
-                                android:textColor="@color/background3" />
-
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:src="@drawable/budgets" />
-
-                        </RelativeLayout>
-
-
-                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/goalsLinearLayout"

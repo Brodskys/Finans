@@ -3483,6 +3483,7 @@ int drawable abc_vector_test 0x7f080078
 int drawable add_user 0x7f080079
 int drawable analytics 0x7f08007a
 int drawable anonymous 0x7f08007b
+int drawable anonymous_dark 0x7f08017c
 int drawable avd_hide_password 0x7f08007c
 int drawable avd_show_password 0x7f08007d
 int drawable back 0x7f08007e
@@ -5589,6 +5590,7 @@ int string use_screen_lock_label 0x7f1201b4
 int string user 0x7f1201b5
 int string userAlreadyRegistered 0x7f1201b6
 int string userNotFound 0x7f1201b7
+int string userNotFound2 0x7f1201c0
 int string value 0x7f1201b8
 int string warning 0x7f1201b9
 int string web_client_id 0x7f1201ba

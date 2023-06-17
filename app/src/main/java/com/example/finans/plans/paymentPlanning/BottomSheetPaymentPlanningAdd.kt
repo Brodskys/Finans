@@ -266,19 +266,13 @@ class BottomSheetPaymentPlanningAdd : BottomSheetDialogFragment() {
                     val hashMap = hashMapOf<String, Any>(
                         "value" to paymentPlanningTextInputEditText.text.toString().toDouble(),
                         "name" to paymentPlanningNameEdit.text.toString(),
-                        "categoryRu" to categ.nameRus!!,
-                        "categoryEn" to categ.nameEng!!,
-                        "icon" to categ.image!!,
+                        "category" to categ.url!!,
                         "timestamp" to currentDateTime.time,
                         "id" to id,
                         "idNotification" to uid.toString(),
                         "currency" to currencyPaymentPlanningSpinner.selectedItem,
-
                         "status" to "InProgress",
                     )
-
-
-
 
 
                     val documentRef = FirebaseFirestore.getInstance().collection("users")
@@ -300,11 +294,9 @@ class BottomSheetPaymentPlanningAdd : BottomSheetDialogFragment() {
 
                     val payment = PaymentPlanning().apply {
                         value = hashMap["value"] as Double
-                        categoryRu = hashMap["categoryRu"] as String
-                        categoryEn = hashMap["categoryEn"] as String
+                        category = hashMap["category"] as String
                         id = hashMap["id"] as String
                         idNotification = hashMap["idNotification"] as String
-                        icon = hashMap["icon"] as String
                         currency = hashMap["currency"] as String
                         name = hashMap["name"] as String
                         status = hashMap["status"] as String
@@ -315,7 +307,7 @@ class BottomSheetPaymentPlanningAdd : BottomSheetDialogFragment() {
 
                     intent.putExtra("paymentPlanning", paymentPlanningString)
                     intent.putExtra("uid", uid)
-                    intent.putExtra("message", paymentPlanningNameEdit.text.toString())
+                    intent.putExtra("message", "${paymentPlanningNameEdit.text} ${paymentPlanningTextInputEditText.text}${currencyPaymentPlanningSpinner.selectedItem}")
 
 
                     val pendingIntent = PendingIntent.getBroadcast(

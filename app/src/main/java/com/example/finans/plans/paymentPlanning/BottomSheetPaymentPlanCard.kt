@@ -110,6 +110,9 @@ class BottomSheetPaymentPlanCard : BottomSheetDialogFragment() {
                 "BottomSheetNewOperationFragment"
             )
             dismiss()
+
+            val prefs = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+            prefs.edit().remove("paymentPlanning").apply()
         }
 
 

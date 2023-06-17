@@ -181,6 +181,7 @@
     <string name="user">Пользователь</string>
     <string name="userAlreadyRegistered">Такой пользователь уже зарегистрирован</string>
     <string name="userNotFound">Неверный email или пароль</string>
+    <string name="userNotFound2">Неверный email</string>
     <string name="value">Значение</string>
     <string name="warning">Предупреждение</string>
     <string name="weekly">Недельный</string>

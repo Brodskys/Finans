@@ -7,11 +7,9 @@ import com.google.firebase.firestore.GeoPoint
 
 data class PaymentPlanning(
     var value: Double? = null,
-    var categoryRu: String? = null,
-    var categoryEn: String? = null,
+    var category: String? = null,
     var id: String? = null,
     var idNotification: String? = null,
-    var icon: String? = null,
     var currency: String? = null,
     var name: String? = null,
     var status: String? = null,
@@ -28,21 +26,17 @@ data class PaymentPlanning(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
         Timestamp(parcel.readLong(), parcel.readLong().toInt()),
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeValue(value)
-        parcel.writeString(categoryRu)
-        parcel.writeString(categoryEn)
+        parcel.writeString(category)
         parcel.writeString(id)
         parcel.writeString(idNotification)
         parcel.writeString(name)
         parcel.writeString(status)
         parcel.writeString(currency)
-        parcel.writeString(icon)
         parcel.writeString(name)
         parcel.writeLong(timestamp?.seconds ?: 0)
         parcel.writeLong((timestamp?.nanoseconds ?: 0).toLong())

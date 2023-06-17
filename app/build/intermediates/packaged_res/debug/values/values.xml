@@ -252,6 +252,7 @@
     <string name="user">User</string>
     <string name="userAlreadyRegistered">Such a user is already registered</string>
     <string name="userNotFound">Invalid email or password</string>
+    <string name="userNotFound2">Invalid email</string>
     <string name="value">Value</string>
     <string name="warning">Warning</string>
     <string name="web_client_id" translatable="false">1015866785-klgvp3eig6pbgg91mfomocuucb3m3ake.apps.googleusercontent.com</string>
@@ -279,7 +280,7 @@
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">#eaf6ff</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/splash_image</item>
-        <item name="windowSplashScreenAnimationDuration">90</item>
+        <item name="windowSplashScreenAnimationDuration">50</item>
         <item name="postSplashScreenTheme">@style/Theme.Finans</item>
     </style>
     <style name="Theme.Finans" parent="Theme.MaterialComponents.DayNight.NoActionBar">

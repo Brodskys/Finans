@@ -65,54 +65,7 @@ class PinCodeActivity : AppCompatActivity() {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val switchState = sharedPreferences.getBoolean("modeSwitch", false)
-        val biometricState = sharedPreferences.getBoolean("isBiometric", false)
         loadLocale(resources, this)
-
-
-        val userRef = FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString()).collection("accounts").document("cash")
-
-        var currency:String?
-
-        userRef.get()
-            .addOnSuccessListener { snapshot ->
-                currency = snapshot.getString("currency")
-                if (currency == "") {
-
-                    BottomSheetCurrencyFragment().show(
-                        supportFragmentManager,
-                        "BottomSheetCurrencyFragment"
-                    )
-
-                }
-                else{
-                    if(biometricState) {
-                    findViewById<ImageView>(R.id.biometricImg).isVisible = true
-                        val fingerprintManager =
-                            ContextCompat.getSystemService(this, FingerprintManager::class.java)
-                        if (fingerprintManager != null && fingerprintManager.isHardwareDetected) {
-
-                            if (fingerprintManager.hasEnrolledFingerprints()) {
-                                biometricPrompt.authenticate(promptInfo)
-                            } else {
-                                pinView.postDelayed({
-                                    pinView.requestFocus()
-                                    val imm =
-                                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                                    imm.showSoftInput(pinView, InputMethodManager.SHOW_IMPLICIT)
-                                }, 350)
-                            }
-                        }
-                    }
-                    else{
-                        pinView.postDelayed({
-                            pinView.requestFocus()
-                            val imm =
-                                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                            imm.showSoftInput(pinView, InputMethodManager.SHOW_IMPLICIT)
-                        }, 350)
-                    }
-                }
-            }
 
 
         if(switchState){
@@ -124,6 +77,9 @@ class PinCodeActivity : AppCompatActivity() {
             setContentView(R.layout.activity_pin_code)
 
         }
+
+
+
 
         val prefs = getSharedPreferences("Settings", Context.MODE_PRIVATE)
 
@@ -176,6 +132,34 @@ class PinCodeActivity : AppCompatActivity() {
             .build()
 
 
+        val biometricState = sharedPreferences.getBoolean("isBiometric", false)
+
+        if(biometricState) {
+            findViewById<ImageView>(R.id.biometricImg).isVisible = true
+            val fingerprintManager =
+                ContextCompat.getSystemService(this, FingerprintManager::class.java)
+            if (fingerprintManager != null && fingerprintManager.isHardwareDetected) {
+
+                if (fingerprintManager.hasEnrolledFingerprints()) {
+                    biometricPrompt.authenticate(promptInfo)
+                } else {
+                    pinView.postDelayed({
+                        pinView.requestFocus()
+                        val imm =
+                            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                        imm.showSoftInput(pinView, InputMethodManager.SHOW_IMPLICIT)
+                    }, 350)
+                }
+            }
+        }
+        else{
+            pinView.postDelayed({
+                pinView.requestFocus()
+                val imm =
+                    getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(pinView, InputMethodManager.SHOW_IMPLICIT)
+            }, 350)
+        }
 
 
         if (prefs.contains("shortcuts")) {

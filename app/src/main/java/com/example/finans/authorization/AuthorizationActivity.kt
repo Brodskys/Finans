@@ -39,6 +39,7 @@ import com.example.finans.operation.HomeActivity
 import com.example.finans.other.isEmailValid
 import com.example.finans.other.isValidPassword
 import com.example.finans.registration.RegistrationActivity
+import com.example.finans.сurrency.BottomSheetCurrencyFragment
 import com.facebook.CallbackManager
 import com.facebook.FacebookSdk
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -69,7 +70,7 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
     private lateinit var splashScreen: SplashScreen
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
-    private  var authType: String = ""
+    private var authType: String = ""
     private lateinit var email: EditText
     private lateinit var password: EditText
 
@@ -82,7 +83,7 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         editor = sharedPreferences.edit()
 
-        if(!sharedPreferences.contains("isPassword")){
+        if (!sharedPreferences.contains("isPassword")) {
             when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_NO -> {
                     editor.putBoolean(
@@ -114,11 +115,10 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
 
         val switchState = sharedPreferences.getBoolean("modeSwitch", false)
 
-        if(switchState){
+        if (switchState) {
             setContentView(R.layout.activity_dark_authorization)
             window.statusBarColor = getColor(R.color.background2_dark)
-        }
-        else{
+        } else {
             setContentView(R.layout.activity_authorization)
         }
 
@@ -138,15 +138,19 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
 
         callbackManager = CallbackManager.Factory.create()
 
-        presenterGoogle = AuthorizationPresenterGoogle(this,this, AuthorizationModelGoogle(auth, googleSignInClient))
-        presenterFacebook = AuthorizationPresenterFacebook(this, AuthorizationModelFacebook(auth, this))
+        presenterGoogle = AuthorizationPresenterGoogle(
+            this,
+            this,
+            AuthorizationModelGoogle(auth, googleSignInClient)
+        )
+        presenterFacebook =
+            AuthorizationPresenterFacebook(this, AuthorizationModelFacebook(auth, this))
 
         email = findViewById(R.id.editTextTextEmailAddress)
         password = findViewById(R.id.editTextTextPassword)
 
         email.addTextChangedListener(textWatcher(findViewById(R.id.editTextTextEmailAddress)))
         password.addTextChangedListener(textWatcher(findViewById(R.id.editTextTextPassword)))
-
 
 
         val privacyPolicyTextView = findViewById<TextView>(R.id.privacyPolicyTextView)
@@ -162,24 +166,31 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
             }
         }
 
-        var startIndex =  text.indexOf("Privacy Policy")
+        var startIndex = text.indexOf("Privacy Policy")
         var endIndex = startIndex + "Privacy Policy".length
 
-        if(startIndex == -1){
-                 startIndex =  text.indexOf("Политикой конфиденциальности")
-                 endIndex = startIndex + "Политикой конфиденциальности".length
-            }
+        if (startIndex == -1) {
+            startIndex = text.indexOf("Политикой конфиденциальности")
+            endIndex = startIndex + "Политикой конфиденциальности".length
+        }
 
-        spannableString.setSpan(clickableSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(
+            clickableSpan,
+            startIndex,
+            endIndex,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
 
-        spannableString.setSpan(StyleSpan(Typeface.BOLD), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(
+            StyleSpan(Typeface.BOLD),
+            startIndex,
+            endIndex,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
 
         privacyPolicyTextView.text = spannableString
         privacyPolicyTextView.movementMethod = LinkMovementMethod.getInstance()
     }
-
-
-
 
 
     @SuppressLint("SuspiciousIndentation")
@@ -187,26 +198,33 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
         super.onStart()
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val isPassword = prefs.getBoolean("isPassword", false)
+        val isCurrency = prefs.getBoolean("isCurrency", false)
+
 
         val currentUser = auth.currentUser
 
 
-                if (currentUser != null) {
+        if (currentUser != null) {
 
-                    when (intent.action) {
-                        "new_operation_action" -> {
-                            val sharedPref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-                            val editor = sharedPref?.edit()
-                            editor!!.putString("shortcuts", intent.action.toString())
-                            editor.apply()
-                        }
+            when (intent.action) {
+                "new_operation_action" -> {
+                    val sharedPref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+                    val editor = sharedPref?.edit()
+                    editor!!.putString("shortcuts", intent.action.toString())
+                    editor.apply()
+                }
 
-                    }
-
-
+            }
 
 
-                //    if(Firebase.auth.currentUser!!.isEmailVerified) {
+                    if (!isCurrency) {
+
+                        BottomSheetCurrencyFragment().show(
+                            supportFragmentManager,
+                            "BottomSheetCurrencyFragment"
+                        )
+
+                    } else {
 
                         if (isPassword) {
                             this@AuthorizationActivity.startActivity(
@@ -216,86 +234,92 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
                                 )
                             )
                             finish()
-                        } else
+                        } else {
                             this@AuthorizationActivity.startActivity(
                                 Intent(
                                     this@AuthorizationActivity,
                                     HomeActivity::class.java
                                 )
                             )
-                        finish()
-//                    }
-//                    else{
-//                        val bottomSheetFragment = supportFragmentManager.findFragmentByTag("BottomSheetIsEmailVerified") as? BottomSheetIsEmailVerified
-//                        if (bottomSheetFragment == null)
-//                            BottomSheetIsEmailVerified().show(supportFragmentManager, "BottomSheetIsEmailVerified")
-//                    }
-                }
+                            finish()
+                        }
+                    }
 
-
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(authType == "g") {
-            presenterGoogle.onActivityResult(requestCode, resultCode, data)
-        }
-        else if (authType == "f") {
-            presenterFacebook.onActivityResult(requestCode, resultCode, data)
         }
     }
 
-    override fun showMainScreen(account: GoogleSignInAccount?) {
-        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        prefs.edit().putBoolean("isPassword", true).apply()
 
-        val db = FirebaseFirestore.getInstance()
 
-        db.document("/users/${Firebase.auth.uid.toString()}").get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val document = task.result
-                    if (!document.exists()) {
-                        startActivity(Intent(this, PinCodeActivity::class.java))
-                        finish()
-                    } else {
-                        uploadData()
-                        startActivity(Intent(this, PinCodeActivity::class.java))
-                        finish()
+
+        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+            super.onActivityResult(requestCode, resultCode, data)
+            if (authType == "g") {
+                presenterGoogle.onActivityResult(requestCode, resultCode, data)
+            } else if (authType == "f") {
+                presenterFacebook.onActivityResult(requestCode, resultCode, data)
+            }
+        }
+
+        override fun showMainScreen(account: GoogleSignInAccount?) {
+            val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            prefs.edit().putBoolean("isPassword", true).apply()
+            prefs.edit().putBoolean("isCurrency", false).apply()
+
+
+
+            val db = FirebaseFirestore.getInstance()
+
+
+            db.document("/users/${Firebase.auth.uid.toString()}").get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val document = task.result
+                        if (document.exists()) {
+                            startActivity(Intent(this, PinCodeActivity::class.java))
+                            prefs.edit().putBoolean("isCurrency", true).apply()
+                        } else {
+                            uploadData()
+                            BottomSheetCurrencyFragment().show(
+                                supportFragmentManager,
+                                "BottomSheetCurrencyFragment"
+                            )
+                            prefs.edit().putBoolean("isCurrency", false).apply()
+                        }
                     }
                 }
-            }
-    }
+        }
 
-    private fun uploadData() {
-        val format = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-        val currentDate = format.format(Date())
+        private fun uploadData() {
+            val format = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+            val currentDate = format.format(Date())
 
-        val userId = FirebaseFirestore.getInstance().collection("users").document(Firebase.auth.uid.toString())
+            val userId = FirebaseFirestore.getInstance().collection("users")
+                .document(Firebase.auth.uid.toString())
 
-        val informationMap = hashMapOf<String, Any>(
-            "date_registration" to currentDate,
-            "total_balance" to 0,
-            "accounts" to "cash"
-        )
+            val informationMap = hashMapOf<String, Any>(
+                "date_registration" to currentDate,
+                "total_balance" to 0,
+                "accounts" to "cash"
+            )
 
-        userId.collection("user").document("information").set(informationMap, SetOptions.merge())
-            .addOnSuccessListener {
-                Log.d("Registration", "Added document")
-            }
-            .addOnFailureListener { exception ->
-                Log.d("Registration", "Error adding document $exception")
+            userId.collection("user").document("information")
+                .set(informationMap, SetOptions.merge())
+                .addOnSuccessListener {
+                    Log.d("Registration", "Added document")
+                }
+                .addOnFailureListener { exception ->
+                    Log.d("Registration", "Error adding document $exception")
 
-            }
+                }
 
-        val accountsMap = hashMapOf<String, Any>(
-            "name" to "cash",
-            "balance" to 0,
-            "nameRus" to "Наличные",
-            "nameEng" to "Cash",
-            "icon" to "gs://finans-44544.appspot.com/accounts/coins.png",
-            "currency" to ""
-        )
+            val accountsMap = hashMapOf<String, Any>(
+                "name" to "cash",
+                "balance" to 0,
+                "nameRus" to "Наличные",
+                "nameEng" to "Cash",
+                "icon" to "gs://finans-44544.appspot.com/accounts/coins.png",
+                "currency" to ""
+            )
 
             val sharedPref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
 
@@ -304,122 +328,123 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
             editor.apply()
 
 
-        userId.collection("accounts").document("cash").set(accountsMap, SetOptions.merge())
-            .addOnSuccessListener {
-                Log.d("Registration", "Added document")
-            }
-            .addOnFailureListener { exception ->
-                Log.d("Registration", "Error adding document $exception")
+            userId.collection("accounts").document("cash").set(accountsMap, SetOptions.merge())
+                .addOnSuccessListener {
+                    Log.d("Registration", "Added document")
+                }
+                .addOnFailureListener { exception ->
+                    Log.d("Registration", "Error adding document $exception")
 
-            }
-
-
-        val sourceCollectionRef = FirebaseFirestore.getInstance().collection("category")
-        val targetCollectionRef = userId.collection("category")
+                }
 
 
-        sourceCollectionRef.get().addOnSuccessListener { querySnapshot ->
-            for (documentSnapshot in querySnapshot.documents) {
-                val documentData = documentSnapshot.data
-                if (documentData != null) {
-                    val targetDocumentRef = targetCollectionRef.document(documentSnapshot.id)
-                    targetDocumentRef.set(documentData)
-                        .addOnSuccessListener { Log.d(TAG, "Document copied successfully!") }
-                        .addOnFailureListener { e -> Log.w(TAG, "Error copying document", e) }
+            val sourceCollectionRef = FirebaseFirestore.getInstance().collection("category")
+            val targetCollectionRef = userId.collection("category")
 
-                    val subCollectionRef = sourceCollectionRef.document(documentSnapshot.id).collection("subcategories")
-                    val targetSubCollectionRef = targetDocumentRef.collection("subcategories")
-                    subCollectionRef.get().addOnSuccessListener { subCollectionQuerySnapshot ->
-                        for (subCollectionDocSnapshot in subCollectionQuerySnapshot.documents) {
-                            targetSubCollectionRef.document(subCollectionDocSnapshot.id).set(subCollectionDocSnapshot.data!!)
+
+            sourceCollectionRef.get().addOnSuccessListener { querySnapshot ->
+                for (documentSnapshot in querySnapshot.documents) {
+                    val documentData = documentSnapshot.data
+                    if (documentData != null) {
+                        val targetDocumentRef = targetCollectionRef.document(documentSnapshot.id)
+                        targetDocumentRef.set(documentData)
+                            .addOnSuccessListener { Log.d(TAG, "Document copied successfully!") }
+                            .addOnFailureListener { e -> Log.w(TAG, "Error copying document", e) }
+
+                        val subCollectionRef = sourceCollectionRef.document(documentSnapshot.id)
+                            .collection("subcategories")
+                        val targetSubCollectionRef = targetDocumentRef.collection("subcategories")
+                        subCollectionRef.get().addOnSuccessListener { subCollectionQuerySnapshot ->
+                            for (subCollectionDocSnapshot in subCollectionQuerySnapshot.documents) {
+                                targetSubCollectionRef.document(subCollectionDocSnapshot.id)
+                                    .set(subCollectionDocSnapshot.data!!)
+                            }
                         }
                     }
                 }
             }
-        }
 
-        val user = Firebase.auth.currentUser
+            val user = Firebase.auth.currentUser
 
-        val name: String = user?.displayName ?: "Username"
+            val name: String = user?.displayName ?: "Username"
 
-        val profileUpdates = userProfileChangeRequest {
-            displayName = name
-        }
-
-        user!!.updateProfile(profileUpdates)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d(TAG, "User profile updated.")
-                }
+            val profileUpdates = userProfileChangeRequest {
+                displayName = name
             }
 
-    }
-
-    override fun showErrorScreen() {
-
-    }
-
-    fun signInWithGoogle(view: View) {
-        authType = "g"
-       presenterGoogle.signInWithGoogle()
-    }
-
-    fun signInWithFacebook(view: View) {
-        authType = "f"
-      presenterFacebook.signInWithFacebook()
-    }
-
-
-
-    fun signUp(view: View) {
-        startActivity(Intent(this, RegistrationActivity::class.java))
-        overridePendingTransition(0,0)
-        finish()
-    }
-
-    fun signInWithAnonymously(view: View) {
-        auth.signInAnonymously()
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("signInAnonymously", "signInAnonymously:success")
-                    uploadData()
-                    showMainScreen(null)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("signInAnonymously", "signInAnonymously:failure", task.exception)
-                    showErrorScreen()
+            user!!.updateProfile(profileUpdates)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d(TAG, "User profile updated.")
+                    }
                 }
-            }
-    }
 
-    fun signInWithEmailAndPassword(view: View) {
-
-        val textInputLayout = password.parent.parent as? TextInputLayout
-
-        if(password.text.toString().isValidPassword(this) != null) {
-
-            textInputLayout?.setPasswordVisibilityToggleEnabled(false)
         }
-        else
-            textInputLayout?.setPasswordVisibilityToggleEnabled(true)
 
-        email.error = email.text.toString().isEmailValid(this)
-        password.error = password.text.toString().isValidPassword(this)
+        override fun showErrorScreen() {
+            println("Ошибка")
+        }
 
-        if(email.text.toString().isEmailValid(this) == null && password.text.toString().isValidPassword(this) == null) {
+        fun signInWithGoogle(view: View) {
+            authType = "g"
+            presenterGoogle.signInWithGoogle()
+        }
 
-            auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
+        fun signInWithFacebook(view: View) {
+            authType = "f"
+            presenterFacebook.signInWithFacebook()
+        }
+
+
+        fun signUp(view: View) {
+            startActivity(Intent(this, RegistrationActivity::class.java))
+            overridePendingTransition(0, 0)
+            finish()
+        }
+
+        fun signInWithAnonymously(view: View) {
+            auth.signInAnonymously()
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        Log.d("signInWithEmail", "signInWithEmail:success")
-                       // showMainScreen()
-
-                        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-                        prefs.edit().putBoolean("isPassword", true).apply()
-                        startActivity(Intent(this, PinCodeActivity::class.java))
-
+                        Log.d("signInAnonymously", "signInAnonymously:success")
+                        //uploadData()
+                        showMainScreen(null)
                     } else {
+                        Log.w("signInAnonymously", "signInAnonymously:failure", task.exception)
+                        showErrorScreen()
+                    }
+                }
+        }
+
+        fun signInWithEmailAndPassword(view: View) {
+
+            val textInputLayout = password.parent.parent as? TextInputLayout
+
+            if (password.text.toString().isValidPassword(this) != null) {
+
+                textInputLayout?.setPasswordVisibilityToggleEnabled(false)
+            } else
+                textInputLayout?.setPasswordVisibilityToggleEnabled(true)
+
+            email.error = email.text.toString().isEmailValid(this)
+            password.error = password.text.toString().isValidPassword(this)
+
+            if (email.text.toString().isEmailValid(this) == null && password.text.toString()
+                    .isValidPassword(this) == null
+            ) {
+
+                auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            Log.d("signInWithEmail", "signInWithEmail:success")
+                            // showMainScreen()
+
+                            val prefs: SharedPreferences =
+                                PreferenceManager.getDefaultSharedPreferences(this)
+                            prefs.edit().putBoolean("isPassword", true).apply()
+                            startActivity(Intent(this, PinCodeActivity::class.java))
+
+                        } else {
                             val builder = AlertDialog.Builder(view.context)
 
                             builder.setTitle(R.string.error)
@@ -433,47 +458,54 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationView {
                                 password.text.clear()
                             }
 
-                        builder.setNegativeButton(
-                            R.string.cancel
-                        ) { dialog, id -> }
+                            builder.setNegativeButton(
+                                R.string.cancel
+                            ) { dialog, id -> }
                             builder.show()
+                        }
                     }
-                }
+            }
         }
-    }
 
-    fun resetPassword(view: View) {
-        val bottomSheetFragment = supportFragmentManager.findFragmentByTag("BottomSheetPasswordResetFragment") as? BottomSheetPasswordResetFragment
-        if (bottomSheetFragment == null)
-            BottomSheetPasswordResetFragment().show(supportFragmentManager, "BottomSheetPasswordResetFragment")
+        fun resetPassword(view: View) {
+            val bottomSheetFragment =
+                supportFragmentManager.findFragmentByTag("BottomSheetPasswordResetFragment") as? BottomSheetPasswordResetFragment
+            if (bottomSheetFragment == null)
+                BottomSheetPasswordResetFragment().show(
+                    supportFragmentManager,
+                    "BottomSheetPasswordResetFragment"
+                )
 
-    }
+        }
 
 
-    private fun textWatcher(editText: TextInputEditText): TextWatcher = object : TextWatcher {
+        private fun textWatcher(editText: TextInputEditText): TextWatcher = object : TextWatcher {
 
-        override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-        override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-        override fun afterTextChanged(editable: Editable) {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun afterTextChanged(editable: Editable) {
 
-            val textInputLayout = editText.parent.parent as? TextInputLayout
+                val textInputLayout = editText.parent.parent as? TextInputLayout
 
-            if (editText.inputType and InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS == InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS) {
-                editText.error = editText.text.toString().isEmailValid(this@AuthorizationActivity)
-            } else
-                if (editText.inputType and InputType.TYPE_TEXT_VARIATION_PASSWORD == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                if (editText.inputType and InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS == InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS) {
+                    editText.error =
+                        editText.text.toString().isEmailValid(this@AuthorizationActivity)
+                } else
+                    if (editText.inputType and InputType.TYPE_TEXT_VARIATION_PASSWORD == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
 
-                    if(editText.text.toString().isValidPassword(this@AuthorizationActivity) != null) {
+                        if (editText.text.toString()
+                                .isValidPassword(this@AuthorizationActivity) != null
+                        ) {
 
-                        textInputLayout?.setPasswordVisibilityToggleEnabled(false)
+                            textInputLayout?.setPasswordVisibilityToggleEnabled(false)
+                        } else
+                            textInputLayout?.setPasswordVisibilityToggleEnabled(true)
+
+                        editText.error =
+                            editText.text.toString().isValidPassword(this@AuthorizationActivity)
+
                     }
-                    else
-                        textInputLayout?.setPasswordVisibilityToggleEnabled(true)
-
-                    editText.error = editText.text.toString().isValidPassword(this@AuthorizationActivity)
-
-                }
+            }
         }
-    }
 
-}
+    }

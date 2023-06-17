@@ -23,6 +23,7 @@ import com.example.finans.authorization.AuthorizationActivity
 import com.example.finans.other.isConfirmPassword
 import com.example.finans.other.isEmailValid
 import com.example.finans.other.isValidPassword
+import com.example.finans.сurrency.BottomSheetCurrencyFragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -203,8 +204,10 @@ class RegistrationActivity : AppCompatActivity(), GestureDetector.OnGestureListe
                                 PreferenceManager.getDefaultSharedPreferences(this)
                             prefs.edit().putBoolean("isPassword", true).apply()
                             uploadData()
-                            startActivity(Intent(this, PinCodeActivity::class.java))
-                            finish()
+                            BottomSheetCurrencyFragment().show(
+                                supportFragmentManager,
+                                "BottomSheetCurrencyFragment"
+                            )
 
                         } else {
 

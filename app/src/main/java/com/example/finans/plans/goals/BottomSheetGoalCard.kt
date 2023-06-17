@@ -1,6 +1,8 @@
 package com.example.finans.plans.goals
 
 import android.app.AlertDialog
+import android.app.NotificationManager
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -12,19 +14,26 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import com.example.finans.R
 import com.example.finans.accounts.BottomSheetAccounts
+import com.example.finans.plans.budgets.Budgets
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.Random
 
 class BottomSheetGoalCard : BottomSheetDialogFragment() {
     private lateinit var goals: Goals
     private lateinit var valueEditText: EditText
     private lateinit var sharedPreferences : SharedPreferences
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +52,14 @@ class BottomSheetGoalCard : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dialog?.setCanceledOnTouchOutside(true)
+
+        db = Firebase.firestore
+
+        val settings = FirebaseFirestoreSettings.Builder()
+            .setPersistenceEnabled(true)
+            .build()
+
+        db.firestoreSettings = settings
 
         goals = arguments?.getParcelable("goals")!!
 

@@ -412,42 +412,52 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
 
         if (paymentPlanning != null) {
 
-            amount.setText(paymentPlanning!!.value.toString())
-
-            val date = paymentPlanning!!.timestamp?.toDate()
-            val pattern = "dd.MM.yyyy HH:mm"
-            val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
+            val documentRef = FirebaseFirestore.getInstance().document("users/${Firebase.auth.uid.toString()}${paymentPlanning!!.category}")
 
 
-            val dateString = date?.let { simpleDateFormat.format(it) }
-            dateTimeTextView.text = dateString
+            documentRef.get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        val categoryPaument = documentSnapshot.toObject(Category::class.java)
 
-            val storage = Firebase.storage
+                        amount.setText(paymentPlanning!!.value.toString())
 
-            val gsReference = storage.getReferenceFromUrl(paymentPlanning!!.icon!!)
+                        val date = paymentPlanning!!.timestamp?.toDate()
+                        val pattern = "dd.MM.yyyy HH:mm"
+                        val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
 
-            gsReference.downloadUrl.addOnSuccessListener { uri ->
-                Picasso.get().load(uri.toString())
-                    .into(view.findViewById<ImageView>(R.id.categoryIcon))
-            }.addOnFailureListener {
-                Picasso.get().load(R.drawable.category)
-                    .into(view.findViewById<ImageView>(R.id.categoryIcon))
-            }
-            if (languageInit(requireActivity())) {
-                view.findViewById<TextView>(R.id.subcategory_txt).text =
-                    paymentPlanning!!.categoryRu
 
-            } else
-                view.findViewById<TextView>(R.id.subcategory_txt).text =
-                    paymentPlanning!!.categoryEn
+                        val dateString = date?.let { simpleDateFormat.format(it) }
+                        dateTimeTextView.text = dateString
 
-            category = Category(
-                paymentPlanning!!.categoryEn,
-                null,
-                paymentPlanning!!.categoryRu,
-                paymentPlanning!!.icon,
-                null
-            )
+                        val storage = Firebase.storage
+
+                        val gsReference = storage.getReferenceFromUrl(categoryPaument!!.image!!)
+
+                        gsReference.downloadUrl.addOnSuccessListener { uri ->
+                            Picasso.get().load(uri.toString())
+                                .into(view.findViewById<ImageView>(R.id.categoryIcon))
+                        }.addOnFailureListener {
+                            Picasso.get().load(R.drawable.category)
+                                .into(view.findViewById<ImageView>(R.id.categoryIcon))
+                        }
+                        if (languageInit(requireActivity())) {
+                            view.findViewById<TextView>(R.id.subcategory_txt).text =
+                                categoryPaument.nameRus
+
+                        } else
+                            view.findViewById<TextView>(R.id.subcategory_txt).text =
+                                categoryPaument.nameEng
+
+                        category = categoryPaument
+
+                    }
+                }
+                .addOnFailureListener { exception ->
+
+                }
+
+
         }
 
         categoryViewModel = ViewModelProvider(requireActivity())[CategoryViewModel::class.java]
@@ -958,14 +968,6 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
                     if (date != "" && time != "") {
                         dateTimeTextView.text = "${date} ${time}"
 
-                        val formatter = DateTimeFormatterBuilder()
-                            .appendPattern("[dd.MM.yy][dd MM yy] HH:mm")
-                            .toFormatter()
-
-                        val dateTime = LocalDateTime.parse("${date} ${time}", formatter)
-
-                        val outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
-                        val formattedDateTime = dateTime.format(outputFormatter)
 
                     } else if (dateAndTime != "") {
 
@@ -1166,6 +1168,8 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
             .document(Firebase.auth.uid.toString())
             .collection("budgets")
 
+        val act = requireActivity()
+
         budgetsCollectionRef
             .whereGreaterThan("timeEnd", Timestamp.now())
             .get()
@@ -1217,11 +1221,11 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
                                             val uid = random.nextInt(Int.MAX_VALUE)
 
                                             val notificationBuilder = NotificationCompat.Builder(
-                                                requireContext(),
+                                                act,
                                                 "default_channel"
                                             )
                                                 .setSmallIcon(R.mipmap.ic_launcher)
-                                                .setContentText("${getString(R.string.budget20)} ${data.name}")
+                                                .setContentText("${act.getString(R.string.budget20)} ${data.name}")
                                                 .setPriority(NotificationCompat.PRIORITY_HIGH)
 
                                             budgetsCollectionRef.document(data.id!!)
@@ -1229,7 +1233,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
                                                 .addOnSuccessListener {}
 
                                             val notificationManager =
-                                                requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                                                act.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                                             notificationManager.notify(
                                                 uid,
                                                 notificationBuilder.build()
@@ -1243,11 +1247,11 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
                                             val uid = random.nextInt(Int.MAX_VALUE)
 
                                             val notificationBuilder = NotificationCompat.Builder(
-                                                requireContext(),
+                                                act,
                                                 "default_channel"
                                             )
                                                 .setSmallIcon(R.mipmap.ic_launcher)
-                                                .setContentText("${getString(R.string.budgetOverruns)} ${data.name}")
+                                                .setContentText("${act.getString(R.string.budgetOverruns)} ${data.name}")
                                                 .setPriority(NotificationCompat.PRIORITY_HIGH)
 
                                             budgetsCollectionRef.document(data.id!!)
@@ -1255,7 +1259,7 @@ class BottomSheetNewOperationFragment : BottomSheetDialogFragment() {
                                                 .addOnSuccessListener {}
 
                                             val notificationManager =
-                                                requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                                                act.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                                             notificationManager.notify(
                                                 uid,
                                                 notificationBuilder.build()

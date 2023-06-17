@@ -62,7 +62,7 @@ class BottomSheetPaymentPlan : BottomSheetDialogFragment() {
     private lateinit var sharedPreferences : SharedPreferences
 
 
-    private var categ:Category? = null
+    private var categUrl:String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -107,14 +107,7 @@ class BottomSheetPaymentPlan : BottomSheetDialogFragment() {
 
         val storage = Firebase.storage
 
-        var gsReference = storage.getReferenceFromUrl(paymentPlanning.icon!!)
-        gsReference.downloadUrl.addOnSuccessListener { uri ->
-            Picasso.get().load(uri.toString())
-                .into(paymentPlanUpdateCategoryIcon)
-        }.addOnFailureListener {
-            Picasso.get().load(R.drawable.category)
-                .into(paymentPlanUpdateCategoryIcon)
-        }
+
 
         paymentPlanUpdateNameEdit.setText(paymentPlanning.name!!)
 
@@ -148,17 +141,40 @@ class BottomSheetPaymentPlan : BottomSheetDialogFragment() {
             }
         }
 
-
-
         paymentPlanningUpdateValueEditText.setText(paymentPlanning.value.toString())
 
-        if (languageInit(requireActivity())) {
-            paymentPlanUpdateSubcategoryTextView.text =
-                paymentPlanning.categoryRu
+        val documentRef = FirebaseFirestore.getInstance().document("users/${Firebase.auth.uid.toString()}${paymentPlanning.category}")
 
-        } else
-            paymentPlanUpdateSubcategoryTextView.text =
-                paymentPlanning.categoryEn
+
+        documentRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val categoryPaument = documentSnapshot.toObject(Category::class.java)
+
+                    val gsReference = storage.getReferenceFromUrl(categoryPaument!!.image!!)
+                    gsReference.downloadUrl.addOnSuccessListener { uri ->
+                        Picasso.get().load(uri.toString())
+                            .into(paymentPlanUpdateCategoryIcon)
+                    }.addOnFailureListener {
+                        Picasso.get().load(R.drawable.category)
+                            .into(paymentPlanUpdateCategoryIcon)
+                    }
+
+                    if (languageInit(requireActivity())) {
+                        paymentPlanUpdateSubcategoryTextView.text =
+                            categoryPaument.nameRus
+
+                    } else
+                        paymentPlanUpdateSubcategoryTextView.text =
+                            categoryPaument.nameEng
+
+                }
+            }
+            .addOnFailureListener { exception ->
+
+            }
+
+
 
 
         val dateTimeFormat = SimpleDateFormat("dd.MM.y HH:mm", Locale.getDefault())
@@ -187,8 +203,8 @@ class BottomSheetPaymentPlan : BottomSheetDialogFragment() {
         categoryViewModel = ViewModelProvider(requireActivity())[CategoryViewModel::class.java]
         categoryViewModel.getSelectedCategory().observe(this) { ctg ->
             if (ctg != null) {
-                categ = ctg
-                gsReference = storage.getReferenceFromUrl(ctg.image!!)
+                categUrl = ctg.url
+                val gsReference = storage.getReferenceFromUrl(ctg.image!!)
                 gsReference.downloadUrl.addOnSuccessListener { uri ->
                     Picasso.get().load(uri.toString())
                         .into(view.findViewById<ImageView>(R.id.paymentPlanUpdateCategoryIcon))
@@ -254,12 +270,8 @@ class BottomSheetPaymentPlan : BottomSheetDialogFragment() {
             if (paymentPlanUpdateNameEdit.text.toString() != "" && paymentPlanningUpdateValueEditText.text.toString() != ""
                 &&  paymentPlanUpdateSubcategoryTextView.text.toString() != "") {
 
-                val act = requireActivity()
 
-                val ru = categ?.nameRus ?: paymentPlanning.categoryRu
-                val en = categ?.nameEng ?: paymentPlanning.categoryEn
-                val ic = categ?.image ?: paymentPlanning.icon
-
+                val c = categUrl ?: paymentPlanning.category
 
                 val dt = dateTimeFormat.format(paymentPlanning.timestamp!!.toDate())
 
@@ -270,9 +282,7 @@ class BottomSheetPaymentPlan : BottomSheetDialogFragment() {
                 val hashMap = hashMapOf<String, Any>(
                     "value" to paymentPlanningUpdateValueEditText.text.toString().toDouble(),
                     "name" to paymentPlanUpdateNameEdit.text.toString(),
-                    "categoryRu" to ru!!,
-                    "categoryEn" to en!!,
-                    "icon" to ic!!,
+                    "category" to c!!,
                     "timestamp" to currentDateTime.time,
                     "id" to paymentPlanning.id!!,
                     "idNotification" to paymentPlanning.idNotification!!.toString(),
@@ -300,11 +310,9 @@ class BottomSheetPaymentPlan : BottomSheetDialogFragment() {
 
                 val payment = PaymentPlanning().apply {
                     value = hashMap["value"] as Double
-                    categoryRu = hashMap["categoryRu"] as String
-                    categoryEn = hashMap["categoryEn"] as String
+                    category = hashMap["category"] as String
                     id = hashMap["id"] as String
                     idNotification = hashMap["idNotification"] as String
-                    icon = hashMap["icon"] as String
                     currency = hashMap["currency"] as String
                     name = hashMap["name"] as String
                     status = hashMap["status"] as String
@@ -315,7 +323,7 @@ class BottomSheetPaymentPlan : BottomSheetDialogFragment() {
 
                 intent.putExtra("paymentPlanning", paymentPlanningString)
                 intent.putExtra("uid", paymentPlanning.idNotification)
-                intent.putExtra("message", paymentPlanUpdateNameEdit.text.toString())
+                intent.putExtra("message", "${paymentPlanUpdateNameEdit.text.toString()} ${paymentPlanningUpdateValueEditText.text}${paymentPlanUpdateSpinner.selectedItem}")
 
                 val pendingIntent = PendingIntent.getBroadcast(
                     context,

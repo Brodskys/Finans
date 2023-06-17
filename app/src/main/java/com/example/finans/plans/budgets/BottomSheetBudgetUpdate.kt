@@ -26,6 +26,7 @@ import com.example.finans.accounts.BottomSheetAccounts
 import com.example.finans.category.BottomSheetCategoryFragment
 import com.example.finans.category.CategoriesBudgetsViewModel
 import com.example.finans.language.languageInit
+import com.example.finans.other.deletionWarning
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.ktx.auth
@@ -458,14 +459,17 @@ class BottomSheetBudgetUpdate : BottomSheetDialogFragment() {
         }
 
         view.findViewById<TextView>(R.id.budgetsUpdateDelete).setOnClickListener {
+            deletionWarning(requireActivity()) { result ->
 
-            userID
-                .collection("budgets").document(budgets.id!!)
+                if (result) {
+                    userID
+                        .collection("budgets").document(budgets.id!!)
                         .delete()
                         .addOnSuccessListener {
                             dismiss()
                         }
-
+                }
+            }
 
         }
 

@@ -46,6 +46,7 @@ import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
 import java.math.BigDecimal
+import java.text.DecimalFormat
 
 class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
 
@@ -300,19 +301,17 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
 
         view.findViewById<TextInputEditText>(R.id.changeTextUser).addTextChangedListener(userWatcher(view.findViewById(R.id.changeTextUser)))
 
-        view.findViewById<TextInputEditText>(R.id.changeTextTotalAmount).addTextChangedListener(userWatcher2(view.findViewById(R.id.changeTextTotalAmount)))
-
 
         password.addTextChangedListener(textWatcher(password))
 
         FirebaseFirestore.getInstance().collection("users")
             .document(Firebase.auth.uid.toString()).collection("user").document("information").get()
             .addOnSuccessListener { snapshot ->
-                val date = snapshot.getDouble("total_balance")
+                val balance = snapshot.getDouble("total_balance")
 
+                val decimalFormat = DecimalFormat("#,##0.00")
 
-
-                view.findViewById<TextInputEditText>(R.id.changeTextTotalAmount)?.setText(date.toString())
+                view.findViewById<TextInputEditText>(R.id.changeTextTotalAmount)?.setText(decimalFormat.format(balance))
             }
 
     }
@@ -341,24 +340,6 @@ class BottomSheetSettingsFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun userWatcher2(editText: TextInputEditText): TextWatcher = object : TextWatcher {
-
-        override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-
-        }
-        override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-        override fun afterTextChanged(editable: Editable) {
-
-
-            FirebaseFirestore.getInstance().collection("users")
-                .document(Firebase.auth.uid.toString())
-                        .collection("user").document("information")
-                        .update("total_balance", editText.text.toString().toDouble())
-                        .addOnSuccessListener {}
-                        .addOnFailureListener {}
-
-        }
-    }
     private fun userWatcher(editText: TextInputEditText): TextWatcher = object : TextWatcher {
 
         override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
